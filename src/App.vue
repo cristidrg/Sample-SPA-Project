@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import PieChart from './components/PieChart.vue'
 
 export default {
   name: 'app',
@@ -13,6 +14,10 @@ export default {
     }
   },
 
+  components: {
+    PieChart
+  },
+
   computed: {
     hyperdriveRatings() {
       return [...new Set(
@@ -23,10 +28,10 @@ export default {
     },
 
     starshipsAsList() {
-      return Object.values(this.starships)
+      return Object.values(this.starships) // [ship,ship,ship]  {id->ship}
     },
 
-    filteredShips() {
+    filteredShips() {  
       return this.starshipsAsList.filter(ship => this.activeFilter == 'ANY' || ship.hyperdriveRating == this.activeFilter)
     }
   },
@@ -38,7 +43,7 @@ export default {
   },
 
   mounted() {
-    this.getStarships();
+    //this.getStarships();
   },
 
   updated() {
@@ -71,7 +76,7 @@ export default {
         this.starships = data.reduce((acc, curr) => {
             acc[curr.node.id] = curr.node
             return acc
-        }, {})
+        }, {}) // {id -> starship}
       } catch(err) {
         console.error(err)
       }
@@ -83,30 +88,57 @@ export default {
 
 <template>
   <div id="app" class="ta--c">
-    <h1>Vue.js + GraphQL scaffold</h1>
-    <div v-if="isDataLoading">
-      Data is currently loading...
-    </div>
-    <div v-else class="d--flex justify--center flex--wrap single-col-layout">
-      <h2>Spaceships</h2>
-      <p>Currently display spaceships with a hyper drive rating of 
-        <select v-model="activeFilter" class='d--inline w--10 bw--0'>
-          <option>ANY</option>
-          <option v-for="rating in hyperdriveRatings">{{ rating }}</option>
+    <div class="row bg--black filter-menu">
+      <p class="col w--20@t d--flex my--0 justify--center items--center">Filter data sets by:</p>
+      <div class="col w--20@t">
+        <label for="employers">Employers</label>
+        <select id="employers">
+          <option value="1">London</option>
+          <option value="2">Buenos Aires</option>
+          <option value="3">Delhi</option>
         </select>
-      </p>
-      <table class="d--table">
-        <tr>
-          <th>NAME</th>
-          <th>STARSHIP CLASS</th>
-          <th>CARGO CAPACITY</th>
-        </tr>
-        <tr v-for="ship in filteredShips" :key="ship.id"> 
-          <td>{{ship.name}}</td>
-          <td>{{ship.starshipClass}}</td>
-          <td>{{ship.cargoCapacity}}</td>
-        </tr>
-      </table>
+      </div>
+      <div class="col w--20@t">
+        <label for="employers">Schools Attended</label>
+        <select id="employers">
+          <option value="1">London</option>
+          <option value="2">Buenos Aires</option>
+          <option value="3">Delhi</option>
+        </select>
+      </div>
+      <div class="col w--20@t">
+        <label for="employers">Industries</label>
+        <select id="employers">
+          <option value="1">London</option>
+          <option value="2">Buenos Aires</option>
+          <option value="3">Delhi</option>
+        </select>
+      </div>
+      <div class="col w--20@t">
+        <label for="employers">Employment Type</label>
+        <select id="employers">
+          <option value="1">London</option>
+          <option value="2">Buenos Aires</option>
+          <option value="3">Delhi</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col w--20@t chart-menu">
+        <ul>
+          <li class="active">Career Outcomes</li>
+          <li>Employment Status</li>
+          <li>Co-op participation</li>
+          <li>By industry/company</li>
+          <li>By graduate school</li>
+          <li>Starting salaries</li>
+        </ul>
+      </div>
+      <div class="col w--80@t chart-content">
+        <p>Northeastern graduates are in high-demand</p>
+        <pie-chart/>
+      </div>
     </div>
   </div>
 </template>

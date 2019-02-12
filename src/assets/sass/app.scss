@@ -1,1 +1,48 @@
 @import "~kernl-ui/src/styles/main";
+
+.filter-menu {
+    > p {
+       @extend .ls--loose;
+       @extend .tt--u;
+       @extend .fs--xs;
+       @extend .ta--r;
+    }
+
+    > div {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-flow: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    select {
+        width: auto;
+        margin: 10px;
+    }
+}
+
+.chart-menu {
+    background-color: $gray-800;
+    padding-right: 0;
+    color: white;
+
+    ul {
+        list-style-type: none;
+        text-align: left;
+        padding-left: 0;
+    }
+
+    li {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding-left: 25px;
+        border-bottom: 4px solid $gray-800;
+    }
+
+    li.active {
+        background-color: $gray-700;
+        border-bottom: 4px solid $red;
+    }
+}
