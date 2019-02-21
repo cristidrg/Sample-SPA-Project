@@ -1779,7 +1779,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_PieChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/PieChart.vue */ "./src/components/PieChart.vue");
+/* harmony import */ var _components_CareerOutcomes_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/CareerOutcomes.vue */ "./src/components/CareerOutcomes.vue");
+/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants.js */ "./src/constants.js");
+/* harmony import */ var _data_dump_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data_dump.json */ "./src/data_dump.json");
+var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./data_dump.json */ "./src/data_dump.json", 1);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1796,6 +1799,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app',
   data: function data() {
@@ -1803,20 +1808,36 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       example1: '',
       starships: {},
       isDataLoading: false,
-      activeFilter: 'ANY'
+      activeFilter: 'ANY',
+      filters: {
+        employers: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
+        schools: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
+        industries: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
+        employment: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]
+      },
+      data: {
+        employers: _constants_js__WEBPACK_IMPORTED_MODULE_3__["employers"],
+        schools: _constants_js__WEBPACK_IMPORTED_MODULE_3__["schools"],
+        industries: _constants_js__WEBPACK_IMPORTED_MODULE_3__["industries"],
+        emp_status: _constants_js__WEBPACK_IMPORTED_MODULE_3__["emp_status"]
+      }
     };
   },
   components: {
-    PieChart: _components_PieChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    PieChart: _components_CareerOutcomes_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: {
+    /* Order of values returned must be: employed, grad school, seeking employment */
+    outcomeValues: function outcomeValues() {
+      return [82.12, 15.49, 2.39];
+    },
     hyperdriveRatings: function hyperdriveRatings() {
       return _toConsumableArray(new Set(Object.values(this.starships).map(function (entry) {
         return entry.hyperdriveRating;
       }).filter(Boolean)));
     },
     starshipsAsList: function starshipsAsList() {
-      return Object.values(this.starships); // [ship,ship,ship]  {id->ship}
+      return Object.values(this.starships);
     },
     filteredShips: function filteredShips() {
       var _this = this;
@@ -1893,10 +1914,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/components/PieChart.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PieChart.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/components/CareerOutcomes.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CareerOutcomes.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1906,14 +1927,39 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   extends: vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Pie"],
+  data: function data() {
+    return {
+      entries: [{
+        label: 'Employed',
+        color: '#FF0000'
+      }, {
+        label: 'In Graduate School',
+        color: '#C2C2C2'
+      }, {
+        label: 'Seeking Employment',
+        color: '#0000FF'
+      }]
+    };
+  },
+  props: {
+    values: {
+      type: Array,
+      required: true,
+      validator: function validator(arr) {
+        return arr.length == 3;
+      }
+    }
+  },
   mounted: function mounted() {
-    // Overwriting base render method with actual data.
     this.renderChart({
-      labels: ['Employed', 'In Graduate School', 'Seeking Employment'],
+      labels: this.entries.map(function (entry) {
+        return entry.label;
+      }),
       datasets: [{
-        label: 'GitHub Commits',
-        backgroundColor: '#f87979',
-        data: [82, 15, 2]
+        backgroundColor: this.entries.map(function (entry) {
+          return entry.color;
+        }),
+        data: this.values
       }]
     });
   }
@@ -36767,30 +36813,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "ta--c", attrs: { id: "app" } }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col w--80@t chart-content" },
-        [
-          _c("p", [_vm._v("Northeastern graduates are in high-demand")]),
-          _vm._v(" "),
-          _c("pie-chart")
-        ],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row bg--black filter-menu" }, [
+    _c("div", { staticClass: "row bg--black filter-menu" }, [
       _c(
         "p",
         {
@@ -36800,58 +36823,199 @@ var staticRenderFns = [
       ),
       _vm._v(" "),
       _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "employers" } }, [_vm._v("Employers")]),
+        _c("label", { attrs: { for: "employer-filter" } }, [
+          _vm._v("Employers")
+        ]),
         _vm._v(" "),
-        _c("select", { attrs: { id: "employers" } }, [
-          _c("option", { attrs: { value: "1" } }, [_vm._v("London")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Buenos Aires")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Delhi")])
-        ])
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filters.employers,
+                expression: "filters.employers"
+              }
+            ],
+            attrs: { id: "employer-filter" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.filters,
+                  "employers",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.data.employers, function(employer) {
+            return _c("option", { domProps: { value: employer } }, [
+              _vm._v("\n          " + _vm._s(employer) + "\n        ")
+            ])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "employers" } }, [
+        _c("label", { attrs: { for: "school-filter" } }, [
           _vm._v("Schools Attended")
         ]),
         _vm._v(" "),
-        _c("select", { attrs: { id: "employers" } }, [
-          _c("option", { attrs: { value: "1" } }, [_vm._v("London")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Buenos Aires")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Delhi")])
-        ])
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filters.schools,
+                expression: "filters.schools"
+              }
+            ],
+            attrs: { id: "school-filter" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.filters,
+                  "schools",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.data.schools, function(school) {
+            return _c("option", { domProps: { value: school } }, [
+              _vm._v("\n          " + _vm._s(school) + "\n        ")
+            ])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "employers" } }, [_vm._v("Industries")]),
+        _c("label", { attrs: { for: "industry-filter" } }, [
+          _vm._v("Industries")
+        ]),
         _vm._v(" "),
-        _c("select", { attrs: { id: "employers" } }, [
-          _c("option", { attrs: { value: "1" } }, [_vm._v("London")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Buenos Aires")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Delhi")])
-        ])
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filters.industries,
+                expression: "filters.industries"
+              }
+            ],
+            attrs: { id: "industry-filter" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.filters,
+                  "industries",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.data.industries, function(industry) {
+            return _c("option", { domProps: { value: industry } }, [
+              _vm._v("\n          " + _vm._s(industry) + "\n        ")
+            ])
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "employers" } }, [
+        _c("label", { attrs: { for: "employment-filter" } }, [
           _vm._v("Employment Type")
         ]),
         _vm._v(" "),
-        _c("select", { attrs: { id: "employers" } }, [
-          _c("option", { attrs: { value: "1" } }, [_vm._v("London")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Buenos Aires")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Delhi")])
-        ])
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.filters.employment,
+                expression: "filters.employment"
+              }
+            ],
+            attrs: { id: "employment-filter" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.filters,
+                  "employment",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.data.emp_status, function(status) {
+            return _c("option", { domProps: { value: status } }, [
+              _vm._v("\n          " + _vm._s(status) + "\n        ")
+            ])
+          }),
+          0
+        )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col w--80@t chart-content" },
+        [
+          _c("p", [_vm._v("Northeastern graduates are in high-demand")]),
+          _vm._v(" "),
+          _c("pie-chart", { attrs: { values: _vm.outcomeValues } })
+        ],
+        1
+      )
     ])
-  },
+  ])
+}
+var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -48880,16 +49044,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/components/PieChart.vue":
-/*!*************************************!*\
-  !*** ./src/components/PieChart.vue ***!
-  \*************************************/
+/***/ "./src/components/CareerOutcomes.vue":
+/*!*******************************************!*\
+  !*** ./src/components/CareerOutcomes.vue ***!
+  \*******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _PieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PieChart.vue?vue&type=script&lang=js& */ "./src/components/PieChart.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CareerOutcomes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CareerOutcomes.vue?vue&type=script&lang=js& */ "./src/components/CareerOutcomes.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 var render, staticRenderFns
 
@@ -48899,7 +49063,7 @@ var render, staticRenderFns
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  _PieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  _CareerOutcomes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
   render,
   staticRenderFns,
   false,
@@ -48911,22 +49075,92 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "src/components/PieChart.vue"
+component.options.__file = "src/components/CareerOutcomes.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./src/components/PieChart.vue?vue&type=script&lang=js&":
-/*!**************************************************************!*\
-  !*** ./src/components/PieChart.vue?vue&type=script&lang=js& ***!
-  \**************************************************************/
+/***/ "./src/components/CareerOutcomes.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./src/components/CareerOutcomes.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./PieChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/components/PieChart.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PieChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CareerOutcomes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib??ref--4-0!../../node_modules/vue-loader/lib??vue-loader-options!./CareerOutcomes.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./src/components/CareerOutcomes.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CareerOutcomes_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./src/constants.js":
+/*!**************************!*\
+  !*** ./src/constants.js ***!
+  \**************************/
+/*! exports provided: employers, schools, industries, emp_status, ALL, st_lvl */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "employers", function() { return employers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "schools", function() { return schools; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "industries", function() { return industries; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emp_status", function() { return emp_status; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ALL", function() { return ALL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "st_lvl", function() { return st_lvl; });
+/* harmony import */ var _data_dump_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data_dump.json */ "./src/data_dump.json");
+var _data_dump_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./data_dump.json */ "./src/data_dump.json", 1);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+var employers = [ALL].concat(_toConsumableArray(new Set(_data_dump_json__WEBPACK_IMPORTED_MODULE_0__.map(function (entry) {
+  return entry.final_COMPANYNAME;
+}))));
+var schools = [ALL].concat(_toConsumableArray(new Set(_data_dump_json__WEBPACK_IMPORTED_MODULE_0__.map(function (entry) {
+  return entry.final_UNIVERSITY;
+}))));
+var industries = [ALL].concat(_toConsumableArray(new Set(_data_dump_json__WEBPACK_IMPORTED_MODULE_0__.map(function (entry) {
+  return entry.final_INDUSTRY;
+}))));
+var emp_status = [ALL].concat(_toConsumableArray(new Set(_data_dump_json__WEBPACK_IMPORTED_MODULE_0__.map(function (entry) {
+  return entry.employment_STATUS;
+}))));
+var ALL = 'All';
+var st_lvl = {
+  UNDERGRD: 'Undergraduate',
+  GRAD: 'Graduate',
+  PHD: 'PHD'
+};
+/* Fields to work with:
+{
+    "student_LEVEL": "Undergraduate",
+    "employment_STATUS": "Employed part-time",
+    "employment_TYPE": "Employed in a temporary/contract work assignment",
+    "final_COMPANYNAME": "Harvard University",
+    "final_INDUSTRY": "Educational Services",
+    "final_SALARY_RECALCULATED": "52000",
+    "final_UNIVERSITY": "NA",
+    "final_COOP_NUMBERS": "1 Co-op",
+}
+*/
+
+/***/ }),
+
+/***/ "./src/data_dump.json":
+/*!****************************!*\
+  !*** ./src/data_dump.json ***!
+  \****************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, default */
+/***/ (function(module) {
+
+module.exports = [{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Design","majordesc":"Design","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Harvard University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Graphic Designer","final_JOBCITY":"Cambridge","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"52000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Media Arts","majordesc":"Media Arts","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Pour House Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"bartender","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"6594","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Finance Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Strip by Strega","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Server","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"7800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"2 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Media & Screen Studies","majordesc":"Media and Screen Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"City Year (AmeriCorps)","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"AmeriCorps member","final_JOBCITY":"Philadelphia","final_JOBSTATE":"PA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"12000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics/Business Admin","majordesc":"Economics/Business Admin","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Kingo","final_INDUSTRY":"Utilities","final_JOBTITLE":"Business Development Coordinator","final_JOBCITY":"Guatemala","final_JOBSTATE":"Guatemala","final_JOBCOUNTRY":"Guatemala","final_SALARY_RECALCULATED":"16000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics","majordesc":"Economics","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"GameDuck","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"English Community Manager","final_JOBCITY":"Songpa-gu","final_JOBSTATE":"Songpa-gu","final_JOBCOUNTRY":"South Korea","final_SALARY_RECALCULATED":"18000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Finance Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Strip by Strega","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Server","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"7800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"2 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Psychology","majordesc":"Psychology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Newton Public Schools","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Inclusion Aide","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"19000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Endicott College-Masters Program","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Human Services","majordesc":"Human Services","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Consumer Intelligence","final_INDUSTRY":"Information","final_JOBTITLE":"Marketing Manager","final_JOBCITY":"London","final_JOBSTATE":"England","final_JOBCOUNTRY":"England","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Management Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"ECHL/AHL","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Linesman","final_JOBCITY":"Princeton","final_JOBSTATE":"NJ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Environmtl Stu/Economics","majordesc":"Environmtl Studies/Economics","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Grupra","final_INDUSTRY":"Not Known","final_JOBTITLE":"Project and Investment Manager","final_JOBCITY":"Guayaquil","final_JOBSTATE":"Guayas","final_JOBCOUNTRY":"Ecuador","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Psychology","majordesc":"Psychology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Newton Public Schools","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Inclusion Aide","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"19000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Endicott College-Masters Program","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Speech Lang Pathology/Audio","majordesc":"Speech-Lang Pathol/Audiology","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Syracuse University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Front Desk","final_JOBCITY":"Grand Canyon","final_JOBSTATE":"AZ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BACS Computer Science","majordesc":"Computer Science","collegedesc":"Coll of Computer & Info Sci","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Paper Source","final_INDUSTRY":"Retail Trade","final_JOBTITLE":"Stock Lead","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"21320","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSCHE Chemical Engineering","majordesc":"Chemical Engineering","collegedesc":"College of Engineering","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Vail Resorts","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Vail","final_JOBSTATE":"CO","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22360","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Cultural Anthropology","majordesc":"Cultural Anthropology","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Sockeye Cycle Co","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Tour Guide","final_JOBCITY":"Skagway","final_JOBSTATE":"AK","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics/Mathematics","majordesc":"Economics/Mathematics","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Urban Adventours","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Sales Associate","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Biology","majordesc":"Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Advanced Dental Technologies","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Intern","final_JOBCITY":"Stoneham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Barry University","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Music-Music Industry","majordesc":"Music","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Bowery Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Administrative Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Speech Lang Pathology/Audio","majordesc":"Speech-Lang Pathol/Audiology","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Syracuse University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Front Desk","final_JOBCITY":"Grand Canyon","final_JOBSTATE":"AZ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Biology","majordesc":"Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Advanced Dental Technologies","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Intern","final_JOBCITY":"Stoneham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Barry University","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Music-Music Industry","majordesc":"Music","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Bowery Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Administrative Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Sociology","majordesc":"Sociology","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in all other work categories","final_COMPANYNAME":"L.A. Burdick","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Cambridge","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Marketing Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"EverPresent","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Digital Organizing Specialist","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA English","majordesc":"English","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Huntington Theatre Company","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Literary Apprentice","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Health Science","majordesc":"Health Science","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Harvard University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Research Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Chemistry","majordesc":"Chemistry","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"New England Wildlife Center","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Veterinary Technician","final_JOBCITY":"South Weymouth","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Chemistry","majordesc":"Chemistry","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"New England Wildlife Center","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Veterinary Technician","final_JOBCITY":"South Weymouth","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Human Services","majordesc":"Human Services","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Southwest Airlines","final_INDUSTRY":"Transportation and Warehousing","final_JOBTITLE":"Coordination Intern","final_JOBCITY":"Dallas","final_JOBSTATE":"TX","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Theatre-Production","majordesc":"Theatre","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Writer's Theatre","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Assistant Wardrobe Technician","final_JOBCITY":"Glencoe","final_JOBSTATE":"IL","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Political Sci/Intl Affairs","majordesc":"Political Science/Intl Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"RT TV","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Junior Producer","final_JOBCITY":"London","final_JOBSTATE":"England","final_JOBCOUNTRY":"England","final_SALARY_RECALCULATED":"25000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"1 job offer","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Marketing Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"EverPresent","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Digital Organizing Specialist","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Human Services","majordesc":"Human Services","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Southwest Airlines","final_INDUSTRY":"Transportation and Warehousing","final_JOBTITLE":"Coordination Intern","final_JOBCITY":"Dallas","final_JOBSTATE":"TX","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics","majordesc":"Economics","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"GameDuck","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"English Community Manager","final_JOBCITY":"Songpa-gu","final_JOBSTATE":"Songpa-gu","final_JOBCOUNTRY":"South Korea","final_SALARY_RECALCULATED":"18000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Graphic Design","majordesc":"Graphic Design","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Disease Biophysic Group","final_INDUSTRY":"Professional, Scientific, and Technical Services","final_JOBTITLE":"Artist in Residence","final_JOBCITY":"Cambridge","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"27040","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Environmental Science","majordesc":"Environmental Science","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Alaska Center: Trailside Discovery Camp","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Lead Instructor","final_JOBCITY":"Anchorage","final_JOBSTATE":"AK","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"27040","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Music-Music Industry","majordesc":"Music","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Bowery Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Administrative Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Digital Arts/Game Design","majordesc":"Digital Arts/Game Design","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Sweet Green","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Team Captain","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"27040","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS American Sign Language","majordesc":"American Sign Language","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Work Inc/ The Learning Center for the Deaf","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Sign Language Interpreter/ Direct Child Care Worker","final_JOBCITY":"Dorchester/ Framingham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"28000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Journalism","majordesc":"Journalism","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"CIEE","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Content Manager","final_JOBCITY":"Portland","final_JOBSTATE":"ME","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"28080","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"3 or more Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Biology","majordesc":"Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Advanced Dental Technologies","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Intern","final_JOBCITY":"Stoneham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Barry University","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Marine Biology","majordesc":"Marine Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed freelance","final_COMPANYNAME":"Baroo","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Dog Trainer","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"29120","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Marine Biology","majordesc":"Marine Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed freelance","final_COMPANYNAME":"Baroo","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Dog Trainer","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"29120","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Chemistry","majordesc":"Chemistry","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"New England Wildlife Center","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Veterinary Technician","final_JOBCITY":"South Weymouth","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Management Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"ECHL/AHL","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Linesman","final_JOBCITY":"Princeton","final_JOBSTATE":"NJ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSME Mechanical Engineering","majordesc":"Mechanical Engineering","collegedesc":"College of Engineering","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Access Vascular, Inc","final_INDUSTRY":"Professional, Scientific, and Technical Services","final_JOBTITLE":"R&D Engineer","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"NA","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"NA","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"}];
 
 /***/ }),
 

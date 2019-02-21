@@ -1,6 +1,15 @@
 <script>
 import axios from 'axios'
-import PieChart from './components/PieChart.vue'
+import PieChart from './components/CareerOutcomes.vue'
+
+import { ALL, 
+  employers as employerDATA,
+  schools as schoolDATA,
+  industries as industryDATA,
+  emp_status as employmentDATA
+} from './constants.js';
+
+import dataDump from './data_dump.json';
 
 export default {
   name: 'app',
@@ -10,7 +19,19 @@ export default {
       example1: '',
       starships: {},
       isDataLoading: false,
-      activeFilter: 'ANY'
+      activeFilter: 'ANY',
+      filters: {
+        employers: ALL,
+        schools: ALL,
+        industries: ALL,
+        employment: ALL
+      },
+      data: {
+        employers: employerDATA,
+        schools: schoolDATA,
+        industries: industryDATA,
+        emp_status: employmentDATA
+      }
     }
   },
 
@@ -19,6 +40,11 @@ export default {
   },
 
   computed: {
+    /* Order of values returned must be: employed, grad school, seeking employment */
+    outcomeValues() {
+      return [82.12, 15.49, 2.39]
+    },
+
     hyperdriveRatings() {
       return [...new Set(
         Object.values(this.starships)
@@ -28,7 +54,7 @@ export default {
     },
 
     starshipsAsList() {
-      return Object.values(this.starships) // [ship,ship,ship]  {id->ship}
+      return Object.values(this.starships)
     },
 
     filteredShips() {  
@@ -91,35 +117,35 @@ export default {
     <div class="row bg--black filter-menu">
       <p class="col w--20@t d--flex my--0 justify--center items--center">Filter data sets by:</p>
       <div class="col w--20@t">
-        <label for="employers">Employers</label>
-        <select id="employers">
-          <option value="1">London</option>
-          <option value="2">Buenos Aires</option>
-          <option value="3">Delhi</option>
+        <label for="employer-filter">Employers</label>
+        <select v-model="filters.employers" id="employer-filter">
+          <option v-for="employer in data.employers" v-bind:value="employer">
+            {{ employer }}
+          </option>
         </select>
       </div>
       <div class="col w--20@t">
-        <label for="employers">Schools Attended</label>
-        <select id="employers">
-          <option value="1">London</option>
-          <option value="2">Buenos Aires</option>
-          <option value="3">Delhi</option>
+        <label for="school-filter">Schools Attended</label>
+        <select v-model="filters.schools" id="school-filter">
+          <option v-for="school in data.schools" v-bind:value="school">
+            {{ school }}
+          </option>
         </select>
       </div>
       <div class="col w--20@t">
-        <label for="employers">Industries</label>
-        <select id="employers">
-          <option value="1">London</option>
-          <option value="2">Buenos Aires</option>
-          <option value="3">Delhi</option>
+        <label for="industry-filter">Industries</label>
+        <select v-model="filters.industries" id="industry-filter">
+          <option v-for="industry in data.industries" v-bind:value="industry">
+            {{ industry }}
+          </option>
         </select>
       </div>
       <div class="col w--20@t">
-        <label for="employers">Employment Type</label>
-        <select id="employers">
-          <option value="1">London</option>
-          <option value="2">Buenos Aires</option>
-          <option value="3">Delhi</option>
+        <label for="employment-filter">Employment Type</label>
+        <select v-model="filters.employment" id="employment-filter">
+          <option v-for="status in data.emp_status" v-bind:value="status">
+            {{ status }}
+          </option>
         </select>
       </div>
     </div>
@@ -137,7 +163,7 @@ export default {
       </div>
       <div class="col w--80@t chart-content">
         <p>Northeastern graduates are in high-demand</p>
-        <pie-chart/>
+        <pie-chart :values="outcomeValues"/>
       </div>
     </div>
   </div>
