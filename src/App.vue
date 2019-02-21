@@ -27,6 +27,7 @@ export default {
         employment: ALL
       },
       data: {
+        dump: dataDump,
         employers: employerDATA,
         schools: schoolDATA,
         industries: industryDATA,
@@ -37,6 +38,14 @@ export default {
 
   components: {
     PieChart
+  },
+
+  methods: {
+    filterData() {
+      // this.data.dump.filter(
+      //   element =>
+      // )
+    }
   },
 
   computed: {

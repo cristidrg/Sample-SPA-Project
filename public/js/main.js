@@ -1785,6 +1785,8 @@ __webpack_require__.r(__webpack_exports__);
 var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./data_dump.json */ "./src/data_dump.json", 1);
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1801,7 +1803,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   name: 'app',
   data: function data() {
     return {
@@ -1816,6 +1818,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         employment: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]
       },
       data: {
+        dump: _data_dump_json__WEBPACK_IMPORTED_MODULE_4__,
         employers: _constants_js__WEBPACK_IMPORTED_MODULE_3__["employers"],
         schools: _constants_js__WEBPACK_IMPORTED_MODULE_3__["schools"],
         industries: _constants_js__WEBPACK_IMPORTED_MODULE_3__["industries"],
@@ -1825,6 +1828,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   },
   components: {
     PieChart: _components_CareerOutcomes_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  methods: {
+    filterData: function filterData() {// this.data.dump.filter(
+      //   element =>
+      // )
+    }
   },
   computed: {
     /* Order of values returned must be: employed, grad school, seeking employment */
@@ -1858,59 +1867,58 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   },
   updated: function updated() {
     console.log(this.activeFilter);
-  },
-  methods: {
-    getStarships: function () {
-      var _getStarships = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var res, data;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.isDataLoading = true;
-                _context.prev = 1;
-                _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:59035/', {
-                  query: " \n            query {\n              allStarships {\n                edges {\n                  node {\n                    id\n                    name\n                    cargoCapacity\n                    starshipClass\n                    hyperdriveRating\n                  }\n                }\n              }\n            }"
-                });
-
-              case 4:
-                res = _context.sent;
-                data = res.data.data.allStarships.edges;
-                this.starships = data.reduce(function (acc, curr) {
-                  acc[curr.node.id] = curr.node;
-                  return acc;
-                }, {}); // {id -> starship}
-
-                _context.next = 12;
-                break;
-
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](1);
-                console.error(_context.t0);
-
-              case 12:
-                this.isDataLoading = false;
-
-              case 13:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this, [[1, 9]]);
-      }));
-
-      function getStarships() {
-        return _getStarships.apply(this, arguments);
-      }
-
-      return getStarships;
-    }()
   }
-});
+}, "methods", {
+  getStarships: function () {
+    var _getStarships = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var res, data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              this.isDataLoading = true;
+              _context.prev = 1;
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost:59035/', {
+                query: " \n            query {\n              allStarships {\n                edges {\n                  node {\n                    id\n                    name\n                    cargoCapacity\n                    starshipClass\n                    hyperdriveRating\n                  }\n                }\n              }\n            }"
+              });
+
+            case 4:
+              res = _context.sent;
+              data = res.data.data.allStarships.edges;
+              this.starships = data.reduce(function (acc, curr) {
+                acc[curr.node.id] = curr.node;
+                return acc;
+              }, {}); // {id -> starship}
+
+              _context.next = 12;
+              break;
+
+            case 9:
+              _context.prev = 9;
+              _context.t0 = _context["catch"](1);
+              console.error(_context.t0);
+
+            case 12:
+              this.isDataLoading = false;
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[1, 9]]);
+    }));
+
+    function getStarships() {
+      return _getStarships.apply(this, arguments);
+    }
+
+    return getStarships;
+  }()
+}));
 
 /***/ }),
 
