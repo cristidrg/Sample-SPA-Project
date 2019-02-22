@@ -1,8 +1,42 @@
-# Laravel Mix VueJS Starter Kit
-Repository for kickstarting with Laravel Mix and Vue JS.
+# Career outcomes
+## Tasks 45/45
+
+### Build Header  - 3 points
+
+### Build Navigation & Filtering UI - 3 Points
+
+### Build Career Outcomes UI - 5 points
+
+### Build Employment Status UI - 3 points
+Dependencies: **Mobile UI** **Lacks Appeal**
+
+### Build Co-op Participation UI - 5 points
+
+### Build Industry UI - 5 points
+- [ ] Handle view more companies button; Ask about its behavior
+
+### Build Grad School UI - 3 points
+- [ ] Leverage view more functionality from industry
+
+### Build Starting Salaries Screen - 2 points
+
+### Build Map Screen - 8 points
+
+### Implement Routing in Navigation - 8 points
+- [ ] Learn Routing in Vue - 5 points
+- [ ] Implement it ! - 3 points
+Notes: SEO updates will come based on each route
 
 
-## Acknowledgements
-Laravel (c) 2017 [Taylor Otwell](https://laravel.com). All Rights Reserved.
+## TOTAL: 45 POINTS 
 
-Vue JS (c) 2017 [Evan You](https://vuejs.org). All Rights Reserved.
+## Missing Requirements
+### Investigate remaining work when GraphQL endpoint is received
+### UI design on mobile not ready for all screens, not accounted towards total
+
+
+
+
+
+## Dev Notes
+Make sure College to Industry mapping in filtering works if these filters will remain
