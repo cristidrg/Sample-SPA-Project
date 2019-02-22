@@ -1,12 +1,13 @@
 <script>
 import axios from 'axios'
-import PieChart from './components/CareerOutcomes.vue'
+import { countBy } from 'lodash';
+import { PieChart, DoughnutChart, BarChart } from './charts/';
 
 import { ALL, 
-  employers as employerDATA,
-  schools as schoolDATA,
-  industries as industryDATA,
-  emp_status as employmentDATA
+  years as yearDATA,
+  stdnt_level as stndtDATA,
+  colleges as collegeDATA,
+  majors as majorDATA
 } from './constants.js';
 
 import dataDump from './data_dump.json';
@@ -16,107 +17,84 @@ export default {
 
   data() {
     return {
-      example1: '',
-      starships: {},
       isDataLoading: false,
-      activeFilter: 'ANY',
       filters: {
-        employers: ALL,
-        schools: ALL,
-        industries: ALL,
-        employment: ALL
+        activeYear: ALL,
+        activeSTDLVL: ALL,
+        activeCollege: ALL,
+        activeMajor: ALL
       },
       data: {
         dump: dataDump,
-        employers: employerDATA,
-        schools: schoolDATA,
-        industries: industryDATA,
-        emp_status: employmentDATA
+        years: yearDATA,
+        stdntLevels: stndtDATA,
+        colleges: collegeDATA,
+        majors: majorDATA
       }
-    }
-  },
-
-  components: {
-    PieChart
-  },
-
-  methods: {
-    filterData() {
-      // this.data.dump.filter(
-      //   element =>
-      // )
     }
   },
 
   computed: {
-    /* Order of values returned must be: employed, grad school, seeking employment */
-    outcomeValues() {
-      return [82.12, 15.49, 2.39]
+    filteredData() {
+      const { activeYear, activeSTDLVL, activeCollege, activeMajor } = this.filters;
+
+      return this.data.dump.filter(element => 
+        ( activeYear == ALL || element.job_YEAR == activeYear )
+        && ( activeSTDLVL == ALL || element.student_LEVEL == activeSTDLVL )
+        && ( activeCollege == ALL || element.collegedesc == activeCollege )
+        && ( activeMajor == ALL || element.majordesc == activeMajor )
+      );
     },
 
-    hyperdriveRatings() {
-      return [...new Set(
-        Object.values(this.starships)
-          .map(entry => entry.hyperdriveRating)
-          .filter(Boolean)
-        )]
+    careerOutcomesChartData() {
+      const data = countBy(this.filteredData.map(element => element.employment_STATUS));
+      return ({
+        labels: Object.keys(data),
+        datasets: [{
+            backgroundColor: ['#FF0000', '#C2C2C2', '#0000FF'],
+            data: Object.values(data),
+        }]
+      })
     },
 
-    starshipsAsList() {
-      return Object.values(this.starships)
+    employmentStatusChartData() {
+      const data = countBy(this.filteredData.map(element => element.employment_TYPE));
+      return ({
+        labels: Object.keys(data),
+        datasets: [{
+            backgroundColor: ['blue', 'green', 'red', 'orange', 'purple'],
+            data: Object.values(data),
+        }]
+      })
     },
 
-    filteredShips() {  
-      return this.starshipsAsList.filter(ship => this.activeFilter == 'ANY' || ship.hyperdriveRating == this.activeFilter)
-    }
+    startingSalariesData() {
+      const salaries = this.filteredData
+        .map(element => Math.floor((element.final_SALARY_RECALCULATED % 100000) / 10000))
+        .filter(element => !isNaN(element))
+        .reduce((acc, curr) => {
+          acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
+          return acc;
+        }, {});
+
+      const labels = Object.keys(salaries).map(digit => `${digit}0k < ${digit}9k`);
+      labels[0] = '< 10k'
+
+      return ({
+        labels: labels,
+        datasets: [{
+            backgroundColor: ['red'],
+            data: Object.values(salaries),
+        }]
+      })
+    },
+
   },
 
-  filters: {
-    arrayFieldMatches(array, field, value) {
-      return array.filter(entry => entry[field] == value)
-    },
-  },
-
-  mounted() {
-    //this.getStarships();
-  },
-
-  updated() {
-    console.log(this.activeFilter);
-  },
-
-  methods: {
-    async getStarships () {
-      this.isDataLoading = true;
-      try {
-        const res = await axios.post('http://localhost:59035/', {
-          query: ` 
-            query {
-              allStarships {
-                edges {
-                  node {
-                    id
-                    name
-                    cargoCapacity
-                    starshipClass
-                    hyperdriveRating
-                  }
-                }
-              }
-            }`
-        })
-
-        const data = res.data.data.allStarships.edges;
-
-        this.starships = data.reduce((acc, curr) => {
-            acc[curr.node.id] = curr.node
-            return acc
-        }, {}) // {id -> starship}
-      } catch(err) {
-        console.error(err)
-      }
-      this.isDataLoading = false
-    },
+  components: {
+    PieChart,
+    DoughnutChart,
+    BarChart
   }
 }
 </script>
@@ -126,34 +104,34 @@ export default {
     <div class="row bg--black filter-menu">
       <p class="col w--20@t d--flex my--0 justify--center items--center">Filter data sets by:</p>
       <div class="col w--20@t">
-        <label for="employer-filter">Employers</label>
-        <select v-model="filters.employers" id="employer-filter">
-          <option v-for="employer in data.employers" v-bind:value="employer">
-            {{ employer }}
+        <label for="year-filter">Years</label>
+        <select v-model="filters.activeYear" id="year-filter">
+          <option v-for="year in data.years" :value="year" :key="year">
+            {{ year }}
           </option>
         </select>
       </div>
       <div class="col w--20@t">
         <label for="school-filter">Schools Attended</label>
-        <select v-model="filters.schools" id="school-filter">
-          <option v-for="school in data.schools" v-bind:value="school">
-            {{ school }}
+        <select v-model="filters.activeSTDLVL" id="school-filter">
+          <option v-for="stdntLevel in data.stdntLevels" :value="stdntLevel" :key="stdntLevel">
+            {{ stdntLevel }}
           </option>
         </select>
       </div>
       <div class="col w--20@t">
-        <label for="industry-filter">Industries</label>
-        <select v-model="filters.industries" id="industry-filter">
-          <option v-for="industry in data.industries" v-bind:value="industry">
-            {{ industry }}
+        <label for="college-filter">Industries</label>
+        <select v-model="filters.activeCollege" id="college-filter">
+          <option v-for="college in data.colleges" :value="college" :key="college">
+            {{ college }}
           </option>
         </select>
       </div>
       <div class="col w--20@t">
-        <label for="employment-filter">Employment Type</label>
-        <select v-model="filters.employment" id="employment-filter">
-          <option v-for="status in data.emp_status" v-bind:value="status">
-            {{ status }}
+        <label for="major-filter">Employment Type</label>
+        <select v-model="filters.activeMajor" id="major-filter">
+          <option v-for="major in data.majors" :value="major" :key="major">
+            {{ major }}
           </option>
         </select>
       </div>
@@ -172,7 +150,9 @@ export default {
       </div>
       <div class="col w--80@t chart-content">
         <p>Northeastern graduates are in high-demand</p>
-        <pie-chart :values="outcomeValues"/>
+        <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
+        <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
+        <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
       </div>
     </div>
   </div>

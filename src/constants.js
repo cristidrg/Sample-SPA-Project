@@ -1,26 +1,28 @@
 import dataDump from './data_dump.json';
 
-export const employers = [
-    ALL,
-    ...new Set(dataDump.map(entry => entry.final_COMPANYNAME))
-];
-
-export const schools = [
-    ALL, 
-    ...new Set(dataDump.map(entry => entry.final_UNIVERSITY))
-];
-
-export const industries = [
-    ALL, 
-    ...new Set(dataDump.map(entry => entry.final_INDUSTRY))
-];
-
-export const emp_status = [
-    ALL,
-    ...new Set(dataDump.map(entry => entry.employment_STATUS))
-]
-
 export const ALL = 'All';
+
+const createArrayOfUniqueValues = (field, data) => [
+    ALL,
+    ...new Set(data.map(entry => entry[field]))
+];
+
+export const employers = createArrayOfUniqueValues("final_COMPANYNAME", dataDump);
+
+export const schools = createArrayOfUniqueValues("final_UNIVERSITY", dataDump);
+
+export const industries = createArrayOfUniqueValues("final_INDUSTRY", dataDump);
+
+export const emp_status = createArrayOfUniqueValues("employment_STATUS", dataDump);
+
+export const years = createArrayOfUniqueValues("job_YEAR", dataDump);
+
+export const stdnt_level = createArrayOfUniqueValues("student_LEVEL", dataDump);
+
+export const colleges = createArrayOfUniqueValues("collegedesc", dataDump);
+
+export const majors = createArrayOfUniqueValues("majordesc", dataDump);
+
 
 export const st_lvl = {
     UNDERGRD: 'Undergraduate',
