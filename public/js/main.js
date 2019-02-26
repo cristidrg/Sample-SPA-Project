@@ -1829,13 +1829,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     careerOutcomesChartData: function careerOutcomesChartData() {
-      console.log('~~~');
-      console.log(this.filteredData);
       var data = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["countBy"])(this.filteredData.map(function (element) {
         return element.employment_status;
       }));
-      console.log(data);
-      console.log('END~~');
       return {
         labels: Object.keys(data),
         datasets: [{
@@ -1908,24 +1904,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   majors: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("majordesc", graduateDestinations),
                   dump: graduateDestinations
                 };
-                console.log(graduateDestinations);
-                _context.next = 13;
+                _context.next = 12;
                 break;
 
-              case 10:
-                _context.prev = 10;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](1);
                 console.error(_context.t0);
 
-              case 13:
+              case 12:
                 this.isDataLoading = false;
 
-              case 14:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 10]]);
+        }, _callee, this, [[1, 9]]);
       }));
 
       function fetchData() {
@@ -53997,10 +53992,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "ta--c", attrs: { id: "app" } }, [
-    _c("div", { staticClass: "chrome-header" }, [
-      _c("h1", [_vm._v(_vm._s(_vm.strings.head.title))]),
+    _c("div", { staticClass: "chrome-header section" }, [
+      _c("h1", { staticClass: "chrome-header__title" }, [
+        _vm._v(_vm._s(_vm.strings.head.title))
+      ]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.strings.head.copy))])
+      _c("p", { staticClass: "chrome-header__copy" }, [
+        _vm._v(_vm._s(_vm.strings.head.copy))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row bg--black filter-menu" }, [

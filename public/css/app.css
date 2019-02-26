@@ -6259,7 +6259,8 @@ _:-ms-lang(x),
   font-weight: bold;
 }
 
-.fw--100 {
+.fw--100,
+.chrome-header__copy {
   font-weight: 100;
 }
 
@@ -19912,6 +19913,17 @@ _:-ms-lang(x),
 
   .post-edit-link {
     display: none;
+  }
+}
+
+.chrome-header__copy {
+  max-width: 800px;
+  margin: 3rem auto 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .chrome-header__copy {
+    margin-top: 1rem;
   }
 }
 
