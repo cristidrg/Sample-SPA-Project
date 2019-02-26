@@ -1,16 +1,10 @@
 <script>
-import axios from 'axios'
 import { countBy } from 'lodash';
 import { PieChart, DoughnutChart, BarChart } from './charts/';
-
-import { ALL, 
-  years as yearDATA,
-  stdnt_level as stndtDATA,
-  colleges as collegeDATA,
-  majors as majorDATA
-} from './constants.js';
-
-import dataDump from './data_dump.json';
+import { ALL, createArrayOfUniqueValues } from './utils.js';
+import { getAllData } from './queries.js';
+import stringData from './strings.js';
+import API from './configs.js';
 
 export default {
   name: 'app',
@@ -25,12 +19,13 @@ export default {
         activeMajor: ALL
       },
       data: {
-        dump: dataDump,
-        years: yearDATA,
-        stdntLevels: stndtDATA,
-        colleges: collegeDATA,
-        majors: majorDATA
-      }
+        dump: [],
+        years: [],
+        stdntLevels: [],
+        colleges: [],
+        majors: []
+      },
+      strings: stringData
     }
   },
 
@@ -39,15 +34,19 @@ export default {
       const { activeYear, activeSTDLVL, activeCollege, activeMajor } = this.filters;
 
       return this.data.dump.filter(element => 
-        ( activeYear == ALL || element.job_YEAR == activeYear )
-        && ( activeSTDLVL == ALL || element.student_LEVEL == activeSTDLVL )
+        ( activeYear == ALL || element.job_year == activeYear )
+        && ( activeSTDLVL == ALL || element.student_level == activeSTDLVL )
         && ( activeCollege == ALL || element.collegedesc == activeCollege )
         && ( activeMajor == ALL || element.majordesc == activeMajor )
       );
     },
 
     careerOutcomesChartData() {
-      const data = countBy(this.filteredData.map(element => element.employment_STATUS));
+      console.log('~~~');
+      console.log(this.filteredData);
+      const data = countBy(this.filteredData.map(element => element.employment_status));
+      console.log(data);
+      console.log('END~~');
       return ({
         labels: Object.keys(data),
         datasets: [{
@@ -58,7 +57,8 @@ export default {
     },
 
     employmentStatusChartData() {
-      const data = countBy(this.filteredData.map(element => element.employment_TYPE));
+      const data = countBy(this.filteredData.map(element => element.employment_type));
+
       return ({
         labels: Object.keys(data),
         datasets: [{
@@ -70,7 +70,7 @@ export default {
 
     startingSalariesData() {
       const salaries = this.filteredData
-        .map(element => Math.floor((element.final_SALARY_RECALCULATED % 100000) / 10000))
+        .map(element => Math.floor((element.final_salary_recalculated % 100000) / 10000))
         .filter(element => !isNaN(element))
         .reduce((acc, curr) => {
           acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
@@ -91,6 +91,34 @@ export default {
 
   },
 
+  mounted() {
+    this.fetchData();
+  },
+
+  methods: {
+    async fetchData() {
+      this.isDataLoading = true;
+      try {
+        const res = await API.post('/', {query: getAllData})
+        
+        const graduateDestinations = res.data.data.getGraduateDestinations;
+
+        this.data = {
+          years: createArrayOfUniqueValues("job_year", graduateDestinations),
+          stdntLevels: createArrayOfUniqueValues("student_level", graduateDestinations),
+          colleges: createArrayOfUniqueValues("collegedesc", graduateDestinations),
+          majors: createArrayOfUniqueValues("majordesc", graduateDestinations),
+          dump: graduateDestinations
+        }
+        
+        console.log(graduateDestinations);
+      } catch(e) {
+        console.error(e);
+      }
+      this.isDataLoading = false;
+    },
+  },
+
   components: {
     PieChart,
     DoughnutChart,
@@ -101,6 +129,10 @@ export default {
 
 <template>
   <div id="app" class="ta--c">
+    <div class="chrome-header">
+      <h1>{{ strings.head.title }}</h1>
+      <p>{{ strings.head.copy }}</p>
+    </div>
     <div class="row bg--black filter-menu">
       <p class="col w--20@t d--flex my--0 justify--center items--center">Filter data sets by:</p>
       <div class="col w--20@t">
@@ -150,9 +182,9 @@ export default {
       </div>
       <div class="col w--80@t chart-content">
         <p>Northeastern graduates are in high-demand</p>
-        <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
         <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
         <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
+        <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
       </div>
     </div>
   </div>

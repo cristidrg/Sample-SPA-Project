@@ -6777,22 +6777,31 @@ _:-ms-lang(x),
   background-color: gray;
 }
 
-.bg--gray-700 {
+.bg--gray-700,
+.chrome-header {
   background-color: #5c5c5c;
   color: #fff;
 }
 
 .bg--gray-700.btn,
-.bg--gray-700.badge {
+.btn.chrome-header,
+.bg--gray-700.badge,
+.badge.chrome-header {
   border-color: transparent;
 }
 
 .bg--gray-700.btn:focus,
+.btn.chrome-header:focus,
 .bg--gray-700.btn:active,
+.btn.chrome-header:active,
 .bg--gray-700.btn:hover,
+.btn.chrome-header:hover,
 .bg--gray-700.badge:focus,
+.badge.chrome-header:focus,
 .bg--gray-700.badge:active,
-.bg--gray-700.badge:hover {
+.badge.chrome-header:active,
+.bg--gray-700.badge:hover,
+.badge.chrome-header:hover {
   border-color: transparent;
   background-color: #767676;
 }

@@ -1,5 +1,5 @@
 # Career outcomes
-## Tasks 45/45
+## Tasks 53/53
 
 ### Build Header  - 3 points
 
@@ -28,14 +28,12 @@ Dependencies: **Mobile UI** **Lacks Appeal**
 Notes: SEO updates will come based on each route
 
 
-## TOTAL: 45 POINTS 
+### Integrating GraphQL Endpoint in our flow DevWork - 8 points
+
+## TOTAL: 53 POINTS 
 
 ## Missing Requirements
-### Investigate remaining work when GraphQL endpoint is received
 ### UI design on mobile not ready for all screens, not accounted towards total
-
-
-
 
 
 ## Dev Notes

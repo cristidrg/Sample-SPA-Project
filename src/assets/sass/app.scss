@@ -1,5 +1,10 @@
 @import "~kernl-ui/src/styles/main";
 
+.chrome-header {
+    @extend .bg--gray-700;
+
+}
+
 .filter-menu {
     > p {
        @extend .ls--loose;

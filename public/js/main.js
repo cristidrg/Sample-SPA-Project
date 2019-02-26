@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime-module.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -1763,14 +1775,22 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _charts___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./charts/ */ "./src/charts/index.js");
-/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants.js */ "./src/constants.js");
-/* harmony import */ var _data_dump_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data_dump.json */ "./src/data_dump.json");
-var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./data_dump.json */ "./src/data_dump.json", 1);
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils.js */ "./src/utils.js");
+/* harmony import */ var _queries_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./queries.js */ "./src/queries.js");
+/* harmony import */ var _strings_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./strings.js */ "./src/strings.js");
+/* harmony import */ var _configs_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./configs.js */ "./src/configs.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 
 
@@ -1782,18 +1802,19 @@ var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webp
     return {
       isDataLoading: false,
       filters: {
-        activeYear: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
-        activeSTDLVL: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
-        activeCollege: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
-        activeMajor: _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]
+        activeYear: _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
+        activeSTDLVL: _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
+        activeCollege: _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"],
+        activeMajor: _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]
       },
       data: {
-        dump: _data_dump_json__WEBPACK_IMPORTED_MODULE_4__,
-        years: _constants_js__WEBPACK_IMPORTED_MODULE_3__["years"],
-        stdntLevels: _constants_js__WEBPACK_IMPORTED_MODULE_3__["stdnt_level"],
-        colleges: _constants_js__WEBPACK_IMPORTED_MODULE_3__["colleges"],
-        majors: _constants_js__WEBPACK_IMPORTED_MODULE_3__["majors"]
-      }
+        dump: [],
+        years: [],
+        stdntLevels: [],
+        colleges: [],
+        majors: []
+      },
+      strings: _strings_js__WEBPACK_IMPORTED_MODULE_5__["default"]
     };
   },
   computed: {
@@ -1804,13 +1825,17 @@ var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webp
           activeCollege = _this$filters.activeCollege,
           activeMajor = _this$filters.activeMajor;
       return this.data.dump.filter(function (element) {
-        return (activeYear == _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.job_YEAR == activeYear) && (activeSTDLVL == _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.student_LEVEL == activeSTDLVL) && (activeCollege == _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.collegedesc == activeCollege) && (activeMajor == _constants_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.majordesc == activeMajor);
+        return (activeYear == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.job_year == activeYear) && (activeSTDLVL == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.student_level == activeSTDLVL) && (activeCollege == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.collegedesc == activeCollege) && (activeMajor == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.majordesc == activeMajor);
       });
     },
     careerOutcomesChartData: function careerOutcomesChartData() {
+      console.log('~~~');
+      console.log(this.filteredData);
       var data = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["countBy"])(this.filteredData.map(function (element) {
-        return element.employment_STATUS;
+        return element.employment_status;
       }));
+      console.log(data);
+      console.log('END~~');
       return {
         labels: Object.keys(data),
         datasets: [{
@@ -1821,7 +1846,7 @@ var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webp
     },
     employmentStatusChartData: function employmentStatusChartData() {
       var data = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["countBy"])(this.filteredData.map(function (element) {
-        return element.employment_TYPE;
+        return element.employment_type;
       }));
       return {
         labels: Object.keys(data),
@@ -1833,7 +1858,7 @@ var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webp
     },
     startingSalariesData: function startingSalariesData() {
       var salaries = this.filteredData.map(function (element) {
-        return Math.floor(element.final_SALARY_RECALCULATED % 100000 / 10000);
+        return Math.floor(element.final_salary_recalculated % 100000 / 10000);
       }).filter(function (element) {
         return !isNaN(element);
       }).reduce(function (acc, curr) {
@@ -1852,6 +1877,63 @@ var _data_dump_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webp
         }]
       };
     }
+  },
+  mounted: function mounted() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData: function () {
+      var _fetchData = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var res, graduateDestinations;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.isDataLoading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return _configs_js__WEBPACK_IMPORTED_MODULE_6__["default"].post('/', {
+                  query: _queries_js__WEBPACK_IMPORTED_MODULE_4__["getAllData"]
+                });
+
+              case 4:
+                res = _context.sent;
+                graduateDestinations = res.data.data.getGraduateDestinations;
+                this.data = {
+                  years: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("job_year", graduateDestinations),
+                  stdntLevels: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("student_level", graduateDestinations),
+                  colleges: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("collegedesc", graduateDestinations),
+                  majors: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("majordesc", graduateDestinations),
+                  dump: graduateDestinations
+                };
+                console.log(graduateDestinations);
+                _context.next = 13;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](1);
+                console.error(_context.t0);
+
+              case 13:
+                this.isDataLoading = false;
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 10]]);
+      }));
+
+      function fetchData() {
+        return _fetchData.apply(this, arguments);
+      }
+
+      return fetchData;
+    }()
   },
   components: {
     PieChart: _charts___WEBPACK_IMPORTED_MODULE_2__["PieChart"],
@@ -52025,6 +52107,786 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/regenerator-runtime/runtime-module.js":
+/*!************************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+
+
+/***/ }),
+
 /***/ "./node_modules/setimmediate/setImmediate.js":
 /*!***************************************************!*\
   !*** ./node_modules/setimmediate/setImmediate.js ***!
@@ -53135,6 +53997,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "ta--c", attrs: { id: "app" } }, [
+    _c("div", { staticClass: "chrome-header" }, [
+      _c("h1", [_vm._v(_vm._s(_vm.strings.head.title))]),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.strings.head.copy))])
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row bg--black filter-menu" }, [
       _c(
         "p",
@@ -53332,13 +54200,6 @@ var render = function() {
         [
           _c("p", [_vm._v("Northeastern graduates are in high-demand")]),
           _vm._v(" "),
-          _c("pie-chart", {
-            attrs: {
-              chartData: _vm.careerOutcomesChartData,
-              options: { responsive: true }
-            }
-          }),
-          _vm._v(" "),
           _c("doughnut-chart", {
             attrs: {
               chartData: _vm.employmentStatusChartData,
@@ -53349,6 +54210,13 @@ var render = function() {
           _c("bar-chart", {
             attrs: {
               chartData: _vm.startingSalariesData,
+              options: { responsive: true }
+            }
+          }),
+          _vm._v(" "),
+          _c("pie-chart", {
+            attrs: {
+              chartData: _vm.careerOutcomesChartData,
               options: { responsive: true }
             }
           })
@@ -65561,80 +66429,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/constants.js":
-/*!**************************!*\
-  !*** ./src/constants.js ***!
-  \**************************/
-/*! exports provided: ALL, employers, schools, industries, emp_status, years, stdnt_level, colleges, majors, st_lvl */
+/***/ "./src/configs.js":
+/*!************************!*\
+  !*** ./src/configs.js ***!
+  \************************/
+/*! exports provided: ENDPOINT, API, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ALL", function() { return ALL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "employers", function() { return employers; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "schools", function() { return schools; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "industries", function() { return industries; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emp_status", function() { return emp_status; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "years", function() { return years; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stdnt_level", function() { return stdnt_level; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "colleges", function() { return colleges; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "majors", function() { return majors; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "st_lvl", function() { return st_lvl; });
-/* harmony import */ var _data_dump_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data_dump.json */ "./src/data_dump.json");
-var _data_dump_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./data_dump.json */ "./src/data_dump.json", 1);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ENDPOINT", function() { return ENDPOINT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "API", function() { return API; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+var ENDPOINT = "https://dql2agy2kzgx7ascv67kfppjdm.appsync-api.us-east-1.amazonaws.com/graphql";
+var API = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+  baseURL: ENDPOINT,
+  timeout: 2000,
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-key': 'da2-stz4qcnsgrg6phgtgqmtg5jkoq'
+  }
+});
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-
-var ALL = 'All';
-
-var createArrayOfUniqueValues = function createArrayOfUniqueValues(field, data) {
-  return [ALL].concat(_toConsumableArray(new Set(data.map(function (entry) {
-    return entry[field];
-  }))));
-};
-
-var employers = createArrayOfUniqueValues("final_COMPANYNAME", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var schools = createArrayOfUniqueValues("final_UNIVERSITY", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var industries = createArrayOfUniqueValues("final_INDUSTRY", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var emp_status = createArrayOfUniqueValues("employment_STATUS", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var years = createArrayOfUniqueValues("job_YEAR", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var stdnt_level = createArrayOfUniqueValues("student_LEVEL", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var colleges = createArrayOfUniqueValues("collegedesc", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var majors = createArrayOfUniqueValues("majordesc", _data_dump_json__WEBPACK_IMPORTED_MODULE_0__);
-var st_lvl = {
-  UNDERGRD: 'Undergraduate',
-  GRAD: 'Graduate',
-  PHD: 'PHD'
-};
-/* Fields to work with:
-{
-    "student_LEVEL": "Undergraduate",
-    "employment_STATUS": "Employed part-time",
-    "employment_TYPE": "Employed in a temporary/contract work assignment",
-    "final_COMPANYNAME": "Harvard University",
-    "final_INDUSTRY": "Educational Services",
-    "final_SALARY_RECALCULATED": "52000",
-    "final_UNIVERSITY": "NA",
-    "final_COOP_NUMBERS": "1 Co-op",
-}
-*/
-
-/***/ }),
-
-/***/ "./src/data_dump.json":
-/*!****************************!*\
-  !*** ./src/data_dump.json ***!
-  \****************************/
-/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, default */
-/***/ (function(module) {
-
-module.exports = [{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Design","majordesc":"Design","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Harvard University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Graphic Designer","final_JOBCITY":"Cambridge","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"52000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Media Arts","majordesc":"Media Arts","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Pour House Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"bartender","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"6594","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Finance Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Strip by Strega","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Server","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"7800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"2 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Media & Screen Studies","majordesc":"Media and Screen Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"City Year (AmeriCorps)","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"AmeriCorps member","final_JOBCITY":"Philadelphia","final_JOBSTATE":"PA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"12000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics/Business Admin","majordesc":"Economics/Business Admin","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Kingo","final_INDUSTRY":"Utilities","final_JOBTITLE":"Business Development Coordinator","final_JOBCITY":"Guatemala","final_JOBSTATE":"Guatemala","final_JOBCOUNTRY":"Guatemala","final_SALARY_RECALCULATED":"16000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics","majordesc":"Economics","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"GameDuck","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"English Community Manager","final_JOBCITY":"Songpa-gu","final_JOBSTATE":"Songpa-gu","final_JOBCOUNTRY":"South Korea","final_SALARY_RECALCULATED":"18000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Finance Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Strip by Strega","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Server","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"7800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"2 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Psychology","majordesc":"Psychology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Newton Public Schools","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Inclusion Aide","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"19000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Endicott College-Masters Program","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Human Services","majordesc":"Human Services","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Consumer Intelligence","final_INDUSTRY":"Information","final_JOBTITLE":"Marketing Manager","final_JOBCITY":"London","final_JOBSTATE":"England","final_JOBCOUNTRY":"England","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Management Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"ECHL/AHL","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Linesman","final_JOBCITY":"Princeton","final_JOBSTATE":"NJ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Environmtl Stu/Economics","majordesc":"Environmtl Studies/Economics","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Grupra","final_INDUSTRY":"Not Known","final_JOBTITLE":"Project and Investment Manager","final_JOBCITY":"Guayaquil","final_JOBSTATE":"Guayas","final_JOBCOUNTRY":"Ecuador","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Psychology","majordesc":"Psychology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Newton Public Schools","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Inclusion Aide","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"19000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Endicott College-Masters Program","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Speech Lang Pathology/Audio","majordesc":"Speech-Lang Pathol/Audiology","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Syracuse University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Front Desk","final_JOBCITY":"Grand Canyon","final_JOBSTATE":"AZ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BACS Computer Science","majordesc":"Computer Science","collegedesc":"Coll of Computer & Info Sci","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Paper Source","final_INDUSTRY":"Retail Trade","final_JOBTITLE":"Stock Lead","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"21320","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSCHE Chemical Engineering","majordesc":"Chemical Engineering","collegedesc":"College of Engineering","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Vail Resorts","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Vail","final_JOBSTATE":"CO","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22360","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Cultural Anthropology","majordesc":"Cultural Anthropology","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Sockeye Cycle Co","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Tour Guide","final_JOBCITY":"Skagway","final_JOBSTATE":"AK","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics/Mathematics","majordesc":"Economics/Mathematics","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Urban Adventours","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Sales Associate","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Biology","majordesc":"Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Advanced Dental Technologies","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Intern","final_JOBCITY":"Stoneham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Barry University","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Music-Music Industry","majordesc":"Music","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Bowery Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Administrative Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Speech Lang Pathology/Audio","majordesc":"Speech-Lang Pathol/Audiology","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Syracuse University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Front Desk","final_JOBCITY":"Grand Canyon","final_JOBSTATE":"AZ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Biology","majordesc":"Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Advanced Dental Technologies","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Intern","final_JOBCITY":"Stoneham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Barry University","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Music-Music Industry","majordesc":"Music","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Bowery Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Administrative Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Sociology","majordesc":"Sociology","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed in all other work categories","final_COMPANYNAME":"L.A. Burdick","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Cambridge","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Marketing Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"EverPresent","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Digital Organizing Specialist","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA English","majordesc":"English","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Huntington Theatre Company","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Literary Apprentice","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Health Science","majordesc":"Health Science","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Harvard University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Research Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Chemistry","majordesc":"Chemistry","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"New England Wildlife Center","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Veterinary Technician","final_JOBCITY":"South Weymouth","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Chemistry","majordesc":"Chemistry","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"New England Wildlife Center","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Veterinary Technician","final_JOBCITY":"South Weymouth","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Human Services","majordesc":"Human Services","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Southwest Airlines","final_INDUSTRY":"Transportation and Warehousing","final_JOBTITLE":"Coordination Intern","final_JOBCITY":"Dallas","final_JOBSTATE":"TX","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Theatre-Production","majordesc":"Theatre","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Writer's Theatre","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Assistant Wardrobe Technician","final_JOBCITY":"Glencoe","final_JOBSTATE":"IL","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Political Sci/Intl Affairs","majordesc":"Political Science/Intl Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"RT TV","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Junior Producer","final_JOBCITY":"London","final_JOBSTATE":"England","final_JOBCOUNTRY":"England","final_SALARY_RECALCULATED":"25000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"1 job offer","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Marketing Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"EverPresent","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Digital Organizing Specialist","final_JOBCITY":"Newton","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Human Services","majordesc":"Human Services","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Southwest Airlines","final_INDUSTRY":"Transportation and Warehousing","final_JOBTITLE":"Coordination Intern","final_JOBCITY":"Dallas","final_JOBSTATE":"TX","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Economics","majordesc":"Economics","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"GameDuck","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"English Community Manager","final_JOBCITY":"Songpa-gu","final_JOBSTATE":"Songpa-gu","final_JOBCOUNTRY":"South Korea","final_SALARY_RECALCULATED":"18000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"3 or more job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Graphic Design","majordesc":"Graphic Design","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Disease Biophysic Group","final_INDUSTRY":"Professional, Scientific, and Technical Services","final_JOBTITLE":"Artist in Residence","final_JOBCITY":"Cambridge","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"27040","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Environmental Science","majordesc":"Environmental Science","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"Alaska Center: Trailside Discovery Camp","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Lead Instructor","final_JOBCITY":"Anchorage","final_JOBSTATE":"AK","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"27040","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Communication Studies","majordesc":"Communication Studies","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"CerviCusco","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Medical Volunteerism Program Coordinator","final_JOBCITY":"Cusco","final_JOBSTATE":"Cusco","final_JOBCOUNTRY":"Peru","final_SALARY_RECALCULATED":"6000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"International"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Music-Music Industry","majordesc":"Music","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Bowery Boston","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Administrative Assistant","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BFA Digital Arts/Game Design","majordesc":"Digital Arts/Game Design","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Sweet Green","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Team Captain","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"27040","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS American Sign Language","majordesc":"American Sign Language","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Work Inc/ The Learning Center for the Deaf","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Sign Language Interpreter/ Direct Child Care Worker","final_JOBCITY":"Dorchester/ Framingham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"28000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA Journalism","majordesc":"Journalism","collegedesc":"Coll of Arts, Media & Design","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"CIEE","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Content Manager","final_JOBCITY":"Portland","final_JOBSTATE":"ME","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"28080","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"3 or more Co-ops","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSN Nursing - 2nd Degree","majordesc":"Nursing","collegedesc":"Bouve College of Health Sciences","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Starbucks","final_INDUSTRY":"Accommodation and Food Services","final_JOBTITLE":"Barista","final_JOBCITY":"Woburn","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Behavioral Neuroscience","majordesc":"Behavioral Neuroscience","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Backyard Brains","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Intern","final_JOBCITY":"Ann Arbor","final_JOBSTATE":"MI","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20800","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"2 job offers","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Biology","majordesc":"Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a postgraduate internship or fellowship","final_COMPANYNAME":"Advanced Dental Technologies","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Intern","final_JOBCITY":"Stoneham","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"22880","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"Barry University","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"1 job offer","final_JOBOFFERS":"3 or more job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Marine Biology","majordesc":"Marine Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed freelance","final_COMPANYNAME":"Baroo","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Dog Trainer","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"29120","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Marine Biology","majordesc":"Marine Biology","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed freelance","final_COMPANYNAME":"Baroo","final_INDUSTRY":"Other Services (except Public Administration)","final_JOBTITLE":"Dog Trainer","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"29120","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"1 Co-op","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BA International Affairs","majordesc":"International Affairs","collegedesc":"Coll of Soc Sci & Humanities","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed in a temporary/contract work assignment","final_COMPANYNAME":"US Pathways Program/Northeastern University","final_INDUSTRY":"Educational Services","final_JOBTITLE":"Global Student Ambassador","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"3500","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"2 Co-ops","final_FORMERCOOPJOBOFFERS":"0 job offers","final_JOBOFFERS":"1 job offer","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BS Chemistry","majordesc":"Chemistry","collegedesc":"College of Science","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"New England Wildlife Center","final_INDUSTRY":"Health Care and Social Assistance","final_JOBTITLE":"Veterinary Technician","final_JOBCITY":"South Weymouth","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"24960","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"No","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"0 job offers","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSBA Management Conc","majordesc":"Business Administration","collegedesc":"D'Amore-McKim School Business","student_LEVEL":"Undergraduate","employment_STATUS":"Employed part-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"ECHL/AHL","final_INDUSTRY":"Arts, Entertainment, and Recreation","final_JOBTITLE":"Linesman","final_JOBCITY":"Princeton","final_JOBSTATE":"NJ","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"20000","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"Yes","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"No","job_LOCATION_TYPE":"Domestic"},{"data_SOURCE":null,"job_YEAR":2017,"programdesc":"BSME Mechanical Engineering","majordesc":"Mechanical Engineering","collegedesc":"College of Engineering","student_LEVEL":"Undergraduate","employment_STATUS":"Employed full-time","employment_TYPE":"Employed by an organization","final_COMPANYNAME":"Access Vascular, Inc","final_INDUSTRY":"Professional, Scientific, and Technical Services","final_JOBTITLE":"R&D Engineer","final_JOBCITY":"Boston","final_JOBSTATE":"MA","final_JOBCOUNTRY":"USA","final_SALARY_RECALCULATED":"NA","final_BONUS_RECALCULATED":null,"final_UNIVERSITY":"NA","final_FIELD_OF_STUDY":"NA","final_DEGREE_OTHER":"NA","final_DEGREE":"NA","final_DID_COOP":"NA","final_COOP_NUMBERS":"NA","final_FORMERCOOPJOBOFFERS":"NA","final_JOBOFFERS":"NA","job_REGION":"Yes","job_LOCATION_TYPE":"Domestic"}];
+/* harmony default export */ __webpack_exports__["default"] = (API);
 
 /***/ }),
 
@@ -65660,6 +66479,76 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
   }
 }).$mount('#app');
+
+/***/ }),
+
+/***/ "./src/queries.js":
+/*!************************!*\
+  !*** ./src/queries.js ***!
+  \************************/
+/*! exports provided: getAllData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllData", function() { return getAllData; });
+var getAllData = "\n    query getData {\n        getGraduateDestinations {\n            id\n            final_companyname\n            final_university\n            final_industry\n            final_coop_numbers\n            final_salary_recalculated\n            employment_type\n            employmemt_status\n            job_year\n            student_level\n            collegedesc\n            majordesc\n        }\n    }\n";
+
+/***/ }),
+
+/***/ "./src/strings.js":
+/*!************************!*\
+  !*** ./src/strings.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var strings = {
+  'head': {
+    'title': 'Career Outcomes Powered by Experience',
+    'copy': "Our students graduate with full resum\xE8s of real-world experience\n         closely tied to their career paths. They've learned how to solve problems as part of \n         a team of professionals and navigate the unexpected challengs of today's fast-paced workplace.\n         And they've gained unique insights into their classroom learning - a deeper focus and understanding\n         that better prepares them for master's and doctoral work in top graduate programs."
+  },
+  'filters': {
+    "year": "Year",
+    "std_level": "Student Level",
+    "college": "College",
+    "major": "Major"
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (strings);
+
+/***/ }),
+
+/***/ "./src/utils.js":
+/*!**********************!*\
+  !*** ./src/utils.js ***!
+  \**********************/
+/*! exports provided: ALL, createArrayOfUniqueValues */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ALL", function() { return ALL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createArrayOfUniqueValues", function() { return createArrayOfUniqueValues; });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var ALL = 'All';
+
+var createArrayOfUniqueValues = function createArrayOfUniqueValues(field, data) {
+  return [ALL].concat(_toConsumableArray(new Set(data.map(function (entry) {
+    return entry[field];
+  }))));
+};
+
+
 
 /***/ }),
 
