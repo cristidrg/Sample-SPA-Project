@@ -43,7 +43,7 @@ export default {
 
     careerOutcomesChartData() {
       const data = countBy(this.filteredData.map(element => element.employment_status));
-
+      
       return ({
         labels: Object.keys(data),
         datasets: [{
