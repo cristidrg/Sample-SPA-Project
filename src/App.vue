@@ -85,6 +85,19 @@ export default {
       })
     },
 
+    schoolsSortedByName() {
+      return createArrayOfUniqueValues("final_university", this.filteredData).filter(element => element != "NA").sort()
+    },
+
+    getSchoolsByPopularity() {
+      const schoolsToCount = countBy(this.filteredData
+        .map(element => element.final_university)
+        .filter(element => element != "NA"));
+
+      return Object.entries(schoolsToCount)
+        .map(entry => ({name: entry[0], count: entry[1]}))
+        .sort((a, b) => b.count - a.count);
+    }
   },
 
   mounted() {
@@ -168,14 +181,14 @@ export default {
       <div class="graduate-data__banner">
         <p class="graduate-data__top" v-html="strings.graduate.top"></p>
         <ul class="graduate-data__top-list">
-          <li v-for="(school, idx) in []" :key="idx">
-            {{ school }}
+          <li v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
+            {{ school.name }}
           </li>
         </ul>
       </div>
       <p class="graduate-data__header"> {{ strings.graduate.list_header }}</p>
       <ul class="graduate-data__list">
-        <li v-for="(school, idx) in []" :key="idx">
+        <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
           {{ school }}
         </li>
       </ul>
