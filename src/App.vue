@@ -42,11 +42,7 @@ export default {
     },
 
     careerOutcomesChartData() {
-      console.log('~~~');
-      console.log(this.filteredData);
       const data = countBy(this.filteredData.map(element => element.employment_status));
-      console.log(data);
-      console.log('END~~');
       return ({
         labels: Object.keys(data),
         datasets: [{
@@ -110,8 +106,6 @@ export default {
           majors: createArrayOfUniqueValues("majordesc", graduateDestinations),
           dump: graduateDestinations
         }
-        
-        console.log(graduateDestinations);
       } catch(e) {
         console.error(e);
       }
@@ -128,7 +122,7 @@ export default {
 </script>
 
 <template>
-  <div id="app" class="ta--c">
+  <div id="app">
     <div class="chrome-header">
       <h1>{{ strings.head.title }}</h1>
       <p>{{ strings.head.copy }}</p>
