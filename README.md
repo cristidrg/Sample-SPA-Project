@@ -14,7 +14,11 @@ Dependencies: **Mobile UI** **Lacks Appeal**
 ### Build Co-op Participation UI - 5 points
 
 ### Build Industry UI - 5 points
-- [ ] Handle view more companies button; Ask about its behavior
+PR: https://bitbucket.org/nupods/outcomes/pull-requests/2/industry-data
+
+Dependencies:
+- *View More Button Behavior*: There are a lot of companies, I assume a modal or some other mechanism would take effect rather than just appending a list of over 500 items to the displayed one
+- *Mobile UI*: not here yet
 
 ### Build Grad School UI - 3 points
 - [ ] Leverage view more functionality from industry
