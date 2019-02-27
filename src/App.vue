@@ -128,7 +128,7 @@ export default {
 </script>
 
 <template>
-  <div id="app" class="ta--c">
+  <div id="app">
     <div class="chrome-header">
       <h1>{{ strings.head.title }}</h1>
       <p>{{ strings.head.copy }}</p>
@@ -167,6 +167,25 @@ export default {
           </option>
         </select>
       </div>
+    </div>
+
+    <div class="section graduate-data">
+      <p class="graduate-data__title">{{ strings.graduate.title }}</p>
+      <div class="graduate-data__banner">
+        <p class="graduate-data__top" v-html="strings.graduate.top"></p>
+        <ul class="graduate-data__top-list">
+          <li v-for="(school, idx) in []" :key="idx">
+            {{ school }}
+          </li>
+        </ul>
+      </div>
+      <p class="graduate-data__header"> {{ strings.graduate.list_header }}</p>
+      <ul class="graduate-data__list">
+        <li v-for="(school, idx) in []" :key="idx">
+          {{ school }}
+        </li>
+      </ul>
+      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
     </div>
 
     <div class="row">

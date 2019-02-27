@@ -7,6 +7,12 @@ const strings = {
          And they've gained unique insights into their classroom learning - a deeper focus and understanding
          that better prepares them for master's and doctoral work in top graduate programs.`
     },
+    'graduate': {
+        'title': 'They bring a wealth of undergraduate research experience to top grad programs',
+        'top': '<span>Top 5</span> attended graduate school',
+        'list_header': 'Schools Attended',
+        'list_button': 'View more schools'
+    },
     'filters': {
         "year": "Year",
         "std_level": "Student Level",
