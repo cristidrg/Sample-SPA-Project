@@ -1,6 +1,7 @@
 # Career outcomes
 ## Tasks 0/53
-## Curently worked on: 8 points
+### Curently worked on: 8 points
+Tasks are completed once PR is merged
 
 ### Build Header  - 3 points
 PR: https://bitbucket.org/nupods/outcomes/pull-requests/1/header-component/
@@ -40,13 +41,15 @@ Notes: SEO updates will come based on each route
 
 ## TOTAL: 53 POINTS 
 
-## Open Questions - ordered by importance / Missing Requirements
+## Missing Requirements & Open Questions - ordered by importance 
 - Figure out how to handle the selection of filters which produce 0 results.
 One ideea is:
     You have two filters selected already which show some results.
     You click on the third filter and the dropdown shows with values
     Values are enabled only if they produce more than 0 results, otherwise they 
     are disabled/not clickable/grayed out
+
+- Mobile UI is not ready and it's not accounted towards total
 
 - In two screens, there are View More Buttons. The content they expand to
 has over 500 items, what would their behavior be?
@@ -55,8 +58,6 @@ has over 500 items, what would their behavior be?
 
 - Getting the sketch file or the exact typography, colors, padding for the design
 would be nice
-
-- Mobile UI is not ready and it's not accounted towards total
 
 
 ## Dev Notes
