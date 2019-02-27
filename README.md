@@ -17,9 +17,9 @@ Dependencies: **Mobile UI** **Lacks Appeal**
 ### Build Industry UI - 5 points
 PR: https://bitbucket.org/nupods/outcomes/pull-requests/2/industry-data
 
-Dependencies: <br />
+Dependencies:
 
-- *View More Button Behavior*: There are a lot of companies, I assume a modal or some other mechanism would take effect rather than just appending a list of over 500 items to the displayed one  <br />
+- *View More Button Behavior*: There are a lot of companies, I assume a modal or some other mechanism would take effect rather than just appending a list of over 500 items to the displayed one  
 - *Mobile UI*: not here yet
 
 ### Build Grad School UI - 3 points
