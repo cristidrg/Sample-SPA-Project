@@ -42,11 +42,7 @@ export default {
     },
 
     careerOutcomesChartData() {
-      console.log('~~~');
-      console.log(this.filteredData);
       const data = countBy(this.filteredData.map(element => element.employment_status));
-      console.log(data);
-      console.log('END~~');
       return ({
         labels: Object.keys(data),
         datasets: [{
@@ -89,6 +85,24 @@ export default {
       })
     },
 
+    hiringCompaniesSortedByName() {
+      return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
+    },
+
+    industriesSortedByPopularity() {
+      const listOfIndustries = countBy(this.filteredData
+        .map(element => element.final_industry)
+        .filter(element => element != 'Not Known'))
+
+      const total = Object.values(listOfIndustries)
+        .reduce((acc, curr) => acc + curr, 0);
+    
+      const result = Object.entries(listOfIndustries)
+        .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(2)}))
+        .sort((a, b) => b.percentage - a.percentage)
+
+      return result;
+    }
   },
 
   mounted() {
@@ -104,14 +118,12 @@ export default {
         const graduateDestinations = res.data.data.getGraduateDestinations;
 
         this.data = {
-          years: createArrayOfUniqueValues("job_year", graduateDestinations),
-          stdntLevels: createArrayOfUniqueValues("student_level", graduateDestinations),
-          colleges: createArrayOfUniqueValues("collegedesc", graduateDestinations),
-          majors: createArrayOfUniqueValues("majordesc", graduateDestinations),
+          years: [ALL, ...createArrayOfUniqueValues("job_year", graduateDestinations)],
+          stdntLevels: [ALL, ...createArrayOfUniqueValues("student_level", graduateDestinations)],
+          colleges: [ALL, ...createArrayOfUniqueValues("collegedesc", graduateDestinations)],
+          majors: [ALL, ...createArrayOfUniqueValues("majordesc", graduateDestinations)],
           dump: graduateDestinations
         }
-        
-        console.log(graduateDestinations);
       } catch(e) {
         console.error(e);
       }
@@ -128,7 +140,7 @@ export default {
 </script>
 
 <template>
-  <div id="app" class="ta--c">
+  <div id="app">
     <div class="chrome-header">
       <h1>{{ strings.head.title }}</h1>
       <p>{{ strings.head.copy }}</p>
@@ -167,6 +179,25 @@ export default {
           </option>
         </select>
       </div>
+    </div>
+
+    <div class="section industry-data">
+      <p class="industry-data__title">{{ strings.industry.title }}</p>
+      <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
+      <ul class="industry-data__list --b-first">
+        <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
+          <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
+        </li>
+      </ul>
+
+      <p class="industry-data__header"> {{ strings.industry.list2_header }}</p>
+      <ul class="industry-data__list">
+        <li v-for="(company, idx) in hiringCompaniesSortedByName.slice(0, 16)" :key="idx">
+          {{ company }}
+        </li>
+      </ul>
+
+      <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
     </div>
 
     <div class="row">
