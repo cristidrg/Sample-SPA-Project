@@ -7,6 +7,12 @@ const strings = {
          And they've gained unique insights into their classroom learning - a deeper focus and understanding
          that better prepares them for master's and doctoral work in top graduate programs.`
     },
+    'industry': {
+        'title': 'Our graduates excel across industries and in top graduate programs',
+        'list1_header': 'Industries',
+        'list2_header': 'Hiring Companies',
+        'list2_button': 'View more companies'
+    },
     'filters': {
         "year": "Year",
         "std_level": "Student Level",
