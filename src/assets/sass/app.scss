@@ -57,6 +57,7 @@
         }
     }
 }
+
 .graduate-data {
     &__title {
         @extend .fs--d3;
@@ -97,6 +98,25 @@
     &__button {
         text-transform: uppercase;
         border-color: black;
+    }
+
+    &__banner {
+        background-color: $gray-100;
+        color: black;
+        display: flex;
+        padding: 15px 25px;
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+    }
+
+    &__top-list {
+        list-style: none;
+        padding: none;
+        columns: 2;
+        margin: 0 4rem;
     }
 }
 

@@ -9,7 +9,7 @@ const strings = {
     },
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
-        'top': '<span>Top 5</span> attended graduate school',
+        'top': '<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate school',
         'list_header': 'Schools Attended',
         'list_button': 'View more schools'
     },

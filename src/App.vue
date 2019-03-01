@@ -198,12 +198,12 @@ export default {
       </div>
     </section>
 
-    <div class="section graduate-data">
+    <section class="section graduate-data">
       <p class="graduate-data__title">{{ strings.graduate.title }}</p>
       <div class="graduate-data__banner">
         <p class="graduate-data__top" v-html="strings.graduate.top"></p>
         <ul class="graduate-data__top-list">
-          <li v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
+          <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
             {{ school.name }}
           </li>
         </ul>
@@ -215,9 +215,9 @@ export default {
         </li>
       </ul>
       <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
-    </div>
+    </section>
 
-    <div class="section industry-data">
+    <section class="section industry-data">
       <p class="industry-data__title">{{ strings.industry.title }}</p>
       <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
       <ul class="industry-data__list --b-first">
@@ -234,7 +234,7 @@ export default {
       </ul>
 
       <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
-    </div>
+    </section>
 
     <div class="row">
       <div class="col w--20@t chart-menu">
