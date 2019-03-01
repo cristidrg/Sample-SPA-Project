@@ -25,7 +25,11 @@ export default {
         colleges: [],
         majors: []
       },
-      strings: stringData
+      strings: stringData,
+      outcomesStyle: {
+        width: "500px",
+        position: "relative"
+      }
     }
   },
 
@@ -198,6 +202,14 @@ export default {
       </div>
     </section>
 
+    <section class="section career-outcomes">
+      <p class="career-outcomes__title">{{ strings.career.title }}</p>
+      <div class="col w--60@t">
+        <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="{responsive: true}" />
+      </div>
+      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
+    </section>
+
     <section class="section graduate-data">
       <p class="graduate-data__title">{{ strings.graduate.title }}</p>
       <div class="graduate-data__banner">
@@ -251,7 +263,6 @@ export default {
         <p>Northeastern graduates are in high-demand</p>
         <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
         <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
-        <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
       </div>
     </div>
   </main>

@@ -58,6 +58,16 @@
     }
 }
 
+.career-outcomes {
+    &__title {
+        @extend .fs--d3;
+        @extend .fw--200;
+
+        padding-bottom: 5px;
+        border-bottom: 1px solid $gray;
+    }
+}
+
 .graduate-data {
     &__title {
         @extend .fs--d3;

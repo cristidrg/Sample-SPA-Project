@@ -69,3 +69,7 @@ has over 500 items, what would their behavior be?
 - Getting the sketch file or the exact typography, colors, padding for the design
 would be nice
 
+Cristi's Notes:
+
+- Ask about padding/container for outcome layout
+

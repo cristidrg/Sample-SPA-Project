@@ -19,6 +19,9 @@ const strings = {
         'list2_header': 'Hiring Companies',
         'list2_button': 'View more companies'
     },
+    'career': {
+        'title': 'Northeastern graduates are in high demand',
+    },
     'filters': {
         "year": "Year",
         "std_level": "Student Level",
