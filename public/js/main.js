@@ -1786,6 +1786,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _configs_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./configs.js */ "./src/configs.js");
 
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1835,7 +1843,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return {
         labels: Object.keys(data),
         datasets: [{
-          backgroundColor: ['#FF0000', '#C2C2C2', '#0000FF'],
+          backgroundColor: ['#d41b2c', '#b5b5b5', '#006eb5'],
           data: Object.values(data)
         }]
       };
@@ -1847,7 +1855,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return {
         labels: Object.keys(data),
         datasets: [{
-          backgroundColor: ['blue', 'green', 'red', 'orange', 'purple'],
+          backgroundColor: ['#006eb5', '#badb00', '#d41b2c', '#ff854f', '#824091'],
           data: Object.values(data)
         }]
       };
@@ -1868,10 +1876,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return {
         labels: labels,
         datasets: [{
-          backgroundColor: ['red'],
+          backgroundColor: ['#d41b2c'],
           data: Object.values(salaries)
         }]
       };
+    },
+    hiringCompaniesSortedByName: function hiringCompaniesSortedByName() {
+      return Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("final_companyname", this.filteredData).sort();
+    },
+    industriesSortedByPopularity: function industriesSortedByPopularity() {
+      var listOfIndustries = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["countBy"])(this.filteredData.map(function (element) {
+        return element.final_industry;
+      }).filter(function (element) {
+        return element != 'Not Known';
+      }));
+      var total = Object.values(listOfIndustries).reduce(function (acc, curr) {
+        return acc + curr;
+      }, 0);
+      var result = Object.entries(listOfIndustries).map(function (entry) {
+        return {
+          name: entry[0],
+          percentage: new Number(100 * entry[1] / total).toFixed(2)
+        };
+      }).sort(function (a, b) {
+        return b.percentage - a.percentage;
+      });
+      return result;
     }
   },
   mounted: function mounted() {
@@ -1898,10 +1928,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
                 graduateDestinations = res.data.data.getGraduateDestinations;
                 this.data = {
-                  years: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("job_year", graduateDestinations),
-                  stdntLevels: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("student_level", graduateDestinations),
-                  colleges: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("collegedesc", graduateDestinations),
-                  majors: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("majordesc", graduateDestinations),
+                  years: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("job_year", graduateDestinations))),
+                  stdntLevels: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("student_level", graduateDestinations))),
+                  colleges: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("collegedesc", graduateDestinations))),
+                  majors: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("majordesc", graduateDestinations))),
                   dump: graduateDestinations
                 };
                 _context.next = 12;
@@ -53991,237 +54021,251 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ta--c", attrs: { id: "app" } }, [
-    _c("div", { staticClass: "chrome-header section" }, [
-      _c("h1", { staticClass: "chrome-header__title" }, [
-        _vm._v(_vm._s(_vm.strings.head.title))
+  return _c("div", [
+    _c("main", { attrs: { id: "app" } }, [
+      _c("header", { staticClass: "section bg--gray-700 ta--c" }, [
+        _c("h1", { staticClass: "fs--d3" }, [
+          _vm._v(_vm._s(_vm.strings.head.title))
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.strings.head.copy))])
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "chrome-header__copy" }, [
-        _vm._v(_vm._s(_vm.strings.head.copy))
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row bg--black filter-menu" }, [
-      _c(
-        "p",
-        {
-          staticClass: "col w--20@t d--flex my--0 justify--center items--center"
-        },
-        [_vm._v("Filter data sets by:")]
-      ),
+      _c("section", { staticClass: "section bg--black filter-menu ta--l" }, [
+        _c("p", [_vm._v("Filter data sets by:")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col w--1/3 select__wrapper" }, [
+            _c(
+              "label",
+              { staticClass: "tc--gray-300", attrs: { for: "year-filter" } },
+              [_vm._v("Year")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filters.activeYear,
+                    expression: "filters.activeYear"
+                  }
+                ],
+                attrs: { id: "year-filter" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.filters,
+                      "activeYear",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.data.years, function(year) {
+                return _c("option", { key: year, domProps: { value: year } }, [
+                  _vm._v("\n              " + _vm._s(year) + "\n            ")
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col w--1/3 select__wrapper" }, [
+            _c(
+              "label",
+              { staticClass: "tc--gray-300", attrs: { for: "college-filter" } },
+              [_vm._v("College")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filters.activeCollege,
+                    expression: "filters.activeCollege"
+                  }
+                ],
+                attrs: { id: "college-filter" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.filters,
+                      "activeCollege",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.data.colleges, function(college) {
+                return _c(
+                  "option",
+                  { key: college, domProps: { value: college } },
+                  [
+                    _vm._v(
+                      "\n              " + _vm._s(college) + "\n            "
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col w--1/3 select__wrapper" }, [
+            _c(
+              "label",
+              { staticClass: "tc--gray-300", attrs: { for: "major-filter" } },
+              [_vm._v("Major")]
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.filters.activeMajor,
+                    expression: "filters.activeMajor"
+                  }
+                ],
+                attrs: { id: "major-filter" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.filters,
+                      "activeMajor",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.data.majors, function(major) {
+                return _c(
+                  "option",
+                  { key: major, domProps: { value: major } },
+                  [
+                    _vm._v(
+                      "\n              " + _vm._s(major) + "\n            "
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "year-filter" } }, [_vm._v("Years")]),
+      _c("div", { staticClass: "section industry-data" }, [
+        _c("p", { staticClass: "industry-data__title" }, [
+          _vm._v(_vm._s(_vm.strings.industry.title))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "industry-data__header" }, [
+          _vm._v(" " + _vm._s(_vm.strings.industry.list1_header))
+        ]),
         _vm._v(" "),
         _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.filters.activeYear,
-                expression: "filters.activeYear"
-              }
-            ],
-            attrs: { id: "year-filter" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.filters,
-                  "activeYear",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          _vm._l(_vm.data.years, function(year) {
-            return _c("option", { key: year, domProps: { value: year } }, [
-              _vm._v("\n          " + _vm._s(year) + "\n        ")
+          "ul",
+          { staticClass: "industry-data__list --b-first" },
+          _vm._l(_vm.industriesSortedByPopularity, function(industry, idx) {
+            return _c("li", { key: idx }, [
+              _c("span", { staticClass: "industry-data__perc" }, [
+                _vm._v(_vm._s(industry.percentage) + "%")
+              ]),
+              _vm._v(" " + _vm._s(industry.name) + "\n        ")
             ])
           }),
           0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "school-filter" } }, [
-          _vm._v("Schools Attended")
+        ),
+        _vm._v(" "),
+        _c("p", { staticClass: "industry-data__header" }, [
+          _vm._v(" " + _vm._s(_vm.strings.industry.list2_header))
         ]),
         _vm._v(" "),
         _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.filters.activeSTDLVL,
-                expression: "filters.activeSTDLVL"
-              }
-            ],
-            attrs: { id: "school-filter" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.filters,
-                  "activeSTDLVL",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          _vm._l(_vm.data.stdntLevels, function(stdntLevel) {
-            return _c(
-              "option",
-              { key: stdntLevel, domProps: { value: stdntLevel } },
-              [_vm._v("\n          " + _vm._s(stdntLevel) + "\n        ")]
-            )
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "college-filter" } }, [
-          _vm._v("Industries")
-        ]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.filters.activeCollege,
-                expression: "filters.activeCollege"
-              }
-            ],
-            attrs: { id: "college-filter" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.filters,
-                  "activeCollege",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          _vm._l(_vm.data.colleges, function(college) {
-            return _c(
-              "option",
-              { key: college, domProps: { value: college } },
-              [_vm._v("\n          " + _vm._s(college) + "\n        ")]
-            )
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col w--20@t" }, [
-        _c("label", { attrs: { for: "major-filter" } }, [
-          _vm._v("Employment Type")
-        ]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.filters.activeMajor,
-                expression: "filters.activeMajor"
-              }
-            ],
-            attrs: { id: "major-filter" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.filters,
-                  "activeMajor",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          _vm._l(_vm.data.majors, function(major) {
-            return _c("option", { key: major, domProps: { value: major } }, [
-              _vm._v("\n          " + _vm._s(major) + "\n        ")
+          "ul",
+          { staticClass: "industry-data__list" },
+          _vm._l(_vm.hiringCompaniesSortedByName.slice(0, 16), function(
+            company,
+            idx
+          ) {
+            return _c("li", { key: idx }, [
+              _vm._v("\n          " + _vm._s(company) + "\n        ")
             ])
           }),
           0
+        ),
+        _vm._v(" "),
+        _c("a", { staticClass: "industry-data__button btn" }, [
+          _vm._v(_vm._s(_vm.strings.industry.list2_button))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col w--80@t chart-content" },
+          [
+            _c("p", [_vm._v("Northeastern graduates are in high-demand")]),
+            _vm._v(" "),
+            _c("doughnut-chart", {
+              attrs: {
+                chartData: _vm.employmentStatusChartData,
+                options: { responsive: true }
+              }
+            }),
+            _vm._v(" "),
+            _c("bar-chart", {
+              attrs: {
+                chartData: _vm.startingSalariesData,
+                options: { responsive: true }
+              }
+            }),
+            _vm._v(" "),
+            _c("pie-chart", {
+              attrs: {
+                chartData: _vm.careerOutcomesChartData,
+                options: { responsive: true }
+              }
+            })
+          ],
+          1
         )
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col w--80@t chart-content" },
-        [
-          _c("p", [_vm._v("Northeastern graduates are in high-demand")]),
-          _vm._v(" "),
-          _c("doughnut-chart", {
-            attrs: {
-              chartData: _vm.employmentStatusChartData,
-              options: { responsive: true }
-            }
-          }),
-          _vm._v(" "),
-          _c("bar-chart", {
-            attrs: {
-              chartData: _vm.startingSalariesData,
-              options: { responsive: true }
-            }
-          }),
-          _vm._v(" "),
-          _c("pie-chart", {
-            attrs: {
-              chartData: _vm.careerOutcomesChartData,
-              options: { responsive: true }
-            }
-          })
-        ],
-        1
-      )
     ])
   ])
 }
@@ -66507,7 +66551,13 @@ __webpack_require__.r(__webpack_exports__);
 var strings = {
   'head': {
     'title': 'Career Outcomes Powered by Experience',
-    'copy': "Our students graduate with full resum\xE8s of real-world experience\n         closely tied to their career paths. They've learned how to solve problems as part of \n         a team of professionals and navigate the unexpected challengs of today's fast-paced workplace.\n         And they've gained unique insights into their classroom learning - a deeper focus and understanding\n         that better prepares them for master's and doctoral work in top graduate programs."
+    'copy': "Our students graduate with full resum\xE9s of real-world experience\n         closely tied to their career paths. They\u2019ve learned how to solve problems as part of \n         a team of professionals and navigate the unexpected challengs of today\u2019s fast-paced workplace.\n         And they\u2019ve gained unique insights into their classroom learning \u2014 a deeper focus and understanding\n         that better prepares them for master\u2019s and doctoral work in top graduate programs."
+  },
+  'industry': {
+    'title': 'Our graduates excel across industries and in top graduate programs',
+    'list1_header': 'Industries',
+    'list2_header': 'Hiring Companies',
+    'list2_button': 'View more companies'
   },
   'filters': {
     "year": "Year",
@@ -66542,9 +66592,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var ALL = 'All';
 
 var createArrayOfUniqueValues = function createArrayOfUniqueValues(field, data) {
-  return [ALL].concat(_toConsumableArray(new Set(data.map(function (entry) {
+  return _toConsumableArray(new Set(data.map(function (entry) {
     return entry[field];
-  }))));
+  })));
 };
 
 
