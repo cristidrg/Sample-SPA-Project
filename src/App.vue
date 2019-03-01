@@ -26,7 +26,7 @@ export default {
         majors: []
       },
       strings: stringData,
-      outcomesStyle: {
+      outcomesStyle: { //TODO: Move me when you split this file ^_^ !
         width: "500px",
         position: "relative"
       }
@@ -204,16 +204,28 @@ export default {
 
     <section class="section career-outcomes">
       <p class="career-outcomes__title">{{ strings.career.title }}</p>
-      <div class="col w--60@t">
-        <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="{responsive: true}" />
+      <div class="row">
+        <div class="col w--70@t">
+          <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="{responsive: true}" />
+        </div>
+        <div class="col w--30@t">
+          <p class="row career-outcomes__banner" v-html="strings.career.claim" />
+          <ul class="career-outcomes__legend">
+            <li v-for="(outcome, idx) in careerOutcomesChartData.labels" :key="idx">
+              {{ outcome }}
+            </li>
+          </ul>
+        </div>
       </div>
-      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
+      <div class="row">
+        <p class="career-outcomes__note" v-html="strings.career.note" />
+      </div>
     </section>
 
     <section class="section graduate-data">
       <p class="graduate-data__title">{{ strings.graduate.title }}</p>
       <div class="graduate-data__banner">
-        <p class="graduate-data__top" v-html="strings.graduate.top"></p>
+        <p class="graduate-data__top" v-html="strings.graduate.top" />
         <ul class="graduate-data__top-list">
           <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
             {{ school.name }}

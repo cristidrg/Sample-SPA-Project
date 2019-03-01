@@ -66,6 +66,17 @@
         padding-bottom: 5px;
         border-bottom: 1px solid $gray;
     }
+
+    &__banner {
+        background-color: $gray-100;
+        color: black;
+        display: flex;
+        padding: 15px 25px;
+    }
+
+    &__note {
+        margin-top: 35px;
+    }
 }
 
 .graduate-data {
