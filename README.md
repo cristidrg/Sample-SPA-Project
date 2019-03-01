@@ -1,9 +1,9 @@
 # Career outcomes
-## Tasks 0/53
-### Curently worked on: 8 points
+## Tasks 8/87
+### Curently worked on: 3 points
 Tasks are completed once PR is merged
 
-### Build Header  - 3 points
+### Build Header  - 3 points DONE
 PR: https://bitbucket.org/nupods/outcomes/pull-requests/1/header-component/
 
 ### Build Navigation & Filtering UI - 3 Points
@@ -15,7 +15,7 @@ Dependencies: **Mobile UI** **Lacks Appeal**
 
 ### Build Co-op Participation UI - 5 points
 
-### Build Industry UI - 5 points
+### Build Industry UI - 5 points DONE
 PR: https://bitbucket.org/nupods/outcomes/pull-requests/2/industry-data
 
 Dependencies:
@@ -39,7 +39,9 @@ Notes: SEO updates will come based on each route
 
 ### Integrating GraphQL Endpoint in our flow DevWork - 8 points
 
-## TOTAL: 53 POINTS 
+## TOTAL DEFINED: 53 POINTS 
+## Points left for buffer: 34 POINTS
+
 
 ## Missing Requirements & Open Questions - ordered by importance 
 - Figure out how to handle the selection of filters which produce 0 results.
@@ -48,6 +50,13 @@ One ideea is:
     You click on the third filter and the dropdown shows with values
     Values are enabled only if they produce more than 0 results, otherwise they 
     are disabled/not clickable/grayed out
+
+- Consistency check for null value in database, different values are currently used
+across fields to indicate nothingness
+
+- Field used to query information about graduate school has values like: 
+  'Harvard University - continuing university', the latter part is irelevant.
+Other examples would be 'xxx university - master's programme'
 
 - Mobile UI is not ready and it's not accounted towards total
 
@@ -59,6 +68,3 @@ has over 500 items, what would their behavior be?
 - Getting the sketch file or the exact typography, colors, padding for the design
 would be nice
 
-
-## Dev Notes
-Make sure College to Industry mapping in filtering works if these filters will remain
