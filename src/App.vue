@@ -47,7 +47,7 @@ export default {
       return ({
         labels: Object.keys(data),
         datasets: [{
-            backgroundColor: ['#FF0000', '#C2C2C2', '#0000FF'],
+            backgroundColor: ['#d41b2c', '#b5b5b5', '#006eb5'],
             data: Object.values(data),
         }]
       })
@@ -59,7 +59,7 @@ export default {
       return ({
         labels: Object.keys(data),
         datasets: [{
-            backgroundColor: ['blue', 'green', 'red', 'orange', 'purple'],
+            backgroundColor: ['#006eb5', '#badb00', '#d41b2c', '#ff854f', '#824091'],
             data: Object.values(data),
         }]
       })
@@ -80,7 +80,7 @@ export default {
       return ({
         labels: labels,
         datasets: [{
-            backgroundColor: ['red'],
+            backgroundColor: ['#d41b2c'],
             data: Object.values(salaries),
         }]
       })
@@ -151,50 +151,52 @@ export default {
     DoughnutChart,
     BarChart
   }
-}
+};
 </script>
 
 <template>
-  <div id="app">
-    <div class="chrome-header section">
-      <h1 class="chrome-header__title">{{ strings.head.title }}</h1>
-      <p class="chrome-header__copy">{{ strings.head.copy }}</p>
-    </div>
-    <div class="row bg--black filter-menu">
-      <p class="col w--20@t d--flex my--0 justify--center items--center">Filter data sets by:</p>
-      <div class="col w--20@t">
-        <label for="year-filter">Years</label>
-        <select v-model="filters.activeYear" id="year-filter">
-          <option v-for="year in data.years" :value="year" :key="year">
-            {{ year }}
-          </option>
-        </select>
+  <main id="app">
+    <header class="section bg--gray-700 ta--c">
+      <h1 class="fs--d3">{{ strings.head.title }}</h1>
+      <p>{{ strings.head.copy }}</p>
+    </header>
+    <section class="section bg--black filter-menu ta--l">
+      <p>Filter data sets by:</p>
+      <div class="row">
+        <div class="col w--1/3 select__wrapper">
+          <label for="year-filter" class="tc--gray-300">Year</label>
+          <select v-model="filters.activeYear" id="year-filter">
+            <option v-for="year in data.years" :value="year" :key="year">
+              {{ year }}
+            </option>
+          </select>
+        </div>
+        <!-- <div class="col w--1/3@t">
+          <label for="school-filter">Schools Attended</label>
+          <select v-model="filters.activeSTDLVL" id="school-filter">
+            <option v-for="stdntLevel in data.stdntLevels" :value="stdntLevel" :key="stdntLevel">
+              {{ stdntLevel }}
+            </option>
+          </select>
+        </div> -->
+        <div class="col w--1/3 select__wrapper">
+          <label for="college-filter" class="tc--gray-300">College</label>
+          <select v-model="filters.activeCollege" id="college-filter">
+            <option v-for="college in data.colleges" :value="college" :key="college">
+              {{ college }}
+            </option>
+          </select>
+        </div>
+        <div class="col w--1/3 select__wrapper">
+          <label for="major-filter" class="tc--gray-300">Major</label>
+          <select v-model="filters.activeMajor" id="major-filter">
+            <option v-for="major in data.majors" :value="major" :key="major">
+              {{ major }}
+            </option>
+          </select>
+        </div>
       </div>
-      <div class="col w--20@t">
-        <label for="school-filter">Schools Attended</label>
-        <select v-model="filters.activeSTDLVL" id="school-filter">
-          <option v-for="stdntLevel in data.stdntLevels" :value="stdntLevel" :key="stdntLevel">
-            {{ stdntLevel }}
-          </option>
-        </select>
-      </div>
-      <div class="col w--20@t">
-        <label for="college-filter">Industries</label>
-        <select v-model="filters.activeCollege" id="college-filter">
-          <option v-for="college in data.colleges" :value="college" :key="college">
-            {{ college }}
-          </option>
-        </select>
-      </div>
-      <div class="col w--20@t">
-        <label for="major-filter">Employment Type</label>
-        <select v-model="filters.activeMajor" id="major-filter">
-          <option v-for="major in data.majors" :value="major" :key="major">
-            {{ major }}
-          </option>
-        </select>
-      </div>
-    </div>
+    </section>
 
     <div class="section graduate-data">
       <p class="graduate-data__title">{{ strings.graduate.title }}</p>
@@ -252,7 +254,7 @@ export default {
         <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <style scoped>
