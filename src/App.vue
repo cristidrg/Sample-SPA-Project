@@ -43,6 +43,7 @@ export default {
 
     careerOutcomesChartData() {
       const data = countBy(this.filteredData.map(element => element.employment_status));
+      
       return ({
         labels: Object.keys(data),
         datasets: [{
@@ -97,6 +98,25 @@ export default {
       return Object.entries(schoolsToCount)
         .map(entry => ({name: entry[0], count: entry[1]}))
         .sort((a, b) => b.count - a.count);
+    },
+    
+    hiringCompaniesSortedByName() {
+      return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
+    },
+
+    industriesSortedByPopularity() {
+      const listOfIndustries = countBy(this.filteredData
+        .map(element => element.final_industry)
+        .filter(element => element != 'Not Known'))
+
+      const total = Object.values(listOfIndustries)
+        .reduce((acc, curr) => acc + curr, 0);
+    
+      const result = Object.entries(listOfIndustries)
+        .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(2)}))
+        .sort((a, b) => b.percentage - a.percentage)
+
+      return result;
     }
   },
 
@@ -113,10 +133,10 @@ export default {
         const graduateDestinations = res.data.data.getGraduateDestinations;
 
         this.data = {
-          years: createArrayOfUniqueValues("job_year", graduateDestinations),
-          stdntLevels: createArrayOfUniqueValues("student_level", graduateDestinations),
-          colleges: createArrayOfUniqueValues("collegedesc", graduateDestinations),
-          majors: createArrayOfUniqueValues("majordesc", graduateDestinations),
+          years: [ALL, ...createArrayOfUniqueValues("job_year", graduateDestinations)],
+          stdntLevels: [ALL, ...createArrayOfUniqueValues("student_level", graduateDestinations)],
+          colleges: [ALL, ...createArrayOfUniqueValues("collegedesc", graduateDestinations)],
+          majors: [ALL, ...createArrayOfUniqueValues("majordesc", graduateDestinations)],
           dump: graduateDestinations
         }
       } catch(e) {
@@ -135,10 +155,10 @@ export default {
 </script>
 
 <template>
-  <div id="app">
-    <div class="chrome-header">
-      <h1>{{ strings.head.title }}</h1>
-      <p>{{ strings.head.copy }}</p>
+  <div id="app" class="ta--c">
+    <div class="chrome-header section">
+      <h1 class="chrome-header__title">{{ strings.head.title }}</h1>
+      <p class="chrome-header__copy">{{ strings.head.copy }}</p>
     </div>
     <div class="row bg--black filter-menu">
       <p class="col w--20@t d--flex my--0 justify--center items--center">Filter data sets by:</p>
@@ -193,6 +213,25 @@ export default {
         </li>
       </ul>
       <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
+    </div>
+
+    <div class="section industry-data">
+      <p class="industry-data__title">{{ strings.industry.title }}</p>
+      <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
+      <ul class="industry-data__list --b-first">
+        <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
+          <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
+        </li>
+      </ul>
+
+      <p class="industry-data__header"> {{ strings.industry.list2_header }}</p>
+      <ul class="industry-data__list">
+        <li v-for="(company, idx) in hiringCompaniesSortedByName.slice(0, 16)" :key="idx">
+          {{ company }}
+        </li>
+      </ul>
+
+      <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
     </div>
 
     <div class="row">

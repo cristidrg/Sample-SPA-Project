@@ -1,8 +1,61 @@
 @import "~kernl-ui/src/styles/main";
 
+.industry-data {
+    &__title {
+        @extend .fs--d3;
+        @extend .fw--200;
+
+        padding-bottom: 5px;
+        border-bottom: 1px solid $gray;
+    }
+
+    &__header {
+        @extend .fs--d2;
+        @extend .fw--700;
+
+        margin-top: 50px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid $gray-200;
+    }
+
+    &__list {
+        list-style-type: none;
+        padding-left: 0;
+        columns: 2;
+    }
+
+    &__list.--b-first > li:first-child {
+        @extend .fw--700;
+
+        color: $red;
+    }
+
+    &__perc {
+        @extend .fw--700;
+
+        display: inline-block;
+        min-width: 7ch;
+    }
+
+    &__button {
+        text-transform: uppercase;
+        border-color: black;
+    }
+}
+
 .chrome-header {
     @extend .bg--gray-700;
 
+    &__copy {
+        @extend .fw--100;
+
+        max-width: 800px;
+        margin: 3rem auto 0;
+        
+        @media only screen and (min-width: 768px) {
+            margin-top: 1rem;
+        }
+    }
 }
 .graduate-data {
     &__title {
