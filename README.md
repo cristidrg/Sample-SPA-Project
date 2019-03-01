@@ -1,6 +1,6 @@
 # Career outcomes
-## Tasks 8/87
-### Curently worked on: 3 points
+## Tasks 11/87
+### Curently worked on: Career UI 5 points
 Tasks are completed once PR is merged
 
 ### Build Header  - 3 points DONE
@@ -23,8 +23,8 @@ Dependencies:
 - *View More Button Behavior*: There are a lot of companies, I assume a modal or some other mechanism would take effect rather than just appending a list of over 500 items to the displayed one  
 - *Mobile UI*: not here yet
 
-### Build Grad School UI - 3 points
-- [ ] Leverage view more functionality from industry
+### Build Grad School UI - 3 points DONE
+PR: https://bitbucket.org/nupods/outcomes/pull-requests/3
 
 ### Build Starting Salaries Screen - 2 points
 
@@ -50,6 +50,7 @@ One ideea is:
     You click on the third filter and the dropdown shows with values
     Values are enabled only if they produce more than 0 results, otherwise they 
     are disabled/not clickable/grayed out
+Proposed Solution: https://bitbucket.org/nupods/outcomes/pull-requests/5/filter-validation
 
 - Consistency check for null value in database, different values are currently used
 across fields to indicate nothingness
