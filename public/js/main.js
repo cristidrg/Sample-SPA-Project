@@ -1832,9 +1832,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           activeSTDLVL = _this$filters.activeSTDLVL,
           activeCollege = _this$filters.activeCollege,
           activeMajor = _this$filters.activeMajor;
-      return this.data.dump.filter(function (element) {
-        return (activeYear == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.job_year == activeYear) && (activeSTDLVL == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.student_level == activeSTDLVL) && (activeCollege == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.collegedesc == activeCollege) && (activeMajor == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.majordesc == activeMajor);
-      });
+      return this.filterData(activeYear, activeSTDLVL, activeCollege, activeMajor);
     },
     careerOutcomesChartData: function careerOutcomesChartData() {
       var data = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["countBy"])(this.filteredData.map(function (element) {
@@ -1958,7 +1956,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return fetchData;
-    }()
+    }(),
+    filterData: function filterData(yearFilter, studentFilter, collegeFilter, majorFilter) {
+      return this.data.dump.filter(function (element) {
+        return (yearFilter == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.job_year == yearFilter) && (studentFilter == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.student_level == studentFilter) && (collegeFilter == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.collegedesc == collegeFilter) && (majorFilter == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"] || element.majordesc == majorFilter);
+      });
+    },
+    isFilterValid: function isFilterValid(filterValue, filterType) {
+      var _this$filters2 = this.filters,
+          activeYear = _this$filters2.activeYear,
+          activeSTDLVL = _this$filters2.activeSTDLVL,
+          activeCollege = _this$filters2.activeCollege,
+          activeMajor = _this$filters2.activeMajor;
+
+      if ([activeYear, activeSTDLVL, activeCollege, activeMajor].every(function (el) {
+        return el == _utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"];
+      })) {
+        return true;
+      }
+
+      switch (filterType) {
+        case 'major':
+          return this.filterData(activeYear, activeSTDLVL, activeCollege, filterValue).length != 0;
+
+        case 'college':
+          return this.filterData(activeYear, activeSTDLVL, filterValue, activeMajor).length != 0;
+
+        case 'student':
+          return this.filterData(activeYear, filterValue, activeCollege, activeMajor).length != 0;
+
+        case 'year':
+          return this.filterData(filterValue, activeSTDLVL, activeCollege, activeMajor).length != 0;
+      }
+    }
   },
   components: {
     PieChart: _charts___WEBPACK_IMPORTED_MODULE_2__["PieChart"],
@@ -54073,9 +54103,15 @@ var render = function() {
                 }
               },
               _vm._l(_vm.data.years, function(year) {
-                return _c("option", { key: year, domProps: { value: year } }, [
-                  _vm._v("\n              " + _vm._s(year) + "\n            ")
-                ])
+                return _c(
+                  "option",
+                  {
+                    key: year,
+                    attrs: { disabled: !_vm.isFilterValid(year, "year") },
+                    domProps: { value: year }
+                  },
+                  [_vm._v("\n              " + _vm._s(year) + "\n            ")]
+                )
               }),
               0
             )
@@ -54121,7 +54157,11 @@ var render = function() {
               _vm._l(_vm.data.colleges, function(college) {
                 return _c(
                   "option",
-                  { key: college, domProps: { value: college } },
+                  {
+                    key: college,
+                    attrs: { disabled: !_vm.isFilterValid(college, "college") },
+                    domProps: { value: college }
+                  },
                   [
                     _vm._v(
                       "\n              " + _vm._s(college) + "\n            "
@@ -54173,7 +54213,11 @@ var render = function() {
               _vm._l(_vm.data.majors, function(major) {
                 return _c(
                   "option",
-                  { key: major, domProps: { value: major } },
+                  {
+                    key: major,
+                    attrs: { disabled: !_vm.isFilterValid(major, "major") },
+                    domProps: { value: major }
+                  },
                   [
                     _vm._v(
                       "\n              " + _vm._s(major) + "\n            "
