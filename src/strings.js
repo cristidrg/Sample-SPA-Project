@@ -19,6 +19,13 @@ const strings = {
         'list2_header': 'Hiring Companies',
         'list2_button': 'View more companies'
     },
+    'coopParticipation':{
+        'title': 'Our students know the power of experience',
+        'label1': 'Overall Participation',
+        'label2': '3+ Co-ops',
+        'label3': '2+ Co-ops',
+        'label4': '1 Co-op',
+    },
     'filters': {
         "year": "Year",
         "std_level": "Student Level",
