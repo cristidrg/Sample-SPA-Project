@@ -1786,6 +1786,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _configs_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./configs.js */ "./src/configs.js");
 
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -1872,6 +1880,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           data: Object.values(salaries)
         }]
       };
+    },
+    schoolsSortedByName: function schoolsSortedByName() {
+      return Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("final_university", this.filteredData).filter(function (element) {
+        return element != "NA";
+      }).sort();
+    },
+    getSchoolsByPopularity: function getSchoolsByPopularity() {
+      var schoolsToCount = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["countBy"])(this.filteredData.map(function (element) {
+        return element.final_university;
+      }).filter(function (element) {
+        return element != "NA";
+      }));
+      return Object.entries(schoolsToCount).map(function (entry) {
+        return {
+          name: entry[0],
+          count: entry[1]
+        };
+      }).sort(function (a, b) {
+        return b.count - a.count;
+      });
+    },
+    hiringCompaniesSortedByName: function hiringCompaniesSortedByName() {
+      return Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("final_companyname", this.filteredData).sort();
+    },
+    industriesSortedByPopularity: function industriesSortedByPopularity() {
+      var listOfIndustries = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["countBy"])(this.filteredData.map(function (element) {
+        return element.final_industry;
+      }).filter(function (element) {
+        return element != 'Not Known';
+      }));
+      var total = Object.values(listOfIndustries).reduce(function (acc, curr) {
+        return acc + curr;
+      }, 0);
+      var result = Object.entries(listOfIndustries).map(function (entry) {
+        return {
+          name: entry[0],
+          percentage: new Number(100 * entry[1] / total).toFixed(2)
+        };
+      }).sort(function (a, b) {
+        return b.percentage - a.percentage;
+      });
+      return result;
     }
   },
   mounted: function mounted() {
@@ -1898,10 +1948,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
                 graduateDestinations = res.data.data.getGraduateDestinations;
                 this.data = {
-                  years: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("job_year", graduateDestinations),
-                  stdntLevels: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("student_level", graduateDestinations),
-                  colleges: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("collegedesc", graduateDestinations),
-                  majors: Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("majordesc", graduateDestinations),
+                  years: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("job_year", graduateDestinations))),
+                  stdntLevels: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("student_level", graduateDestinations))),
+                  colleges: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("collegedesc", graduateDestinations))),
+                  majors: [_utils_js__WEBPACK_IMPORTED_MODULE_3__["ALL"]].concat(_toConsumableArray(Object(_utils_js__WEBPACK_IMPORTED_MODULE_3__["createArrayOfUniqueValues"])("majordesc", graduateDestinations))),
                   dump: graduateDestinations
                 };
                 _context.next = 12;
@@ -53991,7 +54041,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ta--c", attrs: { id: "app" } }, [
+  return _c("div", { attrs: { id: "app" } }, [
     _c("div", { staticClass: "chrome-header section" }, [
       _c("h1", { staticClass: "chrome-header__title" }, [
         _vm._v(_vm._s(_vm.strings.head.title))
@@ -54187,6 +54237,95 @@ var render = function() {
           }),
           0
         )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "section graduate-data" }, [
+      _c("p", { staticClass: "graduate-data__title" }, [
+        _vm._v(_vm._s(_vm.strings.graduate.title))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "graduate-data__banner" }, [
+        _c("p", {
+          staticClass: "graduate-data__top",
+          domProps: { innerHTML: _vm._s(_vm.strings.graduate.top) }
+        }),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "graduate-data__top-list" },
+          _vm._l(_vm.getSchoolsByPopularity.slice(0, 5), function(school, idx) {
+            return _c("li", { key: idx }, [
+              _vm._v("\n          " + _vm._s(school.name) + "\n        ")
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "graduate-data__header" }, [
+        _vm._v(" " + _vm._s(_vm.strings.graduate.list_header))
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "graduate-data__list" },
+        _vm._l(_vm.schoolsSortedByName, function(school, idx) {
+          return _c("li", { key: idx }, [
+            _vm._v("\n        " + _vm._s(school) + "\n      ")
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "graduate-data__button btn" }, [
+        _vm._v(_vm._s(_vm.strings.graduate.list_button))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "section industry-data" }, [
+      _c("p", { staticClass: "industry-data__title" }, [
+        _vm._v(_vm._s(_vm.strings.industry.title))
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "industry-data__header" }, [
+        _vm._v(" " + _vm._s(_vm.strings.industry.list1_header))
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "industry-data__list --b-first" },
+        _vm._l(_vm.industriesSortedByPopularity, function(industry, idx) {
+          return _c("li", { key: idx }, [
+            _c("span", { staticClass: "industry-data__perc" }, [
+              _vm._v(_vm._s(industry.percentage) + "%")
+            ]),
+            _vm._v(" " + _vm._s(industry.name) + "\n      ")
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("p", { staticClass: "industry-data__header" }, [
+        _vm._v(" " + _vm._s(_vm.strings.industry.list2_header))
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "industry-data__list" },
+        _vm._l(_vm.hiringCompaniesSortedByName.slice(0, 16), function(
+          company,
+          idx
+        ) {
+          return _c("li", { key: idx }, [
+            _vm._v("\n        " + _vm._s(company) + "\n      ")
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "industry-data__button btn" }, [
+        _vm._v(_vm._s(_vm.strings.industry.list2_button))
       ])
     ]),
     _vm._v(" "),
@@ -66509,6 +66648,18 @@ var strings = {
     'title': 'Career Outcomes Powered by Experience',
     'copy': "Our students graduate with full resum\xE8s of real-world experience\n         closely tied to their career paths. They've learned how to solve problems as part of \n         a team of professionals and navigate the unexpected challengs of today's fast-paced workplace.\n         And they've gained unique insights into their classroom learning - a deeper focus and understanding\n         that better prepares them for master's and doctoral work in top graduate programs."
   },
+  'graduate': {
+    'title': 'They bring a wealth of undergraduate research experience to top grad programs',
+    'top': '<span>Top 5</span> attended graduate school',
+    'list_header': 'Schools Attended',
+    'list_button': 'View more schools'
+  },
+  'industry': {
+    'title': 'Our graduates excel across industries and in top graduate programs',
+    'list1_header': 'Industries',
+    'list2_header': 'Hiring Companies',
+    'list2_button': 'View more companies'
+  },
   'filters': {
     "year": "Year",
     "std_level": "Student Level",
@@ -66542,9 +66693,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var ALL = 'All';
 
 var createArrayOfUniqueValues = function createArrayOfUniqueValues(field, data) {
-  return [ALL].concat(_toConsumableArray(new Set(data.map(function (entry) {
+  return _toConsumableArray(new Set(data.map(function (entry) {
     return entry[field];
-  }))));
+  })));
 };
 
 

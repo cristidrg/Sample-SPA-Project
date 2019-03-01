@@ -155,7 +155,7 @@ export default {
 </script>
 
 <template>
-  <div id="app" class="ta--c">
+  <div id="app">
     <div class="chrome-header section">
       <h1 class="chrome-header__title">{{ strings.head.title }}</h1>
       <p class="chrome-header__copy">{{ strings.head.copy }}</p>
