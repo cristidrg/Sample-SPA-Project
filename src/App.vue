@@ -86,6 +86,20 @@ export default {
       })
     },
 
+    schoolsSortedByName() {
+      return createArrayOfUniqueValues("final_university", this.filteredData).filter(element => element != "NA").sort()
+    },
+
+    getSchoolsByPopularity() {
+      const schoolsToCount = countBy(this.filteredData
+        .map(element => element.final_university)
+        .filter(element => element != "NA"));
+
+      return Object.entries(schoolsToCount)
+        .map(entry => ({name: entry[0], count: entry[1]}))
+        .sort((a, b) => b.count - a.count);
+    },
+    
     hiringCompaniesSortedByName() {
       return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
     },
@@ -141,7 +155,6 @@ export default {
 </script>
 
 <template>
-<div>
   <main id="app">
     <header class="section bg--gray-700 ta--c">
       <h1 class="fs--d3">{{ strings.head.title }}</h1>
@@ -185,7 +198,26 @@ export default {
       </div>
     </section>
 
-    <div class="section industry-data">
+    <section class="section graduate-data">
+      <p class="graduate-data__title">{{ strings.graduate.title }}</p>
+      <div class="graduate-data__banner">
+        <p class="graduate-data__top" v-html="strings.graduate.top"></p>
+        <ul class="graduate-data__top-list">
+          <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
+            {{ school.name }}
+          </li>
+        </ul>
+      </div>
+      <p class="graduate-data__header"> {{ strings.graduate.list_header }}</p>
+      <ul class="graduate-data__list">
+        <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
+          {{ school }}
+        </li>
+      </ul>
+      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
+    </section>
+
+    <section class="section industry-data">
       <p class="industry-data__title">{{ strings.industry.title }}</p>
       <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
       <ul class="industry-data__list --b-first">
@@ -202,7 +234,7 @@ export default {
       </ul>
 
       <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
-    </div>
+    </section>
 
     <div class="row">
       <div class="col w--20@t chart-menu">
@@ -223,7 +255,6 @@ export default {
       </div>
     </div>
   </main>
-  </div>
 </template>
 
 <style scoped>
