@@ -87,6 +87,20 @@ export default {
       })
     },
 
+    schoolsSortedByName() {
+      return createArrayOfUniqueValues("final_university", this.filteredData).filter(element => element != "NA").sort()
+    },
+
+    getSchoolsByPopularity() {
+      const schoolsToCount = countBy(this.filteredData
+        .map(element => element.final_university)
+        .filter(element => element != "NA"));
+
+      return Object.entries(schoolsToCount)
+        .map(entry => ({name: entry[0], count: entry[1]}))
+        .sort((a, b) => b.count - a.count);
+    },
+    
     hiringCompaniesSortedByName() {
       return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
     },
