@@ -3,7 +3,7 @@
 .industry-data {
     &__title {
         @extend .fs--d3;
-        @extend .fw--200;
+        @extend .fw--300;
 
         padding-bottom: 5px;
         border-bottom: 1px solid $gray;
@@ -133,6 +133,10 @@
 }
 
 .filter-menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
     > p {
        @extend .ls--loose;
        @extend .tt--u;
@@ -225,4 +229,8 @@
         background-color: $gray-700;
         border-bottom: 4px solid $red;
     }
+}
+
+.chart-menu {
+    top: 0;
 }

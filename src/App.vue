@@ -5,6 +5,7 @@ import { ALL, createArrayOfUniqueValues } from './utils.js';
 import { getAllData } from './queries.js';
 import stringData from './strings.js';
 import API from './configs.js';
+import feather from 'feather-icons';
 
 export default {
   name: 'app',
@@ -86,20 +87,6 @@ export default {
       })
     },
 
-    schoolsSortedByName() {
-      return createArrayOfUniqueValues("final_university", this.filteredData).filter(element => element != "NA").sort()
-    },
-
-    getSchoolsByPopularity() {
-      const schoolsToCount = countBy(this.filteredData
-        .map(element => element.final_university)
-        .filter(element => element != "NA"));
-
-      return Object.entries(schoolsToCount)
-        .map(entry => ({name: entry[0], count: entry[1]}))
-        .sort((a, b) => b.count - a.count);
-    },
-    
     hiringCompaniesSortedByName() {
       return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
     },
@@ -122,6 +109,7 @@ export default {
 
   mounted() {
     this.fetchData();
+    feather.replace();
   },
 
   methods: {
@@ -171,14 +159,6 @@ export default {
             </option>
           </select>
         </div>
-        <!-- <div class="col w--1/3@t">
-          <label for="school-filter">Schools Attended</label>
-          <select v-model="filters.activeSTDLVL" id="school-filter">
-            <option v-for="stdntLevel in data.stdntLevels" :value="stdntLevel" :key="stdntLevel">
-              {{ stdntLevel }}
-            </option>
-          </select>
-        </div> -->
         <div class="col w--1/3 select__wrapper">
           <label for="college-filter" class="tc--gray-300">College</label>
           <select v-model="filters.activeCollege" id="college-filter">

@@ -1,5 +1,5 @@
-// import 'jquery';
-// import 'kernl-ui';
+import 'jquery';
+import 'kernl-ui';
 
 import Vue from 'vue'
 import App from './App.vue'
