@@ -158,95 +158,88 @@ export default {
 
 <template>
   <main id="app">
-    <header class="section bg--gray-700 ta--c">
-      <h1 class="fs--d3">{{ strings.head.title }}</h1>
-      <p>{{ strings.head.copy }}</p>
-    </header>
-    <section class="section bg--black filter-menu ta--l">
-      <p>Filter data sets by:</p>
-      <div class="row">
-        <div class="col w--1/3 select__wrapper">
-          <label for="year-filter" class="tc--gray-300">Year</label>
-          <select v-model="filters.activeYear" id="year-filter">
-            <option v-for="year in data.years" :value="year" :key="year">
-              {{ year }}
-            </option>
-          </select>
-        </div>
-        <div class="col w--1/3 select__wrapper">
-          <label for="college-filter" class="tc--gray-300">College</label>
-          <select v-model="filters.activeCollege" id="college-filter">
-            <option v-for="college in data.colleges" :value="college" :key="college">
-              {{ college }}
-            </option>
-          </select>
-        </div>
-        <div class="col w--1/3 select__wrapper">
-          <label for="major-filter" class="tc--gray-300">Major</label>
-          <select v-model="filters.activeMajor" id="major-filter">
-            <option v-for="major in data.majors" :value="major" :key="major">
-              {{ major }}
-            </option>
-          </select>
-        </div>
+    <section class="section --banner flex--col vh--100 bg--img content--around" style="background-image: url(//facts.northeastern.edu/assets/images/16x9-campus.jpg);" role="banner">
+      <div class="__header mt--3">
+        <h1 class="__title fs--d3 mb--1 fw--700 ta--c@d">
+          <span class="fw--700">Student Outcomes</span>
+        </h1>
       </div>
+      <div class="section pa--1 bg--gray-700 ta--c@d">
+        <h1 class="fs--d2">{{ strings.head.title }}</h1>
+        <p class="fs--sm lh--loose">{{ strings.head.copy }}</p>
+        <a class="btn bg--white-alpha" href="#app_content">Show me the money</a>
+      </div>
+    </section>
+    <section class="section pa--0 filter-menu ta--l" id="app_content">
+      <div class="bg--red hidden--up@t ta--c pa--1 d--flex justify--between">
+        <button class="btn --sm" data-toggle="nav" data-swap-target="#filter_menu">
+          <i data-feather="align-left"></i>
+          Filter
+        </button>
+        <button class="btn --sm" data-toggle="nav" data-swap-target="#chart_menu">
+          <i data-feather="align-right"></i>
+          Browse
+        </button>
+      </div>
+      <nav class="__drawer" id="filter_menu" role="navigation">
+        <h3>(Filter Menu)</h3>
+
+        <p>Filter data sets by:</p>
+        <div class="row">
+          <div class="col w--1/3 select__wrapper">
+            <label for="year-filter" class="tc--gray-300">Year</label>
+            <select v-model="filters.activeYear" id="year-filter">
+              <option v-for="year in data.years" :value="year" :key="year">
+                {{ year }}
+              </option>
+            </select>
+          </div>
+          <div class="col w--1/3 select__wrapper">
+            <label for="college-filter" class="tc--gray-300">College</label>
+            <select v-model="filters.activeCollege" id="college-filter">
+              <option v-for="college in data.colleges" :value="college" :key="college">
+                {{ college }}
+              </option>
+            </select>
+          </div>
+          <div class="col w--1/3 select__wrapper">
+            <label for="major-filter" class="tc--gray-300">Major</label>
+            <select v-model="filters.activeMajor" id="major-filter">
+              <option v-for="major in data.majors" :value="major" :key="major">
+                {{ major }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </nav>
+      <nav class="__drawer" id="chart_menu" role="navigation">
+        <h3>(Chart Menu)</h3>
+        <div class="chart-menu">
+          <ul>
+            <li class="active"><a href="#">Career Outcomes</a></li>
+            <li><a href="#">Employment Status</a></li>
+            <li><a href="#">Co-op participation</a></li>
+            <li><a href="#">By industry/company</a></li>
+            <li><a href="#">By graduate school</a></li>
+            <li><a href="#">Starting salaries</a></li>
+          </ul>
+        </div>
+      </nav>
     </section>
 
     <section class="section graduate-data">
-      <p class="graduate-data__title">{{ strings.graduate.title }}</p>
-      <div class="graduate-data__banner">
-        <p class="graduate-data__top" v-html="strings.graduate.top"></p>
-        <ul class="graduate-data__top-list">
-          <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
-            {{ school.name }}
-          </li>
-        </ul>
-      </div>
-      <p class="graduate-data__header"> {{ strings.graduate.list_header }}</p>
-      <ul class="graduate-data__list">
-        <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
-          {{ school }}
-        </li>
-      </ul>
-      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
+      <p>Graduate Data</p>
     </section>
 
     <section class="section industry-data">
-      <p class="industry-data__title">{{ strings.industry.title }}</p>
-      <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
-      <ul class="industry-data__list --b-first">
-        <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
-          <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
-        </li>
-      </ul>
-
-      <p class="industry-data__header"> {{ strings.industry.list2_header }}</p>
-      <ul class="industry-data__list">
-        <li v-for="(company, idx) in hiringCompaniesSortedByName.slice(0, 16)" :key="idx">
-          {{ company }}
-        </li>
-      </ul>
-
-      <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
+      <p>Industry Data</p>
     </section>
 
-    <div class="row">
-      <div class="col w--20@t chart-menu">
-        <ul>
-          <li class="active">Career Outcomes</li>
-          <li>Employment Status</li>
-          <li>Co-op participation</li>
-          <li>By industry/company</li>
-          <li>By graduate school</li>
-          <li>Starting salaries</li>
-        </ul>
-      </div>
-      <div class="col w--80@t chart-content">
-        <p>Northeastern graduates are in high-demand</p>
-        <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
-        <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
-        <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
-      </div>
+    <div class="col w--80@t chart-content">
+      <p>Northeastern graduates are in high-demand</p>
+      <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
+      <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
+      <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
     </div>
   </main>
 </template>
