@@ -25,7 +25,11 @@ export default {
         colleges: [],
         majors: []
       },
-      strings: stringData
+      strings: stringData,
+      outcomesStyle: { //TODO: Move me when you split this file ^_^ !
+        width: "500px",
+        position: "relative"
+      }
     }
   },
 
@@ -182,6 +186,65 @@ export default {
         </div>
       </div>
     </section>
+
+    <section class="section career-outcomes">
+      <p class="career-outcomes__title">{{ strings.career.title }}</p>
+      <div class="row">
+        <div class="col w--70@t">
+          <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="{responsive: true}" />
+        </div>
+        <div class="col w--30@t">
+          <p class="row career-outcomes__banner" v-html="strings.career.claim" />
+          <ul class="career-outcomes__legend">
+            <li v-for="(outcome, idx) in careerOutcomesChartData.labels" :key="idx">
+              {{ outcome }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <p class="career-outcomes__note" v-html="strings.career.note" />
+      </div>
+    </section>
+
+    <section class="section graduate-data">
+      <p class="graduate-data__title">{{ strings.graduate.title }}</p>
+      <div class="graduate-data__banner">
+        <p class="graduate-data__top" v-html="strings.graduate.top" />
+        <ul class="graduate-data__top-list">
+          <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
+            {{ school.name }}
+          </li>
+        </ul>
+      </div>
+      <p class="graduate-data__header"> {{ strings.graduate.list_header }}</p>
+      <ul class="graduate-data__list">
+        <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
+          {{ school }}
+        </li>
+      </ul>
+      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
+    </section>
+
+    <section class="section industry-data">
+      <p class="industry-data__title">{{ strings.industry.title }}</p>
+      <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
+      <ul class="industry-data__list --b-first">
+        <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
+          <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
+        </li>
+      </ul>
+
+      <p class="industry-data__header"> {{ strings.industry.list2_header }}</p>
+      <ul class="industry-data__list">
+        <li v-for="(company, idx) in hiringCompaniesSortedByName.slice(0, 16)" :key="idx">
+          {{ company }}
+        </li>
+      </ul>
+
+      <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
+    </section>
+
     <div class="row">
       <div class="col w--20@t chart-menu">
         <ul>
@@ -202,7 +265,6 @@ export default {
         <p>Northeastern graduates are in high-demand</p>
         <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
         <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
-        <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
       </div>
     </div>
   </main>
