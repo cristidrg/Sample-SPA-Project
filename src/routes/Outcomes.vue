@@ -1,4 +1,5 @@
 <script>
+import { PieChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
 
@@ -6,7 +7,11 @@ export default {
   name: 'graduate',
   data() {
     return {
-        strings: stringData,
+        strings: stringData.career,
+        outcomesStyle: {
+            width: "500px",
+            position: "relative"
+        }
     }
   },
   computed: {
@@ -23,11 +28,32 @@ export default {
     },
   },
   props: {
-      outcomes: Array,
+    outcomes: Array,
   },
+  components: {
+      PieChart
+  }
 }
 </script>
 
 <template>
-    <pie-chart :chartData="careerOutcomesChartData" :options="{responsive: true}" />
+    <section class="section career-outcomes">
+      <p class="career-outcomes__title">{{ strings.title }}</p>
+      <div class="row">
+        <div class="col w--70@t">
+          <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="{responsive: true}" />
+        </div>
+        <div class="col w--30@t">
+          <p class="row career-outcomes__banner" v-html="strings.claim" />
+          <ul class="career-outcomes__legend">
+            <li v-for="(outcome, idx) in careerOutcomesChartData.labels" :key="idx">
+              {{ outcome }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <p class="career-outcomes__note" v-html="strings.note" />
+      </div>
+    </section>
 </template>

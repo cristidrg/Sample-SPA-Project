@@ -1,4 +1,5 @@
 <script>
+import { BarChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
 
@@ -10,41 +11,36 @@ export default {
     }
   },
   computed: {
-    schoolsSortedByName() {
-        return [... new Set(this.schools)].sort()
-    },
+    startingSalariesData() {
+      const salaries = this.salaries
+        .map(element => Math.floor((element % 100000) / 10000))
+        .filter(element => !isNaN(element))
+        .reduce((acc, curr) => {
+          acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
+          return acc;
+        }, {});
 
-    getSchoolsByPopularity() {
-        const schoolsToCount = countBy(this.schools);
-        
-        return Object.entries(schoolsToCount)
-            .map(entry => ({name: entry[0], count: entry[1]}))
-            .sort((a, b) => b.count - a.count);
+      const labels = Object.keys(salaries).map(digit => `${digit}0k < ${digit}9k`);
+      labels[0] = '< 10k'
+
+      return ({
+        labels: labels,
+        datasets: [{
+            backgroundColor: ['#d41b2c'],
+            data: Object.values(salaries),
+        }]
+      })
     },
   },
   props: {
-      schools: Array,
+      salaries: Array,
   },
+  components: {
+    BarChart
+  }
 }
 </script>
 
 <template>
-    <section class="section graduate-data">
-        <p class="graduate-data__title">{{ strings.title }}</p>
-        <div class="graduate-data__banner">
-            <p class="graduate-data__top" v-html="strings.top"></p>
-            <ul class="graduate-data__top-list">
-                <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
-                    {{ school.name }}
-                </li>
-            </ul>
-        </div>
-        <p class="graduate-data__header"> {{ strings.list_header }}</p>
-        <ul class="graduate-data__list">
-            <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
-                {{ school }}
-            </li>
-        </ul>
-        <a class="graduate-data__button btn">{{ strings.list_button }}</a>
-    </section>
+    <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
 </template>

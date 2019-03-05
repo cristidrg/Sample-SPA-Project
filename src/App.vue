@@ -25,11 +25,7 @@ export default {
         colleges: [],
         majors: []
       },
-      strings: stringData,
-      outcomesStyle: { //TODO: Move me when you split this file ^_^ !
-        width: "500px",
-        position: "relative"
-      }
+      strings: stringData
     }
   },
 
@@ -45,16 +41,10 @@ export default {
       );
     },
 
-    careerOutcomesChartData() {
-      const data = countBy(this.filteredData.map(element => element.employment_status));
-      
-      return ({
-        labels: Object.keys(data),
-        datasets: [{
-            backgroundColor: ['#d41b2c', '#b5b5b5', '#006eb5'],
-            data: Object.values(data),
-        }]
-      })
+    getOutcomes() {
+      return this.filteredData
+        .map(element => element.employment_status)
+        .filter(element => element != "NA");
     },
 
     employmentStatusChartData() {
@@ -65,27 +55,6 @@ export default {
         datasets: [{
             backgroundColor: ['#006eb5', '#badb00', '#d41b2c', '#ff854f', '#824091'],
             data: Object.values(data),
-        }]
-      })
-    },
-
-    startingSalariesData() {
-      const salaries = this.filteredData
-        .map(element => Math.floor((element.final_salary_recalculated % 100000) / 10000))
-        .filter(element => !isNaN(element))
-        .reduce((acc, curr) => {
-          acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
-          return acc;
-        }, {});
-
-      const labels = Object.keys(salaries).map(digit => `${digit}0k < ${digit}9k`);
-      labels[0] = '< 10k'
-
-      return ({
-        labels: labels,
-        datasets: [{
-            backgroundColor: ['#d41b2c'],
-            data: Object.values(salaries),
         }]
       })
     },
@@ -107,6 +76,12 @@ export default {
         .map(element => element.final_companyname)
         .filter(element => element != "NA")
     },
+
+    getSalaries() {
+      return this.filteredData
+        .map(element => element.final_salary_recalculated)
+        .filter(element => element != "NA")
+    }
   },
 
   mounted() {
@@ -138,7 +113,6 @@ export default {
   components: {
     PieChart,
     DoughnutChart,
-    BarChart,
   }
 };
 </script>
@@ -187,64 +161,6 @@ export default {
       </div>
     </section>
 
-    <section class="section career-outcomes">
-      <p class="career-outcomes__title">{{ strings.career.title }}</p>
-      <div class="row">
-        <div class="col w--70@t">
-          <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="{responsive: true}" />
-        </div>
-        <div class="col w--30@t">
-          <p class="row career-outcomes__banner" v-html="strings.career.claim" />
-          <ul class="career-outcomes__legend">
-            <li v-for="(outcome, idx) in careerOutcomesChartData.labels" :key="idx">
-              {{ outcome }}
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <p class="career-outcomes__note" v-html="strings.career.note" />
-      </div>
-    </section>
-
-    <section class="section graduate-data">
-      <p class="graduate-data__title">{{ strings.graduate.title }}</p>
-      <div class="graduate-data__banner">
-        <p class="graduate-data__top" v-html="strings.graduate.top" />
-        <ul class="graduate-data__top-list">
-          <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
-            {{ school.name }}
-          </li>
-        </ul>
-      </div>
-      <p class="graduate-data__header"> {{ strings.graduate.list_header }}</p>
-      <ul class="graduate-data__list">
-        <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
-          {{ school }}
-        </li>
-      </ul>
-      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
-    </section>
-
-    <section class="section industry-data">
-      <p class="industry-data__title">{{ strings.industry.title }}</p>
-      <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
-      <ul class="industry-data__list --b-first">
-        <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
-          <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
-        </li>
-      </ul>
-
-      <p class="industry-data__header"> {{ strings.industry.list2_header }}</p>
-      <ul class="industry-data__list">
-        <li v-for="(company, idx) in hiringCompaniesSortedByName.slice(0, 16)" :key="idx">
-          {{ company }}
-        </li>
-      </ul>
-
-      <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
-    </section>
-
     <div class="row">
       <div class="col w--20@t chart-menu">
         <ul>
@@ -261,10 +177,10 @@ export default {
           :schools="this.getSchools"
           :industries="this.getIndustries"
           :companies="this.getCompanies"
+          :outcomes="this.getOutcomes"
+          :salaries="this.getSalaries"
         />
-        <p>Northeastern graduates are in high-demand</p>
         <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
-        <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
       </div>
     </div>
   </main>
