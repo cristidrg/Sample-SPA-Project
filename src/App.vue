@@ -62,7 +62,21 @@ export default {
     getSchools() {
       return this.filteredData
         .map(element => element.final_university)
-        .filter(element => element != "NA")
+        .filter(element => element != "NA");
+    },
+
+    getCoopParticipation() {
+      const coopParticipation = countBy(this.filteredData
+        .map(element => element.final_coop_numbers.split(' ')[0]))
+
+      return {
+        total: Object.values(coopParticipation).reduce((a,b) => a + b, 0),
+        ...coopParticipation
+      };
+    },
+    
+    hiringCompaniesSortedByName() {
+      return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
     },
 
     getIndustries() {

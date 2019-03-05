@@ -29,22 +29,31 @@ export default {
 </script>
 
 <template>
-    <section class="section graduate-data">
-        <p class="graduate-data__title">{{ strings.title }}</p>
-        <div class="graduate-data__banner">
-            <p class="graduate-data__top" v-html="strings.top"></p>
-            <ul class="graduate-data__top-list">
-                <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
-                    {{ school.name }}
-                </li>
-            </ul>
+    <section class="section coop-participation">
+      <p class="coop-participation__title">{{ strings.coopParticipation.title }}</p>
+      <div class="row">
+        <div class="col w--1/4@t">
+          <p class="coop-participation__label">{{ strings.coopParticipation.label1 }}</p>
+          <p class="coop-participation__overall fs--d7 tc--red">{{ (getCoopParticipation.total - getCoopParticipation.NA) * 100 / getCoopParticipation.total }}%</p>
         </div>
-        <p class="graduate-data__header"> {{ strings.list_header }}</p>
-        <ul class="graduate-data__list">
-            <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
-                {{ school }}
-            </li>
-        </ul>
-        <a class="graduate-data__button btn">{{ strings.list_button }}</a>
+        <div class="col w--3/4@t">
+          
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col w--1/3@t">
+          <p class="coop-participation__label">{{ strings.coopParticipation.label2 }}</p>
+          <p class="coop-participation__overall fs--d7 tc--red">{{ getCoopParticipation["3"] }}%</p>
+        </div>
+        <div class="col w--1/3@t">
+          <p class="coop-participation__label">{{ strings.coopParticipation.label3 }}</p>
+          <p class="coop-participation__overall fs--d7 tc--red">{{ getCoopParticipation["2"] }}%</p>
+        </div>
+        <div class="col w--1/3@t">
+          <p class="coop-participation__label">{{ strings.coopParticipation.label4 }}</p>
+          <p class="coop-participation__overall fs--d7 tc--red">{{ getCoopParticipation["1"] }}%</p>
+        </div>
+      </div>
     </section>
 </template>

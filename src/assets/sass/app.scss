@@ -59,14 +59,6 @@
 }
 
 .career-outcomes {
-    &__title {
-        @extend .fs--d3;
-        @extend .fw--200;
-
-        padding-bottom: 5px;
-        border-bottom: 1px solid $gray;
-    }
-
     &__banner {
         background-color: $gray-100;
         color: black;
@@ -76,6 +68,20 @@
 
     &__note {
         margin-top: 35px;
+    }
+}
+
+.coop-participation {
+    &__title {
+        @extend .fs--d3;
+        @extend .fw--200;
+
+        padding-bottom: 5px;
+        border-bottom: 1px solid $gray;
+    }
+
+    &__label {
+        @extend .fw--700;
     }
 }
 

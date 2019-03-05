@@ -29,6 +29,13 @@ const strings = {
         CORnumerator: Full-time employed, part-time employed, and in graduate school. <br><br>
         CORdenominator: Full-time employed, part-time employed, in graduate school, and not employed but seeking job.`,
     },
+    'coopParticipation': {
+        'title': 'Our students know the power of experience',
+        'label1': 'Overall Participation',
+        'label2': '3+ Co-ops',
+        'label3': '2+ Co-ops',
+        'label4': '1 Co-op',
+    },
     'filters': {
         "year": "Year",
         "std_level": "Student Level",
