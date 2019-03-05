@@ -1,6 +1,5 @@
 <script>
 import { countBy } from 'lodash';
-import { PieChart, DoughnutChart, BarChart } from './charts/';
 import { ALL, createArrayOfUniqueValues } from './utils.js';
 import { getAllData } from './queries.js';
 import stringData from './strings.js';
@@ -47,16 +46,9 @@ export default {
         .filter(element => element != "NA");
     },
 
-    employmentStatusChartData() {
-      const data = countBy(this.filteredData.map(element => element.employment_type));
-
-      return ({
-        labels: Object.keys(data),
-        datasets: [{
-            backgroundColor: ['#006eb5', '#badb00', '#d41b2c', '#ff854f', '#824091'],
-            data: Object.values(data),
-        }]
-      })
+    getEmploymentTypes() {
+      return this.filteredData
+        .map(element => element.employment_type);
     },
 
     getSchools() {
@@ -65,18 +57,9 @@ export default {
         .filter(element => element != "NA");
     },
 
-    getCoopParticipation() {
-      const coopParticipation = countBy(this.filteredData
-        .map(element => element.final_coop_numbers.split(' ')[0]))
-
-      return {
-        total: Object.values(coopParticipation).reduce((a,b) => a + b, 0),
-        ...coopParticipation
-      };
-    },
-    
-    hiringCompaniesSortedByName() {
-      return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
+    getCoopNumbers() {
+      return this.filteredData
+        .map(element => element.final_coop_numbers.split(' ')[0]);
     },
 
     getIndustries() {
@@ -122,11 +105,6 @@ export default {
       }
       this.isDataLoading = false;
     },
-  },
-
-  components: {
-    PieChart,
-    DoughnutChart,
   }
 };
 </script>
@@ -182,7 +160,7 @@ export default {
           <router-link to="/employment-status"><li>Employment Status</li></router-link>
           <router-link to="/coop-participation"><li>Co-op participation</li></router-link>
           <router-link to="/industries"><li>By industry/company</li></router-link>
-          <router-link to="/gradute-outcomes"><li>By graduate school</li></router-link>
+          <router-link to="/graduate-outcomes"><li>By graduate school</li></router-link>
           <router-link to="/salaries"><li>Starting salaries</li></router-link>
         </ul>
       </div>
@@ -193,8 +171,9 @@ export default {
           :companies="this.getCompanies"
           :outcomes="this.getOutcomes"
           :salaries="this.getSalaries"
+          :coopNumbers="this.getCoopNumbers"
+          :employmentTypes="this.getEmploymentTypes"
         />
-        <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
       </div>
     </div>
   </main>

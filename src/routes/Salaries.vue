@@ -4,12 +4,7 @@ import stringData from '../strings.js';
 import { countBy } from 'lodash';
 
 export default {
-  name: 'graduate',
-  data() {
-    return {
-        strings: stringData.graduate,
-    }
-  },
+  name: 'salaries',
   computed: {
     startingSalariesData() {
       const salaries = this.salaries
