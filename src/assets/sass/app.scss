@@ -1,4 +1,11 @@
 @import "~kernl-ui/src/styles/main";
+@import "~formstone/dist/css/navigation";
+
+.\--banner {
+    > .__header {
+        flex: 0 !important;
+    }
+}
 
 .industry-data {
     &.__title {
@@ -237,4 +244,15 @@
 
 .lh--loose {
     line-height: 1.6 !important;
+}
+
+// override formstone styles (required)
+.fs-navigation-overlay-nav.fs-navigation-enabled {
+    background-color: #000;
+    color: #fff;
+}
+
+.fs-navigation-handle.fs-navigation-enabled,
+.fs-navigation-overlay-handle.fs-navigation-enabled {
+    @extend .btn;
 }
