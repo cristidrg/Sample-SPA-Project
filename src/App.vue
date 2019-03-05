@@ -86,38 +86,23 @@ export default {
       })
     },
 
-    schoolsSortedByName() {
-      return createArrayOfUniqueValues("final_university", this.filteredData).filter(element => element != "NA").sort()
-    },
-
-    getSchoolsByPopularity() {
-      const schoolsToCount = countBy(this.filteredData
+    getSchools() {
+      return this.filteredData
         .map(element => element.final_university)
-        .filter(element => element != "NA"));
-
-      return Object.entries(schoolsToCount)
-        .map(entry => ({name: entry[0], count: entry[1]}))
-        .sort((a, b) => b.count - a.count);
-    },
-    
-    hiringCompaniesSortedByName() {
-      return createArrayOfUniqueValues("final_companyname", this.filteredData).sort()
+        .filter(element => element != "NA")
     },
 
-    industriesSortedByPopularity() {
-      const listOfIndustries = countBy(this.filteredData
+    getIndustries() {
+      return this.filteredData
         .map(element => element.final_industry)
-        .filter(element => element != 'Not Known'))
+        .filter(element => element != "Not Known")
+    },
 
-      const total = Object.values(listOfIndustries)
-        .reduce((acc, curr) => acc + curr, 0);
-    
-      const result = Object.entries(listOfIndustries)
-        .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(2)}))
-        .sort((a, b) => b.percentage - a.percentage)
-
-      return result;
-    }
+    getCompanies() {
+      return this.filteredData
+        .map(element => element.final_companyname)
+        .filter(element => element != "NA")
+    },
   },
 
   mounted() {
@@ -149,7 +134,7 @@ export default {
   components: {
     PieChart,
     DoughnutChart,
-    BarChart
+    BarChart,
   }
 };
 </script>
@@ -197,57 +182,23 @@ export default {
         </div>
       </div>
     </section>
-
-    <section class="section graduate-data">
-      <p class="graduate-data__title">{{ strings.graduate.title }}</p>
-      <div class="graduate-data__banner">
-        <p class="graduate-data__top" v-html="strings.graduate.top"></p>
-        <ul class="graduate-data__top-list">
-          <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
-            {{ school.name }}
-          </li>
-        </ul>
-      </div>
-      <p class="graduate-data__header"> {{ strings.graduate.list_header }}</p>
-      <ul class="graduate-data__list">
-        <li v-for="(school, idx) in schoolsSortedByName" :key="idx">
-          {{ school }}
-        </li>
-      </ul>
-      <a class="graduate-data__button btn">{{ strings.graduate.list_button }}</a>
-    </section>
-
-    <section class="section industry-data">
-      <p class="industry-data__title">{{ strings.industry.title }}</p>
-      <p class="industry-data__header"> {{ strings.industry.list1_header }}</p>
-      <ul class="industry-data__list --b-first">
-        <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
-          <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
-        </li>
-      </ul>
-
-      <p class="industry-data__header"> {{ strings.industry.list2_header }}</p>
-      <ul class="industry-data__list">
-        <li v-for="(company, idx) in hiringCompaniesSortedByName.slice(0, 16)" :key="idx">
-          {{ company }}
-        </li>
-      </ul>
-
-      <a class="industry-data__button btn">{{ strings.industry.list2_button }}</a>
-    </section>
-
     <div class="row">
       <div class="col w--20@t chart-menu">
         <ul>
-          <li class="active">Career Outcomes</li>
-          <li>Employment Status</li>
-          <li>Co-op participation</li>
-          <li>By industry/company</li>
-          <li>By graduate school</li>
-          <li>Starting salaries</li>
+          <router-link to="/outcomes"><li>Career Outcomes</li></router-link>
+          <router-link to="/employment-status"><li>Employment Status</li></router-link>
+          <router-link to="/coop-participation"><li>Co-op participation</li></router-link>
+          <router-link to="/industries"><li>By industry/company</li></router-link>
+          <router-link to="/gradute-outcomes"><li>By graduate school</li></router-link>
+          <router-link to="/salaries"><li>Starting salaries</li></router-link>
         </ul>
       </div>
       <div class="col w--80@t chart-content">
+        <router-view 
+          :schools="this.getSchools"
+          :industries="this.getIndustries"
+          :companies="this.getCompanies"
+        />
         <p>Northeastern graduates are in high-demand</p>
         <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
         <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
