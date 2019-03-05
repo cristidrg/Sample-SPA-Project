@@ -20,12 +20,14 @@
   "dependencies": {
     "axios": "^0.18",
     "chart.js": "^2.7.3",
+    "chartjs-plugin-labels": "^1.1.0",
     "feather-icons": "^4.7.3",
     "formstone": "^1.4.8",
     "jquery": "^3.2.0",
     "kernl-ui": "git+https://git@bitbucket.org/nupods/kernl-ui.git",
     "vue": "^2.5.17",
     "vue-chartjs": "^3.4.0",
+    "vue-router": "^3.0.2",
     "vue-template-compiler": "^2.5.22"
   }
 }
