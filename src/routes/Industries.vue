@@ -14,6 +14,17 @@ export default {
       return [...new Set(this.companies)].sort();
     },
 
+    companiesSortedByPopularity() {
+      const listOfCompanies = countBy(this.companies);
+
+      const total = Object.values(listOfCompanies)
+        .reduce((acc, curr) => acc + curr, 0);
+
+      return Object.entries(listOfCompanies)
+        .map(entry => ({name: entry[0], employees: entry[2]}))
+        .sort((a,b) => b.employees - a.employees);
+    },
+
     industriesSortedByPopularity() {
         const listOfIndustries = countBy(this.industries);
         
@@ -46,11 +57,9 @@ export default {
 
       <p class="industry-data__header"> {{ strings.list2_header }}</p>
       <ul class="industry-data__list">
-        <li v-for="(company, idx) in companiesSortedByName.slice(0, 16)" :key="idx">
-          {{ company }}
+        <li v-for="(company, idx) in companiesSortedByPopularity.slice(0, 30)" :key="idx">
+          {{ company.name }}
         </li>
       </ul>
-
-      <a class="industry-data__button btn">{{ strings.list2_button }}</a>
     </section>
 </template>
