@@ -41,6 +41,10 @@ const strings = {
         "std_level": "Student Level",
         "college": "College",
         "major": "Major"
+    },
+    'navigation': {
+        'forward': 'Next :)',
+        'backward': 'Back ^_^'
     }
 }
 
