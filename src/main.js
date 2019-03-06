@@ -16,13 +16,15 @@ new Vue({
 $("#filter_menu").navigation({
   type: "overlay",
   gravity: "left",
-  maxWidth: "700px"
+  maxWidth: "700px",
+  labels: { closed: "Filter" }
 });
 
 $("#chart_menu").navigation({
   type: "overlay",
   gravity: "right",
-  maxWidth: "700px"
+  maxWidth: "700px",
+  labels: { closed: "Browse" }
 });
 
 $('.__toggler').on('click touch', () => {
