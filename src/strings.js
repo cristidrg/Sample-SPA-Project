@@ -16,7 +16,7 @@ const strings = {
     'industry': {
         'title': 'Our graduates excel across industries and in top graduate programs',
         'list1_header': 'Industries',
-        'list2_header': 'Hiring Companies',
+        'list2_header': 'Top Hiring Companies',
         'list2_button': 'View more companies'
     },
     'career': {
