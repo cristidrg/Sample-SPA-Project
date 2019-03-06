@@ -10,13 +10,13 @@ const strings = {
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
         'top': '<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate school',
-        'list_header': 'Schools Attended',
+        'list_header': 'Schools attended by popularity',
         'list_button': 'View more schools'
     },
     'industry': {
         'title': 'Our graduates excel across industries and in top graduate programs',
         'list1_header': 'Industries',
-        'list2_header': 'Hiring Companies',
+        'list2_header': 'Top Hiring Companies',
         'list2_button': 'View more companies'
     },
     'career': {
