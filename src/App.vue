@@ -1,6 +1,7 @@
 <script>
 import { countBy } from 'lodash';
 import { ALL, createArrayOfUniqueValues } from './utils.js';
+import { Navigation } from './routes/';
 import { getAllData } from './queries.js';
 import stringData from './strings.js';
 import API from './configs.js';
@@ -126,6 +127,9 @@ export default {
         case 'year': return this.filterData(filterValue, activeSTDLVL, activeCollege, activeMajor).length != 0
       }
     }
+  },
+  components: {
+    Navigation
   }
 };
 </script>
@@ -189,15 +193,6 @@ export default {
         />
       </div>
     </div>
+    <navigation />
   </main>
 </template>
-
-<style scoped>
-  .single-col-layout > * {
-    flex-basis: 100%;
-  }
-
-  th {
-    text-align: center;
-  }
-</style>
