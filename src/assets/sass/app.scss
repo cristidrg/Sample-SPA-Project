@@ -1,7 +1,7 @@
 @import "~kernl-ui/src/styles/main";
 
 .industry-data {
-    &.__title {
+    &__title {
         @extend .fs--d3;
         @extend .fw--300;
 
@@ -9,7 +9,7 @@
         border-bottom: 1px solid $gray;
     }
 
-    &.__header {
+    &__header {
         @extend .fs--d2;
         @extend .fw--700;
 
@@ -18,26 +18,26 @@
         border-bottom: 1px solid $gray-200;
     }
 
-    &.__list {
+    &__list {
         list-style-type: none;
         padding-left: 0;
         columns: 2;
     }
 
-    &.__list.--b-first > li:first-child {
+    &__list.--b-first > li:first-child {
         @extend .fw--700;
 
         color: $red;
     }
 
-    &.__perc {
+    &__perc {
         @extend .fw--700;
 
         display: inline-block;
         min-width: 7ch;
     }
 
-    &.__button {
+    &__button {
         text-transform: uppercase;
         border-color: black;
     }
@@ -83,10 +83,26 @@
     &__label {
         @extend .fw--700;
     }
+
+    &__human-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .user-gray {
+        stroke: $black;
+        fill: $black;
+    }
+
+    .user-red {
+        stroke: $red;
+        fill: $red;
+    }
 }
 
 .graduate-data {
-    &.__title {
+    &__title {
         @extend .fs--d3;
         @extend .fw--200;
 
@@ -94,7 +110,7 @@
         border-bottom: 1px solid $gray;
     }
 
-    &.__header {
+    &__header {
         @extend .fs--d2;
         @extend .fw--700;
 
@@ -103,43 +119,43 @@
         border-bottom: 1px solid $gray-200;
     }
 
-    &.__list {
+    &__list {
         list-style-type: none;
         padding-left: 0;
         columns: 2;
     }
 
-    &.__list.--b-first > li:first-child {
+    &__list.--b-first > li:first-child {
         @extend .fw--700;
 
         color: $red;
     }
 
-    &.__perc {
+    &__perc {
         @extend .fw--700;
 
         display: inline-block;
         min-width: 7ch;
     }
 
-    &.__button {
+    &__button {
         text-transform: uppercase;
         border-color: black;
     }
 
-    &.__banner {
+    &__banner {
         background-color: $gray-100;
         color: black;
         display: flex;
         padding: 15px 25px;
     }
 
-    &.__top {
+    &__top {
         display: flex;
         align-items: center;
     }
 
-    &.__top-list {
+    &__top-list {
         list-style: none;
         padding: none;
         columns: 2;
