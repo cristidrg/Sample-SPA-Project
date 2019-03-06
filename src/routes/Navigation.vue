@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div class="route-navigator">
         <a class="btn" v-on:click="backward()" v-if="this.currentRoute != 0">
             {{ strings.backward }}
         </a>
