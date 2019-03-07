@@ -7,7 +7,7 @@ const strings = {
          a team of professionals and navigate the unexpected challengs of today’s fast-paced workplace.
          And they’ve gained unique insights into their classroom learning — a deeper focus and understanding
          that better prepares them for master’s and doctoral work in top graduate programs.`,
-        'cta': 'Show me the money',
+        'cta': 'See the numbers',
     },
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',

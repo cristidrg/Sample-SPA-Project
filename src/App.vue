@@ -1,11 +1,11 @@
 <script>
-import { countBy } from "lodash";
-import { ALL, createArrayOfUniqueValues } from "./utils.js";
-import { Navigation } from "./routes/";
-import { getAllData } from "./queries.js";
-import stringData from "./strings.js";
-import API from "./configs.js";
-import feather from "feather-icons";
+import { countBy } from "lodash"
+import { ALL, createArrayOfUniqueValues } from "./utils.js"
+import { Navigation } from "./routes/"
+import { getAllData } from "./queries.js"
+import stringData from "./strings.js"
+import API from "./configs.js"
+import feather from "feather-icons"
 
 export default {
   name: "app",
@@ -27,7 +27,7 @@ export default {
         majors: []
       },
       strings: stringData
-    };
+    }
   },
 
   computed: {
@@ -37,24 +37,24 @@ export default {
         activeSTDLVL,
         activeCollege,
         activeMajor
-      } = this.filters;
+      } = this.filters
 
       return this.filterData(
         activeYear,
         activeSTDLVL,
         activeCollege,
         activeMajor
-      );
+      )
     },
 
     getOutcomes() {
       return this.filteredData
         .map(element => element.employment_status)
-        .filter(element => element != "NA");
+        .filter(element => element != "NA")
     },
 
     getEmploymentTypes() {
-      return this.filteredData.map(element => element.employment_type);
+      return this.filteredData.map(element => element.employment_type)
     },
 
     getSchools() {
@@ -66,40 +66,40 @@ export default {
     getCoopNumbers() {
       return this.filteredData.map(
         element => element.final_coop_numbers.split(" ")[0]
-      );
+      )
     },
 
     getIndustries() {
       return this.filteredData
         .map(element => element.final_industry)
-        .filter(element => element != "Not Known");
+        .filter(element => element != "Not Known")
     },
 
     getCompanies() {
       return this.filteredData
         .map(element => element.final_companyname)
-        .filter(element => element != "NA");
+        .filter(element => element != "NA")
     },
 
     getSalaries() {
       return this.filteredData
         .map(element => element.final_salary_recalculated)
-        .filter(element => element != "NA");
+        .filter(element => element != "NA")
     }
   },
 
   mounted() {
-    this.fetchData();
-    feather.replace();
+    this.fetchData()
+    feather.replace()
   },
 
   methods: {
     async fetchData() {
-      this.isDataLoading = true;
+      this.isDataLoading = true
       try {
-        const res = await API.post("/", { query: getAllData });
+        const res = await API.post("/", { query: getAllData })
 
-        const graduateDestinations = res.data.data.getGraduateDestinations;
+        const graduateDestinations = res.data.data.getGraduateDestinations
 
         this.data = {
           years: [
@@ -119,11 +119,11 @@ export default {
             ...createArrayOfUniqueValues("majordesc", graduateDestinations)
           ],
           dump: graduateDestinations
-        };
+        }
       } catch (e) {
-        console.error(e);
+        console.error(e)
       }
-      this.isDataLoading = false;
+      this.isDataLoading = false
     },
 
     filterData(yearFilter, studentFilter, collegeFilter, majorFilter) {
@@ -133,7 +133,7 @@ export default {
           (studentFilter == ALL || element.student_level == studentFilter) &&
           (collegeFilter == ALL || element.collegedesc == collegeFilter) &&
           (majorFilter == ALL || element.majordesc == majorFilter)
-      );
+      )
     },
 
     isFilterValid(filterValue, filterType) {
@@ -142,10 +142,10 @@ export default {
         activeSTDLVL,
         activeCollege,
         activeMajor
-      } = this.filters;
+      } = this.filters
 
       if ([activeYear, activeSTDLVL, activeCollege, activeMajor].every(el => el == ALL)) {
-        return true;
+        return true
       }
 
       switch (filterType) {
@@ -157,17 +157,17 @@ export default {
               activeCollege,
               filterValue
             ).length != 0
-          );
+          )
         case "college":
           return (
             this.filterData(activeYear, activeSTDLVL, filterValue, activeMajor)
               .length != 0
-          );
+          )
         case "student":
           return (
             this.filterData(activeYear, filterValue, activeCollege, activeMajor)
               .length != 0
-          );
+          )
         case "year":
           return (
             this.filterData(
@@ -176,10 +176,11 @@ export default {
               activeCollege,
               activeMajor
             ).length != 0
-          );
+          )
       }
     }
   },
+
   components: {
     Navigation
   }
@@ -193,19 +194,16 @@ export default {
       style="background-image: url(//facts.northeastern.edu/assets/images/16x9-campus.jpg);"
       role="banner"
     >
-      <div class="d--flex flex--col justify--around">
-        <div class="__header mt--3">
-          <h1 class="__title fs--d3 mb--1 fw--700 ta--c@d">
-            <span class="fw--700">{{ strings.head.pageTitle }}</span>
+      <div class="d--flex flex--col justify--around mx--auto">
+        <div class="__header pa--1 mt--1 ta--c measure--wide">
+          <h1 class="__title fs--d3 mb--1">
+            {{ strings.head.title }}
           </h1>
-        </div>
-        <div class="section pa--1 bg--gray-700 ta--c@d">
-          <h1 class="fs--d2">{{ strings.head.title }}</h1>
-          <p class="fs--sm lh--loose">{{ strings.head.copy }}</p>
+          <p class="__subtitle fs--sm lh--loose mb--2">{{ strings.head.copy }}</p>
           <a
-            class="btn bg--red tooltip"
-            data-title="Tooltip Content"
-            href="#app_content"
+            class="btn bg--red" 
+            v-scroll-to="'#app_content'" 
+            href="#/outcomes" 
           >{{ strings.head.cta }}</a>
         </div>
       </div>
@@ -220,26 +218,27 @@ export default {
           data-navigation-handle="#chart_menu_handle"
           data-navigation-content="#app_nav_buttons"
         >
-          <div class="chart-menu">
-            <ul>
-              <router-link to="/outcomes">
-                <li>Career Outcomes</li>
-              </router-link>
-              <router-link to="/employment-status">
-                <li>Employment Status</li>
-              </router-link>
-              <router-link to="/coop-participation">
-                <li>Co-op participation</li>
-              </router-link>
-              <router-link to="/industries">
-                <li>By industry/company</li>
-              </router-link>
-              <router-link to="/graduate-outcomes">
-                <li>By graduate school</li>
-              </router-link>
-              <router-link to="/salaries">
-                <li>Starting salaries</li>
-              </router-link>
+          <div class="chart-menu nav bg--black">
+            <p class="my--2 chart-menu__text hidden--up@t">Browse by:</p>
+            <ul class="__list">
+                <li class="__item">
+                  <router-link class="__link" to="/outcomes">Career Outcomes</router-link>
+                </li>
+                <li class="__item">
+                  <router-link class="__link" to="/employment-status">Employment Status</router-link>
+                </li>
+                <li class="__item">
+                  <router-link class="__link" to="/coop-participation">Co-op participation</router-link>
+                </li>
+                <li class="__item">
+                  <router-link class="__link" to="/industries">By industry/company</router-link>
+                </li>
+                <li class="__item">
+                  <router-link class="__link" to="/graduate-outcomes">By graduate school</router-link>
+                </li>
+                <li class="__item">
+                  <router-link class="__link" to="/salaries">Starting salaries</router-link>
+                </li>
             </ul>
           </div>
         </nav>
@@ -268,10 +267,10 @@ export default {
             data-navigation-handle="#filter_menu_handle"
             data-navigation-content="#app_nav_buttons"
           >
-            <p class="filter_menu__text">{{ strings.filters.text }}</p>
-            <div class="filter_menu__wrapper">
-              <label for="year-filter" class="filter_menu__label">{{ strings.filters.year }}</label>
-              <select v-model="filters.activeYear" id="year-filter" class="filter_menu__select">
+            <p class="my--1 filter-menu__text">{{ strings.filters.text }}</p>
+            <div class="filter-menu__wrapper">
+              <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
+              <select v-model="filters.activeYear" id="year-filter" class="filter-menu__select">
                  <option
                   v-for="year in data.years"
                   :value="year"
@@ -280,9 +279,9 @@ export default {
                 >{{ year }}</option>
               </select>
             </div>
-            <div class="filter_menu__wrapper">
-              <label for="college-filter" class="filter_menu__label">{{ strings.filters.college }}</label>
-              <select v-model="filters.activeCollege" id="college-filter" class="filter_menu__select">
+            <div class="filter-menu__wrapper">
+              <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
+              <select v-model="filters.activeCollege" id="college-filter" class="filter-menu__select">
                 <option
                   v-for="college in data.colleges"
                   :value="college"
@@ -291,9 +290,9 @@ export default {
                 >{{ college }}</option>
               </select>
             </div>
-            <div class="filter_menu__wrapper">
-              <label for="major-filter" class="filter_menu__label">{{ strings.filters.major }}</label>
-              <select v-model="filters.activeMajor" id="major-filter" class="filter_menu__select">
+            <div class="filter-menu__wrapper">
+              <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
+              <select v-model="filters.activeMajor" id="major-filter" class="filter-menu__select">
                 <option
                   v-for="major in data.majors"
                   :value="major"
@@ -302,7 +301,7 @@ export default {
                 >{{ major }}</option>
               </select>
             </div>
-            <a class="btn filter_menu__reset">{{ strings.filters.reset }}</a>
+            <a class="btn filter-menu__reset bg--white-alpha">{{ strings.filters.reset }}</a>
           </nav>
           <navigation/>
         </div>

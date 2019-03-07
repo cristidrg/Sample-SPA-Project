@@ -1,10 +1,10 @@
-import 'jquery';
-import 'kernl-ui';
+import 'jquery'
+import 'kernl-ui'
 
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/';
+import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
 
 //ORDER OF ROUTES IS USED IN NEXT/BACK LOGIC!
 export const routes = [
@@ -86,16 +86,20 @@ export const routes = [
       ]
     }
   },
-];
+]
 
 const router = new VueRouter({
   routes
-});
+})
 
-import $ from 'jquery';
-import 'formstone/src/js/navigation';
+import $ from 'jquery'
+import 'formstone/src/js/navigation'
+
+import vueScrollto from 'vue-scrollto'
+Vue.use(vueScrollto)
 
 Vue.config.productionTip = false
+
 Vue.use(VueRouter)
 
 new Vue({
@@ -103,21 +107,20 @@ new Vue({
   router
 }).$mount('#app')
 
-$("#filter_menu").navigation({
-  type: "overlay",
-  gravity: "left",
-  maxWidth: "700px",
-  labels: { closed: "Filter" }
-});
+$('#filter_menu').navigation({
+  type: 'overlay',
+  gravity: 'left',
+  maxWidth: '719px',
+  labels: { closed: 'Filter' }
+})
 
-$("#chart_menu").navigation({
-  type: "overlay",
-  gravity: "right",
-  maxWidth: "700px",
-  labels: { closed: "Browse" }
-});
+$('#chart_menu').navigation({
+  type: 'overlay',
+  gravity: 'right',
+  maxWidth: '719px',
+  labels: { closed: 'Browse' }
+})
 
 $('.__toggler').on('click touch', () => {
   $('body').toggleClass('menu-open')
-});
-
+})

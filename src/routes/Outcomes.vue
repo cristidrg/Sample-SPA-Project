@@ -9,7 +9,7 @@ export default {
     return {
         strings: stringData.career,
         outcomesStyle: {
-            width: "500px",
+            width: "340px",
             position: "relative"
         }
     }
@@ -33,11 +33,11 @@ export default {
   components: {
       PieChart
   }
-}
+};
 </script>
 
 <template>
-    <section class="section career-outcomes">
+    <section class="section career-outcomes pa--2">
       <p class="career-outcomes__title">{{ strings.title }}</p>
       <div class="row">
         <div class="col w--70@t">
