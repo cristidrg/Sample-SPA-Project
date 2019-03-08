@@ -47,8 +47,8 @@ const strings = {
         "reset": "Clear all filters"
     },
     'navigation': {
-        'forward': 'Next :)',
-        'backward': 'Back ^_^'
+        'forward': 'Next',
+        'backward': 'Back'
     }
 }
 
