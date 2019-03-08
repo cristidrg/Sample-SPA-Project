@@ -13,6 +13,20 @@ export default {
         position: "relative"
       },
       chartOptions: {
+        plugins: {
+          labels: {
+            render: function (args) {
+              const total = args.dataset.data.reduce((prev, curr) => prev + curr, 0);
+              return parseFloat((args.value / total) * 100).toFixed(0) + '%';
+            },
+            fontColor: '#d41b2c',
+            position: 'outside',
+            fontSize: 20,
+            fontStyle: "bold",
+            textMargin: 8
+          }
+        },
+        showDatapoints: true,
         responsive: true,
         maintainAspectRatio: false,
         legend: {
@@ -28,17 +42,16 @@ export default {
               }
           }],
           xAxes: [{
-              ticks: {
-                fontColor: "#d41b2c",
-                fontStyle: "bold",
-                fontSize: 16
-              }
+            gridLines: {
+              display: false,
+            },
+            ticks: {
+              fontColor: "#d41b2c",
+              fontStyle: "bold",
+              fontSize: 16
+            }
           }]
         }
-      },
-      scaleLabel: {
-        display: true,
-        labelString: 'Percentage',
       },
     }
   },
