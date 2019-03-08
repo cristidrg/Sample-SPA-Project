@@ -32,6 +32,9 @@ export default {
         legend: {
           display: false
         },
+        tooltips: {
+          enabled: false
+        },
         scales: {
           yAxes: [{
               ticks: {
@@ -61,12 +64,19 @@ export default {
         .map(element => Math.floor((element % 100000) / 10000))
         .filter(element => !isNaN(element))
         .reduce((acc, curr) => {
-          acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
+          if (curr < 3) {
+            acc[0] ? acc[0] += 1 : acc[0] = 1;
+          } else if (curr > 7){
+            acc[8] ? acc[8] += 1 : acc[8] = 1;
+          } else {
+            acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
+          }
           return acc;
         }, {});
 
       const labels = Object.keys(salaries).map(digit => `${digit}0k < ${digit}9k`);
-      labels[0] = '< 10k'
+      labels[0] = '< 30k';
+      labels[labels.length - 1] = '> 80k';
 
       return ({
         labels: labels,
