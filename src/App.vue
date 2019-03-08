@@ -227,26 +227,26 @@ export default {
           data-navigation-handle="#chart_menu_handle"
           data-navigation-content="#app_nav_buttons"
         >
-          <div class="chart-menu nav bg--black">
+          <div class="chart-menu nav bg--gray-800">
             <p class="my--2 chart-menu__text hidden--up@t">Browse by:</p>
             <ul class="__list">
                 <li class="__item">
-                  <router-link class="__link" to="/outcomes">Career Outcomes</router-link>
+                  <router-link class="__link" to="/outcomes" v-scroll-to="'#app_content'">Career Outcomes</router-link>
                 </li>
                 <li class="__item">
-                  <router-link class="__link" to="/employment-status">Employment Status</router-link>
+                  <router-link class="__link" to="/employment-status" v-scroll-to="'#app_content'">Employment Status</router-link>
                 </li>
                 <li class="__item">
-                  <router-link class="__link" to="/coop-participation">Co-op participation</router-link>
+                  <router-link class="__link" to="/coop-participation" v-scroll-to="'#app_content'">Co-op participation</router-link>
                 </li>
                 <li class="__item">
-                  <router-link class="__link" to="/industries">By industry/company</router-link>
+                  <router-link class="__link" to="/industries" v-scroll-to="'#app_content'">By industry/company</router-link>
                 </li>
                 <li class="__item">
-                  <router-link class="__link" to="/graduate-outcomes">By graduate school</router-link>
+                  <router-link class="__link" to="/graduate-outcomes" v-scroll-to="'#app_content'">By graduate school</router-link>
                 </li>
                 <li class="__item">
-                  <router-link class="__link" to="/salaries">Starting salaries</router-link>
+                  <router-link class="__link" to="/salaries" v-scroll-to="'#app_content'">Starting salaries</router-link>
                 </li>
             </ul>
           </div>
@@ -270,7 +270,7 @@ export default {
       <div class="row">
         <div class="col w--20@t">
           <nav
-            class="navigation pa--1 filter-menu"
+            class="navigation pa--1 filter-menu ta--l@d"
             id="filter_menu"
             role="navigation"
             data-navigation-handle="#filter_menu_handle"
@@ -312,9 +312,9 @@ export default {
             </div>
             <a class="btn filter-menu__reset bg--white-alpha" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
           </nav>
-          <navigation/>
+          
         </div>
-        <div class="col w--80@t chart-content" id="app_data_views">
+        <div class="col w--80@t w--70@w ml--3@w chart-content" id="app_data_views">
           <router-view
             :schools="this.getSchools"
             :industries="this.getIndustries"
@@ -324,6 +324,7 @@ export default {
             :coopNumbers="this.getCoopNumbers"
             :employmentTypes="this.getEmploymentTypes"
           />
+          <navigation/>
         </div>
       </div>
     </section>

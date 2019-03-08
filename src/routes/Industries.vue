@@ -46,7 +46,7 @@ export default {
 </script>
 
 <template>
-    <section class="section industry-data">
+    <section class="section industry-data ">
       <p class="industry-data__title">{{ strings.title }}</p>
       <p class="industry-data__header"> {{ strings.list1_header }}</p>
       <ul class="industry-data__list --b-first">

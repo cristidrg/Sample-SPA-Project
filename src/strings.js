@@ -50,8 +50,8 @@ const strings = {
         'title': 'Our graduates command competitive starting salaries',
     },
     'navigation': {
-        'forward': 'Next :)',
-        'backward': 'Back ^_^'
+        'forward': 'Next',
+        'backward': 'Back'
     }
 }
 

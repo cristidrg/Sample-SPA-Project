@@ -42,7 +42,7 @@ export default {
       <div class="row">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label1 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red">{{ getCoopParticipation.overallParticipation }}%</p>
+          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation.overallParticipation }}%</p>
         </div>
         <div class="col w--2/3@t">
             <div v-for="row in [0,1,2,3,4]" :key="row" class="coop-participation__human-row">
@@ -58,15 +58,15 @@ export default {
       <div class="row mt--2h">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label2 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red">{{ getCoopParticipation["3"] }}%</p>
+          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation["3"] }}%</p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label3 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red">{{ getCoopParticipation["2"] }}%</p>
+          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation["2"] }}%</p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label4 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red">{{ getCoopParticipation["1"] }}%</p>
+          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation["1"] }}%</p>
         </div>
       </div>
     </section>

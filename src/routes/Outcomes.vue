@@ -37,7 +37,7 @@ export default {
 </script>
 
 <template>
-    <section class="section career-outcomes pa--2">
+    <section class="section career-outcomes">
       <p class="career-outcomes__title">{{ strings.title }}</p>
       <div class="row">
         <div class="col w--70@t">
