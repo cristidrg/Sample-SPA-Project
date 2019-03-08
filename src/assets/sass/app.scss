@@ -7,6 +7,17 @@
     }
 }
 
+.salaries {
+    &__title {
+        @extend .fs--d3;
+        @extend .fw--300;
+
+        padding-bottom: 5px;
+        border-bottom: 1px solid $gray;
+        margin-bottom: 3.5rem;
+    }
+}
+
 .industry-data {
     &__title {
         @extend .fs--d3;

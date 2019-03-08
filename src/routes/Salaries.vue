@@ -5,6 +5,43 @@ import { countBy } from 'lodash';
 
 export default {
   name: 'salaries',
+  data() {
+    return {
+      strings: stringData.salaries,
+      chartStyle: {
+        height: "700px",
+        position: "relative"
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [{
+              ticks: {
+                fontStyle: "bold",
+                fontColor: "black",
+                fontSize: 16,
+                padding: 10
+              }
+          }],
+          xAxes: [{
+              ticks: {
+                fontColor: "#d41b2c",
+                fontStyle: "bold",
+                fontSize: 16
+              }
+          }]
+        }
+      },
+      scaleLabel: {
+        display: true,
+        labelString: 'Percentage',
+      },
+    }
+  },
   computed: {
     startingSalariesData() {
       const salaries = this.salaries
@@ -21,7 +58,7 @@ export default {
       return ({
         labels: labels,
         datasets: [{
-            backgroundColor: ['#d41b2c'],
+            backgroundColor: '#d41b2c',
             data: Object.values(salaries),
         }]
       })
@@ -37,5 +74,8 @@ export default {
 </script>
 
 <template>
-    <bar-chart :chartData="startingSalariesData" :options="{responsive: true}" />
+    <div>
+      <p class="salaries__title">{{ strings.title }}</p>
+      <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
+    </div>
 </template>

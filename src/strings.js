@@ -46,6 +46,9 @@ const strings = {
         "text": "Filter by:",
         "reset": "Clear all filters"
     },
+    'salaries': {
+        'title': 'Our graduates command competitive starting salaries',
+    },
     'navigation': {
         'forward': 'Next :)',
         'backward': 'Back ^_^'
