@@ -8,32 +8,34 @@ export default {
   data() {
     return {
         strings: stringData.navigation,
-        currentRoute: 0,
-        routes: routes.map(element => element.path)
+        definedRoutes: routes.filter(element => !element.redirect).map(element => element.path)
     }
   },
   methods: {
       forward() {
-          this.$router.push(routes[this.currentRoute + 1])
-          this.currentRoute += 1;
+          let nextRouteIdx = (this.definedRoutes.findIndex(element => element == this.$router.currentRoute.path) + 1) % (this.definedRoutes.length)
+
+          this.$router.push(this.definedRoutes[nextRouteIdx])
       },
       backward() {
-          this.$router.push(routes[this.currentRoute - 1])
-          this.currentRoute -= 1;
+          let nextRouteIdx = this.definedRoutes.findIndex(element => element == this.$router.currentRoute.path) - 1;
+          
+          if (nextRouteIdx == -1) {
+              nextRouteIdx = this.definedRoutes.length - 1;
+          }
+
+          this.$router.push(this.definedRoutes[nextRouteIdx])
       }
   },
-  mounted() {
-      this.currentRoute = this.routes.findIndex(route => route == this.$router.currentRoute.path);
-  }
 }
 </script>
 
 <template>
     <div class="route-navigator">
-        <a class="btn" v-on:click="backward()" v-if="this.currentRoute != 0">
+        <a class="btn" v-on:click="backward()">
             {{ strings.backward }}
         </a>
-        <a class="btn" v-on:click="forward()" v-if="this.currentRoute != this.routes.length - 1">
+        <a class="btn" v-on:click="forward()">
             {{ strings.forward }}
         </a>
     </div>

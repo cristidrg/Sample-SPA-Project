@@ -6,10 +6,19 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
 
-//ORDER OF ROUTES IS USED IN NEXT/BACK LOGIC!
+//Order of routes is used in prev/next navigation.
+//Routes with redirects are ignored.
+/*
+  https://stackoverflow.com/questions/51008803/laravel-vue-router-returns-404-page
+*/
 export const routes = [
   {
+    path: '/',
+    redirect: 'outcomes',
+  },
+  {
     path: '/outcomes',
+    name: 'outcomes',
     component: Outcomes,
     meta: {
       title: 'Outcomes - Career',
@@ -86,10 +95,11 @@ export const routes = [
       ]
     }
   },
-]
+];
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history',
 })
 
 import $ from 'jquery'

@@ -136,6 +136,15 @@ export default {
       )
     },
 
+    resetFilters() {
+      this.filters = {
+        activeYear: ALL,
+        activeSTDLVL: ALL,
+        activeCollege: ALL,
+        activeMajor: ALL
+      }
+    },
+
     isFilterValid(filterValue, filterType) {
       const {
         activeYear,
@@ -301,7 +310,7 @@ export default {
                 >{{ major }}</option>
               </select>
             </div>
-            <a class="btn filter-menu__reset bg--white-alpha">{{ strings.filters.reset }}</a>
+            <a class="btn filter-menu__reset bg--white-alpha" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
           </nav>
           <navigation/>
         </div>
