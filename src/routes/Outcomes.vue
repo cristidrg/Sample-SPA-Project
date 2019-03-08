@@ -9,7 +9,9 @@ export default {
     return {
       strings: stringData.career,
       outcomesStyle: {
-          height: "600px",
+        width: "90%",
+        position: "relative",
+        margin: "0 auto"
       },
       outcomesOptions: {
         responsive: true,
