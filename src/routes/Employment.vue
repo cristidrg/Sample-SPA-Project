@@ -28,5 +28,18 @@ export default {
 </script>
 
 <template>
-    <doughnut-chart :chartData="employmentStatusChartData" :options="{responsive: true}" />
+  <section class="section employment-status">
+    <p class="employment-status__title">Placeholder Title</p>
+    <div class="row">
+      <div class="col w--70@t">
+        <doughnut-chart :chartData="employmentStatusChartData" :styles="outcomesStyle" :options="{responsive: true}" />
+      </div>
+      <div class="col w--30@t">
+        <p class="row career-outcomes__banner"><span class="fs--d5 tc--red mr--1 d--block">100%</span> Placeholder figure</p>
+        <ul class="employment-status__legend">
+          <li>Placeholder</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </template>

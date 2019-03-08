@@ -7,11 +7,12 @@ export default {
   name: 'outcomes',
   data() {
     return {
-      strings: stringData.career,
-      outcomesStyle: {
-          width: "340px",
-          position: "relative"
-      }
+        strings: stringData.career,
+        outcomesStyle: {
+            width: "90%",
+            position: "relative",
+            margin: "0 auto"
+        }
     }
   },
   computed: {

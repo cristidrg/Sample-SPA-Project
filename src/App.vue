@@ -228,7 +228,7 @@ export default {
           data-navigation-content="#app_nav_buttons"
         >
           <div class="chart-menu nav bg--gray-800">
-            <p class="my--2 chart-menu__text hidden--up@t">Browse by:</p>
+            <p class="my--2 chart-menu__text hidden--up@d">Browse by:</p>
             <ul class="__list">
                 <li class="__item">
                   <router-link class="__link" to="/outcomes" v-scroll-to="'#app_content'">Career Outcomes</router-link>
@@ -254,7 +254,7 @@ export default {
       </section>
 
       <div
-        class="bg--black hidden--up@t ta--c pa--1 d--flex justify--between pos--absolute pin--t w--100"
+        class="bg--black hidden--up@d ta--c pa--1 d--flex justify--between pos--absolute pin--t w--100"
         id="app_nav_buttons"
       >
         <button class="btn --sm __toggler" id="filter_menu_handle">
@@ -268,7 +268,7 @@ export default {
       </div>
 
       <div class="row">
-        <div class="col w--20@t">
+        <div class="col w--20@d">
           <nav
             class="navigation pa--1 filter-menu ta--l@d"
             id="filter_menu"
@@ -314,7 +314,7 @@ export default {
           </nav>
           
         </div>
-        <div class="col w--80@t w--70@w ml--3@w chart-content" id="app_data_views">
+        <div class="col w--80@d w--70@w ml--3@w chart-content" id="app_data_views">
           <router-view
             :schools="this.getSchools"
             :industries="this.getIndustries"

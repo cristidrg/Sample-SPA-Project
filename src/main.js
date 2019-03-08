@@ -119,14 +119,14 @@ new Vue({
 $('#filter_menu').navigation({
   type: 'overlay',
   gravity: 'left',
-  maxWidth: '719px',
+  maxWidth: '991px',
   labels: { closed: 'Filter' }
 })
 
 $('#chart_menu').navigation({
   type: 'overlay',
   gravity: 'right',
-  maxWidth: '719px',
+  maxWidth: '991px',
   labels: { closed: 'Browse' }
 })
 
