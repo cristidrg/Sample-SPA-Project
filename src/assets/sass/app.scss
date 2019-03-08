@@ -153,6 +153,8 @@
         color: $red;
     }
 
+    li { @extend .fs--sm; }
+
     &__perc {
         @extend .fw--700;
 
@@ -220,27 +222,17 @@
             bottom: 0.5rem;
             pointer-events: none;
         }
-    
-        @include mqbp-up(t) {
-            &::before {
-                right: 1.5rem;
-            }
-        }
-    
-        @include mqbp-up(d) {
-            &::before {
-                right: 2rem;
-            }
-        }
     }
 
     &__select {
+        @extend .fs--xs;
+
         width: 100%;
         position: relative;
         background-color: transparent;
         color: #ddd;
         border: 1px solid $gray;
-        padding: 0.25rem 2rem 0.25rem 1rem;
+        padding: 0.25rem 1rem 0.25rem 1rem;
         appearance: none;
         border-radius: 0;
         
@@ -248,7 +240,7 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 1.5rem;
+            width: 1rem;
             height: 1.5rem;
             content: "\E920";
         }
@@ -263,8 +255,14 @@
     }
 
     &__label {
-        font-weight: 800;
-        color: $black;
+        @extend .fs--sm;
+
+        color: $gray-300;
+
+        @include mqbp-up(d) {
+            font-weight: 700;
+            color: $black;
+        }
     }
 
     &__reset {
