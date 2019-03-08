@@ -97,9 +97,34 @@ export default {
     async fetchData() {
       this.isDataLoading = true
       try {
-        const res = await API.post("/", { query: getAllData })
+        let promises = [], results = [];
 
-        const graduateDestinations = res.data.data.getGraduateDestinations
+        //TODO: Make this nicer ^_^
+        const call = (offset, max) => {
+          return new Promise(async function(resolve, reject) {
+            try {
+              const res = await API.post("/", { query: getAllData(offset, max) });
+              resolve(res);
+            } catch (err) {
+              reject(err);
+            }
+          });
+        };
+
+        for (let i = 0; i < 8; i++) {
+            promises.push(call(i * 1000, (i+1) * 1000));
+        }
+
+        //Fires all the requests at the same time :)
+        await Promise.all(promises).then(function() {
+            for (let i = 0; i < 8; i++) {
+              results = [...results, ...arguments[0][i].data.data.getGraduateDestinationPage];
+            }
+        }, function(err) {
+            console.log(err);
+        });
+
+        const graduateDestinations = results;
 
         this.data = {
           years: [

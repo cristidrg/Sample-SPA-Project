@@ -78,7 +78,7 @@ export default {
 
 <template>
   <section class="section employment-status">
-    <p class="employment-status__title">Placeholder Title</p>
+    <p class="employment-status__title">{{ strings.title }}</p>
     <div class="row">
       <div class="col w--70@t">
         <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="chartStyle" :options="chartOptions" />

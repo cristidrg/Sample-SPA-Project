@@ -1,6 +1,6 @@
-export const getAllData = `
+export const getAllData = (offset, max) => `
     query getData {
-        getGraduateDestinations {
+        getGraduateDestinationPage(offset: ${offset}, max: ${max}) {
             id
             final_companyname
             final_university

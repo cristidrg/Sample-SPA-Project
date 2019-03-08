@@ -31,6 +31,9 @@ const strings = {
         CORnumerator: Full-time employed, part-time employed, and in graduate school. <br><br>
         CORdenominator: Full-time employed, part-time employed, in graduate school, and not employed but seeking job.`,
     },
+    'employment': {
+        'title': 'Northeastern graduates are in high demand',
+    },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
         'label1': 'Overall Participation',
