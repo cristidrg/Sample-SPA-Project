@@ -9,8 +9,26 @@ export default {
     return {
       strings: stringData.career,
       outcomesStyle: {
-          width: "340px",
-          position: "relative"
+          height: "600px",
+      },
+      outcomesOptions: {
+        responsive: true,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        },
+        plugins: {
+          labels: {
+            render: 'value',
+            fontColor: '#000',
+            position: 'outside',
+            fontSize: 20,
+            textMargin: 16
+          }
+        },
+        maintainAspectRatio: false,
       }
     }
   },
@@ -41,7 +59,7 @@ export default {
       <p class="career-outcomes__title">{{ strings.title }}</p>
       <div class="row">
         <div class="col w--70@t">
-          <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="{responsive: true}" />
+          <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" />
         </div>
         <div class="col w--30@t">
           <p class="row career-outcomes__banner" v-html="strings.claim" />

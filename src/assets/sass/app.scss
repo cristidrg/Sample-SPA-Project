@@ -92,6 +92,15 @@
 }
 
 .career-outcomes {
+    &__title {
+        @extend .fs--d3;
+        @extend .fw--300;
+
+        padding-bottom: 5px;
+        border-bottom: 1px solid $gray;
+        margin-bottom: 3.5rem;
+    }
+
     &__banner {
         background-color: $gray-100;
         color: $black;
