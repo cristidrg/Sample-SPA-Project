@@ -22,7 +22,7 @@ export default {
             },
             fontColor: '#d41b2c',
             position: 'outside',
-            fontSize: 20,
+            fontSize: 18,
             fontStyle: "bold",
             textMargin: 8
           }
@@ -41,7 +41,7 @@ export default {
               ticks: {
                 fontStyle: "bold",
                 fontColor: "black",
-                fontSize: 16,
+                fontSize: 14,
                 padding: 10
               }
           }],
@@ -52,7 +52,7 @@ export default {
             ticks: {
               fontColor: "#d41b2c",
               fontStyle: "bold",
-              fontSize: 16
+              fontSize: 13
             }
           }]
         }
@@ -75,9 +75,9 @@ export default {
           return acc;
         }, {});
 
-      const labels = Object.keys(salaries).map(digit => `${digit}0k < ${digit}9k`);
-      labels[0] = '< 30k';
-      labels[labels.length - 1] = '> 80k';
+      const labels = Object.keys(salaries).map(digit => `\$${digit}0K < \$${digit}9K`);
+      labels[0] = '< $30K';
+      labels[labels.length - 1] = '> $80K';
 
       return ({
         labels: labels,
@@ -94,7 +94,7 @@ export default {
   components: {
     BarChart
   }
-}
+};
 </script>
 
 <template>
