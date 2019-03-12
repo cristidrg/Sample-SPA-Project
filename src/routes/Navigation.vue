@@ -19,7 +19,7 @@ export default {
       },
       backward() {
           let nextRouteIdx = this.definedRoutes.findIndex(element => element == this.$router.currentRoute.path) - 1;
-          
+
           if (nextRouteIdx == -1) {
               nextRouteIdx = this.definedRoutes.length - 1;
           }
@@ -31,11 +31,11 @@ export default {
 </script>
 
 <template>
-    <div class="route-navigator">
-        <a class="btn" v-on:click="backward()" v-scroll-to="'#app_content'">
+    <div class="route-navigator mt--4 pt--2 bw--0 bwt--1 bc--gray">
+        <a class="fs--sm" v-on:click="backward()" v-scroll-to="'#app_content'">
             {{ strings.backward }}
         </a>
-        <a class="btn" v-on:click="forward()" v-scroll-to="'#app_content'">
+        <a class="fs--sm" v-on:click="forward()" v-scroll-to="'#app_content'">
             {{ strings.forward }}
         </a>
     </div>
