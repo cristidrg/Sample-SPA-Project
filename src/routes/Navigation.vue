@@ -32,11 +32,11 @@ export default {
 
 <template>
     <div class="route-navigator">
-        <a class="btn" v-on:click="backward()" v-scroll-to="'#app_content'">
-            {{ strings.backward }}
+        <a class="fs--sm d--flex items--center" v-on:click="backward()" v-scroll-to="'#app_content'">
+            <i class="--thin" data-feather="chevron-left"></i> {{ strings.backward }}
         </a>
-        <a class="btn" v-on:click="forward()" v-scroll-to="'#app_content'">
-            {{ strings.forward }}
+        <a class="fs--sm d--flex items--center" v-on:click="forward()" v-scroll-to="'#app_content'">
+            {{ strings.forward }} <i class="--thin" data-feather="chevron-right"></i>
         </a>
     </div>
 </template>
