@@ -31,7 +31,7 @@ export default {
 </script>
 
 <template>
-    <div class="route-navigator">
+    <div class="route-navigator mt--4 pt--2 bw--0 bwt--1 bc--gray">
         <a class="fs--sm d--flex items--center" v-on:click="backward()" v-scroll-to="'#app_content'">
             <i class="--thin" data-feather="chevron-left"></i> {{ strings.backward }}
         </a>
