@@ -27,7 +27,7 @@ export default {
           this.$router.push(this.definedRoutes[nextRouteIdx])
       }
   },
-}
+};
 </script>
 
 <template>

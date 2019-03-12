@@ -279,15 +279,13 @@ export default {
       </section>
 
       <div
-        class="bg--black hidden--up@d ta--c pa--1 d--flex justify--between pos--absolute pin--t w--100"
+        class="bg--black hidden--up@d ta--c d--flex justify--between pos--absolute pin--t w--100"
         id="app_nav_buttons"
       >
-        <button class="btn --sm __toggler" id="filter_menu_handle">
-          <i data-feather="align-left"></i>
+        <button class="btn --sm __toggler mb--0 pa--1h" id="filter_menu_handle">
           Filter
         </button>
-        <button class="btn --sm __toggler" id="chart_menu_handle">
-          <i data-feather="align-left"></i>
+        <button class="btn --sm __toggler mb--0 pa--1h" id="chart_menu_handle">
           Browse
         </button>
       </div>
@@ -335,7 +333,8 @@ export default {
                 >{{ major }}</option>
               </select>
             </div>
-            <a class="btn filter-menu__reset bg--white-alpha" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
+            <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
+            <a class="my--1 filter-menu__reset bg--white-alpha" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
           </nav>
           
         </div>

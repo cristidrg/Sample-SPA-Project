@@ -47,6 +47,7 @@ const strings = {
         "college": "College",
         "major": "Academic Disciplines",
         "text": "Filter by:",
+        "apply": "Apply filters",
         "reset": "Clear all filters"
     },
     'salaries': {

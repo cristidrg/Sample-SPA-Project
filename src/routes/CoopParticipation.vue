@@ -37,7 +37,7 @@ export default {
 </script>
 
 <template>
-    <section class="section coop-participation pa--2">
+    <section class="section coop-participation">
       <p class="coop-participation__title">{{ strings.title }}</p>
       <div class="row">
         <div class="col w--1/3@t">

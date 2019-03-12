@@ -116,18 +116,30 @@ new Vue({
   router
 }).$mount('#app')
 
-$('#filter_menu').navigation({
+let $filter = $('#filter_menu')
+let $browse = $('#chart_menu')
+
+$filter.navigation({
   type: 'overlay',
   gravity: 'left',
   maxWidth: '991px',
   labels: { closed: 'Filter' }
 })
 
-$('#chart_menu').navigation({
+$('.filter-menu__apply', $filter).on('click touch', (e) => {
+  e.preventDefault()
+  $filter.navigation('close')
+})
+
+$browse.navigation({
   type: 'overlay',
   gravity: 'right',
   maxWidth: '991px',
   labels: { closed: 'Browse' }
+})
+
+$('.__link', $browse).on('click touch', () => {
+  $browse.navigation('close')
 })
 
 $('.__toggler').on('click touch', () => {

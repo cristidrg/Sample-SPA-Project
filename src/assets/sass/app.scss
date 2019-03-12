@@ -296,15 +296,22 @@
         }
     }
 
+    &__apply {
+        font-size: $fs-xs !important;
+
+        @include mqbp-up(d) {
+            background: $gray-100;
+            border-color: $gray-400 !important;
+        }
+    }
+
     &__reset {
-        text-transform: uppercase;
         border: 1px solid $black;
-        margin-top: 2rem;
+        font-size: $fs-xs !important;
 
         @include mqbp-up(d) {
             color: $black;
             border-color: $gray-600 !important;
-            font-size: $fs-xs !important;
         }
     }
 }
@@ -398,7 +405,7 @@
 
 .chart-content {
     padding: 2rem;
-    padding-top: 5rem;
+    // padding-top: 5rem;
     margin: 0 auto;
 
     @include mqbp-up(d) {
@@ -423,10 +430,18 @@
   }
 }
 
+#app_nav_menus,
+#app_nav_buttons {
+    position: sticky !important;
+    top: 0;
+}
+
+#app_nav_buttons { z-index: 1; }
+
+#app_nav_menus { z-index: 2; }
+
 @include mqbp-up(d) {
     #app_nav_menus {
-        position: sticky !important;
-        top: 0;
         z-index: 1;
     }
 
@@ -434,9 +449,7 @@
         position: sticky !important;
         top: 5rem;
     }
-}    
-
-#app_nav_buttons { z-index: 1; }
+}
 
 // override formstone styles (required)
 .fs-navigation-overlay-nav.fs-navigation-enabled {
@@ -448,4 +461,7 @@
 .fs-navigation-handle.fs-navigation-enabled,
 .fs-navigation-overlay-handle.fs-navigation-enabled {
     @extend .btn;
+    @extend .bg--black;
+    @extend .bc--none;
+    @extend .tt--caps;
 }

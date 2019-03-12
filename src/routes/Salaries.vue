@@ -9,8 +9,9 @@ export default {
     return {
       strings: stringData.salaries,
       chartStyle: {
-        height: "700px",
-        position: "relative"
+        height: "70vh",
+        position: "relative",
+        fontFamily: "'Lato', sans-serif"
       },
       chartOptions: {
         plugins: {

@@ -10,6 +10,9 @@ export default {
         strings: stringData.employment,
         chartStyle: {
           height: "800px",
+          width: "90%",
+          position: "relative",
+          margin: "0 auto"
         }
       }
   },
@@ -48,7 +51,11 @@ export default {
           responsive: true,
           cutoutPercentage: 65,
           legend: {
-            display: false
+            display: false,
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'black'
+            }
           },
           tooltips: {
             enabled: false
@@ -81,7 +88,7 @@ export default {
     <p class="employment-status__title">{{ strings.title }}</p>
     <div class="row">
       <div class="col w--70@t">
-        <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="chartStyle" :options="chartOptions" />
+        <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />
       </div>
       <div class="col w--30@t">
         <p class="row career-outcomes__banner"><span class="fs--d5 tc--red mr--1 d--block">100%</span> Placeholder figure</p>
