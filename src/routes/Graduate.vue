@@ -16,7 +16,7 @@ export default {
 
     getSchoolsByPopularity() {
         const schoolsToCount = countBy(this.schools);
-        
+
         return Object.entries(schoolsToCount)
             .map(entry => ({name: entry[0], count: entry[1]}))
             .sort((a, b) => b.count - a.count);
@@ -30,7 +30,7 @@ export default {
 
 <template>
     <section class="section graduate-data">
-        <p class="graduate-data__title">{{ strings.title }}</p>
+      <h2 class="section-title">{{ strings.title }}</h2>
         <!-- <div class="graduate-data__banner">
             <p class="graduate-data__top" v-html="strings.top"></p>
             <ul class="graduate-data__top-list">

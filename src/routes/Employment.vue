@@ -69,7 +69,7 @@ export default {
           },
           maintainAspectRatio: false,
         }, this.centerText);
-      return options; 
+      return options;
     }
   },
   props: {
@@ -85,7 +85,7 @@ export default {
 
 <template>
   <section class="section employment-status">
-    <p class="employment-status__title">{{ strings.title }}</p>
+    <h2 class="section-title">{{ strings.title }}</h2>
     <div class="row">
       <div class="col w--70@t">
         <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />

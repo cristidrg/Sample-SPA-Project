@@ -99,7 +99,7 @@ export default {
 
 <template>
     <div>
-      <p class="salaries__title">{{ strings.title }}</p>
+      <h2 class="section-title">{{ strings.title }}</h2>
       <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
     </div>
 </template>

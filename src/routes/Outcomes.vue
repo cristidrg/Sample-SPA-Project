@@ -37,7 +37,7 @@ export default {
   computed: {
     careerOutcomesChartData() {
       const data = countBy(this.outcomes);
-      
+
       return ({
         labels: Object.keys(data),
         datasets: [{
@@ -58,7 +58,7 @@ export default {
 
 <template>
     <section class="section career-outcomes">
-      <p class="career-outcomes__title">{{ strings.title }}</p>
+      <h2 class="section-title">{{ strings.title }}</h2>
       <div class="row">
         <div class="col w--70@t">
           <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" />

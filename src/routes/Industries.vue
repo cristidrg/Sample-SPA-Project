@@ -27,10 +27,10 @@ export default {
 
     industriesSortedByPopularity() {
         const listOfIndustries = countBy(this.industries);
-        
+
         const total = Object.values(listOfIndustries)
             .reduce((acc, curr) => acc + curr, 0);
-        
+
         const result = Object.entries(listOfIndustries)
             .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(2)}))
             .sort((a, b) => b.percentage - a.percentage)
@@ -47,7 +47,7 @@ export default {
 
 <template>
     <section class="section industry-data ">
-      <p class="industry-data__title">{{ strings.title }}</p>
+      <h2 class="section-title">{{ strings.title }}</h2>
       <p class="industry-data__header"> {{ strings.list1_header }}</p>
       <ul class="industry-data__list --b-first">
         <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">

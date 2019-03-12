@@ -38,7 +38,7 @@ export default {
 
 <template>
     <section class="section coop-participation">
-      <p class="coop-participation__title">{{ strings.title }}</p>
+      <h2 class="section-title">{{ strings.title }}</h2>
       <div class="row">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label1 }}</p>
@@ -47,14 +47,14 @@ export default {
         <div class="col w--2/3@t">
             <div v-for="row in [0,1,2,3,4]" :key="row" class="coop-participation__human-row">
                 <person v-for="column in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
-                :key="column" 
+                :key="column"
                 :class="row * 20 + column > getCoopParticipation.overallParticipation ? 'user-gray' : 'user-red'"
                 :v-html="getCoopParticipation.totalNumber"
                 />
             </div>
         </div>
       </div>
-      
+
       <div class="row mt--2h">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label2 }}</p>

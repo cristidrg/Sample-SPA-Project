@@ -224,22 +224,20 @@ export default {
 <template>
   <main id="app">
     <section
-      class="section --banner vh--100 bg--img"
+      class="section --hero vh--100 bg--img flex--middle"
       style="background-image: url(//facts.northeastern.edu/assets/images/16x9-campus.jpg);"
       role="banner"
     >
-      <div class="d--flex flex--col justify--around mx--auto">
-        <div class="__header pa--1 mt--1 ta--c measure--wide">
-          <h1 class="__title fs--d3 mb--1">
-            {{ strings.head.title }}
-          </h1>
-          <p class="__subtitle fs--sm lh--loose mb--2">{{ strings.head.copy }}</p>
-          <a
-            class="btn bg--red" 
-            v-scroll-to="'#app_content'" 
-            href="#/outcomes" 
-          >{{ strings.head.cta }}</a>
-        </div>
+      <div class="__header">
+        <h1 class="__title fs--d3 mb--1">
+          {{ strings.head.title }}
+        </h1>
+        <div class="__subtitle mb--2">{{ strings.head.copy }}</div>
+        <a
+          class="btn bg--red"
+          v-scroll-to="'#app_content'"
+          href="#/outcomes"
+        >{{ strings.head.cta }}</a>
       </div>
     </section>
 
@@ -336,7 +334,7 @@ export default {
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a class="my--1 filter-menu__reset bg--white-alpha" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
           </nav>
-          
+
         </div>
         <div class="col w--80@d w--70@w ml--3@w chart-content" id="app_data_views">
           <router-view
