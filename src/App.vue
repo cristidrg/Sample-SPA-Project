@@ -320,7 +320,7 @@ export default {
                 >{{ college }}</option>
               </select>
             </div>
-            <div class="filter-menu__wrapper">
+            <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
               <select v-model="filters.activeMajor" id="major-filter" class="filter-menu__select">
                 <option
@@ -332,7 +332,7 @@ export default {
               </select>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
-            <a class="my--1 filter-menu__reset bg--white-alpha" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
+            <a class="my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
           </nav>
 
         </div>
