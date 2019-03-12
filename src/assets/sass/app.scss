@@ -306,12 +306,17 @@
     }
 
     &__reset {
-        border: 1px solid $black;
+        padding: 0.5rem;
+        color: $gray-200;
         font-size: $fs-xs !important;
+        display: block;
 
         @include mqbp-up(d) {
             color: $black;
+            background-color: $gray-100;
             border-color: $gray-600 !important;
+            width: 100%;
+            text-align: center;
         }
     }
 }
