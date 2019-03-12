@@ -8,8 +8,8 @@ export default {
     data() {
       return {
         strings: stringData.employment,
-        chartStyle: {
-          height: "800px",
+        employmentStyle: {
+          height: "70vh",
           width: "90%",
           position: "relative",
           margin: "0 auto"
@@ -26,9 +26,9 @@ export default {
       return ({
         labels: Object.keys(data),
         datasets: [{
-            backgroundColor: ['#006eb5', '#badb00', '#d41b2c', '#ff854f', '#824091'],
+            backgroundColor: ['#d41b2c', '#a4804a', '#006eb5', '#000000', '#badb00', '#ff854f', '#824091', '#99a3b0', '#e5d4ab', '#385775'],
             data: Object.values(data),
-            borderWidth: 5,
+            borderWidth: 2,
         }]
       })
     },
@@ -51,14 +51,14 @@ export default {
           responsive: true,
           cutoutPercentage: 65,
           legend: {
-            display: false,
+            display: true,
             labels: {
                 // This more specific font property overrides the global property
-                fontColor: 'black'
+                fontColor: 'black',
             }
           },
           tooltips: {
-            enabled: false
+            enabled: true
           },
           plugins: {
             labels: {

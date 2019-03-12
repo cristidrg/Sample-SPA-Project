@@ -123,7 +123,7 @@ $filter.navigation({
   type: 'overlay',
   gravity: 'left',
   maxWidth: '991px',
-  labels: { closed: 'Filter' }
+  labels: { closed: 'Refine Results' }
 })
 
 $('.filter-menu__apply', $filter).on('click touch', (e) => {
@@ -135,7 +135,7 @@ $browse.navigation({
   type: 'overlay',
   gravity: 'right',
   maxWidth: '991px',
-  labels: { closed: 'Browse' }
+  labels: { closed: 'View Segments' }
 })
 
 $('.__link', $browse).on('click touch', () => {
