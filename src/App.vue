@@ -254,10 +254,10 @@ export default {
             <p class="my--2 chart-menu__text hidden--up@d">Browse by:</p>
             <ul class="__list">
                 <li class="__item">
-                  <router-link class="__link" to="/outcomes" v-scroll-to="'#app_content'">Career Outcomes</router-link>
+                  <router-link class="__link" to="/outcomes" v-scroll-to="'#app_content'">Career outcomes</router-link>
                 </li>
                 <li class="__item">
-                  <router-link class="__link" to="/employment-status" v-scroll-to="'#app_content'">Employment Status</router-link>
+                  <router-link class="__link" to="/employment-status" v-scroll-to="'#app_content'">Employment status</router-link>
                 </li>
                 <li class="__item">
                   <router-link class="__link" to="/coop-participation" v-scroll-to="'#app_content'">Co-op participation</router-link>
