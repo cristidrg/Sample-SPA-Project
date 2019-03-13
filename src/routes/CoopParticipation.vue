@@ -2,6 +2,7 @@
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
 import Person from '../assets/person-svg';
+import $ from 'jquery'
 
 export default {
   name: 'coopParticipation',
@@ -33,6 +34,9 @@ export default {
   },
   components: {
     Person
+  },
+  mounted() {
+    $(this.$refs.check).carousel()
   }
 };
 </script>
@@ -71,7 +75,7 @@ export default {
         </div>
       </div>
 
-      <div class="carousel ta--c mt--3 mb--0">
+      <div class="carousel ta--c mt--3 mb--0" ref="check">
         <div class="card bg--gray-100 bs--none">
           <div class="__body">
             <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.testimonial_1_Text }}&rdquo;</p>

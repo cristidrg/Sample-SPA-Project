@@ -13,10 +13,6 @@
         .__title {
             font-size: 2.66rem !important;
         }
-
-        // .__subtitle {
-        //     font-size: 1rem !important;
-        // }
     }
 }
 
@@ -41,14 +37,6 @@
 }
 
 .industry-data {
-    // &__title {
-    //     @extend .fs--d3;
-    //     @extend .fw--300;
-
-    //     padding-bottom: 5px;
-    //     border-bottom: 1px solid $gray;
-    // }
-
     &__header {
         @extend .fs--d2;
         @extend .fw--700;
@@ -100,27 +88,7 @@
     }
 }
 
-.employment-status {
-    // &__title {
-    //     @extend .fs--d3;
-    //     @extend .fw--300;
-
-    //     padding-bottom: 5px;
-    //     border-bottom: 1px solid $gray;
-    //     margin-bottom: 3.5rem;
-    // }
-}
-
 .career-outcomes {
-    // &__title {
-    //     @extend .fs--d3;
-    //     @extend .fw--300;
-
-    //     padding-bottom: 5px;
-    //     border-bottom: 1px solid $gray;
-    //     margin-bottom: 3.5rem;
-    // }
-
     &__banner {
         background-color: $gray-100;
         color: $black;
@@ -134,14 +102,6 @@
 }
 
 .coop-participation {
-    // &__title {
-    //     @extend .fs--d3;
-    //     @extend .fw--300;
-
-    //     padding-bottom: 5px;
-    //     border-bottom: 1px solid $gray;
-    // }
-
     &__label {
         @extend .fw--700;
     }
@@ -164,14 +124,6 @@
 }
 
 .graduate-data {
-    // &__title {
-    //     @extend .fs--d3;
-    //     @extend .fw--300;
-
-    //     padding-bottom: 5px;
-    //     border-bottom: 1px solid $gray;
-    // }
-
     &__header {
         @extend .fs--d2;
         @extend .fw--700;
@@ -432,7 +384,6 @@
 
 .chart-content {
     padding: 2rem;
-    // padding-top: 5rem;
     margin: 0 auto;
 
     @include mqbp-up(d) {
@@ -515,6 +466,4 @@
     .fs-carousel-control:hover {
         opacity: 1;
     }
-
-    .fs-carousel-pagination { margin-top: -1rem; }
 }
