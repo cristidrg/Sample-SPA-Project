@@ -8,8 +8,7 @@ export default {
   name: 'coopParticipation',
   data() {
     return {
-        strings: stringData.coopParticipation,
-        strings: stringData.carousel,
+        strings: stringData.coopParticipation
     }
   },
   computed: {
@@ -78,20 +77,20 @@ export default {
       <div class="carousel ta--c mt--3 mb--0" ref="check">
         <div class="card bg--gray-100 bs--none">
           <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.testimonial_1_Text }}&rdquo;</p>
-            <p class="fs--sm tc--gray-500"><i>{{ strings.testimonial_1_Name }}, {{ strings.testimonial_1_Company }}</i></p>
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_1_Text }}&rdquo;</p>
+            <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_1_Name }}, {{ strings.carousel.testimonial_1_Company }}</i></p>
           </div>
         </div>
         <div class="card bg--gray-100 bs--none">
           <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.testimonial_2_Text }}&rdquo;</p>
-            <p class="fs--sm tc--gray-500"><i>{{ strings.testimonial_2_Name }}, {{ strings.testimonial_2_Company }}</i></p>
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_2_Text }}&rdquo;</p>
+            <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_2_Name }}, {{ strings.carousel.testimonial_2_Company }}</i></p>
           </div>
         </div>
         <div class="card bg--gray-100 bs--none">
           <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.testimonial_3_Text }}&rdquo;</p>
-            <p class="fs--sm tc--gray-500"><i>{{ strings.testimonial_3_Name }}, {{ strings.testimonial_3_Company }}</i></p>
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_3_Text }}&rdquo;</p>
+            <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_3_Name }}, {{ strings.carousel.testimonial_3_Company }}</i></p>
           </div>
         </div>
       </div>
