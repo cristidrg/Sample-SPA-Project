@@ -36,7 +36,7 @@ const strings = {
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
-        'label1': 'Overall Participation',
+        'label1': 'Overall Co-op Participation',
         'label2': '3+ Co-ops',
         'label3': '2+ Co-ops',
         'label4': '1 Co-op',
@@ -56,6 +56,17 @@ const strings = {
     'navigation': {
         'forward': 'Next',
         'backward': 'Back'
+    },
+    'carousel': {
+        'testimonial_1_Text': 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
+        'testimonial_1_Name': 'Ultricies C. Fermentum',
+        'testimonial_1_Company': 'Vestibulum Ultricies, Inc.',
+        'testimonial_2_Text': 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.',
+        'testimonial_2_Name': 'Ligula Bibendum',
+        'testimonial_2_Company': 'MattisQuam Co.',
+        'testimonial_3_Text': 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.',
+        'testimonial_3_Name': 'Tortor Euismod, Esq.',
+        'testimonial_3_Company': 'RidnusBidness, LLC',
     }
 }
 

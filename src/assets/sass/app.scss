@@ -149,7 +149,7 @@
     &__human-row {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1rem;
+        margin-bottom: 0.7rem;
     }
 
     .user-gray {
@@ -491,4 +491,30 @@
     @extend .bg--black;
     @extend .bc--none;
     @extend .tt--caps;
+}
+
+.carousel {
+    .fs-carousel-page {
+        width: 10px;
+        height: 10px;
+        background: #263238;
+        border-radius: 100%;
+        margin: 0 3px;
+        opacity: .5;
+        overflow: hidden;
+        text-indent: 200%;
+        white-space: nowrap;
+    }
+
+    .fs-carousel-control {
+        opacity: 0.4;
+    }
+
+    .fs-carousel-active,
+    .fs-carousel-page:hover,
+    .fs-carousel-control:hover {
+        opacity: 1;
+    }
+
+    .fs-carousel-pagination { margin-top: -1rem; }
 }

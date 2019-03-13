@@ -8,6 +8,7 @@ export default {
   data() {
     return {
         strings: stringData.coopParticipation,
+        strings: stringData.carousel,
     }
   },
   computed: {
@@ -44,11 +45,11 @@ export default {
           <p class="coop-participation__label">{{ strings.label1 }}</p>
           <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation.overallParticipation }}%</p>
         </div>
-        <div class="col w--2/3@t">
+        <div class="col w--1/2@t">
             <div v-for="row in [0,1,2,3,4]" :key="row" class="coop-participation__human-row">
                 <person v-for="column in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
                 :key="column"
-                :class="row * 20 + column > getCoopParticipation.overallParticipation ? 'user-gray' : 'user-red'"
+                :class="row * 20 + column > getCoopParticipation.overallParticipation ? 'user-gray --sm' : 'user-red --sm'"
                 :v-html="getCoopParticipation.totalNumber"
                 />
             </div>
@@ -58,15 +59,36 @@ export default {
       <div class="row mt--2h">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label2 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation["3"] }}%</p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">{{ getCoopParticipation["3"] }}%</p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label3 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation["2"] }}%</p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">{{ getCoopParticipation["2"] }}%</p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label4 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation["1"] }}%</p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">{{ getCoopParticipation["1"] }}%</p>
+        </div>
+      </div>
+
+      <div class="carousel ta--c mt--3 mb--0">
+        <div class="card bg--gray-100 bs--none">
+          <div class="__body">
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.testimonial_1_Text }}&rdquo;</p>
+            <p class="fs--sm tc--gray-500"><i>{{ strings.testimonial_1_Name }}, {{ strings.testimonial_1_Company }}</i></p>
+          </div>
+        </div>
+        <div class="card bg--gray-100 bs--none">
+          <div class="__body">
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.testimonial_2_Text }}&rdquo;</p>
+            <p class="fs--sm tc--gray-500"><i>{{ strings.testimonial_2_Name }}, {{ strings.testimonial_2_Company }}</i></p>
+          </div>
+        </div>
+        <div class="card bg--gray-100 bs--none">
+          <div class="__body">
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.testimonial_3_Text }}&rdquo;</p>
+            <p class="fs--sm tc--gray-500"><i>{{ strings.testimonial_3_Name }}, {{ strings.testimonial_3_Company }}</i></p>
+          </div>
         </div>
       </div>
     </section>

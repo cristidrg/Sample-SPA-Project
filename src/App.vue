@@ -316,7 +316,7 @@ export default {
                   v-for="college in data.colleges"
                   :value="college"
                   :key="college"
-                  :disabled="!isFilterValid(college, 'college')"
+                  v-if="isFilterValid(college, 'college')"
                 >{{ college }}</option>
               </select>
             </div>
@@ -327,7 +327,7 @@ export default {
                   v-for="major in data.majors"
                   :value="major"
                   :key="major"
-                  :disabled="!isFilterValid(major, 'major')"
+                  v-if="isFilterValid(major, 'major')"
                 >{{ major }}</option>
               </select>
             </div>
