@@ -260,6 +260,10 @@
         }
     }
 
+    &__select.--active {
+        border-left: 4px solid red;
+    }
+
     &__select:not([size]):not([multiple]) {
         height: calc(2.25rem + 2px);
     }

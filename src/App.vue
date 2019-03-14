@@ -26,7 +26,8 @@ export default {
         colleges: [],
         majors: []
       },
-      strings: stringData
+      strings: stringData,
+      ALL: ALL
     }
   },
 
@@ -312,7 +313,7 @@ export default {
             <p class="my--1 filter-menu__text">{{ strings.filters.text }}</p>
             <div class="filter-menu__wrapper">
               <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
-              <select v-model="filters.activeYear" id="year-filter" class="filter-menu__select">
+              <select v-model="filters.activeYear" id="year-filter" :class="`filter-menu__select ${filters.activeYear != ALL && '--active'}`">
                  <option
                   v-for="year in data.years"
                   :value="year"
@@ -323,7 +324,7 @@ export default {
             </div>
             <div class="filter-menu__wrapper">
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
-              <select v-model="filters.activeCollege" id="college-filter" class="filter-menu__select">
+              <select v-model="filters.activeCollege" id="college-filter" :class="`filter-menu__select ${filters.activeCollege != ALL && '--active'}`">
                 <option
                   v-for="college in data.colleges"
                   :value="college"
@@ -334,7 +335,7 @@ export default {
             </div>
             <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
-              <select v-model="filters.activeMajor" id="major-filter" class="filter-menu__select">
+              <select v-model="filters.activeMajor" id="major-filter" :class="`filter-menu__select ${filters.activeMajor != ALL && '--active'}`">
                 <option
                   v-for="major in data.majors"
                   :value="major"
