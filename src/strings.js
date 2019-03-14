@@ -38,7 +38,7 @@ const strings = {
         'title': 'Our students know the power of experience',
         'label1': 'Overall Co-op Participation',
         'label2': '3+ Co-ops',
-        'label3': '2+ Co-ops',
+        'label3': '2 Co-ops',
         'label4': '1 Co-op',
         'carousel': {
             'testimonial_1_Text': 'Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',

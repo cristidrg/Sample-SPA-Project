@@ -93,6 +93,10 @@ export default {
       return this.filteredData
         .map(element => element.final_salary_recalculated)
         .filter(element => element != "NA")
+    },
+
+    areFiltersApplied() {
+      return Object.values(this.filters).some(filter => filter != ALL);
     }
   },
 
@@ -340,7 +344,7 @@ export default {
               </select>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
-            <a class="my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
+            <a v-if="areFiltersApplied" class="my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
           </nav>
 
         </div>
