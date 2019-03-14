@@ -101,6 +101,24 @@
     }
 }
 
+.employment-status {
+    &__legend {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    &__legend-perc::before {
+        content: '●';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        font-size: 0.8em;
+        position: relative;
+        bottom: 1px;
+        left: -8px;
+    }
+}
+
 .coop-participation {
     &__label {
         @extend .fw--700;

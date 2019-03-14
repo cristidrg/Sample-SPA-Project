@@ -3,6 +3,45 @@ import { DoughnutChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
 
+/*
+Employed by an organization: 4513
+Employed freelance: 22
+Employed in a postgraduate internship or fellowship: 96
+Employed in a temporary/contract work assignment: 184
+Employed in all other work categories: 32
+NA: 1535
+Self-employed/ Entrepreneur
+
+'#d41b2c', '#a4804a', '#006eb5', '#000000', '#badb00', '#ff854f', '#824091', '#99a3b0', '#e5d4ab', '#385775'
+*/
+
+const mappings = {
+  'Employed by an organization': {
+    key: 'Employed by an organization',
+    color: '#d41b2c',
+  },
+  'Employed freelance': {
+    key: 'Employed freelance',
+    color: '#a4804a',
+  },
+  'Employed in a postgraduate internship or fellowship': {
+    key: 'Employed in a postgraduate internship or fellowship',
+    color: '#006eb5',
+  },
+  'Employed in a temporary/contract work assignment': {
+    key: 'Employed in a temporary/contract work assignment',
+    color: '#000000',
+  },
+  'Employed in all other work categories': {
+    key: 'Employed in all other work categories',
+    color: '#badb00',
+  },
+  'Self-employed/ Entrepreneur': {
+    key: 'Self-employed/ Entrepreneur',
+    color: '#ff854f',
+  }
+};
+
 export default {
   name: 'employment',
     data() {
@@ -13,27 +52,36 @@ export default {
           width: "90%",
           position: "relative",
           margin: "0 auto"
-        }
+        },
+        mappings: mappings
       }
   },
   computed: {
-    dataSet() {
-      return countBy(this.employmentTypes);
+    dataSetWithColors() {
+      const counts = countBy(this.employmentTypes);
+      let map = this.mappings;
+
+      Object.keys(counts).forEach(key => {
+        map[key].value = counts[key]
+        map[key].perc = parseFloat((counts[key] / this.employmentTypes.length) * 100).toFixed(2);
+      });
+
+      return map;
     },
     employmentStatusChartData() {
-      const data = this.dataSet;
+      const data = this.dataSetWithColors;
 
       return ({
-        labels: Object.keys(data),
+        labels: Object.values(data).map(entry => entry.key),
         datasets: [{
-            backgroundColor: ['#d41b2c', '#a4804a', '#006eb5', '#000000', '#badb00', '#ff854f', '#824091', '#99a3b0', '#e5d4ab', '#385775'],
-            data: Object.values(data),
+            backgroundColor: Object.values(data).map(entry => entry.color),
+            data: Object.values(data).map(entry => entry.value),
             borderWidth: 2,
         }]
       })
     },
     centerText() {
-      const fullTimePercentage = parseFloat((this.dataSet['Employed by an organization'] / this.employmentTypes.length) * 100).toFixed(0);
+      const fullTimePercentage = parseFloat((this.dataSetWithColors['Employed by an organization'].value / this.employmentTypes.length) * 100).toFixed(2);
 
       return {
         elements: {
@@ -51,11 +99,7 @@ export default {
           responsive: true,
           cutoutPercentage: 65,
           legend: {
-            display: true,
-            labels: {
-                // This more specific font property overrides the global property
-                fontColor: 'black',
-            }
+            display: false,
           },
           tooltips: {
             enabled: true
@@ -80,7 +124,9 @@ export default {
   }
 };
 
-//The key component is a hack to force remount on the chart.
+//The key prop for the <doughnut-chart /> is a hack to force remount on the chart
+//because I couldn't figure out how to retrigger render on the centered text
+//which is done via a manual plugin for the charts.
 </script>
 
 <template>
@@ -93,7 +139,9 @@ export default {
       <div class="col w--30@t">
         <p class="row career-outcomes__banner"><span class="fs--d5 tc--red mr--1 d--block">100%</span> Placeholder figure</p>
         <ul class="employment-status__legend">
-          <li>Placeholder</li>
+          <li v-for="(data, index) in dataSetWithColors" :key="index" class="employment-status__legend-entry">
+            <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
+          </li>
         </ul>
       </div>
     </div>

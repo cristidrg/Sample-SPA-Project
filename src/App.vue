@@ -54,7 +54,9 @@ export default {
     },
 
     getEmploymentTypes() {
-      return this.filteredData.map(element => element.employment_type)
+      return this.filteredData
+        .map(element => element.employment_type)
+        .filter(element => element != "NA" && element != " ");
     },
 
     getSchools() {
