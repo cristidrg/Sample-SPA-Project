@@ -62,19 +62,25 @@ export default {
     getSchools() {
       return this.filteredData
         .map(element => element.final_university)
-        .filter(element => element != "NA");
+        .filter(element => element != "NA" && element != "#N/A");
     },
 
     getCoopNumbers() {
-      return this.filteredData.map(
-        element => element.final_coop_numbers.split(" ")[0]
-      )
+      return this.filteredData
+        .filter(element => element.final_coop_numbers != " ")
+        .map(element => {
+          if (element.final_coop_numbers == "NA") {
+            return element.final_coop_numbers;
+          } else { //Because format of value is "1 Co-op"
+            return element.final_coop_numbers.split(" ")[0];
+          }
+        })
     },
 
     getIndustries() {
       return this.filteredData
         .map(element => element.final_industry)
-        .filter(element => element != "Not Known")
+        .filter(element => element != "Not Known" && element != "#N/A");
     },
 
     getCompanies() {
