@@ -3,7 +3,7 @@ const strings = {
         'title': 'Career Outcomes Powered by Experience',
         'pageTitle': 'Student Outcomes',
         'copy': `Our students graduate with full resumés of real-world experience
-         closely tied to their career paths. They’ve learned how to solve problems as part of 
+         closely tied to their career paths. They’ve learned how to solve problems as part of
          a team of professionals and navigate the unexpected challengs of today’s fast-paced workplace.
          And they’ve gained unique insights into their classroom learning — a deeper focus and understanding
          that better prepares them for master’s and doctoral work in top graduate programs.`,
@@ -23,16 +23,18 @@ const strings = {
     },
     'career': {
         'title': 'Northeastern graduates are in high demand',
-        'claim': `<span class="fs--d5 tc--red mr--1 d--block">97%</span> of our graduates are employed full-time or in graduate school within 
+        'claim': `<span class="fs--d5 tc--red mr--1 d--block">97%</span> of our graduates are employed full-time or in graduate school within
         nine months of graduation`,
         'note': `NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.
-        The percentages are different from those below because graduates who were not seeking employment or were in the military or 
+        The percentages are different from those below because graduates who were not seeking employment or were in the military or
         volunteer services are excluded from COR calculation. <br><br>
         CORnumerator: Full-time employed, part-time employed, and in graduate school. <br><br>
         CORdenominator: Full-time employed, part-time employed, in graduate school, and not employed but seeking job.`,
     },
     'employment': {
         'title': 'Northeastern graduates are in high demand',
+        'claim': `<span class="fs--d5 tc--red mr--1 d--block">100%</span> of Sit Elit Fringilla Magna Tellus.
+        nine months of graduation`,
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',

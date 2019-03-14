@@ -137,10 +137,10 @@ export default {
         <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />
       </div>
       <div class="col w--30@t">
-        <p class="row career-outcomes__banner"><span class="fs--d5 tc--red mr--1 d--block">100%</span> Placeholder figure</p>
-        <ul class="employment-status__legend">
+        <p class="row career-outcomes__banner" v-html="strings.claim" />
+        <ul class="employment-status__legend fs--sm">
           <li v-for="(data, index) in dataSetWithColors" :key="index" class="employment-status__legend-entry">
-            <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
+            &nbsp; <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
           </li>
         </ul>
       </div>
