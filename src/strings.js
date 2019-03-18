@@ -75,11 +75,14 @@ const strings = {
         "apply": "Apply filters",
         "reset": "Clear all filters"
     },
+<<<<<<< HEAD
     'salaries': {
         'title': 'Our graduates command competitive starting salaries',
         'labelX': 'Salary range',
         'labelY': 'Students'
     },
+=======
+>>>>>>> 701e562f3b0f550da29fd6ca38be876eacece4c9
     'navigation': {
         'forward': 'Next',
         'backward': 'Back'
