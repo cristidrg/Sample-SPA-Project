@@ -126,7 +126,7 @@ export default {
         <p class="row career-outcomes__banner" v-html="strings.claim" />
         <ul class="employment-status__legend fs--sm">
           <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry">
-            &nbsp; <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
+            <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
           </li>
         </ul>
       </div>
