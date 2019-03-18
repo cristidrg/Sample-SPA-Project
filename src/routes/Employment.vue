@@ -113,7 +113,10 @@ export default {
 
 <template>
   <section class="section employment-status">
-    <h2 class="section-title">{{ strings.title }}</h2>
+    <header class="__header">
+      <h2 class="__title">{{ strings.title }}</h2>
+      <div class="__subtitle">{{ strings.subtitle }}</div>
+    </header>
     <div class="row">
       <div class="col w--70@t pos--relative d--table">
         <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />
