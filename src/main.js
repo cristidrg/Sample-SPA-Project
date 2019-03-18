@@ -1,15 +1,24 @@
-import 'jquery';
-import 'kernl-ui';
+import 'jquery'
+import 'kernl-ui'
 
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/';
+import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
 
-//ORDER OF ROUTES IS USED IN NEXT/BACK LOGIC!
+//Order of routes is used in prev/next navigation.
+//Routes with redirects are ignored.
+/*
+  https://stackoverflow.com/questions/51008803/laravel-vue-router-returns-404-page
+*/
 export const routes = [
   {
+    path: '/',
+    redirect: 'outcomes',
+  },
+  {
     path: '/outcomes',
+    name: 'outcomes',
     component: Outcomes,
     meta: {
       title: 'Outcomes - Career',
@@ -90,9 +99,16 @@ export const routes = [
 
 const router = new VueRouter({
   routes
-});
+})
+
+import $ from 'jquery'
+import 'formstone/src/js/navigation'
+
+import vueScrollto from 'vue-scrollto'
+Vue.use(vueScrollto)
 
 Vue.config.productionTip = false
+
 Vue.use(VueRouter)
 
 new Vue({
@@ -100,4 +116,40 @@ new Vue({
   router
 }).$mount('#app')
 
+let $filter = $('#filter_menu')
+let $browse = $('#chart_menu')
+
+$filter.navigation({
+  type: 'overlay',
+  gravity: 'left',
+  maxWidth: '991px',
+  labels: { closed: 'Refine Results' }
+})
+
+$('.filter-menu__apply', $filter).on('click touch', (e) => {
+  e.preventDefault()
+  $filter.navigation('close')
+})
+
+$browse.navigation({
+  type: 'overlay',
+  gravity: 'right',
+  maxWidth: '991px',
+  labels: { closed: 'View Segments' }
+})
+
+$('.__link', $browse).on('click touch', () => {
+  $browse.navigation('close')
+})
+
+$('.__toggler').on('click touch', () => {
+  $('body').toggleClass('menu-open')
+})
+
+// Initialize Formstone carousel()
+$('.carousel').carousel({
+  theme: '',
+  pagination: true,
+  infinite: true
+});
 

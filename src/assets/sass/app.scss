@@ -1,14 +1,48 @@
 @import "~kernl-ui/src/styles/main";
+@import "~formstone/dist/css/navigation";
 
-.industry-data {
+.\--banner {
+    > .__header {
+        flex: 0 !important;
+    }
+
+    .__title,
+    .__subtitle { animation: fadeDown 1.5s ease-in-out 0s 1; }
+
+    @include mqbp-up(d) {
+        .__title {
+            font-size: 2.66rem !important;
+        }
+    }
+}
+
+.section-title {
+    @extend .fs--d3;
+    @extend .fw--300;
+
+    padding-bottom: 5px;
+    border-bottom: 1px solid $gray;
+    margin-bottom: 3.5rem;
+}
+
+.salaries {
     &__title {
         @extend .fs--d3;
         @extend .fw--300;
 
         padding-bottom: 5px;
         border-bottom: 1px solid $gray;
+        margin-bottom: 3.5rem;
     }
 
+    &__y-label {
+        display: block;
+        transform: rotate(-90deg);
+        align-self: center;
+    }
+}
+
+.industry-data {
     &__header {
         @extend .fs--d2;
         @extend .fw--700;
@@ -30,6 +64,8 @@
         color: $red;
     }
 
+    li { @extend .fs--sm; }
+
     &__perc {
         @extend .fw--700;
 
@@ -39,7 +75,7 @@
 
     &__button {
         text-transform: uppercase;
-        border-color: black;
+        border-color: $black;
     }
 }
 
@@ -51,8 +87,8 @@
 
         max-width: 800px;
         margin: 3rem auto 0;
-        
-        @media only screen and (min-width: 768px) {
+
+        @include mqbp-up(d) {
             margin-top: 1rem;
         }
     }
@@ -61,7 +97,7 @@
 .career-outcomes {
     &__banner {
         background-color: $gray-100;
-        color: black;
+        color: $black;
         display: flex;
         padding: 15px 25px;
     }
@@ -71,15 +107,25 @@
     }
 }
 
-.coop-participation {
-    &__title {
-        @extend .fs--d3;
-        @extend .fw--200;
-
-        padding-bottom: 5px;
-        border-bottom: 1px solid $gray;
+.employment-status {
+    &__legend {
+        list-style-type: none;
+        padding-left: 0;
     }
 
+    &__legend-perc::before {
+        content: '●';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        font-size: 0.8em;
+        position: relative;
+        bottom: 1px;
+        left: -8px;
+    }
+}
+
+.coop-participation {
     &__label {
         @extend .fw--700;
     }
@@ -87,7 +133,7 @@
     &__human-row {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1rem;
+        margin-bottom: 0.7rem;
     }
 
     .user-gray {
@@ -102,14 +148,6 @@
 }
 
 .graduate-data {
-    &__title {
-        @extend .fs--d3;
-        @extend .fw--200;
-
-        padding-bottom: 5px;
-        border-bottom: 1px solid $gray;
-    }
-
     &__header {
         @extend .fs--d2;
         @extend .fw--700;
@@ -131,6 +169,8 @@
         color: $red;
     }
 
+    li { @extend .fs--sm; }
+
     &__perc {
         @extend .fw--700;
 
@@ -140,12 +180,12 @@
 
     &__button {
         text-transform: uppercase;
-        border-color: black;
+        border-color: $black;
     }
 
     &__banner {
         background-color: $gray-100;
-        color: black;
+        color: $black;
         display: flex;
         padding: 15px 25px;
     }
@@ -176,104 +216,282 @@
 }
 
 .filter-menu {
-    // position: fixed;
-    // bottom: 0;
-    // width: 100%;
+    text-align: center;
 
-    > p {
-       @extend .ls--loose;
-       @extend .tt--u;
-       @extend .fs--xs;
-       // @extend .ta--r;
+    &__text {
+        @extend .ls--loose;
+        @extend .tt--u;
+        @extend .fs--xs;
     }
 
-    // > div {
-    //     display: flex;
-    //     flex-wrap: nowrap;
-    //     flex-flow: nowrap;
-    //     justify-content: center;
-    //     align-items: center;
-    // }
+    &__wrapper {
+        position: relative;
+        margin: 0 0 15px;
 
-    select {
+        &::before {
+            content: "\E920";
+            font-family: 'FeatherIcons';
+            color: #ddd;
+            display: inline-block;
+            position: absolute;
+            right: 1rem;
+            bottom: 0.5rem;
+            pointer-events: none;
+        }
+    }
+
+    &__select {
+        @extend .fs--xs;
+
         width: 100%;
         position: relative;
         background-color: transparent;
         color: #ddd;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        padding: 0.25rem 2rem 0.25rem 1rem;
+        border: 1px solid $gray;
+        padding: 0.25rem 1rem 0.25rem 1rem;
         appearance: none;
         border-radius: 0;
-        
+
         &::after {
             position: absolute;
             top: 0;
             right: 0;
-            width: 1.5rem;
+            width: 1rem;
             height: 1.5rem;
             content: "\E920";
         }
+
+        @include mqbp-up(d) {
+            color: $black;
+        }
     }
 
-    select:not([size]):not([multiple]) {
+    &__select.--active {
+        border-left: 4px solid red;
+    }
+
+    &__select:not([size]):not([multiple]) {
         height: calc(2.25rem + 2px);
     }
-}
 
-.select__wrapper {
-    position: relative;
-    // width: 100%;
-    margin: 0;
+    &__label {
+        @extend .fs--sm;
 
-    &::before {
-        content: "\E920";
-        font-family: 'FeatherIcons';
-        color: #ddd;
-        display: inline-block;
-        position: absolute;
-        right: 1rem;
-        bottom: 0.5rem;
-        pointer-events: none;
-    }
+        color: $gray-300;
 
-    @include mqbp-up(t) {
-        &::before {
-            right: 1.5rem;
+        @include mqbp-up(d) {
+            font-weight: 700;
+            color: $black;
         }
     }
 
-    @include mqbp-up(d) {
-        &::before {
-            right: 2rem;
+    &__apply {
+        font-size: $fs-xs !important;
+
+        @include mqbp-up(d) {
+            background: $gray-100;
+            border-color: $gray-400 !important;
+        }
+    }
+
+    &__reset {
+        padding: 0.5rem;
+        color: $gray-200;
+        font-size: $fs-xs !important;
+        display: block;
+
+        @include mqbp-up(d) {
+            color: $black;
+            background-color: $gray-100;
+            border-color: $gray-600 !important;
+            width: 100%;
+            text-align: center;
+        }
+
+        &:hover {
+            cursor: pointer;
         }
     }
 }
 
-.chart-menu {
-    background-color: $gray-800;
-    padding-right: 0;
-    color: white;
+.route-navigator {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
 
-    ul {
-        list-style-type: none;
-        text-align: left;
-        padding-left: 0;
-    }
-
-    li {
-        height: 70px;
+    a {
         display: flex;
         align-items: center;
-        padding-left: 25px;
-        border-bottom: 4px solid $gray-800;
-    }
 
-    li.active {
-        background-color: $gray-700;
-        border-bottom: 4px solid $red;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
 .chart-menu {
     top: 0;
+    padding-right: 0;
+    color: white;
+    padding: 0 1rem;
+
+    &__text {
+        @extend .ls--loose;
+        @extend .tt--u;
+        @extend .fs--xs;
+    }
+
+    .__list {
+        list-style-type: none;
+        text-align: left;
+        padding-left: 0;
+
+        @include mqbp-up(d) {
+            max-width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    .__item {
+        display: flex;
+        border-bottom: 1px solid $gray-800;
+
+        @include mqbp-up(d) {
+            display: inline-flex;
+            border-bottom: 0 none;
+        }
+    }
+
+    .__link {
+        width: 100%;
+        padding-left: 0;
+        color: $gray-200;
+        transition:
+            padding-left $transition,
+            background-color $transition;
+
+        @include mqbp-up(d) {
+            font-size: $fs-sm;
+            transition: none;
+            padding-right: 1rem;
+            padding-left: 1rem;
+
+            &:after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                border-bottom: 4px solid transparent;
+            }
+        }
+
+        &:hover {
+            padding-left: 1rem;
+            color: $white;
+
+            @include mqbp-up(d) {
+                padding-left: 1rem;
+            }
+        }
+
+        &.router-link-active {
+            @extend .fw--700;
+
+            color: $white;
+
+            &:after {
+                border-bottom-color: $red;
+            }
+        }
+    }
+}
+
+.chart-content {
+    padding: 2rem;
+    margin: 0 auto;
+
+    @include mqbp-up(d) {
+        padding: 3rem;
+    }
+}
+
+.lh--loose {
+    line-height: 1.6 !important;
+}
+
+@keyframes fadeDown {
+  0%,
+  20% {
+    top: -2rem;
+    opacity: 0;
+  }
+
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+#app_nav_menus,
+#app_nav_buttons {
+    position: sticky !important;
+    top: 0;
+}
+
+#app_nav_buttons { z-index: 1; }
+
+#app_nav_menus { z-index: 2; }
+
+@include mqbp-up(d) {
+    #app_nav_menus {
+        z-index: 1;
+    }
+
+    .filter-menu {
+        position: sticky !important;
+        top: 5rem;
+    }
+}
+
+// override formstone styles (required)
+.fs-navigation-overlay-nav.fs-navigation-enabled {
+    background-color: $gray-800;
+    color: $white;
+    z-index: 2;
+}
+
+.fs-navigation-handle.fs-navigation-enabled,
+.fs-navigation-overlay-handle.fs-navigation-enabled {
+    @extend .btn;
+    @extend .bg--black;
+    @extend .bc--none;
+    @extend .tt--caps;
+}
+
+.carousel {
+    .fs-carousel-page {
+        width: 10px;
+        height: 10px;
+        background: #263238;
+        border-radius: 100%;
+        margin: 0 3px;
+        opacity: .5;
+        overflow: hidden;
+        text-indent: 200%;
+        white-space: nowrap;
+    }
+
+    .fs-carousel-control {
+        opacity: 0.4;
+    }
+
+    .fs-carousel-active,
+    .fs-carousel-page:hover,
+    .fs-carousel-control:hover {
+        opacity: 1;
+    }
 }

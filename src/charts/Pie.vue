@@ -11,26 +11,12 @@ export default {
     chartData: {
       type: Object,
       default: null
+    },
+    options: {
+      type: Object,
+      default: null
     }
   },
-  data: () => ({
-    options: {
-      responsive: true,
-      legend: {
-        display: false
-      },
-      plugins: {
-        labels: {
-          render: 'value',
-          fontColor: '#000',
-          position: 'outside',
-          fontSize: 20,
-          textMargin: 16
-        }
-      }
-    }
-  }),
-
   mounted() {
     this.renderChart(this.chartData, this.options);
   },
