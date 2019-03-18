@@ -29,6 +29,7 @@ export default {
   computed: {
     dataSetWithColors() {
       const counts = countBy(this.employmentTypes);
+      console.log(counts);
       let map = {};
 
       Object.keys(counts).forEach(key => {

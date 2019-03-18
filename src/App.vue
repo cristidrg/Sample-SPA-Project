@@ -63,7 +63,7 @@ export default {
     getEmploymentTypes() {
       return this.filteredData
         .map(element => element.employment_type)
-        .filter(element => element != "NA" && element != " ");
+        .filter(element => element != " " && element != "");
     },
 
     getSchools() {
@@ -87,7 +87,7 @@ export default {
     getIndustries() {
       return this.filteredData
         .map(element => element.final_industry)
-        .filter(element => element != "Not Known" && element != "#N/A");
+        .filter(element => element != "" && element != "#N/A");
     },
 
     getCompanies() {
