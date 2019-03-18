@@ -9,7 +9,8 @@ export default {
     return {
       strings: stringData.salaries,
       chartStyle: {
-        height: "70vh",
+        width: "100%",
+        minHeight: "800px",
         position: "relative",
         fontFamily: "'Lato', sans-serif"
       },
@@ -17,8 +18,7 @@ export default {
         plugins: {
           labels: {
             render: function (args) {
-              const total = args.dataset.data.reduce((prev, curr) => prev + curr, 0);
-              return parseFloat((args.value / total) * 100).toFixed(0) + '%';
+              return args.value
             },
             fontColor: '#d41b2c',
             position: 'outside',
@@ -43,9 +43,11 @@ export default {
                 fontColor: "black",
                 fontSize: 14,
                 padding: 10
-              }
+              },
+              offset: true
           }],
           xAxes: [{
+            offset: true,
             gridLines: {
               display: false,
             },
@@ -75,7 +77,7 @@ export default {
           return acc;
         }, {});
 
-      const labels = Object.keys(salaries).map(digit => `\$${digit}0K < \$${digit}9K`);
+      const labels = Object.keys(salaries).map(digit => `\$${digit}0K - \$${digit}9K`);
       labels[0] = '< $30K';
       labels[labels.length - 1] = '> $80K';
 
@@ -100,6 +102,10 @@ export default {
 <template>
     <div>
       <h2 class="section-title">{{ strings.title }}</h2>
-      <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
+      <div class="d--flex">
+        <p class="salaries__y-label">{{strings.labelY}}</p>
+        <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
+      </div>
+      <p class="ta--c tc--red">{{strings.labelX}}</p>
     </div>
 </template>

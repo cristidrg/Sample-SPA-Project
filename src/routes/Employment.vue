@@ -2,6 +2,7 @@
 import { DoughnutChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
+import pattern from 'patternomaly';
 
 /*
 Employed by an organization: 4513
@@ -74,7 +75,7 @@ export default {
       return ({
         labels: Object.values(data).map(entry => entry.key),
         datasets: [{
-            backgroundColor: Object.values(data).map(entry => entry.color),
+            backgroundColor: Object.values(data).map((entry, index) => pattern.draw(index % 2 == 0 ? 'cross' : 'dash', entry.color)),
             data: Object.values(data).map(entry => entry.value),
             borderWidth: 2,
         }]

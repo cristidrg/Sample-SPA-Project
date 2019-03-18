@@ -34,6 +34,12 @@
         border-bottom: 1px solid $gray;
         margin-bottom: 3.5rem;
     }
+
+    &__y-label {
+        display: block;
+        transform: rotate(-90deg);
+        align-self: center;
+    }
 }
 
 .industry-data {

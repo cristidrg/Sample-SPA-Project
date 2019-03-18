@@ -6,6 +6,7 @@ import { getAllData } from "./queries.js"
 import stringData from "./strings.js"
 import API from "./configs.js"
 import feather from "feather-icons"
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "app",
@@ -17,7 +18,7 @@ export default {
         activeYear: ALL,
         activeSTDLVL: ALL,
         activeCollege: ALL,
-        activeMajor: ALL
+        activeMajor: []
       },
       data: {
         dump: [],
@@ -170,7 +171,7 @@ export default {
           (yearFilter == ALL || element.job_year == yearFilter) &&
           (studentFilter == ALL || element.student_level == studentFilter) &&
           (collegeFilter == ALL || element.collegedesc == collegeFilter) &&
-          (majorFilter == ALL || element.majordesc == majorFilter)
+          (majorFilter.length == 0 || majorFilter.includes(element.majordesc))
       )
     },
 
@@ -179,7 +180,7 @@ export default {
         activeYear: ALL,
         activeSTDLVL: ALL,
         activeCollege: ALL,
-        activeMajor: ALL
+        activeMajor: []
       }
     },
 
@@ -191,7 +192,7 @@ export default {
         activeMajor
       } = this.filters
 
-      if ([activeYear, activeSTDLVL, activeCollege, activeMajor].every(el => el == ALL)) {
+      if (activeMajor.length == 0 && [activeYear, activeSTDLVL, activeCollege].every(el => el == ALL)) {
         return true
       }
 
@@ -229,7 +230,8 @@ export default {
   },
 
   components: {
-    Navigation
+    Navigation,
+    Multiselect
   }
 };
 </script>
@@ -335,14 +337,15 @@ export default {
             </div>
             <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
-              <select v-model="filters.activeMajor" id="major-filter" :class="`filter-menu__select ${filters.activeMajor != ALL && '--active'}`">
+              <!-- <select v-model="filters.activeMajor" id="major-filter" :class="`filter-menu__select ${filters.activeMajor != ALL && '--active'}`">
                 <option
                   v-for="major in data.majors"
                   :value="major"
                   :key="major"
                   v-if="isFilterValid(major, 'major')"
                 >{{ major }}</option>
-              </select>
+              </select> -->
+              <multiselect v-model="filters.activeMajor" :options="data.majors" :multiple="true"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
@@ -365,3 +368,5 @@ export default {
     </section>
   </main>
 </template>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

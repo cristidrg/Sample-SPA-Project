@@ -65,6 +65,8 @@ const strings = {
     },
     'salaries': {
         'title': 'Our graduates command competitive starting salaries',
+        'labelX': 'Salary range',
+        'labelY': 'Student number'
     },
     'navigation': {
         'forward': 'Next',
