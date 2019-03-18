@@ -75,7 +75,7 @@ export default {
       return ({
         labels: Object.values(data).map(entry => entry.key),
         datasets: [{
-            backgroundColor: Object.values(data).map((entry, index) => pattern.draw(index % 2 == 0 ? 'cross' : 'dash', entry.color)),
+            backgroundColor: Object.values(data).map((entry, index) => index % 2 == 0 ? entry.color : pattern.draw('line', entry.color)),
             data: Object.values(data).map(entry => entry.value),
             borderWidth: 2,
         }]
