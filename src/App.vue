@@ -50,6 +50,10 @@ export default {
       return this.data.majors.filter(major => this.isFilterValid(major, 'major'))
     },
 
+    getValidColleges() {
+      return this.data.colleges.filter(college => this.isFilterValid(college, 'college'))
+    },
+
     getOutcomes() {
       return this.filteredData
         .map(element => element.employment_status)
@@ -186,7 +190,7 @@ export default {
     },
 
     isFilterValid(filterValue, filterType) {
-      const {
+      let {
         activeYear,
         activeCollege,
         activeMajors
@@ -196,28 +200,34 @@ export default {
         return true
       }
 
+      if (filterValue == activeYear || filterValue == activeCollege || activeMajors.includes(filterValue)) {
+        return true;
+      }
+  
       switch (filterType) {
-        case "major":
-          return (
-            this.filterData(
-              activeYear,
-              activeCollege,
-              filterValue
-            ).length != 0
-          )
-        case "college":
-          return (
-            this.filterData(activeYear, filterValue, activeMajors)
-              .length != 0
-          )
-        case "year":
-          return (
-            this.filterData(
-              filterValue,
-              activeCollege,
-              activeMajors
-            ).length != 0
-          )
+        case "major": {activeMajors = [filterValue]; break;}
+        case "college": {activeCollege = filterValue; break;}
+        case "year": {activeYear = filterValue; break;}
+      }
+
+      const filteredData = this.filterData(activeYear, activeCollege, activeMajors);
+      if (filterType == "college") {
+        
+        if (filteredData.length > 0) {
+          console.log(activeCollege);
+        }
+        // if 
+        console.log(filteredData.length);
+      }
+
+      switch (filterType) {
+        case "major": return filteredData.length != 0;
+        case "college": {
+          return filteredData.length > 0 && 
+            activeMajors.map(major => this.filterData(activeYear, activeCollege, [major]))
+              .every((entry, i, arr) => entry == arr[0])
+        }
+        case "year": return filteredData.length != 0
       }
     }
   },
@@ -323,10 +333,9 @@ export default {
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
               <select v-model="filters.activeCollege" id="college-filter" :class="`filter-menu__select ${filters.activeCollege != ALL && '--active'}`">
                 <option
-                  v-for="college in data.colleges"
+                  v-for="college in getValidColleges"
                   :value="college"
                   :key="college"
-                  v-if="isFilterValid(college, 'college')"
                 >{{ college }}</option>
               </select>
             </div>
