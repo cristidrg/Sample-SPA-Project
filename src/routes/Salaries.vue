@@ -9,7 +9,7 @@ export default {
     return {
       strings: stringData.salaries,
       chartStyle: {
-        width: "100%",
+        width: "95%",
         minHeight: "800px",
         position: "relative",
         fontFamily: "'Lato', sans-serif"
