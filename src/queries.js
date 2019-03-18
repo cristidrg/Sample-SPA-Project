@@ -5,6 +5,7 @@ export const getAllData = (offset, max) => `
             final_companyname
             final_university
             final_industry
+            final_did_coop
             final_coop_numbers
             final_salary_recalculated
             employment_type

@@ -113,7 +113,10 @@ export default {
 
 <template>
   <section class="section employment-status">
-    <h2 class="section-title">{{ strings.title }}</h2>
+    <header class="__header">
+      <h2 class="__title">{{ strings.title }}</h2>
+      <div class="__subtitle">{{ strings.subtitle }}</div>
+    </header>
     <div class="row">
       <div class="col w--70@t pos--relative d--table">
         <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />
@@ -123,7 +126,7 @@ export default {
         <p class="row career-outcomes__banner" v-html="strings.claim" />
         <ul class="employment-status__legend fs--sm">
           <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry">
-            &nbsp; <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
+            <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
           </li>
         </ul>
       </div>
