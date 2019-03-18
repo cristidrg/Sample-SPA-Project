@@ -12,11 +12,7 @@
         .__subtitle { font-size: $fs-root; }
     }
 
-    &.\--banner {
-        > .__header {
-            flex: 0 !important;
-        }
-
+    &.\--hero {
         .__title,
         .__subtitle { animation: fadeDown 1.5s ease-in-out 0s 1; }
 
