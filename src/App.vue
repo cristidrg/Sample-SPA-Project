@@ -344,7 +344,7 @@ export default {
               <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
-            <a v-if="areFiltersApplied" class="my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
+            <a v-if="areFiltersApplied" class="btn tc--gray-700 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
           </nav>
 
         </div>
