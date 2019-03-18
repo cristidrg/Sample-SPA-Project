@@ -56,8 +56,8 @@ export default {
 
     getOutcomes() {
       return this.filteredData
-        .map(element => element.employment_status)
-        .filter(element => element != "NA")
+        .map(element => element.career_outcomes)
+        .filter(element => element != " ")
     },
 
     getEmploymentTypes() {

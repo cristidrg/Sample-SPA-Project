@@ -13,6 +13,7 @@ export const getAllData = (offset, max) => `
             student_level
             collegedesc
             majordesc
+            career_outcomes
         }
     }
 `
