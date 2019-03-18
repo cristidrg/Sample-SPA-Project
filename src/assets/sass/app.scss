@@ -116,17 +116,24 @@
     &__legend {
         list-style-type: none;
         padding-left: 0;
+
+        &-entry {}
     }
 
-    &__legend-perc::before {
-        content: '●';
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        font-size: 0.8em;
+    &__legend-perc {
         position: relative;
-        bottom: 1px;
-        left: -8px;
+        font-weight: 700;
+
+        &::before {
+            content: '●';
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            font-size: 0.8em;
+            position: absolute;
+            bottom: 1px;
+            left: -1.25rem;
+        }
     }
 
     &__chart-support {
@@ -343,7 +350,9 @@
         }
 
         &__input {
-            font-size: $fs-sm;
+            font-size: $fs-xs;
+            border: 0 none;
+            padding: 0;
         }
 
         &__option {
@@ -359,10 +368,53 @@
 
             &::after {
                 line-height: 1;
-                padding: 7px 8px !important;
+                padding: 5px 6px !important;
+                margin-top: 2px;
+                border-radius: 2px;
+                right: 2px;
                 font-size: $fs-xs;
                 background: $red;
             }
+
+            &--selected {
+                &::after {
+                    color: $white;
+                    font-size: $fs-xs;
+                    font-weight: 400;
+                }
+
+                &:hover {
+                    &::after {
+                        background: $red-dark;
+                    }
+                }
+            }
+        }
+
+        &__tag {
+            background: $red;
+            padding: 5px 26px 5px 10px;
+            margin-bottom: 3px;
+
+            &-icon {
+                &:hover {
+                    background: rgba(0, 0, 0, 0.2);
+                }
+
+                &::after {
+                    color: rgba($white, 0.6);
+                }
+            }
+        }
+
+        &__tags {
+            height: auto;
+            min-height: auto;
+            padding: 0.5rem 2.5rem 0 1rem;
+            border-radius: 0;
+            border: 1px solid $gray;
+            background: #fff;
+            font-size: $fs-xs;
         }
     }
 }
