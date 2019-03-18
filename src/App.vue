@@ -17,14 +17,12 @@ export default {
       isDataLoading: false,
       filters: {
         activeYear: ALL,
-        activeSTDLVL: ALL,
         activeCollege: ALL,
-        activeMajor: []
+        activeMajors: []
       },
       data: {
         dump: [],
         years: [],
-        stdntLevels: [],
         colleges: [],
         majors: []
       },
@@ -37,17 +35,19 @@ export default {
     filteredData() {
       const {
         activeYear,
-        activeSTDLVL,
         activeCollege,
-        activeMajor
+        activeMajors
       } = this.filters
 
       return this.filterData(
         activeYear,
-        activeSTDLVL,
         activeCollege,
-        activeMajor
+        activeMajors
       )
+    },
+
+    getValidMajors() {
+      return this.data.majors.filter(major => this.isFilterValid(major, 'major'))
     },
 
     getOutcomes() {
@@ -102,10 +102,10 @@ export default {
       const {
         activeYear,
         activeCollege,
-        activeMajor
+        activeMajors
       } = this.filters
 
-      return activeMajor.length > 0 || activeYear != ALL || activeCollege != ALL;
+      return activeMajors.length > 0 || activeYear != ALL || activeCollege != ALL;
     }
   },
 
@@ -152,16 +152,11 @@ export default {
             ALL,
             ...createArrayOfUniqueValues("job_year", graduateDestinations)
           ],
-          stdntLevels: [
-            ALL,
-            ...createArrayOfUniqueValues("student_level", graduateDestinations)
-          ],
           colleges: [
             ALL,
             ...createArrayOfUniqueValues("collegedesc", graduateDestinations)
           ],
           majors: [
-            ALL,
             ...createArrayOfUniqueValues("majordesc", graduateDestinations)
           ],
           dump: graduateDestinations
@@ -169,14 +164,14 @@ export default {
       } catch (e) {
         console.error(e)
       }
+
       this.isDataLoading = false
     },
 
-    filterData(yearFilter, studentFilter, collegeFilter, majorFilter) {
+    filterData(yearFilter, collegeFilter, majorFilter) {
       return this.data.dump.filter(
         element =>
           (yearFilter == ALL || element.job_year == yearFilter) &&
-          (studentFilter == ALL || element.student_level == studentFilter) &&
           (collegeFilter == ALL || element.collegedesc == collegeFilter) &&
           (majorFilter.length == 0 || majorFilter.includes(element.majordesc))
       )
@@ -185,21 +180,19 @@ export default {
     resetFilters() {
       this.filters = {
         activeYear: ALL,
-        activeSTDLVL: ALL,
         activeCollege: ALL,
-        activeMajor: []
+        activeMajors: []
       }
     },
 
     isFilterValid(filterValue, filterType) {
       const {
         activeYear,
-        activeSTDLVL,
         activeCollege,
-        activeMajor
+        activeMajors
       } = this.filters
 
-      if (activeMajor.length == 0 && [activeYear, activeSTDLVL, activeCollege].every(el => el == ALL)) {
+      if (activeMajors.length == 0 && activeYear == ALL && activeCollege == ALL) {
         return true
       }
 
@@ -208,28 +201,21 @@ export default {
           return (
             this.filterData(
               activeYear,
-              activeSTDLVL,
               activeCollege,
               filterValue
             ).length != 0
           )
         case "college":
           return (
-            this.filterData(activeYear, activeSTDLVL, filterValue, activeMajor)
-              .length != 0
-          )
-        case "student":
-          return (
-            this.filterData(activeYear, filterValue, activeCollege, activeMajor)
+            this.filterData(activeYear, filterValue, activeMajors)
               .length != 0
           )
         case "year":
           return (
             this.filterData(
               filterValue,
-              activeSTDLVL,
               activeCollege,
-              activeMajor
+              activeMajors
             ).length != 0
           )
       }
@@ -344,15 +330,7 @@ export default {
             </div>
             <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
-              <!-- <select v-model="filters.activeMajor" id="major-filter" :class="`filter-menu__select ${filters.activeMajor != ALL && '--active'}`">
-                <option
-                  v-for="major in data.majors"
-                  :value="major"
-                  :key="major"
-                  v-if="isFilterValid(major, 'major')"
-                >{{ major }}</option>
-              </select> -->
-              <multiselect v-model="filters.activeMajor" :options="data.majors" :multiple="true"></multiselect>
+              <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
