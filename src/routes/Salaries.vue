@@ -14,51 +14,6 @@ export default {
         position: "relative",
         fontFamily: "'Lato', sans-serif"
       },
-      chartOptions: {
-        plugins: {
-          labels: {
-            render: function (args) {
-              return args.value
-            },
-            fontColor: '#d41b2c',
-            position: 'outside',
-            fontSize: 18,
-            fontStyle: "bold",
-            textMargin: 8
-          }
-        },
-        showDatapoints: true,
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        tooltips: {
-          enabled: false
-        },
-        scales: {
-          yAxes: [{
-              ticks: {
-                fontStyle: "bold",
-                fontColor: "black",
-                fontSize: 14,
-                padding: 10
-              },
-              offset: true
-          }],
-          xAxes: [{
-            offset: true,
-            gridLines: {
-              display: false,
-            },
-            ticks: {
-              fontColor: "#d41b2c",
-              fontStyle: "bold",
-              fontSize: 13
-            }
-          }]
-        }
-      },
     }
   },
   computed: {
@@ -88,6 +43,61 @@ export default {
             data: Object.values(salaries),
         }]
       })
+    },
+    chartOptions() {
+      return {
+        plugins: {
+          labels: {
+            render: function (args) {
+              return args.value
+            },
+            fontColor: '#d41b2c',
+            position: 'outside',
+            fontSize: 18,
+            fontStyle: "bold",
+            textMargin: 8
+          }
+        },
+        showDatapoints: true,
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        },
+        layout: {
+          padding: {
+            top: 25
+          }
+        },
+        scales: {
+          yAxes: [{
+              ticks: {
+                fontStyle: "bold",
+                fontColor: "black",
+                fontSize: 14,
+                beginAtZero: true,
+                precision: 0,
+                padding: 10,
+                maxTicksLimit: 5,
+              },
+              offset: true,
+          }],
+          xAxes: [{
+            offset: true,
+            gridLines: {
+              display: false,
+            },
+            ticks: {
+              fontColor: "#d41b2c",
+              fontStyle: "bold",
+              fontSize: 13
+            }
+          }]
+        }
+      }
     },
   },
   props: {
