@@ -74,7 +74,14 @@ export default {
 
     getCoopNumbers() {
       return this.filteredData
-        .map(element => (element.final_coop_numbers == " " || element.final_coop_numbers == "") ? "NA" : element.final_coop_numbers);
+        .map(element => element.final_coop_numbers)
+        .filter(element => element != " " && element != "");
+    },
+
+    getCoopTotal() {
+      return this.filteredData
+        .map(element => element.final_did_coop)
+        .filter(element => element != " ");
     },
 
     getIndustries() {
@@ -204,14 +211,6 @@ export default {
       }
 
       const filteredData = this.filterData(activeYear, activeCollege, activeMajors);
-      if (filterType == "college") {
-        
-        if (filteredData.length > 0) {
-          console.log(activeCollege);
-        }
-        // if 
-        console.log(filteredData.length);
-      }
 
       switch (filterType) {
         case "major": return filteredData.length != 0;
@@ -349,6 +348,7 @@ export default {
             :outcomes="this.getOutcomes"
             :salaries="this.getSalaries"
             :coopNumbers="this.getCoopNumbers"
+            :coopTotal="this.getCoopTotal"
             :employmentTypes="this.getEmploymentTypes"
             v-else
           />
