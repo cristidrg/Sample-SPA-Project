@@ -263,8 +263,6 @@
     }
 
     &__select {
-        @extend .fs--xs;
-
         width: 100%;
         position: relative;
         background-color: transparent;
@@ -284,6 +282,7 @@
         }
 
         @include mqbp-up(d) {
+            font-size: $fs-xs;
             color: $black;
         }
     }
