@@ -81,19 +81,8 @@ export default {
         }]
       })
     },
-    centerText() {
-      const fullTimePercentage = parseFloat((this.dataSetWithColors['Employed by an organization'].value / this.employmentTypes.length) * 100).toFixed(2);
-
-      return {
-        elements: {
-          center: {
-            percentage: `${fullTimePercentage}%`,
-            text: 'Full Time',
-            color: '#d41b2c',
-            sidePadding: 15
-          }
-        }
-      };
+    centerPerc() {
+      return parseFloat((this.dataSetWithColors['Employed by an organization'].value / this.employmentTypes.length) * 100).toFixed(2);
     },
     chartOptions() {
       const options = Object.assign({}, {
@@ -134,8 +123,9 @@ export default {
   <section class="section employment-status">
     <h2 class="section-title">{{ strings.title }}</h2>
     <div class="row">
-      <div class="col w--70@t">
+      <div class="col w--70@t pos--relative d--table">
         <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />
+        <p class="employment-status__chart-support fs--d6 tc--red">{{centerPerc}}%<br><span class="fs--d4 tc--black">{{strings.centerText}}</span></p>
       </div>
       <div class="col w--30@t">
         <p class="row career-outcomes__banner" v-html="strings.claim" />

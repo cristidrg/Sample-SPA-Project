@@ -123,6 +123,16 @@
         bottom: 1px;
         left: -8px;
     }
+
+    &__chart-support {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 40%;
+        text-align: center;
+    }
 }
 
 .coop-participation {

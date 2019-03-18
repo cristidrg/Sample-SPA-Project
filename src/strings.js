@@ -35,6 +35,7 @@ const strings = {
         'title': 'Northeastern graduates are in high demand',
         'claim': `<span class="fs--d5 tc--red mr--1 d--block">100%</span> of Sit Elit Fringilla Magna Tellus.
         nine months of graduation`,
+        'centerText': 'Full time'
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
