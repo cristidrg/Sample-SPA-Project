@@ -4,43 +4,13 @@ import stringData from '../strings.js';
 import { countBy } from 'lodash';
 import pattern from 'patternomaly';
 
-/*
-Employed by an organization: 4513
-Employed freelance: 22
-Employed in a postgraduate internship or fellowship: 96
-Employed in a temporary/contract work assignment: 184
-Employed in all other work categories: 32
-NA: 1535
-Self-employed/ Entrepreneur
-
-'#d41b2c', '#a4804a', '#006eb5', '#000000', '#badb00', '#ff854f', '#824091', '#99a3b0', '#e5d4ab', '#385775'
-*/
-
-const mappings = {
-  'Employed by an organization': {
-    key: 'Employed by an organization',
-    color: '#d41b2c',
-  },
-  'Employed freelance': {
-    key: 'Employed freelance',
-    color: '#a4804a',
-  },
-  'Employed in a postgraduate internship or fellowship': {
-    key: 'Employed in a postgraduate internship or fellowship',
-    color: '#006eb5',
-  },
-  'Employed in a temporary/contract work assignment': {
-    key: 'Employed in a temporary/contract work assignment',
-    color: '#000000',
-  },
-  'Employed in all other work categories': {
-    key: 'Employed in all other work categories',
-    color: '#badb00',
-  },
-  'Self-employed/ Entrepreneur': {
-    key: 'Self-employed/ Entrepreneur',
-    color: '#ff854f',
-  }
+const employmentToColors = {
+  'Employed by an organization': '#d41b2c',
+  'Employed freelance': '#a4804a',
+  'Employed in a postgraduate internship or fellowship': '#006eb5',
+  'Employed in a temporary/contract work assignment': '#000000',
+  'Employed in all other work categories': '#badb00',
+  'Self-employed/ Entrepreneur': '#ff854f',
 };
 
 export default {
@@ -54,17 +24,19 @@ export default {
           position: "relative",
           margin: "0 auto"
         },
-        mappings: mappings
       }
   },
   computed: {
     dataSetWithColors() {
       const counts = countBy(this.employmentTypes);
-      let map = this.mappings;
+      let map = {};
 
       Object.keys(counts).forEach(key => {
-        map[key].value = counts[key]
+        map[key] = {};
+        map[key].value = counts[key];
+        map[key].key = key;
         map[key].perc = parseFloat((counts[key] / this.employmentTypes.length) * 100).toFixed(2);
+        map[key].color = employmentToColors[key]
       });
 
       return map;
@@ -82,6 +54,9 @@ export default {
       })
     },
     centerPerc() {
+      if (!this.dataSetWithColors['Employed by an organization']) {
+        return 0;
+      }
       return parseFloat((this.dataSetWithColors['Employed by an organization'].value / this.employmentTypes.length) * 100).toFixed(2);
     },
     chartOptions() {
