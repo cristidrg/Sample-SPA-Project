@@ -5,12 +5,30 @@ import { countBy } from 'lodash';
 import pattern from 'patternomaly';
 
 const employmentToColors = {
-  'Employed by an organization': '#d41b2c',
-  'Employed freelance': '#a4804a',
-  'Employed in a postgraduate internship or fellowship': '#006eb5',
-  'Employed in a temporary/contract work assignment': '#000000',
-  'Employed in all other work categories': '#badb00',
-  'Self-employed/ Entrepreneur': '#ff854f',
+  'Employed by an organization': {
+    color: '#d41b2c',
+    order: 1,
+  },
+  'Employed freelance': {
+    color: '#a4804a',
+    order: 4,
+  },
+  'Employed in a postgraduate internship or fellowship': {
+    color: '#006eb5',
+    order: 2,
+  },
+  'Employed in a temporary/contract work assignment': {
+    color: '#000000',
+    order: 3,
+  },
+  'Employed in all other work categories': {
+    color: '#badb00',
+    order: 5
+  },
+  'Self-employed/ Entrepreneur': {
+    color: '#ff854f',
+    order: 6,
+  }
 };
 
 export default {
@@ -32,23 +50,22 @@ export default {
       let map = {};
 
       Object.keys(counts).forEach(key => {
-        map[key] = {};
+        map[key] = Object.assign({}, employmentToColors[key]);
         map[key].value = counts[key];
         map[key].key = key;
         map[key].perc = parseFloat((counts[key] / this.employmentTypes.length) * 100).toFixed(2);
-        map[key].color = employmentToColors[key]
       });
 
       return map;
     },
     employmentStatusChartData() {
-      const data = this.dataSetWithColors;
+      const data = Object.values(this.dataSetWithColors).sort((a,b) => a.order - b.order);
 
       return ({
-        labels: Object.values(data).map(entry => entry.key),
+        labels: data.map(entry => entry.key),
         datasets: [{
-            backgroundColor: Object.values(data).map((entry, index) => index % 2 == 0 ? entry.color : pattern.draw('line', entry.color)),
-            data: Object.values(data).map(entry => entry.value),
+            backgroundColor: data.map((entry, index) => index % 2 == 0 ? entry.color : pattern.draw('line', entry.color)),
+            data: data.map(entry => entry.value),
             borderWidth: 2,
         }]
       })
@@ -105,7 +122,7 @@ export default {
       <div class="col w--30@t">
         <p class="row career-outcomes__banner" v-html="strings.claim" />
         <ul class="employment-status__legend fs--sm">
-          <li v-for="(data, index) in dataSetWithColors" :key="index" class="employment-status__legend-entry">
+          <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry">
             &nbsp; <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
           </li>
         </ul>

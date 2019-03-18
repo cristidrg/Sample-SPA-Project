@@ -78,10 +78,10 @@ export default {
 <template>
     <div class="route-navigator mt--4 pt--1h bw--0 bwt--1 bc--gray">
         <a class="fs--sm" v-on:click="backward()" v-scroll-to="'#app_content'">
-            <i class="--thin" data-feather="chevron-left"></i> < {{ backText }}
+            <i class="--thin" data-feather="chevron-left"></i> {{ backText }}
         </a>
         <a class="fs--sm" v-on:click="forward()" v-scroll-to="'#app_content'">
-            {{ nextText }} > <i class="--thin" data-feather="chevron-right"></i>
+            {{ nextText }} <i class="--thin" data-feather="chevron-right"></i>
         </a>
     </div>
 </template>

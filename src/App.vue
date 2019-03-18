@@ -50,16 +50,20 @@ export default {
       return this.data.majors.filter(major => this.isFilterValid(major, 'major'))
     },
 
+    getValidColleges() {
+      return this.data.colleges.filter(college => this.isFilterValid(college, 'college'))
+    },
+
     getOutcomes() {
       return this.filteredData
-        .map(element => element.employment_status)
-        .filter(element => element != "NA")
+        .map(element => element.career_outcomes)
+        .filter(element => element != " ")
     },
 
     getEmploymentTypes() {
       return this.filteredData
         .map(element => element.employment_type)
-        .filter(element => element != "NA" && element != " ");
+        .filter(element => element != " " && element != "");
     },
 
     getSchools() {
@@ -70,20 +74,13 @@ export default {
 
     getCoopNumbers() {
       return this.filteredData
-        .filter(element => element.final_coop_numbers != " ")
-        .map(element => {
-          if (element.final_coop_numbers == "NA") {
-            return element.final_coop_numbers;
-          } else { //Because format of value is "1 Co-op"
-            return element.final_coop_numbers.split(" ")[0];
-          }
-        })
+        .map(element => (element.final_coop_numbers == " " || element.final_coop_numbers == "") ? "NA" : element.final_coop_numbers);
     },
 
     getIndustries() {
       return this.filteredData
         .map(element => element.final_industry)
-        .filter(element => element != "Not Known" && element != "#N/A");
+        .filter(element => element != "" && element != "#N/A");
     },
 
     getCompanies() {
@@ -186,7 +183,7 @@ export default {
     },
 
     isFilterValid(filterValue, filterType) {
-      const {
+      let {
         activeYear,
         activeCollege,
         activeMajors
@@ -196,28 +193,34 @@ export default {
         return true
       }
 
+      if (filterValue == activeYear || filterValue == activeCollege || activeMajors.includes(filterValue)) {
+        return true;
+      }
+  
       switch (filterType) {
-        case "major":
-          return (
-            this.filterData(
-              activeYear,
-              activeCollege,
-              filterValue
-            ).length != 0
-          )
-        case "college":
-          return (
-            this.filterData(activeYear, filterValue, activeMajors)
-              .length != 0
-          )
-        case "year":
-          return (
-            this.filterData(
-              filterValue,
-              activeCollege,
-              activeMajors
-            ).length != 0
-          )
+        case "major": {activeMajors = [filterValue]; break;}
+        case "college": {activeCollege = filterValue; break;}
+        case "year": {activeYear = filterValue; break;}
+      }
+
+      const filteredData = this.filterData(activeYear, activeCollege, activeMajors);
+      if (filterType == "college") {
+        
+        if (filteredData.length > 0) {
+          console.log(activeCollege);
+        }
+        // if 
+        console.log(filteredData.length);
+      }
+
+      switch (filterType) {
+        case "major": return filteredData.length != 0;
+        case "college": {
+          return filteredData.length > 0 && 
+            activeMajors.map(major => this.filterData(activeYear, activeCollege, [major]))
+              .every((entry, i, arr) => entry == arr[0])
+        }
+        case "year": return filteredData.length != 0
       }
     }
   },
@@ -295,10 +298,7 @@ export default {
           Browse
         </button>
       </div>
-      <div class="row d--flex justify--center mt--5" v-if="this.isDataLoading">
-        <svg class="feather feather-loader spinner" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
-      </div>
-      <div class="row" v-else>
+      <div class="row">
         <div class="col w--20@d">
           <nav
             class="navigation pa--1 filter-menu ta--l@d"
@@ -323,10 +323,9 @@ export default {
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
               <select v-model="filters.activeCollege" id="college-filter" :class="`filter-menu__select ${filters.activeCollege != ALL && '--active'}`">
                 <option
-                  v-for="college in data.colleges"
+                  v-for="college in getValidColleges"
                   :value="college"
                   :key="college"
-                  v-if="isFilterValid(college, 'college')"
                 >{{ college }}</option>
               </select>
             </div>
@@ -340,6 +339,9 @@ export default {
 
         </div>
         <div class="col w--80@d w--70@w ml--3@w chart-content" id="app_data_views">
+          <div class="row d--flex justify--center mt--5" v-if="this.isDataLoading">
+            <svg class="feather feather-loader spinner" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+          </div>
           <router-view
             :schools="this.getSchools"
             :industries="this.getIndustries"
@@ -348,6 +350,7 @@ export default {
             :salaries="this.getSalaries"
             :coopNumbers="this.getCoopNumbers"
             :employmentTypes="this.getEmploymentTypes"
+            v-else
           />
           <navigation/>
         </div>
