@@ -74,14 +74,7 @@ export default {
 
     getCoopNumbers() {
       return this.filteredData
-        .filter(element => element.final_coop_numbers != " ")
-        .map(element => {
-          if (element.final_coop_numbers == "NA") {
-            return element.final_coop_numbers;
-          } else { //Because format of value is "1 Co-op"
-            return element.final_coop_numbers.split(" ")[0];
-          }
-        })
+        .map(element => (element.final_coop_numbers == " " || element.final_coop_numbers == "") ? "NA" : element.final_coop_numbers);
     },
 
     getIndustries() {
