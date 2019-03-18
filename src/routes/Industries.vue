@@ -47,7 +47,11 @@ export default {
 
 <template>
     <section class="section industry-data ">
-      <h2 class="section-title">{{ strings.title }}</h2>
+      <header class="__header">
+        <h2 class="__title">{{ strings.title }}</h2>
+        <div class="__subtitle">{{ strings.subtitle }}</div>
+      </header>
+
       <p class="industry-data__header"> {{ strings.list1_header }}</p>
       <ul class="industry-data__list --b-first">
         <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">

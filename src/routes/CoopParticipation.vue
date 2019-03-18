@@ -17,7 +17,7 @@ export default {
         {"1": 0, "2":0, "3":0, "NA": 0},
         countBy(this.coopNumbers),
       );
-      
+
       const totalNumber = Object.values(coopParticipation).reduce((a,b) => a + b, 0);
       const overallParticipation = parseFloat((totalNumber - coopParticipation.NA) * 100 / totalNumber).toFixed(2);
 
@@ -46,7 +46,10 @@ export default {
 
 <template>
     <section class="section coop-participation">
-      <h2 class="section-title">{{ strings.title }}</h2>
+      <header class="__header">
+        <h2 class="__title">{{ strings.title }}</h2>
+        <div class="__subtitle">{{ strings.subtitle }}</div>
+      </header>
       <div class="row">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label1 }}</p>

@@ -1,28 +1,31 @@
 @import "~kernl-ui/src/styles/main";
 @import "~formstone/dist/css/navigation";
 
-.\--banner {
-    > .__header {
-        flex: 0 !important;
+.section {
+    &:not(.\--hero) > .__header {
+        .__title {
+            @extend .fs--d3;
+            @extend .fw--300;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $gray;
+        }
+        .__subtitle { font-size: $fs-root; }
     }
 
-    .__title,
-    .__subtitle { animation: fadeDown 1.5s ease-in-out 0s 1; }
+    &.\--banner {
+        > .__header {
+            flex: 0 !important;
+        }
 
-    @include mqbp-up(d) {
-        .__title {
-            font-size: 2.66rem !important;
+        .__title,
+        .__subtitle { animation: fadeDown 1.5s ease-in-out 0s 1; }
+
+        @include mqbp-up(d) {
+            .__title {
+                font-size: 2.66rem !important;
+            }
         }
     }
-}
-
-.section-title {
-    @extend .fs--d3;
-    @extend .fw--300;
-
-    padding-bottom: 5px;
-    border-bottom: 1px solid $gray;
-    margin-bottom: 3.5rem;
 }
 
 .salaries {
@@ -467,10 +470,6 @@
     @include mqbp-up(d) {
         padding: 3rem;
     }
-}
-
-.lh--loose {
-    line-height: 1.6 !important;
 }
 
 @keyframes fadeDown {
