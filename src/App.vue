@@ -7,6 +7,7 @@ import stringData from "./strings.js"
 import API from "./configs.js"
 import feather from "feather-icons"
 import Multiselect from "vue-multiselect";
+import { all } from 'q';
 
 export default {
   name: "app",
@@ -98,7 +99,13 @@ export default {
     },
 
     areFiltersApplied() {
-      return Object.values(this.filters).some(filter => filter != ALL);
+      const {
+        activeYear,
+        activeCollege,
+        activeMajor
+      } = this.filters
+
+      return activeMajor.length > 0 || activeYear != ALL || activeCollege != ALL;
     }
   },
 
