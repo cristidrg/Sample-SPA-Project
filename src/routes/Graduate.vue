@@ -29,21 +29,26 @@ export default {
 </script>
 
 <template>
-    <section class="section graduate-data">
-      <h2 class="section-title">{{ strings.title }}</h2>
-        <!-- <div class="graduate-data__banner">
-            <p class="graduate-data__top" v-html="strings.top"></p>
-            <ul class="graduate-data__top-list">
-                <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
-                    {{ school.name }}
-                </li>
-            </ul>
-        </div> -->
-        <p class="graduate-data__header"> {{ strings.list_header }}</p>
-        <ul class="graduate-data__list">
-            <li v-for="(school, idx) in getSchoolsByPopularity.slice(0,30)" :key="idx">
+  <section class="section graduate-data">
+    <header class="__header">
+      <h2 class="__title">{{ strings.title }}</h2>
+      <div class="__subtitle">{{ strings.subtitle }}</div>
+    </header>
+    <!--
+    <div class="graduate-data__banner">
+        <p class="graduate-data__top" v-html="strings.top"></p>
+        <ul class="graduate-data__top-list">
+            <li class="fw--bold" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
                 {{ school.name }}
             </li>
         </ul>
-    </section>
+    </div>
+    -->
+    <p class="graduate-data__header"> {{ strings.list_header }}</p>
+    <ul class="graduate-data__list">
+      <li v-for="(school, idx) in getSchoolsByPopularity.slice(0,30)" :key="idx">
+        {{ school.name }}
+      </li>
+    </ul>
+  </section>
 </template>

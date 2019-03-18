@@ -110,12 +110,16 @@ export default {
 </script>
 
 <template>
-    <div>
-      <h2 class="section-title">{{ strings.title }}</h2>
-      <div class="d--flex">
-        <p class="salaries__y-label">{{strings.labelY}}</p>
-        <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
-      </div>
-      <p class="ta--c tc--red">{{strings.labelX}}</p>
+  <section class="section career-outcomes">
+    <header class="__header">
+      <h2 class="__title">{{ strings.title }}</h2>
+      <div class="__subtitle">{{ strings.subtitle }}</div>
+    </header>
+
+    <div class="d--flex">
+      <p class="salaries__y-label">{{strings.labelY}}</p>
+      <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
     </div>
+    <p class="ta--c tc--red">{{strings.labelX}}</p>
+  </section>
 </template>
