@@ -37,10 +37,10 @@ export default {
       return {
         strings: stringData.employment,
         employmentStyle: {
-          height: "70vh",
-          width: "90%",
-          position: "relative",
-          margin: "0 auto"
+          height: '60vh',
+          width: '90%',
+          position: 'relative',
+          margin: '0 auto'
         },
       }
   },
@@ -120,7 +120,7 @@ export default {
     <div class="row">
       <div class="col w--70@t pos--relative d--table">
         <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />
-        <p class="employment-status__chart-support fs--d6 tc--red">{{centerPerc}}%<br><span class="fs--d4 tc--black">{{strings.centerText}}</span></p>
+        <p class="employment-status__chart-support tc--red">{{centerPerc}}%<span class="tc--black">{{strings.centerText}}</span></p>
       </div>
       <div class="col w--30@t">
         <p class="row career-outcomes__banner" v-html="strings.claim" />

@@ -112,7 +112,10 @@
 .career-outcomes {
     &__legend {
         list-style-type: none;
-        padding-left: 0;
+
+        @include mqbp-up(d) {
+            padding-left: 0.5rem;
+        }
 
         &-entry {}
     }
@@ -120,6 +123,7 @@
     &__legend-perc {
         position: relative;
         font-weight: 700;
+        margin-right: 0.25rem;
 
         &::before {
             content: '●';
@@ -139,8 +143,22 @@
         right: 0;
         margin-left: auto;
         margin-right: auto;
-        top: 40%;
+        top: 50%;
+        transform: translateY(-50%);
         text-align: center;
+        font-size: $fs-d4;
+        line-height: 1.2;
+
+        span {
+            font-size: $fs-d2;
+            display: block;
+        }
+
+        @include mqbp-up(d) {
+            font-size: $fs-d6;
+
+            span { font-size: $fs-d4; }
+        }
     }
 }
 
