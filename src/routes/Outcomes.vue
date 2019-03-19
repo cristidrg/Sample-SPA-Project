@@ -9,9 +9,10 @@ export default {
     return {
       strings: stringData.career,
       outcomesStyle: {
-        width: "90%",
+        width: "100%",
         position: "relative",
-        margin: "0 auto"
+        margin: "0 auto",
+        textAlign: 'center'
       },
       outcomesOptions: {
         responsive: true,
@@ -21,13 +22,22 @@ export default {
         tooltips: {
           enabled: false
         },
+        layout: {
+          padding: {
+            top: 5,
+            right: 5,
+            bottom: 5,
+            left: 5
+          }
+        },
         plugins: {
           labels: {
             render: 'value',
             fontColor: '#000',
             position: 'outside',
-            fontSize: 20,
-            textMargin: 16
+            fontSize: 14,
+            textMargin: 4,
+            fontFamily: '"Lato", sans-serif'
           }
         },
         maintainAspectRatio: false,
@@ -41,7 +51,7 @@ export default {
       return ({
         labels: Object.keys(data),
         datasets: [{
-            backgroundColor: ['#d41b2c', '#b5b5b5', '#006eb5'],
+            backgroundColor: ['#d41b2c', '#a4804a', '#000000'],
             data: Object.values(data),
         }]
       })

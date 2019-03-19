@@ -341,7 +341,7 @@
         }
 
         &__content {
-            min-width: none;
+            min-width: auto;
             max-width: 100%;
         }
 
@@ -351,15 +351,21 @@
             padding: 0;
         }
 
+        &__single {
+            font-size: $fs-xs;
+        }
+
         &__option {
             padding: 5px 8px;
             height: auto;
             min-height: auto;
-            font-size: $fs-sm;
+            font-size: $fs-xs;
+            color: $black;
 
             &\--highlight {
                 min-height: auto;
                 background: rgba(0, 0, 0, 0.75);
+                color: $white;
             }
 
             &::after {
@@ -367,16 +373,9 @@
             }
 
             &--selected {
-                &::after {
-                    color: $white;
-                    font-size: $fs-xs;
-                    font-weight: 400;
-                }
-
-                &:hover {
-                    &::after {
-                        background: $red-dark;
-                    }
+                &.multiselect__option--highlight {
+                    background: $gray-50; // NU Gold
+                    color: $black;
                 }
             }
         }
