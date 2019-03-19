@@ -54,6 +54,10 @@ export default {
       return this.data.colleges.filter(college => this.isFilterValid(college, 'college'))
     },
 
+    getValidYears() {
+      return this.data.years.filter(year => this.isFilterValid(year, 'year'))
+    },
+
     getOutcomes() {
       return this.filteredData
         .map(element => element.career_outcomes)
@@ -203,7 +207,7 @@ export default {
       if (filterValue == activeYear || filterValue == activeCollege || activeMajors.includes(filterValue)) {
         return true;
       }
-  
+
       switch (filterType) {
         case "major": {activeMajors = [filterValue]; break;}
         case "college": {activeCollege = filterValue; break;}
@@ -215,7 +219,7 @@ export default {
       switch (filterType) {
         case "major": return filteredData.length != 0;
         case "college": {
-          return filteredData.length > 0 && 
+          return filteredData.length > 0 &&
             activeMajors.map(major => this.filterData(activeYear, activeCollege, [major]))
               .every((entry, i, arr) => entry == arr[0])
         }
@@ -309,24 +313,11 @@ export default {
             <p class="my--1 filter-menu__text">{{ strings.filters.text }}</p>
             <div class="filter-menu__wrapper">
               <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
-              <select v-model="filters.activeYear" id="year-filter" :class="`filter-menu__select ${filters.activeYear != ALL && '--active'}`">
-                 <option
-                  v-for="year in data.years"
-                  :value="year"
-                  :key="year"
-                  :disabled="!isFilterValid(year, 'year')"
-                >{{ year }}</option>
-              </select>
+              <multiselect v-model="filters.activeYear" :options="getValidYears" :multiple="false"></multiselect>
             </div>
             <div class="filter-menu__wrapper">
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
-              <select v-model="filters.activeCollege" id="college-filter" :class="`filter-menu__select ${filters.activeCollege != ALL && '--active'}`">
-                <option
-                  v-for="college in getValidColleges"
-                  :value="college"
-                  :key="college"
-                >{{ college }}</option>
-              </select>
+              <multiselect v-model="filters.activeCollege" :options="getValidColleges" :multiple="false"></multiselect>
             </div>
             <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
