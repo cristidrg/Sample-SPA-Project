@@ -313,11 +313,11 @@ export default {
             <p class="my--1 filter-menu__text">{{ strings.filters.text }}</p>
             <div class="filter-menu__wrapper">
               <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
-              <multiselect v-model="filters.activeYear" :options="getValidYears" :multiple="false"></multiselect>
+              <multiselect v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
             </div>
             <div class="filter-menu__wrapper">
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
-              <multiselect v-model="filters.activeCollege" :options="getValidColleges" :multiple="false"></multiselect>
+              <multiselect v-model="filters.activeCollege" :options="getValidColleges" :multiple="false" :allow-empty="true"></multiselect>
             </div>
             <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
