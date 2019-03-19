@@ -78,8 +78,8 @@ export default {
         <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" />
       </div>
       <div class="col w--30@t">
-        <p class="row career-outcomes__banner" v-html="strings.claim" />
-        <ul class="career-outcomes__legend">
+        <p class="row career-outcomes__banner order--0 order--1@d" v-html="strings.claim" />
+        <ul class="career-outcomes__legend order--1 order--0@d">
           <li v-for="(outcome, idx) in careerOutcomesChartData.labels" :key="idx">
             {{ outcome }}
           </li>
