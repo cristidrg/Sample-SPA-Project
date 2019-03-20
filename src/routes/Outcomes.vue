@@ -108,9 +108,9 @@ export default {
       <div class="col w--70@t">
         <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" />
       </div>
-      <div class="col w--30@t">
-        <p class="row career-outcomes__banner order--0 order--1@d" v-html="strings.claim" />
-        <ul class="career-outcomes__legend order--1 order--0@d fs--sm">
+      <div class="col w--30@t d--flex">
+        <p class="row career-outcomes__banner d--flex order--1 order--0@t" v-html="strings.claim" />
+        <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm">
           <li v-for="(outcome, idx) in Object.values(dataSetWithAttributes).sort((a,b) => a.order - b.order)" :key="idx">
             <span class="career-outcomes__legend-perc" :style="{color: outcome.color}">{{ outcome.perc }}%</span> {{ outcome.key }}
           </li>
