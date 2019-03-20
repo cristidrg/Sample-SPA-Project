@@ -4,6 +4,7 @@ import 'kernl-ui'
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
+import VueAnimateNumber from 'vue-animate-number'
 import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
 
 //Order of routes is used in prev/next navigation.
@@ -110,6 +111,7 @@ Vue.use(vueScrollto)
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+Vue.use(VueAnimateNumber)
 
 new Vue({
   render: h => h(App),

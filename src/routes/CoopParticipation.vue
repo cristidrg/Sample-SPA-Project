@@ -8,7 +8,8 @@ export default {
   name: 'coopParticipation',
   data() {
     return {
-        strings: stringData.coopParticipation
+      strings: stringData.coopParticipation,
+      numberAnimationDuration: 1000,
     }
   },
   computed: {
@@ -36,6 +37,24 @@ export default {
       };
     },
   },
+  methods: {
+    formatter: function (num) {
+      return `${num.toFixed(2)}%`
+    },
+  },
+  watch: {
+    getCoopParticipation: function(newVal, oldVal) {
+      this.$refs.totalParticipationAnimator.reset(oldVal.overallParticipation, newVal.overallParticipation);
+      this.$refs.threeCoops.reset(oldVal['3'], newVal['3']);
+      this.$refs.twoCoops.reset(oldVal['2'], newVal['2']);
+      this.$refs.oneCoop.reset(oldVal['1'], newVal['1']);
+
+      this.$refs.totalParticipationAnimator.start();
+      this.$refs.threeCoops.start();
+      this.$refs.twoCoops.start();
+      this.$refs.oneCoop.start();
+    }
+  },
   props: {
     coopNumbers: Array,
     coopTotal: Array
@@ -58,7 +77,16 @@ export default {
       <div class="row">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label1 }}</p>
-          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">{{ getCoopParticipation.overallParticipation }}%</p>
+          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">
+            <animate-number
+              from="0"
+              ref="totalParticipationAnimator"
+              :to="getCoopParticipation.overallParticipation"
+              :duration="numberAnimationDuration" 
+              easing="easeOutQuad"
+              :formatter="formatter"
+            />
+          </p>
         </div>
         <div class="col w--1/2@t">
             <div v-for="row in [0,1,2,3,4]" :key="row" class="coop-participation__human-row">
@@ -74,15 +102,43 @@ export default {
       <div class="row mt--2h">
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label2 }}</p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">{{ getCoopParticipation["3"] }}%</p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">
+            <animate-number
+              ref="threeCoops"
+              mode="auto"
+              from="0" 
+              :to="getCoopParticipation['3']" 
+              :duration="numberAnimationDuration" 
+              easing="easeOutQuad"
+              :formatter="formatter"
+            />
+          </p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label3 }}</p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">{{ getCoopParticipation["2"] }}%</p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">
+            <animate-number
+              ref="twoCoops"
+              from="0" 
+              :to="getCoopParticipation['2']" 
+              :duration="numberAnimationDuration" 
+              easing="easeOutQuad"
+              :formatter="formatter"
+            />
+          </p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label">{{ strings.label4 }}</p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">{{ getCoopParticipation["1"] }}%</p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">
+            <animate-number
+              ref="oneCoop"
+              from="0"
+              :to="getCoopParticipation['1']" 
+              :duration="numberAnimationDuration" 
+              easing="easeOutQuad"
+              :formatter="formatter"
+            />
+          </p>
         </div>
       </div>
 
