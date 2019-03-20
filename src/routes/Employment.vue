@@ -88,14 +88,29 @@ export default {
           },
           plugins: {
             labels: {
-              render: function (args) {
-                return;
-              }
+              render: this.renderLabels,
+              fontColor: '#000',
+              position: 'outside',
+              outsidePadding: 10,
+              arc: true,
+              fontSize: 14,
+              textMargin: 10,
+              precision: 2
             }
           },
           maintainAspectRatio: false,
         }, this.centerText);
       return options;
+    }
+  },
+  methods: {
+    renderLabels: function (args) {
+      console.log(args);
+      if (args.percentage < 1) {
+        return '';
+      } else {
+        return args.percentage + '%';
+      }
     }
   },
   props: {

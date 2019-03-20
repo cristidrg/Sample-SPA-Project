@@ -36,7 +36,7 @@ export default {
           display: false
         },
         tooltips: {
-          enabled: false
+          enabled: true
         },
         layout: {
           padding: {
@@ -51,9 +51,11 @@ export default {
             render: 'percentage',
             fontColor: '#000',
             position: 'outside',
-            outsidePadding: 0,
+            arc: true,
+            outsidePadding: 10,
             fontSize: 14,
-            textMargin: 10
+            textMargin: 10,
+            precision: 2
           }
         },
         maintainAspectRatio: false,

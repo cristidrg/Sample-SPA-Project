@@ -56,6 +56,21 @@
     }
 }
 
+.active-filters {
+    &__list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    &__name {
+        @extend .fw--700;
+
+        color: $red;
+        text-transform: capitalize;
+    }
+
+}
+
 .industry-data {
     &__header {
         @extend .fs--d2;
