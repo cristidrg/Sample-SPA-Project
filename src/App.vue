@@ -61,7 +61,7 @@ export default {
     getOutcomes() {
       return this.filteredData
         .map(element => element.career_outcomes)
-        .filter(element => element != " ")
+        .filter(element => element != "")
     },
 
     getEmploymentTypes() {

@@ -2,6 +2,22 @@
 import { PieChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
+import pattern from 'patternomaly';
+
+const outcomesToColors = {
+  'Employed': {
+    color: '#d41b2c',
+    order: 1
+  },
+  'In graduate school': {
+    color: '#a4804a',
+    order: 2
+  },
+  'Seeking employment': {
+    color: '#000000',
+    order: 3
+  }
+};
 
 export default {
   name: 'outcomes',
@@ -45,14 +61,27 @@ export default {
     }
   },
   computed: {
+    dataSetWithAttributes() {
+      const counts = countBy(this.outcomes);
+      let map = {}
+
+      Object.keys(counts).forEach(key => {
+        map[key] = Object.assign({}, outcomesToColors[key]);
+        map[key].value = counts[key];
+        map[key].key = key;
+        map[key].perc = parseFloat((counts[key] / this.outcomes.length) * 100).toFixed(2);
+      });
+
+      return map;
+    },
     careerOutcomesChartData() {
-      const data = countBy(this.outcomes);
+      const data = Object.values(this.dataSetWithAttributes).sort((a,b) => a.order - b.order);
 
       return ({
-        labels: Object.keys(data),
+        labels: data.map(entry => entry.key),
         datasets: [{
-            backgroundColor: ['#d41b2c', '#a4804a', '#000000', '#ffffff'],
-            data: Object.values(data),
+            backgroundColor: data.map((entry, index) => index % 2 == 0 ? entry.color : pattern.draw('line', entry.color)),
+            data: data.map(entry => entry.value),
         }]
       })
     },
@@ -79,9 +108,9 @@ export default {
       </div>
       <div class="col w--30@t">
         <p class="row career-outcomes__banner order--0 order--1@d" v-html="strings.claim" />
-        <ul class="career-outcomes__legend order--1 order--0@d">
-          <li v-for="(outcome, idx) in careerOutcomesChartData.labels" :key="idx">
-            {{ outcome }}
+        <ul class="career-outcomes__legend order--1 order--0@d fs--sm">
+          <li v-for="(outcome, idx) in Object.values(dataSetWithAttributes).sort((a,b) => a.order - b.order)" :key="idx">
+            <span class="career-outcomes__legend-perc" :style="{color: outcome.color}">{{ outcome.perc }}%</span> {{ outcome.key }}
           </li>
         </ul>
       </div>
