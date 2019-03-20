@@ -75,8 +75,8 @@ export default {
         <div class="__subtitle">{{ strings.subtitle }}</div>
       </header>
       <div class="row">
-        <div class="col w--1/3@t">
-          <p class="coop-participation__label">{{ strings.label1 }}</p>
+        <div class="col w--1/3@t ta--c ta--l@d">
+          <p class="coop-participation__label mb--0h">{{ strings.label1 }}<span class="hidden--up@d">:</span></p>
           <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">
             <animate-number
               from="0"
@@ -99,10 +99,10 @@ export default {
         </div>
       </div>
 
-      <div class="row mt--2h">
+      <div class="row mt--2h ta--c ta--l@d">
         <div class="col w--1/3@t">
-          <p class="coop-participation__label">{{ strings.label2 }}</p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">
+          <p class="coop-participation__label mb--0h">{{ strings.label2 }}<span class="hidden--up@d">:</span></p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth mb--2 mb--0@d">
             <animate-number
               ref="threeCoops"
               mode="auto"
@@ -115,8 +115,8 @@ export default {
           </p>
         </div>
         <div class="col w--1/3@t">
-          <p class="coop-participation__label">{{ strings.label3 }}</p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">
+          <p class="coop-participation__label mb--0h">{{ strings.label3 }}<span class="hidden--up@d">:</span></p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth mb--2 mb--0@d">
             <animate-number
               ref="twoCoops"
               from="0" 
@@ -128,8 +128,8 @@ export default {
           </p>
         </div>
         <div class="col w--1/3@t">
-          <p class="coop-participation__label">{{ strings.label4 }}</p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth">
+          <p class="coop-participation__label mb--0h">{{ strings.label4 }}<span class="hidden--up@d">:</span></p>
+          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth mb--2 mb--0@d">
             <animate-number
               ref="oneCoop"
               from="0"

@@ -10,7 +10,7 @@ export default {
       strings: stringData.salaries,
       chartStyle: {
         width: "95%",
-        height: "65vh",
+        height: "60vh",
         position: "relative",
         fontFamily: "'Lato', sans-serif"
       },
@@ -91,7 +91,7 @@ export default {
               display: false,
             },
             ticks: {
-              fontColor: "#d41b2c",
+              fontColor: "#000000",
               fontStyle: "bold",
               fontSize: 13
             }
@@ -120,6 +120,6 @@ export default {
       <p class="salaries__y-label">{{strings.labelY}}</p>
       <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
     </div>
-    <p class="ta--c tc--red">{{strings.labelX}}</p>
+    <p class="ta--c tc--black">{{strings.labelX}}</p>
   </section>
 </template>
