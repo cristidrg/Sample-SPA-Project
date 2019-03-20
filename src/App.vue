@@ -27,7 +27,8 @@ export default {
         majors: []
       },
       strings: stringData,
-      ALL: ALL
+      ALL: ALL,
+      contrast: false
     }
   },
 
@@ -365,6 +366,10 @@ export default {
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="btn tc--gray-700" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
+            <div class="d--flex items--center">
+              <p class="ma--1 ml--0">Increase Contrast</p>
+              <toggle-button v-model="contrast" color="#82C7EB" :sync="true"/>
+            </div>
           </nav>
 
         </div>
@@ -395,6 +400,7 @@ export default {
                 :coopNumbers="this.getCoopNumbers"
                 :coopTotal="this.getCoopTotal"
                 :employmentTypes="this.getEmploymentTypes"
+                :contrast="this.contrast"
                 class="router-view"
               />
             </transition>

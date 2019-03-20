@@ -5,6 +5,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import VueAnimateNumber from 'vue-animate-number'
+import ToggleButton from 'vue-js-toggle-button'
 import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
 
 //Order of routes is used in prev/next navigation.
@@ -112,6 +113,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(VueAnimateNumber)
+Vue.use(ToggleButton)
 
 new Vue({
   render: h => h(App),

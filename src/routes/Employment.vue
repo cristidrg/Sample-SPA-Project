@@ -64,7 +64,15 @@ export default {
       return ({
         labels: data.map(entry => entry.key),
         datasets: [{
-            backgroundColor: data.map((entry, index) => index % 2 == 0 ? entry.color : pattern.draw('line', entry.color)),
+            backgroundColor: data.map((entry, index) => {
+              if (!this.contrast) {
+                return entry.color;
+              } else if (index % 2 == 0) {
+                return entry.color;
+              } else {
+                return pattern.draw('line', entry.color);
+              }
+            }),
             data: data.map(entry => entry.value),
             borderWidth: 2,
         }]
@@ -115,6 +123,7 @@ export default {
   },
   props: {
     employmentTypes: Array,
+    contrast: Boolean
   },
   components: {
     DoughnutChart
