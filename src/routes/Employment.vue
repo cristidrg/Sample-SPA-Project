@@ -22,7 +22,7 @@ const employmentToColors = {
     order: 3,
   },
   'Employed in all other work categories': {
-    color: '#badb00',
+    color: '#385775',
     order: 5
   },
   'Self-employed/ Entrepreneur': {
@@ -123,7 +123,6 @@ export default {
         <p class="employment-status__chart-support tc--red">{{centerPerc}}%<span class="tc--black">{{strings.centerText}}</span></p>
       </div>
       <div class="col w--30@t">
-        <p class="row career-outcomes__banner" v-html="strings.claim" />
         <ul class="employment-status__legend fs--sm">
           <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry">
             <span class="employment-status__legend-perc" :style="{color: data.color}">{{ data.perc }}%</span> {{ data.key }}
