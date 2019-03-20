@@ -73,7 +73,7 @@ export default {
     getSchools() {
       return this.filteredData
         .map(element => element.final_university)
-        .filter(element => element != "NA" && element != "#N/A");
+        .filter(element => element != "NA" && element != "" & element != "#N/A");
     },
 
     getCoopNumbers() {
@@ -91,13 +91,13 @@ export default {
     getIndustries() {
       return this.filteredData
         .map(element => element.final_industry)
-        .filter(element => element != "" && element != "#N/A");
+        .filter(element => element != "" && element != "#N/A" && element != " ");
     },
 
     getCompanies() {
       return this.filteredData
         .map(element => element.final_companyname)
-        .filter(element => element != "NA")
+        .filter(element => element != "NA" && element != "")
     },
 
     getSalaries() {
