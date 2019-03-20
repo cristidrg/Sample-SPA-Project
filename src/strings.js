@@ -14,14 +14,18 @@ const strings = {
         'subtitle': 'Northeastern students go on to attend graduate school in large numbers in a wide variety of fields.  The list below shows the schools they are attending.',
         'top': '<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate school',
         'list_header': 'Schools attended by popularity',
-        'list_button': 'View more schools'
+        'list_button': 'View more schools',
+        'back_button': 'Back',
+        'next_button': 'Next'
     },
     'industry': {
         'title': 'Our graduates excel across industries and in top graduate programs',
         'subtitle': 'Northeastern students go on to attend graduate school in large numbers in a wide variety of fields.  The list below shows the schools they are attending.',
         'list1_header': 'Top Industries',
         'list2_header': 'Top Hiring Companies',
-        'list2_button': 'View more companies'
+        'list2_button': 'View more companies',
+        'back_button': 'Back',
+        'next_button': 'Next'
     },
     'career': {
         'title': 'Northeastern graduates are in high demand',

@@ -7,6 +7,8 @@ export default {
   data() {
     return {
         strings: stringData.graduate,
+        schoolIdx: 0,
+        schoolPageSize: 30
     }
   },
   computed: {
@@ -21,6 +23,11 @@ export default {
             .map(entry => ({name: entry[0], count: entry[1]}))
             .sort((a, b) => b.count - a.count);
     },
+  },
+  watch: { 
+    schools: function(newVal, oldVal) {
+      this.schoolIdx = 0;
+    }
   },
   props: {
       schools: Array,
@@ -46,9 +53,13 @@ export default {
     -->
     <p class="graduate-data__header"> {{ strings.list_header }}</p>
     <ul class="graduate-data__list">
-      <li v-for="(school, idx) in getSchoolsByPopularity.slice(0,30)" :key="idx">
+      <li v-for="(school, idx) in getSchoolsByPopularity.slice(schoolIdx * schoolPageSize, (schoolIdx + 1) * schoolPageSize)" :key="idx">
         {{ school.name }}
       </li>
     </ul>
+    <div class="graduate-data__schools-nav">
+      <a v-if="schoolIdx != 0" v-on:click="schoolIdx -= 1" class="graduate-data__schools-navbtn btn tc--gray-700">{{strings.back_button}}</a>
+      <a v-if="schoolPageSize < getSchoolsByPopularity.length && (schoolIdx + 1) * schoolPageSize < getSchoolsByPopularity.length" v-on:click="schoolIdx += 1" class="graduate-data__schools btn tc--gray-700">{{strings.next_button}}</a>
+    </div>
   </section>
 </template>

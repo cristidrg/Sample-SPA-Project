@@ -7,6 +7,8 @@ export default {
   data() {
     return {
         strings: stringData.industry,
+        companyIdx: 0,
+        companyPageSize: 30
     }
   },
   computed: {
@@ -38,6 +40,11 @@ export default {
         return result;
     },
   },
+  watch: { 
+    companies: function(newVal, oldVal) {
+      this.companyIdx = 0;
+    }
+  },
   props: {
       industries: Array,
       companies: Array,
@@ -59,11 +66,17 @@ export default {
       </li>
     </ul>
 
-    <p class="industry-data__header"> {{ strings.list2_header }}</p>
-    <ul class="industry-data__list">
-      <li v-for="(company, idx) in companiesSortedByPopularity.slice(0, 30)" :key="idx">
-        {{ company.name }}
-      </li>
-    </ul>
+    <div class="industry-data__companies">
+      <p class="industry-data__header"> {{ strings.list2_header }}</p>
+      <ul class="industry-data__list">
+        <li v-for="(company, idx) in companiesSortedByPopularity.slice(companyIdx * companyPageSize, (companyIdx + 1) * companyPageSize)" :key="idx">
+          {{ company.name }}
+        </li>
+      </ul>
+      <div class="industry-data__companies-nav">
+        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn tc--gray-700">{{strings.back_button}}</a>
+        <a v-if="companyPageSize < companies.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1" class="industry-data__companies-navbtn btn tc--gray-700">{{strings.next_button}}</a>
+      </div>
+    </div>
   </section>
 </template>
