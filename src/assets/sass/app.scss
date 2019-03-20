@@ -14,8 +14,20 @@
     }
 
     &.\--hero {
+        > .__header {
+            flex: 0;
+        }
+
         .__title,
         .__subtitle { animation: fadeDown 1.5s ease-in-out 0s 1; }
+
+        .__subtitle {
+            font-size: $fs-root;
+
+            @include mqbp-up(d) {
+                font-size: $fs-d1;
+            }
+        }
 
         @include mqbp-up(d) {
             .__title {
@@ -57,7 +69,10 @@
     &__list {
         list-style-type: none;
         padding-left: 0;
-        columns: 2;
+
+        @include mqbp-up(t) {
+            columns: 2;
+        }
     }
 
     &__list.--b-first > li:first-child {
@@ -203,7 +218,10 @@
     &__list {
         list-style-type: none;
         padding-left: 0;
-        columns: 2;
+
+        @include mqbp-up(t) {
+            columns: 2;
+        }
     }
 
     &__list.--b-first > li:first-child {
@@ -241,8 +259,11 @@
     &__top-list {
         list-style: none;
         padding: none;
-        columns: 2;
         margin: 0 4rem;
+
+        @include mqbp-up(t) {
+            columns: 2;
+        }
     }
 }
 
@@ -371,9 +392,13 @@
         }
 
         &__input {
-            font-size: $fs-xs;
+            font-size: 17px;
             border: 0 none;
             padding: 0;
+
+            @include mqbp-up(d) {
+                font-size: $fs-xs;
+            }
         }
 
         &__single {
@@ -609,4 +634,19 @@
     .fs-carousel-control:hover {
         opacity: 1;
     }
+}
+
+// Vue Transitions
+.fade-enter-active,
+.fade-leave-active {
+    // transform: translate(5rem, 0);
+    transition:
+        opacity 0.325s ease-in;
+        // transform 0.325s ease-in;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+    // transform: translate(-5rem, 0);
 }
