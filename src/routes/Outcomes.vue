@@ -26,7 +26,7 @@ export default {
       strings: stringData.career,
       outcomesStyle: {
         height: '60vh',
-        width: '90%',
+        width: '100%',
         position: 'relative',
         margin: '0 auto'
       },
@@ -41,9 +41,9 @@ export default {
         layout: {
           padding: {
             top: 5,
-            right: 5,
+            right: 25,
             bottom: 5,
-            left: 5
+            left: 25
           }
         },
         plugins: {
