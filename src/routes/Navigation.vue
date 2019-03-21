@@ -40,9 +40,9 @@ export default {
             }
         }
     }
-  }, 
+  },
   computed: {
-      backText() {        
+      backText() {
           let text = this.definedRoutes[this.backIdx].substring(1);
           return text.charAt(0).toUpperCase() + text.slice(1).replace('-', ' ');
       },
@@ -67,7 +67,7 @@ export default {
           this.$router.push(this.definedRoutes[this.backIdx])
           this.backIdx -= 1;
           this.nextIdx -= 1;
-          
+
           if (this.backIdx == -1) {
               this.backIdx = this.definedRoutes.length - 1;
           } else if (this.nextIdx == -1) {
@@ -79,11 +79,11 @@ export default {
 </script>
 
 <template>
-    <div class="route-navigator mt--4 pt--1h bw--0 bwt--1 bc--gray">
-        <a class="fs--sm" v-on:click="backward()" v-scroll-to="'#app_content'">
+    <div class="route-navigator mt--4 pt--1 bw--0 bwt--1 bc--gray">
+        <a class="fs--xs tc--gray tt--caps" v-on:click="backward()" v-scroll-to="'#app_content'">
             <i class="feather --thin" data-feather="chevron-left"></i> {{ backText }}
         </a>
-        <a class="fs--sm" v-on:click="forward()" v-scroll-to="'#app_content'">
+        <a class="fs--xs tc--gray tt--caps" v-on:click="forward()" v-scroll-to="'#app_content'">
             {{ nextText }} <i class="--thin" data-feather="chevron-right"></i>
         </a>
     </div>

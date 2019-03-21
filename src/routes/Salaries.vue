@@ -117,9 +117,9 @@ export default {
     </header>
 
     <div class="d--flex">
-      <p class="salaries__y-label">{{strings.labelY}}</p>
+      <p class="salaries__y-label tc--gray tt--caps fs--xs">{{strings.labelY}}</p>
       <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
     </div>
-    <p class="ta--c tc--black">{{strings.labelX}}</p>
+    <div class="ta--c tc--gray tt--caps fs--xs pt--0h">{{strings.labelX}}</div>
   </section>
 </template>
