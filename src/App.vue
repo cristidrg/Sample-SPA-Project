@@ -280,7 +280,7 @@ export default {
   <main id="app">
     <section
       class="section --hero vh--100 bg--img flex--middle"
-      style="background-image: url(//facts.northeastern.edu/assets/images/16x9-campus.jpg);"
+      style="background-image: url(/public/images/16x9-campus.jpg);"
       role="banner"
     >
       <div class="__header">
@@ -296,7 +296,7 @@ export default {
       </div>
     </section>
 
-    <section class="section pa--0 ta--l vh--100" id="app_content">
+    <section class="section --flush py--0 vh--100" id="app_content">
       <section id="app_nav_menus">
         <nav
           class="navigation"
