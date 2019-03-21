@@ -6,15 +6,15 @@ import pattern from 'patternomaly';
 
 const outcomesToColors = {
   'Employed': {
-    color: '#d41b2c',
+    color: '#385775',
     order: 1
   },
   'In graduate school': {
-    color: '#a4804a',
+    color: '#006eb5',
     order: 2
   },
   'Seeking employment': {
-    color: '#000000',
+    color: '#00cfb5',
     order: 3
   }
 };
@@ -51,9 +51,9 @@ export default {
             render: 'percentage',
             fontColor: '#000',
             position: 'outside',
-            arc: true,
+            arc: false,
             outsidePadding: 10,
-            fontSize: 14,
+            fontSize: 13,
             textMargin: 10,
             precision: 2
           }
@@ -92,6 +92,7 @@ export default {
               }
             }),
             data: data.map(entry => entry.value),
+            borderWidth: 0,
         }]
       })
     },
@@ -117,11 +118,11 @@ export default {
       <div class="col w--70@t">
         <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" />
       </div>
-      <div class="col w--30@t d--flex">
+      <div class="col w--30@t d--flex justify--center">
         <p class="row career-outcomes__banner d--flex order--1 order--0@t" v-html="strings.claim" />
         <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm">
           <li v-for="(outcome, idx) in Object.values(dataSetWithAttributes).sort((a,b) => a.order - b.order)" :key="idx">
-            <span class="career-outcomes__legend-perc" :style="{color: outcome.color}">{{ outcome.perc }}%</span> {{ outcome.key }}
+            <span class="career-outcomes__legend-perc" :style="{color: outcome.color}"></span><b>{{ outcome.perc }}</b>% {{ outcome.key }}
           </li>
         </ul>
       </div>
