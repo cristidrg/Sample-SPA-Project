@@ -9,27 +9,9 @@ const strings = {
          that better prepares them for master’s and doctoral work in top graduate programs.`,
         'cta': 'See the numbers',
     },
-    'graduate': {
-        'title': 'They bring a wealth of undergraduate research experience to top grad programs',
-        'subtitle': 'Northeastern students go on to attend graduate school in large numbers in a wide variety of fields.  The list below shows the schools they are attending.',
-        'top': '<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate school',
-        'list_header': 'Schools attended by popularity',
-        'list_button': 'View more schools',
-        'back_button': 'Back',
-        'next_button': 'Next'
-    },
-    'industry': {
-        'title': 'Our graduates excel across industries and in top graduate programs',
-        'subtitle': 'Northeastern students go on to attend graduate school in large numbers in a wide variety of fields.  The list below shows the schools they are attending.',
-        'list1_header': 'Top Industries',
-        'list2_header': 'Top Hiring Companies',
-        'list2_button': 'View more companies',
-        'back_button': 'Back',
-        'next_button': 'Next'
-    },
     'career': {
         'title': 'Northeastern graduates are in high demand',
-        'subtitle': 'In our annual First Destinations survey, our graduating students tell us about their employment or graduate school plans.  The pie chart below shows a summary of what Northeastern graduates are doing within six months of graduation.',
+        'subtitle': 'The chart below shows what Northeastern graduates are doing within nine months of graduation. Data is based on the annual Destinations survey of our graduating students’ employment and graduate school plans.',
         'claim': `<span class="fs--d5 tc--red mr--1 d--block">97%</span> of our graduates are employed full-time or in graduate school within
         nine months of graduation`,
         'note': `NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.
@@ -40,14 +22,14 @@ const strings = {
     },
     'employment': {
         'title': 'Northeastern graduates are in high demand',
-        'subtitle': 'In our annual First Destinations survey, our graduating students tell us about their post-graduation plans.  They tell us if they are employed full- or part-time, in graduate school, volunteering or in the military, or if they are still seeking employment.  The chart below shows the percentages of graduates involved in these various activities.',
+        'subtitle': 'This data shows the percentages of graduates reporting their employment status, including whether they’re employed full- or part-time, in graduate school, volunteering or in the military, or still seeking employment. Data is collected from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
         'claim': `<span class="fs--d5 tc--red mr--1 d--block">100%</span> of Sit Elit Fringilla Magna Tellus.
         nine months of graduation`,
         'centerText': 'Full time'
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
-        'subtitle': 'Co-op (more formally, cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete as many as three six-month co-op experiences throughout the U.S. and in more than 100 countries. The numbers below show the breakdown of students by how many co-ops they do.',
+        'subtitle': 'Co-op (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete up to three six-month co-op experiences throughout the U.S. and in more than 100 countries. This chart shows how many co-ops our students did before graduating.',
         'label1': 'Overall Co-op Participation',
         'label2': '3+ Co-ops',
         'label3': '2 Co-ops',
@@ -64,9 +46,27 @@ const strings = {
             'testimonial_3_Company': 'RidnusBidness, LLC',
         },
     },
+    'industry': {
+        'title': 'Our graduates excel across industries and in top graduate programs',
+        'subtitle': 'Our students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits. Data is collected from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
+        'list1_header': 'Top Industries',
+        'list2_header': 'Top Hiring Companies',
+        'list2_button': 'View more companies',
+        'back_button': 'Back',
+        'next_button': 'Next'
+    },
+    'graduate': {
+        'title': 'They bring a wealth of undergraduate research experience to top grad programs',
+        'subtitle': 'The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions. The list here, sortable by year and college, comes from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
+        'top': '<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate school',
+        'list_header': 'Schools attended by popularity',
+        'list_button': 'View more schools',
+        'back_button': 'Back',
+        'next_button': 'Next'
+    },
     'salaries': {
         'title': 'Our graduates command competitive starting salaries',
-        'subtitle': 'Our annual First Destinations survey asks our graduating students to tell us their starting salary.  Below is a breakdown of the percentage of students that fall into a particular salary range.',
+        'subtitle': 'The annual Destinations survey asks our graduating students to tell us their starting salary. Below is a breakdown of the percentage of students that fall into a particular salary range.',
         'labelX': 'Salary range',
         'labelY': 'Students'
     },
