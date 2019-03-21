@@ -21,7 +21,7 @@ const strings = {
         CORdenominator: Full-time employed, part-time employed, in graduate school, and not employed but seeking job.`,
     },
     'employment': {
-        'title': 'Northeastern graduates are in high demand',
+        'title': 'Here’s a snapshot of what our graduates are doing post-graduation',
         'subtitle': 'This data shows the percentages of graduates reporting their employment status, including whether they’re employed full- or part-time, in graduate school, volunteering or in the military, or still seeking employment. Data is collected from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
         'claim': `<span class="fs--d5 tc--red mr--1 d--block">100%</span> of Sit Elit Fringilla Magna Tellus.
         nine months of graduation`,
@@ -29,7 +29,7 @@ const strings = {
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
-        'subtitle': 'Co-op (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete up to three six-month co-op experiences throughout the U.S. and in more than 100 countries. This chart shows how many co-ops our students did before graduating.',
+        'subtitle': 'Co-op (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete six-month co-op experiences throughout the U.S. and in more than 100 countries. This chart shows how many co-ops our students finished before graduating.',
         'label1': 'Overall Co-op Participation',
         'label2': '3+ Co-ops',
         'label3': '2 Co-ops',
