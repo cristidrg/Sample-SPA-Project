@@ -306,7 +306,7 @@ export default {
           data-navigation-content="#app_nav_buttons"
         >
           <div class="chart-menu nav bg--gray-800">
-            <p class="my--2 chart-menu__text hidden--up@d">Browse by:</p>
+            <div class="my--2 chart-menu__text hidden--up@d">Browse by:</div>
             <ul class="__list">
                 <li class="__item">
                   <router-link class="__link" to="/outcomes" v-scroll-to="'#app_content'">Career outcomes</router-link>
@@ -339,7 +339,7 @@ export default {
           Filter
         </button>
         <button class="btn --sm __toggler mb--0 pa--1h" id="chart_menu_handle">
-          Browse
+          Segments
         </button>
       </div>
       <div class="row">
