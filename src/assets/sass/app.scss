@@ -34,6 +34,14 @@
                 font-size: 2.66rem !important;
             }
         }
+
+        @media screen and (min-width: 1441px) {
+            max-height: 580px !important;
+            min-height: auto;
+            padding-top: 14rem;
+
+            .btn { display: none; }
+        }
     }
 }
 
@@ -109,6 +117,16 @@
         text-transform: uppercase;
         border-color: $black;
     }
+
+    &__companies {
+        position: relative;
+
+        &-nav {
+            position: absolute;
+            top: 0.25rem;
+            right: 0;
+        }
+    }
 }
 
 .chrome-header {
@@ -159,16 +177,15 @@
     &__legend-perc {
         position: relative;
         font-weight: 700;
-        margin-right: 0.25rem;
 
         &::before {
             content: '●';
             display: inline-block;
             width: 15px;
             height: 15px;
-            font-size: 0.8em;
+            font-size: 15px;
             position: absolute;
-            bottom: 1px;
+            bottom: 4px;
             left: -1.25rem;
         }
     }
@@ -191,9 +208,9 @@
         }
 
         @include mqbp-up(d) {
-            font-size: $fs-d6;
+            font-size: $fs-d5;
 
-            span { font-size: $fs-d4; }
+            span { font-size: $fs-d3; }
         }
     }
 }
@@ -210,17 +227,19 @@
     }
 
     .user-gray {
-        stroke: $black;
-        fill: $black;
+        stroke: $gray;
+        fill: $gray;
     }
 
     .user-red {
-        stroke: $red;
-        fill: $red;
+        stroke: $black;
+        fill: $black;
     }
 }
 
 .graduate-data {
+    position: relative;
+
     &__header {
         @extend .fs--d2;
         @extend .fw--700;
@@ -278,6 +297,14 @@
 
         @include mqbp-up(t) {
             columns: 2;
+        }
+    }
+
+    &__schools {
+        &-nav {
+            position: absolute;
+            top: 0.25rem;
+            right: 0;
         }
     }
 }
@@ -345,11 +372,6 @@
         }
     }
 
-    &__select.\--active {
-        background: $gray-50;
-        border-left: 3px solid $black;
-    }
-
     &__select:not([size]):not([multiple]) {
         height: calc(2.25rem + 2px);
     }
@@ -366,9 +388,10 @@
     }
 
     &__apply {
-        font-size: $fs-xs !important;
+        font-size: $fs-sm !important;
 
         @include mqbp-up(d) {
+            font-size: $fs-xs !important;
             background: $gray-100;
             border-color: $gray-400 !important;
         }
@@ -377,17 +400,25 @@
     &__reset {
         padding: 0.5rem;
         color: $gray-200;
-        font-size: $fs-xs !important;
         display: block;
 
         @include mqbp-up(d) {
             color: $black;
-            display: inline-block;
+            font-size: $fs-xs !important;
+            border: 0 none;
+            background-color: $gray-100;
             text-align: center;
         }
 
         &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
             cursor: pointer;
+        }
+
+        @include mqbp-up(d) {
+            &:hover {
+                background-color: $gray-200;
+            }
         }
     }
 
@@ -402,8 +433,7 @@
         }
 
         &__content {
-            min-width: auto;
-            max-width: 100%;
+            width: 100%;
         }
 
         &__input {
@@ -417,15 +447,25 @@
         }
 
         &__single {
-            font-size: $fs-xs;
+            padding: 5px 10px;
+            line-height: 1.1;
+
+            @include mqbp-up(d) {
+                background: $gray-100;
+                color: $black;
+                font-size: $fs-xs;
+            }
         }
 
         &__option {
-            padding: 5px 8px;
+            padding: 7px 8px;
             height: auto;
             min-height: auto;
-            font-size: $fs-xs;
             color: $black;
+
+            @include mqbp-up(d) {
+                font-size: $fs-xs;
+            }
 
             &\--highlight {
                 min-height: auto;
@@ -446,17 +486,18 @@
         }
 
         &__tag {
-            background: $red;
+            background: $gray-100;
+            color: $black;
             padding: 5px 26px 5px 10px;
             margin-bottom: 3px;
 
             &-icon {
                 &:hover {
-                    background: rgba(0, 0, 0, 0.2);
+                    background: rgba(0, 0, 0, 0.4);
                 }
 
                 &::after {
-                    color: rgba($white, 0.6);
+                    color: rgba($black, 0.6);
                 }
             }
         }
@@ -464,11 +505,13 @@
         &__tags {
             height: auto;
             min-height: auto;
-            padding: 0.5rem 2.5rem 0 1rem;
             border-radius: 0;
             border: 1px solid $gray;
             background: #fff;
-            font-size: $fs-xs;
+
+            @include mqbp-up(d) {
+                font-size: $fs-xs;
+            }
         }
     }
 }
@@ -641,13 +684,16 @@
     }
 
     .fs-carousel-control {
-        opacity: 0.4;
+        opacity: 0;
     }
 
-    .fs-carousel-active,
-    .fs-carousel-page:hover,
-    .fs-carousel-control:hover {
-        opacity: 1;
+    .fs-carousel-pagination {
+        margin-top: -1.5rem;
+    }
+
+    .card {
+        margin-bottom: 0;
+        padding-bottom: 1rem;
     }
 }
 
@@ -665,3 +711,13 @@
     opacity: 0;
     // transform: translate(-5rem, 0);
 }
+
+// Contrast toggled on
+.contrast {
+    .__header {
+        .__subtitle { font-weight: 400; }
+    }
+
+    .tc--gray { color: $gray-700; }
+}
+

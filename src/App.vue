@@ -277,7 +277,7 @@ export default {
 </script>
 
 <template>
-  <main id="app">
+  <main id="app" :class="{ contrast: contrast }">
     <section
       class="section --hero vh--100 bg--img flex--middle"
       style="background-image: url(/public/images/16x9-campus.jpg);"
@@ -365,10 +365,10 @@ export default {
               <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
-            <a v-if="areFiltersApplied" class="btn tc--gray-700" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
-            <div class="d--flex items--center">
-              <p class="ma--1 ml--0">Increase Contrast</p>
-              <toggle-button v-model="contrast" color="#82C7EB" :sync="true"/>
+            <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
+            <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1">
+              <p class="ma--1 ml--0 fs--sm">Increase Contrast</p>
+              <toggle-button v-model="contrast" color="#006eb5" :width=40 :sync="true"/>
             </div>
           </nav>
 

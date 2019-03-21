@@ -1,9 +1,8 @@
 <script>
-import stringData from '../strings.js';
-import { countBy } from 'lodash';
-import { routes } from '../main';
-import { nextTick } from 'q';
-import feather from "feather-icons"
+import stringData from '../strings.js'
+import { countBy } from 'lodash'
+import { routes } from '../main'
+import { nextTick } from 'q'
 
 export default {
   name: 'navigation',
@@ -22,8 +21,6 @@ export default {
     if (this.backIdx < 0) {
         this.backIdx = this.definedRoutes.length - 1;
     }
-
-    feather.replace()
   },
   watch:{
     $route (to, from){
@@ -79,11 +76,11 @@ export default {
 </script>
 
 <template>
-    <div class="route-navigator mt--4 pt--1 bw--0 bwt--1 bc--gray">
-        <a class="fs--xs tc--gray tt--caps" v-on:click="backward()" v-scroll-to="'#app_content'">
-            <i class="feather --thin" data-feather="chevron-left"></i> {{ backText }}
+    <div class="route-navigator mt--4 pt--1h bw--0 bwt--1 bc--gray">
+        <a class="fs--xs tt--caps tc--gray" v-on:click="backward()" v-scroll-to="'#app_content'">
+            <i class="--thin" data-feather="chevron-left"></i> {{ backText }}
         </a>
-        <a class="fs--xs tc--gray tt--caps" v-on:click="forward()" v-scroll-to="'#app_content'">
+        <a class="fs--xs tt--caps tc--gray" v-on:click="forward()" v-scroll-to="'#app_content'">
             {{ nextText }} <i class="--thin" data-feather="chevron-right"></i>
         </a>
     </div>

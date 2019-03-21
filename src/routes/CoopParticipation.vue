@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     formatter: function (num) {
-      return `${num.toFixed(2)}%`
+      return `${num.toFixed(2)}`
     },
   },
   watch: {
@@ -70,25 +70,26 @@ export default {
 
 <template>
     <section class="section coop-participation">
-      <header class="__header">
+      <header class="__header mb--4">
         <h2 class="__title">{{ strings.title }}</h2>
         <div class="__subtitle">{{ strings.subtitle }}</div>
       </header>
       <div class="row">
-        <div class="col w--1/3@t ta--c ta--l@d">
+        <div class="col w--1/3@t ta--c">
           <p class="coop-participation__label mb--0h">{{ strings.label1 }}<span class="hidden--up@d">:</span></p>
-          <p class="coop-participation__overall fs--d7 tc--red fw--700 fs--smooth">
+          <p class="coop-participation__overall fs--d7 tc--red fs--smooth">
             <animate-number
-              from="0"
+              :from="0"
               ref="totalParticipationAnimator"
               :to="getCoopParticipation.overallParticipation"
               :duration="numberAnimationDuration" 
               easing="easeOutQuad"
               :formatter="formatter"
-            />
+              class="fw--700"
+            /><span class="tt--caps ml--0h">%</span>
           </p>
         </div>
-        <div class="col w--1/2@t">
+        <div class="col w--2/3@t pl--4@d pr--4@d">
             <div v-for="row in [0,1,2,3,4]" :key="row" class="coop-participation__human-row">
                 <person v-for="column in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
                 :key="column"
@@ -99,45 +100,48 @@ export default {
         </div>
       </div>
 
-      <div class="row mt--2h ta--c ta--l@d">
+      <div class="row mt--2h ta--c">
         <div class="col w--1/3@t">
           <p class="coop-participation__label mb--0h">{{ strings.label2 }}<span class="hidden--up@d">:</span></p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth mb--2 mb--0@d">
+          <p class="coop-participation__overall fs--d5 tc--red fs--smooth mb--2 mb--0@d">
             <animate-number
               ref="threeCoops"
               mode="auto"
-              from="0" 
+              :from="0" 
               :to="getCoopParticipation['3']" 
               :duration="numberAnimationDuration" 
               easing="easeOutQuad"
               :formatter="formatter"
-            />
+              class="fw--700"
+            /><span class="tt--caps ml--0h">%</span>
           </p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label mb--0h">{{ strings.label3 }}<span class="hidden--up@d">:</span></p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth mb--2 mb--0@d">
+          <p class="coop-participation__overall fs--d5 tc--red fs--smooth mb--2 mb--0@d">
             <animate-number
               ref="twoCoops"
-              from="0" 
+              :from="0" 
               :to="getCoopParticipation['2']" 
               :duration="numberAnimationDuration" 
               easing="easeOutQuad"
               :formatter="formatter"
-            />
+              class="fw--700"
+            /><span class="tt--caps ml--0h">%</span>
           </p>
         </div>
         <div class="col w--1/3@t">
           <p class="coop-participation__label mb--0h">{{ strings.label4 }}<span class="hidden--up@d">:</span></p>
-          <p class="coop-participation__overall fs--d5 tc--red fw--700 fs--smooth mb--2 mb--0@d">
+          <p class="coop-participation__overall fs--d5 tc--red fs--smooth mb--2 mb--0@d">
             <animate-number
               ref="oneCoop"
-              from="0"
+              :from="0"
               :to="getCoopParticipation['1']" 
               :duration="numberAnimationDuration" 
               easing="easeOutQuad"
               :formatter="formatter"
-            />
+              class="fw--700"
+            /><span class="tt--caps ml--0h">%</span>
           </p>
         </div>
       </div>
