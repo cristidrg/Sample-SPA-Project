@@ -1,6 +1,7 @@
 <script>
-import stringData from '../strings.js';
-import { countBy } from 'lodash';
+import stringData from '../strings.js'
+import { countBy } from 'lodash'
+import NoData from '../components/NoData.vue'
 
 export default {
   name: 'industries',
@@ -49,6 +50,9 @@ export default {
       industries: Array,
       companies: Array,
   },
+  components: {
+      'no-data': NoData
+  }
 };
 </script>
 
@@ -59,23 +63,25 @@ export default {
       <div class="__subtitle">{{ strings.subtitle }}</div>
     </header>
 
-    <p class="industry-data__header"> {{ strings.list1_header }}</p>
-    <ul class="industry-data__list --b-first">
+    <h3 class="industry-data__header">{{ strings.list1_header }}</h3>
+    <ul class="industry-data__list --b-first" v-if="industriesSortedByPopularity.length">
       <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
         <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
       </li>
     </ul>
+    <no-data v-else />
 
     <div class="industry-data__companies">
-      <p class="industry-data__header"> {{ strings.list2_header }}</p>
-      <ul class="industry-data__list">
+      <h3 class="industry-data__header"><span class="w--60">{{ strings.list2_header }}</span></h3>
+      <ul class="industry-data__list" v-if="companiesSortedByPopularity.length">
         <li v-for="(company, idx) in companiesSortedByPopularity.slice(companyIdx * companyPageSize, (companyIdx + 1) * companyPageSize)" :key="idx">
           {{ company.name }}
         </li>
       </ul>
+      <no-data v-else />
       <div class="industry-data__companies-nav">
-        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn tc--gray-700">{{strings.back_button}}</a>
-        <a v-if="companyPageSize < companies.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1" class="industry-data__companies-navbtn btn tc--gray-700">{{strings.next_button}}</a>
+        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">{{strings.back_button}}</a>
+        <a v-if="companyPageSize < companies.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">{{strings.next_button}}</a>
       </div>
     </div>
   </section>
