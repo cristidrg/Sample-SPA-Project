@@ -1,6 +1,6 @@
 <script>
 import { countBy } from "lodash"
-import { ALL, createArrayOfUniqueValues } from "./utils.js"
+import { ALL_COLLEGES, ALL_YEARS, createArrayOfUniqueValues } from "./utils.js"
 import { Navigation } from "./routes/"
 import { getAllData } from "./queries.js"
 import stringData from "./strings.js"
@@ -16,8 +16,8 @@ export default {
     return {
       isDataLoading: false,
       filters: {
-        activeYear: ALL,
-        activeCollege: ALL,
+        activeYear: ALL_YEARS,
+        activeCollege: ALL_COLLEGES,
         activeMajors: []
       },
       data: {
@@ -27,7 +27,6 @@ export default {
         majors: []
       },
       strings: stringData,
-      ALL: ALL,
       contrast: false
     }
   },
@@ -118,7 +117,7 @@ export default {
         activeMajors
       } = this.filters
 
-      return activeMajors.length > 0 || activeYear != ALL || activeCollege != ALL;
+      return activeMajors.length > 0 || activeYear != ALL_YEARS || activeCollege != ALL_COLLEGES;
     },
 
     getActiveFilters() {
@@ -130,7 +129,7 @@ export default {
 
       let filters = {};
 
-      if (activeYear != ALL) {
+      if (activeYear != ALL_YEARS) {
         filters.year = {
           'key': 'year',
           'order': 1,
@@ -138,7 +137,7 @@ export default {
         };
       }
 
-      if (activeCollege != ALL) {
+      if (activeCollege != ALL_COLLEGES) {
         filters.college = {
           'key': 'college',
           'order': 2,
@@ -198,11 +197,11 @@ export default {
 
         this.data = {
           years: [
-            ALL,
+            ALL_YEARS,
             ...createArrayOfUniqueValues("job_year", graduateDestinations)
           ],
           colleges: [
-            ALL,
+            ALL_COLLEGES,
             ...createArrayOfUniqueValues("collegedesc", graduateDestinations)
           ],
           majors: [
@@ -220,16 +219,16 @@ export default {
     filterData(yearFilter, collegeFilter, majorFilter) {
       return this.data.dump.filter(
         element =>
-          (yearFilter == ALL || element.job_year == yearFilter) &&
-          (collegeFilter == ALL || element.collegedesc == collegeFilter) &&
+          (yearFilter == ALL_YEARS || element.job_year == yearFilter) &&
+          (collegeFilter == ALL_COLLEGES || element.collegedesc == collegeFilter) &&
           (majorFilter.length == 0 || majorFilter.includes(element.majordesc))
       )
     },
 
     resetFilters() {
       this.filters = {
-        activeYear: ALL,
-        activeCollege: ALL,
+        activeYear: ALL_YEARS,
+        activeCollege: ALL_COLLEGES,
         activeMajors: []
       }
     },
@@ -241,7 +240,7 @@ export default {
         activeMajors
       } = this.filters
 
-      if (activeMajors.length == 0 && activeYear == ALL && activeCollege == ALL) {
+      if (activeMajors.length == 0 && activeYear == ALL_YEARS && activeCollege == ALL_COLLEGES) {
         return true
       }
 
@@ -344,7 +343,7 @@ export default {
             </div>
             <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
-              <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true"></multiselect>
+              <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
