@@ -74,16 +74,15 @@ export default {
         },
         scales: {
           yAxes: [{
-              ticks: {
-                fontStyle: "bold",
-                fontColor: "black",
-                fontSize: 14,
-                beginAtZero: true,
-                precision: 0,
-                padding: 10,
-                maxTicksLimit: 5,
-              },
-              offset: true,
+            ticks: {
+              fontColor: "#000000",
+              fontSize: 12,
+              beginAtZero: true,
+              precision: 0,
+              padding: 10,
+              maxTicksLimit: 5,
+            },
+            offset: true,
           }],
           xAxes: [{
             offset: true,
@@ -92,8 +91,7 @@ export default {
             },
             ticks: {
               fontColor: "#000000",
-              fontStyle: "bold",
-              fontSize: 13
+              fontSize: 12
             }
           }]
         }
@@ -117,9 +115,9 @@ export default {
     </header>
 
     <div class="d--flex">
-      <p class="salaries__y-label tc--gray tt--caps fs--xs">{{strings.labelY}}</p>
+      <p class="salaries__y-label tc--gray-800 fw--700 tt--caps fs--xs">{{strings.labelY}}</p>
       <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
     </div>
-    <div class="ta--c tc--gray tt--caps fs--xs pt--0h">{{strings.labelX}}</div>
+    <div class="ta--c tc--gray-800 fw--700 tt--caps fs--xs pt--0h">{{strings.labelX}}</div>
   </section>
 </template>
