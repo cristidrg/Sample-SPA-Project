@@ -89,7 +89,7 @@ export default {
     getCoopTotal() {
       return this.filteredData
         .map(element => element.final_did_coop)
-        .filter(element => element != " ");
+        .filter(element => element != " " && element != "");
     },
 
     getIndustries() {
@@ -335,15 +335,15 @@ export default {
             <div class="filter-menu__text mb--1">{{ strings.filters.text }}</div>
             <div class="filter-menu__wrapper">
               <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
-              <multiselect v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
+              <multiselect :class="filters.activeCollege != ALL_YEARS ? 'multiselect--active' : '' " v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
             </div>
             <div class="filter-menu__wrapper">
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
-              <multiselect v-model="filters.activeCollege" :options="getValidColleges" :multiple="false" :allow-empty="true"></multiselect>
+              <multiselect :class="filters.activeCollege != ALL_COLLEGES ? 'multiselect--active' : '' " v-model="filters.activeCollege" :options="getValidColleges" :multiple="false" :allow-empty="true"></multiselect>
             </div>
             <div class="filter-menu__wrapper mb--2">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
-              <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
+              <multiselect :class="filters.activeMajors.length != 0 ? 'multiselect--active' : '' " v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>

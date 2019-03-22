@@ -113,7 +113,6 @@ export default {
   },
   methods: {
     renderLabels: function (args) {
-      console.log(args);
       if (args.percentage < 1) {
         return '';
       } else {

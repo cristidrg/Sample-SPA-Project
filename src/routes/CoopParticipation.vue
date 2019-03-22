@@ -19,10 +19,13 @@ export default {
         countBy(this.coopNumbers),
       );
 
-      const coopTotalCount = countBy(this.coopTotal);
+      const coopTotalCount = Object.assign({
+        'Yes': '0',
+        'No': '0'
+      },
+      countBy(this.coopTotal));
     
       const totalNumber = Object.values(coopParticipation).reduce((a,b) => a + b, 0);
-
       const overallParticipationTotal = Object.values(coopTotalCount).reduce((a,b) => a + b, 0);
       const overallParticipation = parseFloat((overallParticipationTotal - coopTotalCount.No) * 100 / overallParticipationTotal).toFixed(2);
 
