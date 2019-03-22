@@ -28,7 +28,6 @@ export default {
     
       const totalNumber = Object.values(coopParticipation).reduce((a,b) => a + b, 0);
       if (totalNumber == 0) {
-        console.log('muie');
         return {
           totalNumber
         }

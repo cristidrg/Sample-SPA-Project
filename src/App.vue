@@ -227,7 +227,9 @@ export default {
       )
     },
 
-    resetFilters() {
+    resetFilters(e) {
+      e.preventDefault();
+      
       this.filters = {
         activeYear: ALL_YEARS,
         activeCollege: ALL_COLLEGES,
@@ -348,10 +350,10 @@ export default {
               <multiselect :class="filters.activeMajors.length != 0 ? 'multiselect--active' : '' " v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
-            <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
-            <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1" tabIndex="0">
-              <label tabIndex="0" class="ma--1 ml--0 fs--sm pt--0" for="contrast-checkbox">Increase Contrast</label>
-              <toggle-button class="salut" tabIndex="0" v-model="contrast" color="#006eb5" :width=100 :height=25 :sync="true" :labels="{checked: 'Contrast On', unchecked: 'Contrast Off'}" name="contrast-checkbox"/>
+            <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters">{{ strings.filters.reset }}</a>
+            <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1" >
+              <p class="ma--1 ml--0 fs--sm pt--0">Increase Contrast</p>
+              <toggle-button v-model="contrast" color="#006eb5" :width=100 :height=25 :sync="true" :labels="{checked: 'Contrast On', unchecked: 'Contrast Off'}"/>
             </div>
           </nav>
         </div>

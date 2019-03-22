@@ -415,6 +415,10 @@
             cursor: pointer;
         }
 
+        &:focus {
+            outline: -webkit-focus-ring-color auto 5px;
+        }
+
         @include mqbp-up(d) {
             &:hover {
                 background-color: $gray-200;
@@ -425,6 +429,16 @@
     .vue-js-switch > span.v-switch-label {
         top: auto;
         bottom: 0;
+    }
+
+    .vue-js-switch > .v-switch-input:focus {
+        -webkit-appearance: initial;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        left: 0;
+        bottom: -15%;
+        opacity: 1;
     }
 
     .multiselect {
