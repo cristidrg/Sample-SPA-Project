@@ -27,7 +27,9 @@ export default {
         majors: []
       },
       strings: stringData,
-      contrast: false
+      contrast: false,
+      ALL_COLLEGES,
+      ALL_YEARS
     }
   },
 
@@ -333,23 +335,23 @@ export default {
             data-navigation-content="#app_nav_buttons"
           >
             <div class="filter-menu__text mb--1">{{ strings.filters.text }}</div>
-            <div class="filter-menu__wrapper">
+            <div class="filter-menu__wrapper" tabIndex="0">
               <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
               <multiselect :class="filters.activeCollege != ALL_YEARS ? 'multiselect--active' : '' " v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
             </div>
-            <div class="filter-menu__wrapper">
+            <div class="filter-menu__wrapper" tabIndex="0">
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
               <multiselect :class="filters.activeCollege != ALL_COLLEGES ? 'multiselect--active' : '' " v-model="filters.activeCollege" :options="getValidColleges" :multiple="false" :allow-empty="true"></multiselect>
             </div>
-            <div class="filter-menu__wrapper mb--2">
+            <div class="filter-menu__wrapper mb--2" tabIndex="0">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
               <multiselect :class="filters.activeMajors.length != 0 ? 'multiselect--active' : '' " v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
-            <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1">
-              <p class="ma--1 ml--0 fs--sm">Increase Contrast</p>
-              <toggle-button v-model="contrast" color="#006eb5" :width=40 :sync="true"/>
+            <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1" tabIndex="0">
+              <label tabIndex="0" class="ma--1 ml--0 fs--sm pt--0" for="contrast-checkbox">Increase Contrast</label>
+              <toggle-button class="salut" tabIndex="0" v-model="contrast" color="#006eb5" :width=100 :height=25 :sync="true" :labels="{checked: 'Contrast On', unchecked: 'Contrast Off'}" name="contrast-checkbox"/>
             </div>
           </nav>
         </div>

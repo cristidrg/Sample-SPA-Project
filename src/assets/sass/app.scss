@@ -422,6 +422,11 @@
         }
     }
 
+    .vue-js-switch > span.v-switch-label {
+        top: auto;
+        bottom: 0;
+    }
+
     .multiselect {
         &__element {
             padding: 0;
