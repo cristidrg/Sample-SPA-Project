@@ -319,7 +319,7 @@ export default {
             </div>
             <div class="filter-menu__wrapper mb--2" tabIndex="0">
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
-              <multiselect :class="filters.activeMajors.length != 0 ? 'multiselect--active' : '' " v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
+              <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters">{{ strings.filters.reset }}</a>

@@ -470,8 +470,6 @@
             line-height: 1.1;
 
             @include mqbp-up(d) {
-                background: $gray-100;
-                color: $black;
                 font-size: $fs-xs;
             }
         }
@@ -498,7 +496,7 @@
 
             &--selected {
                 &.multiselect__option--highlight {
-                    background: $gray-50; // NU Gold
+                    background: $gray-50;
                     color: $black;
                 }
             }
@@ -531,6 +529,11 @@
             @include mqbp-up(d) {
                 font-size: $fs-xs;
             }
+        }
+
+        &\--active {
+            border-left: 3px solid $gray-800;
+            background-color: $gray-100 !important;
         }
     }
 }

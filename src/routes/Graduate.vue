@@ -46,9 +46,9 @@ export default {
       <div class="__subtitle">{{ strings.subtitle }}</div>
     </header>
     <div class="graduate-data__banner">
-        <p class="graduate-data__top" v-html="strings.top"></p>
+        <p class="graduate-data__top mb--0 fs--sm" v-html="strings.top"></p>
         <ul class="graduate-data__top-list">
-            <li class="fw--bold fs--sm" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
+            <li class="fw--700 fs--sm" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
                 {{ school.name }}
             </li>
         </ul>
