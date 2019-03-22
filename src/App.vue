@@ -6,8 +6,9 @@ import { getAllData } from "./queries.js"
 import stringData from "./strings.js"
 import API from "./configs.js"
 import feather from "feather-icons"
-import Multiselect from "vue-multiselect";
-import { all } from 'q';
+import Multiselect from "vue-multiselect"
+import { all } from 'q'
+import SegmentNav from './components/SegmentNav.vue'
 
 export default {
   name: "app",
@@ -274,7 +275,8 @@ export default {
 
   components: {
     Navigation,
-    Multiselect
+    Multiselect,
+    'segment-nav': SegmentNav
   }
 };
 </script>
@@ -283,37 +285,7 @@ export default {
   <main id="app" :class="{ contrast: contrast }">
     <section class="section --flush py--0 vh--100" id="app_content">
       <section id="app_nav_menus">
-        <nav
-          class="navigation"
-          id="chart_menu"
-          role="navigation"
-          data-navigation-handle="#chart_menu_handle"
-          data-navigation-content="#app_nav_buttons"
-        >
-          <div class="chart-menu nav bg--gray-800">
-            <div class="my--2 chart-menu__text hidden--up@d">Browse by:</div>
-            <ul class="__list mx--2@w">
-                <li class="__item">
-                  <router-link class="__link" to="/outcomes" v-scroll-to="'#app_content'">Career outcomes</router-link>
-                </li>
-                <li class="__item">
-                  <router-link class="__link" to="/employment-status" v-scroll-to="'#app_content'">Employment status</router-link>
-                </li>
-                <li class="__item">
-                  <router-link class="__link" to="/coop-participation" v-scroll-to="'#app_content'">Co-op participation</router-link>
-                </li>
-                <li class="__item">
-                  <router-link class="__link" to="/industries" v-scroll-to="'#app_content'">By industry/company</router-link>
-                </li>
-                <li class="__item">
-                  <router-link class="__link" to="/graduate-outcomes" v-scroll-to="'#app_content'">By graduate school</router-link>
-                </li>
-                <li class="__item">
-                  <router-link class="__link" to="/salaries" v-scroll-to="'#app_content'">Starting salaries</router-link>
-                </li>
-            </ul>
-          </div>
-        </nav>
+        <segment-nav />
       </section>
 
       <div
