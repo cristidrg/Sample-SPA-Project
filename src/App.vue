@@ -289,7 +289,7 @@ export default {
         >
           <div class="chart-menu nav bg--gray-800">
             <div class="my--2 chart-menu__text hidden--up@d">Browse by:</div>
-            <ul class="__list">
+            <ul class="__list mx--2@w">
                 <li class="__item">
                   <router-link class="__link" to="/outcomes" v-scroll-to="'#app_content'">Career outcomes</router-link>
                 </li>
@@ -324,8 +324,8 @@ export default {
           Segments
         </button>
       </div>
-      <div class="row">
-        <div class="col w--20@d">
+      <div class="row mx--2@w">
+        <div class="col w--1/4@d">
           <nav
             class="navigation pa--1 filter-menu ta--l@d"
             id="filter_menu"
@@ -333,7 +333,7 @@ export default {
             data-navigation-handle="#filter_menu_handle"
             data-navigation-content="#app_nav_buttons"
           >
-            <p class="my--1 filter-menu__text">{{ strings.filters.text }}</p>
+            <div class="filter-menu__text mb--1">{{ strings.filters.text }}</div>
             <div class="filter-menu__wrapper">
               <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
               <multiselect v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
@@ -346,16 +346,16 @@ export default {
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
               <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true"></multiselect>
             </div>
-            <a class="btn my--1 tt--caps filter-menu__apply bg--white hidden--up@d" href="#">{{ strings.filters.apply }}</a>
+            <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" v-on:click="resetFilters()">{{ strings.filters.reset }}</a>
             <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1">
               <p class="ma--1 ml--0 fs--sm">Increase Contrast</p>
               <toggle-button v-model="contrast" color="#006eb5" :width=40 :sync="true"/>
             </div>
           </nav>
-
         </div>
-        <div class="col w--80@d w--70@w ml--3@w chart-content" id="app_data_views">
+
+        <div class="col w--3/4@d chart-content" id="app_data_views">
           <div class="row d--flex flex--middle vh--70" v-if="this.isDataLoading">
             <svg class="feather feather-loader spinner --thin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
           </div>

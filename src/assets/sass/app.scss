@@ -549,7 +549,7 @@
         padding-left: 0;
 
         @include mqbp-up(d) {
-            max-width: 90%;
+            // max-width: 90%;
             margin: 0 auto;
             display: flex;
             flex-direction: row;
@@ -712,6 +712,8 @@
 .fade-leave-active {
     opacity: 0;
 }
+
+main#app { overflow-x: hidden; }
 
 // Contrast toggled on
 .contrast {

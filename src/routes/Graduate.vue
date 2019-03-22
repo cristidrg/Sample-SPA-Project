@@ -45,6 +45,14 @@ export default {
       <h2 class="__title">{{ strings.title }}</h2>
       <div class="__subtitle">{{ strings.subtitle }}</div>
     </header>
+        <div class="graduate-data__banner">
+            <p class="graduate-data__top" v-html="strings.top"></p>
+            <ul class="graduate-data__top-list">
+                <li class="fw--bold fs--sm" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
+                    {{ school.name }}
+                </li>
+            </ul>
+        </div>
     <div class="graduate-data">
       <h3 class="graduate-data__header">{{ strings.list_header }}</h3>
       <ul class="graduate-data__list" v-if="getSchoolsByPopularity.length">
