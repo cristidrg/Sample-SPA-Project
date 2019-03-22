@@ -677,10 +677,14 @@
         background: #263238;
         border-radius: 100%;
         margin: 0 3px;
-        opacity: .5;
+        opacity: 0.5;
         overflow: hidden;
         text-indent: 200%;
         white-space: nowrap;
+
+        &.fs-carousel-active {
+            opacity: 1;
+        }
     }
 
     .fs-carousel-control {
@@ -700,22 +704,22 @@
 // Vue Transitions
 .fade-enter-active,
 .fade-leave-active {
-    // transform: translate(5rem, 0);
     transition:
         opacity 0.325s ease-in;
-        // transform 0.325s ease-in;
 }
 
 .fade-enter,
 .fade-leave-active {
     opacity: 0;
-    // transform: translate(-5rem, 0);
 }
 
 // Contrast toggled on
 .contrast {
-    .__header {
-        .__subtitle { font-weight: 400; }
+    .section {
+        .__header {
+            .__title { font-weight: 700 !important; }
+            .__subtitle { font-weight: 400; }
+        }
     }
 
     .tc--gray { color: $gray-700; }

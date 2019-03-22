@@ -278,24 +278,6 @@ export default {
 
 <template>
   <main id="app" :class="{ contrast: contrast }">
-    <section
-      class="section --hero vh--100 bg--img flex--middle"
-      style="background-image: url(/public/images/16x9-campus.jpg);"
-      role="banner"
-    >
-      <div class="__header">
-        <h1 class="__title fs--d3 mb--1">
-          {{ strings.head.title }}
-        </h1>
-        <div class="__subtitle mb--2">{{ strings.head.copy }}</div>
-        <a
-          class="btn bg--red"
-          v-scroll-to="'#app_content'"
-          href="#/outcomes"
-        >{{ strings.head.cta }}</a>
-      </div>
-    </section>
-
     <section class="section --flush py--0 vh--100" id="app_content">
       <section id="app_nav_menus">
         <nav

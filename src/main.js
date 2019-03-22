@@ -120,6 +120,14 @@ new Vue({
   router
 }).$mount('#app')
 
+Vue.component('hero-button', {
+  data: function () {
+    return {}
+  },
+  template: '<a class="btn bg--red" v-scroll-to="`#app_content`" href="#/outcomes">See the numbers</a>'
+})
+new Vue({ el: '#hero_btn' })
+
 let $filter = $('#filter_menu')
 let $browse = $('#chart_menu')
 

@@ -3,6 +3,7 @@ import stringData from '../strings.js'
 import { countBy } from 'lodash'
 import { routes } from '../main'
 import { nextTick } from 'q'
+import feather from 'feather-icons'
 
 export default {
   name: 'navigation',
@@ -21,6 +22,8 @@ export default {
     if (this.backIdx < 0) {
         this.backIdx = this.definedRoutes.length - 1;
     }
+
+    feather.replace()
   },
   watch:{
     $route (to, from){
