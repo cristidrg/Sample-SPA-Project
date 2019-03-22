@@ -302,7 +302,7 @@ export default {
       <div class="row mx--2@w">
         <div class="col w--1/4@d">
           <nav
-            class="navigation pa--1 filter-menu ta--l@d"
+            class="navigation pa--1 pt--2@d pt--3@w filter-menu ta--l@d"
             id="filter_menu"
             role="navigation"
             data-navigation-handle="#filter_menu_handle"

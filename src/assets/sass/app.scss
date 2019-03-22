@@ -636,7 +636,11 @@
     margin: 0 auto;
 
     @include mqbp-up(d) {
-        padding: 3rem;
+        padding: 1.5rem 2rem 2rem 3rem;
+    }
+
+    @include mqbp-up(w) {
+        padding: 2.5rem 1rem 2rem 3rem;
     }
 }
 
