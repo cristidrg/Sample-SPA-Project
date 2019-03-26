@@ -2,6 +2,8 @@
 import stringData from '../strings.js'
 import { countBy } from 'lodash'
 import NoData from '../components/NoData.vue'
+import ChevronRight from '../components/ChevronRight.vue'
+import ChevronLeft from '../components/ChevronLeft.vue'
 
 export default {
   name: 'graduate',
@@ -34,7 +36,9 @@ export default {
       schools: Array,
   },
   components: {
-      'no-data': NoData
+      'no-data': NoData,
+      'chevron-right': ChevronRight,
+      'chevron-left': ChevronLeft
   },
 };
 </script>
@@ -45,26 +49,30 @@ export default {
       <h2 class="__title">{{ strings.title }}</h2>
       <div class="__subtitle">{{ strings.subtitle }}</div>
     </header>
-    <div class="graduate-data__banner">
-        <p class="graduate-data__top mb--0 fs--sm" v-html="strings.top"></p>
+    <div class="graduate-data__banner" v-if="getSchoolsByPopularity.length > 4">
+        <p class="graduate-data__top mb--0@t fs--sm w--40@d" v-html="strings.top"></p>
         <ul class="graduate-data__top-list">
             <li class="fw--700 fs--sm" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
                 {{ school.name }}
             </li>
         </ul>
     </div>
-    <div class="graduate-data">
-      <h3 class="graduate-data__header">{{ strings.list_header }}</h3>
-      <ul class="graduate-data__list" v-if="getSchoolsByPopularity.length">
+    <div class="graduate-data pos--relative" v-if="getSchoolsByPopularity.length">
+      <h3 class="graduate-data__header"><span class="d--block w--2/3 w--100@d">{{ strings.list_header }}</span></h3>
+      <ul class="graduate-data__list">
         <li v-for="(school, idx) in getSchoolsByPopularity.slice(schoolIdx * schoolPageSize, (schoolIdx + 1) * schoolPageSize)" :key="idx">
           {{ school.name }}
         </li>
       </ul>
-      <no-data v-else />
       <div class="graduate-data__schools-nav">
-        <a v-if="schoolIdx != 0" v-on:click="schoolIdx -= 1" class="graduate-data__schools-navbtn btn --sm tc--gray-700">{{strings.back_button}}</a>
-        <a v-if="schoolPageSize < getSchoolsByPopularity.length && (schoolIdx + 1) * schoolPageSize < getSchoolsByPopularity.length" v-on:click="schoolIdx += 1" class="graduate-data__schools btn --sm tc--gray-700">{{strings.next_button}}</a>
+        <a v-if="schoolIdx != 0" v-on:click="schoolIdx -= 1" class="graduate-data__schools-navbtn btn --sm tc--gray-700">
+          <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
+        </a>
+        <a v-if="schoolPageSize < getSchoolsByPopularity.length && (schoolIdx + 1) * schoolPageSize < getSchoolsByPopularity.length" v-on:click="schoolIdx += 1" class="graduate-data__schools btn --sm tc--gray-700">
+          <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
+        </a>
       </div>
     </div>
+    <no-data v-else />
   </section>
 </template>

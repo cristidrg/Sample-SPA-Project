@@ -1,5 +1,14 @@
+*,
+*:before,
+*:after { box-sizing: border-box; }
+
 @import "~kernl-ui/src/styles/main";
 @import "~formstone/dist/css/navigation";
+
+.\--flush > .row {
+    margin-right: 0;
+    margin-left: 0;
+}
 
 .section {
     &:not(.\--hero) > .__header {
@@ -43,6 +52,8 @@
             .btn { display: none; }
         }
     }
+
+    &.router-view { position: static; } // for faux modal
 }
 
 .salaries {
@@ -67,13 +78,12 @@
 .active-filters {
     &__list {
         list-style-type: none;
-        padding-left: 0;
+        padding: 0;
     }
 
     &__name {
         @extend .fw--700;
 
-        color: $red;
         text-transform: capitalize;
     }
 
@@ -220,6 +230,18 @@
         @extend .fw--700;
     }
 
+    &__overall {
+        font-size: $fs-d7;
+
+        @include mqbp-up(t) {
+            font-size: 3.5rem;
+        }
+
+        @include mqbp-up(d) {
+            font-size: $fs-d7;
+        }
+    }
+
     &__human-row {
         display: flex;
         justify-content: space-between;
@@ -238,12 +260,11 @@
 }
 
 .graduate-data {
-    position: relative;
-
     &__header {
         @extend .fs--d2;
         @extend .fw--700;
 
+        position: relative;
         margin-top: 50px;
         padding-bottom: 5px;
         border-bottom: 1px solid $gray-200;
@@ -281,19 +302,33 @@
     &__banner {
         background-color: $gray-100;
         color: $black;
-        display: flex;
         padding: 15px 25px;
+        display: flex;
+        flex-flow: row;
+
+        @include mqbp-up(t) {
+            flex-flow: row;
+        }
     }
 
     &__top {
         display: flex;
-        align-items: center;
+        justify-content: center;
+        width: 40%;
+        flex-flow: column;
+        margin-right: 2rem;
+
+        @include mqbp-up(t) {
+            align-items: center;
+        }
     }
 
     &__top-list {
         list-style: none;
-        padding: none;
-        margin: 0 4rem;
+        padding: 0;
+        margin: 0;
+        width: 50%;
+        align-self: center;
 
         @include mqbp-up(t) {
             columns: 2;
@@ -307,6 +342,21 @@
             right: 0;
         }
     }
+}
+
+.no-data {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 92vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    color: $white;
 }
 
 .__logo__image {
@@ -442,6 +492,8 @@
     }
 
     .multiselect {
+        color: $gray-800;
+
         &__element {
             padding: 0;
             margin: 0;
@@ -472,6 +524,11 @@
             @include mqbp-up(d) {
                 font-size: $fs-xs;
             }
+        }
+
+        &__placeholder {
+            color: $gray-800;
+            margin-left: 0.5rem;
         }
 
         &__option {
@@ -635,8 +692,13 @@
 }
 
 .chart-content {
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
+    position: relative;
+
+    @include mqbp-up(t) {
+        padding: 2rem;
+    }
 
     @include mqbp-up(d) {
         padding: 1.5rem 2rem 2rem 3rem;
@@ -646,6 +708,8 @@
         padding: 2.5rem 1rem 2rem 3rem;
     }
 }
+
+// .max-w--100 { max-width: 100%; }
 
 @keyframes fadeDown {
   0%,
@@ -749,5 +813,7 @@
     }
 
     .tc--gray { color: $gray-700; }
+    .tc--gray-600 { color: $gray-800; }
+    .tc--gray-500 { color: $gray-700; }
 }
 

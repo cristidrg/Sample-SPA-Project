@@ -2,8 +2,7 @@ const strings = {
     'career': {
         'title': 'Northeastern graduates are in high demand',
         'subtitle': 'The chart below shows what Northeastern graduates are doing within nine months of graduation. Data is based on the annual Destinations survey of our graduating students’ employment and graduate school plans.',
-        'claim': `<span class="fs--d5 tc--red mr--1 d--block">97%</span> of our graduates are employed full-time or in graduate school within
-        nine months of graduation`,
+        'claim': `<span class="fs--d5 tc--red mr--1 d--block">97%</span> of our graduates are employed full-time or in graduate school within nine months of graduation`,
         'note': `NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.
         The percentages are different from those below because graduates who were not seeking employment or were in the military or
         volunteer services are excluded from COR calculation. <br><br>
@@ -48,7 +47,7 @@ const strings = {
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
         'subtitle': 'The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions. The list here, sortable by year and college, comes from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
-        'top': '<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate school',
+        'top': `<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate schools`,
         'list_header': 'Schools attended by popularity',
         'list_button': 'View more schools',
         'back_button': 'Back',
