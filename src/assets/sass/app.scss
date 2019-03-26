@@ -615,6 +615,8 @@
     padding-right: 0;
     color: white;
     padding: 0 1rem;
+    display: flex;
+    justify-content: center;
 
     &__text {
         @extend .ls--loose;
@@ -626,6 +628,8 @@
         list-style-type: none;
         text-align: left;
         padding-left: 0;
+        flex: 1;
+        max-width: 1350px;
 
         @include mqbp-up(d) {
             // max-width: 90%;
