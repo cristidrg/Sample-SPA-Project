@@ -25,14 +25,14 @@ export default {
         'No': '0'
       },
       countBy(this.coopTotal));
-    
+
       const totalNumber = Object.values(coopParticipation).reduce((a,b) => a + b, 0);
       if (totalNumber == 0) {
         return {
           totalNumber
         }
       }
-      
+
       const overallParticipationTotal = Object.values(coopTotalCount).reduce((a,b) => a + b, 0);
       if (overallParticipationTotal == 0) {
         return {
@@ -40,7 +40,7 @@ export default {
           overallParticipationTotal
         }
       }
-      
+
       const overallParticipation = parseFloat((overallParticipationTotal - coopTotalCount.No) * 100 / overallParticipationTotal).toFixed(2);
 
       Object.keys(coopParticipation).map(key => {
@@ -106,7 +106,7 @@ export default {
                 :from="0"
                 ref="totalParticipationAnimator"
                 :to="getCoopParticipation.overallParticipation"
-                :duration="numberAnimationDuration" 
+                :duration="numberAnimationDuration"
                 easing="easeOutQuad"
                 :formatter="formatter"
                 class="fw--700"
@@ -131,9 +131,9 @@ export default {
               <animate-number
                 ref="threeCoops"
                 mode="auto"
-                :from="0" 
-                :to="getCoopParticipation['3']" 
-                :duration="numberAnimationDuration" 
+                :from="0"
+                :to="getCoopParticipation['3']"
+                :duration="numberAnimationDuration"
                 easing="easeOutQuad"
                 :formatter="formatter"
                 class="fw--700"
@@ -145,9 +145,9 @@ export default {
             <p class="coop-participation__overall fs--d5 tc--red fs--smooth mb--2 mb--0@d">
               <animate-number
                 ref="twoCoops"
-                :from="0" 
-                :to="getCoopParticipation['2']" 
-                :duration="numberAnimationDuration" 
+                :from="0"
+                :to="getCoopParticipation['2']"
+                :duration="numberAnimationDuration"
                 easing="easeOutQuad"
                 :formatter="formatter"
                 class="fw--700"
@@ -160,8 +160,8 @@ export default {
               <animate-number
                 ref="oneCoop"
                 :from="0"
-                :to="getCoopParticipation['1']" 
-                :duration="numberAnimationDuration" 
+                :to="getCoopParticipation['1']"
+                :duration="numberAnimationDuration"
                 easing="easeOutQuad"
                 :formatter="formatter"
                 class="fw--700"
@@ -170,22 +170,22 @@ export default {
           </div>
         </div>
       </div>
-      
 
-      <div class="carousel ta--c mt--3 mb--0" ref="check">
-        <div class="card bg--gray-100 bs--none">
+
+      <div class="carousel ta--c mt--3 mb--0" ref="check" data-carousel-options='{"infinite":"true"}'>
+        <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
             <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_1_Text }}&rdquo;</p>
             <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_1_Name }}, {{ strings.carousel.testimonial_1_Company }}</i></p>
           </div>
         </div>
-        <div class="card bg--gray-100 bs--none">
+        <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
             <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_2_Text }}&rdquo;</p>
             <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_2_Name }}, {{ strings.carousel.testimonial_2_Company }}</i></p>
           </div>
         </div>
-        <div class="card bg--gray-100 bs--none">
+        <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
             <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_3_Text }}&rdquo;</p>
             <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_3_Name }}, {{ strings.carousel.testimonial_3_Company }}</i></p>

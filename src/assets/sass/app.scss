@@ -155,13 +155,6 @@
 }
 
 .career-outcomes {
-    &__banner {
-        background-color: $gray-100;
-        color: $black;
-        display: flex;
-        padding: 15px 25px;
-    }
-
     &__legend {
         display: flex;
         flex-flow: column;
@@ -762,37 +755,6 @@
     @extend .bg--black;
     @extend .bc--none;
     @extend .tt--caps;
-}
-
-.carousel {
-    .fs-carousel-page {
-        width: 10px;
-        height: 10px;
-        background: #263238;
-        border-radius: 100%;
-        margin: 0 3px;
-        opacity: 0.5;
-        overflow: hidden;
-        text-indent: 200%;
-        white-space: nowrap;
-
-        &.fs-carousel-active {
-            opacity: 1;
-        }
-    }
-
-    .fs-carousel-control {
-        opacity: 0;
-    }
-
-    .fs-carousel-pagination {
-        margin-top: -1.5rem;
-    }
-
-    .card {
-        margin-bottom: 0;
-        padding-bottom: 1rem;
-    }
 }
 
 // Vue Transitions

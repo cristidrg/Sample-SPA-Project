@@ -2,7 +2,7 @@ const strings = {
     'career': {
         'title': 'Northeastern graduates are in high demand',
         'subtitle': 'The chart below shows what Northeastern graduates are doing within nine months of graduation. Data is based on the annual Destinations survey of our graduating students’ employment and graduate school plans.',
-        'claim': `<span class="fs--d5 tc--red mr--1 d--block">97%</span> of our graduates are employed full-time or in graduate school within nine months of graduation`,
+        'claim': `<div class="fs--d5 tc--red mr--1 d--block">97%</div> of our graduates are employed full-time or in graduate school within nine months of graduation`,
         'note': `NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.
         The percentages are different from those below because graduates who were not seeking employment or were in the military or
         volunteer services are excluded from COR calculation. <br><br>
@@ -12,7 +12,7 @@ const strings = {
     'employment': {
         'title': 'Here’s a snapshot of what our graduates are doing post-graduation',
         'subtitle': 'This data shows the percentages of graduates reporting their employment status, including whether they’re employed full- or part-time, in graduate school, volunteering or in the military, or still seeking employment. Data is collected from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
-        'claim': `<span class="fs--d5 tc--red mr--1 d--block">100%</span> of Sit Elit Fringilla Magna Tellus.
+        'claim': `<div class="fs--d5 tc--red mr--1 d--block">100%</div> of Sit Elit Fringilla Magna Tellus.
         nine months of graduation`,
         'centerText': 'Full time'
     },
