@@ -311,7 +311,7 @@ export default {
             <div class="filter-menu__text mb--1">{{ strings.filters.text }}</div>
             <div class="filter-menu__wrapper" tabIndex="0">
               <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
-              <multiselect :class="filters.activeCollege != ALL_YEARS ? 'multiselect--active' : '' " v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
+              <multiselect :class="filters.activeYear != ALL_YEARS ? 'multiselect--active' : '' " v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
             </div>
             <div class="filter-menu__wrapper" tabIndex="0">
               <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
@@ -324,8 +324,8 @@ export default {
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters">{{ strings.filters.reset }}</a>
             <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1" >
-              <p class="ma--1 ml--0 fs--sm pt--0">Increase Contrast</p>
-              <toggle-button v-model="contrast" color="#006eb5" :width=100 :height=25 :sync="true" :labels="{checked: 'Contrast On', unchecked: 'Contrast Off'}"/>
+              <p class="ma--1 ml--0 fs--xs pt--0 fw--700">Increase Contrast</p>
+              <toggle-button v-model="contrast" :color="{checked: '#d41b2c', unchecked: '#5c5c5c'}" :width=95 :height=25 :sync="true" :labels="{checked: 'Contrast On', unchecked: 'Contrast Off'}"/>
             </div>
           </nav>
         </div>
@@ -335,14 +335,12 @@ export default {
             <svg class="feather feather-loader spinner --thin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
           </div>
           <div v-else>
-            <div class="hidden--up@d" v-if="areFiltersApplied">
-              <p class="active-filters__label">Active filters:</p>
-              <ul class="active-filters__list">
-                <li v-for="activeFilter in this.getActiveFilters" :key="activeFilter.order">
-                  <span class="active-filters__name">{{activeFilter.key}}:</span>
-                  <span class="active-filters__value">{{activeFilter.value.join(', ')}}</span>
-                </li>
-              </ul>
+            <div class="hidden--up@d active-filters fs--xs mb--1 tc--gray-600" v-if="areFiltersApplied">
+              <p class="active-filters__label d--inline">Filter:</p>
+              <p class="d--inline" v-for="activeFilter in this.getActiveFilters" :key="activeFilter.order">
+                <span class="active-filters__name d--inline">{{activeFilter.key}}:</span>
+                <span class="active-filters__value d--inline">{{activeFilter.value.join(', ')}} </span>
+              </p>
             </div>
             <transition
               name="fade"

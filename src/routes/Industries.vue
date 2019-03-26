@@ -2,6 +2,8 @@
 import stringData from '../strings.js'
 import { countBy } from 'lodash'
 import NoData from '../components/NoData.vue'
+import ChevronRight from '../components/ChevronRight.vue'
+import ChevronLeft from '../components/ChevronLeft.vue'
 
 export default {
   name: 'industries',
@@ -51,7 +53,9 @@ export default {
       companies: Array,
   },
   components: {
-      'no-data': NoData
+      'no-data': NoData,
+      'chevron-right': ChevronRight,
+      'chevron-left': ChevronLeft
   }
 };
 </script>
@@ -72,16 +76,19 @@ export default {
     <no-data v-else />
 
     <div class="industry-data__companies">
-      <h3 class="industry-data__header"><span class="w--60">{{ strings.list2_header }}</span></h3>
-      <ul class="industry-data__list" v-if="companiesSortedByPopularity.length">
+      <h3 class="industry-data__header"><span class="d--block w--2/3 w--100@d">{{ strings.list2_header }}</span></h3>
+      <ul class="industry-data__list">
         <li v-for="(company, idx) in companiesSortedByPopularity.slice(companyIdx * companyPageSize, (companyIdx + 1) * companyPageSize)" :key="idx">
           {{ company.name }}
         </li>
       </ul>
-      <no-data v-else />
       <div class="industry-data__companies-nav">
-        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">{{strings.back_button}}</a>
-        <a v-if="companyPageSize < companies.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">{{strings.next_button}}</a>
+        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">
+          <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
+        </a>
+        <a v-if="companyPageSize < companies.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">
+          <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
+        </a>
       </div>
     </div>
   </section>

@@ -101,7 +101,7 @@ export default {
         <div class="row">
           <div class="col w--1/3@t ta--c">
             <p class="coop-participation__label mb--0h">{{ strings.label1 }}<span class="hidden--up@d">:</span></p>
-            <p class="coop-participation__overall fs--d7 tc--red fs--smooth">
+            <p class="coop-participation__overall tc--red fs--smooth">
               <animate-number
                 :from="0"
                 ref="totalParticipationAnimator"

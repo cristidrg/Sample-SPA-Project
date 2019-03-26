@@ -3,6 +3,7 @@ import { PieChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
 import pattern from 'patternomaly';
+import NoData from '../components/NoData.vue'
 
 const outcomesToColors = {
   'Employed': {
@@ -102,7 +103,8 @@ export default {
     contrast: Boolean
   },
   components: {
-      PieChart
+    PieChart,
+    'no-data': NoData
   }
 };
 </script>
@@ -116,9 +118,9 @@ export default {
 
     <div class="row">
       <div class="col w--70@t">
-        <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" />
+        <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" v-if="outcomes.length" />
       </div>
-      <div class="col w--30@t d--flex justify--center">
+      <div class="col w--30@t d--flex justify--center" v-if="outcomes.length">
         <p class="row career-outcomes__banner d--flex order--1 order--0@t" v-html="strings.claim" />
         <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm">
           <li v-for="(outcome, idx) in Object.values(dataSetWithAttributes).sort((a,b) => a.order - b.order)" :key="idx">
@@ -127,6 +129,7 @@ export default {
         </ul>
       </div>
     </div>
-    <p class="career-outcomes__note fs--sm tc--gray-600" v-html="strings.note" />
+    <p class="career-outcomes__note fs--sm tc--gray-600" v-html="strings.note" v-if="outcomes.length" />
+    <no-data v-else />
   </section>
 </template>

@@ -3,6 +3,7 @@ import { DoughnutChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
 import pattern from 'patternomaly';
+import NoData from '../components/NoData.vue'
 
 const employmentToColors = {
   'Employed by an organization': {
@@ -125,7 +126,8 @@ export default {
     contrast: Boolean
   },
   components: {
-    DoughnutChart
+    DoughnutChart,
+    'no-data': NoData
   }
 };
 
@@ -142,16 +144,17 @@ export default {
     </header>
     <div class="row">
       <div class="col w--70@t pos--relative d--table">
-        <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" />
+        <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" v-if="employmentTypes.length" />
         <p class="employment-status__chart-support tc--blue-dark">{{centerPerc}}%<span class="tc--black">{{strings.centerText}}</span></p>
       </div>
-      <div class="col w--30@t d--flex justify--center">
+      <div class="col w--30@t d--flex justify--center" v-if="employmentTypes.length">
         <ul class="employment-status__legend fs--sm">
           <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry">
             <span class="employment-status__legend-perc" :style="{color: data.color}"></span><b>{{ data.perc }}</b>% {{ data.key }}
           </li>
         </ul>
       </div>
+      <no-data v-else />
     </div>
   </section>
 </template>
