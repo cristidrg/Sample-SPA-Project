@@ -157,11 +157,3 @@ $('.__link', $browse).on('click touch', () => {
 $('.__toggler').on('click touch', () => {
   $('body').toggleClass('menu-open')
 })
-
-// Initialize Formstone carousel()
-$('.carousel').carousel({
-  theme: '',
-  pagination: true,
-  infinite: true
-});
-
