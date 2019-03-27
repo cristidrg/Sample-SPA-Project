@@ -87,7 +87,7 @@ export default {
       if (!this.dataSetWithColors['Employed full-time']) {
         return 0;
       }
-      return parseFloat((this.dataSetWithColors['Employed full-time'].value / this.employmentTypes.length) * 100).toFixed(2);
+      return parseFloat((this.dataSetWithColors['Employed full-time'].value / this.employmentTypes.length) * 100).toFixed(1);
     },
     chartOptions() {
       const options = Object.assign({}, {
