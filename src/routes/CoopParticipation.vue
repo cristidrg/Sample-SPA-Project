@@ -41,10 +41,10 @@ export default {
         }
       }
 
-      const overallParticipation = parseFloat((overallParticipationTotal - coopTotalCount.No) * 100 / overallParticipationTotal).toFixed(2);
+      const overallParticipation = parseFloat((overallParticipationTotal - coopTotalCount.No) * 100 / overallParticipationTotal).toFixed(1);
 
       Object.keys(coopParticipation).map(key => {
-          coopParticipation[key] = parseFloat((coopParticipation[key] / totalNumber) * 100).toFixed(2)
+          coopParticipation[key] = parseFloat((coopParticipation[key] / totalNumber) * 100).toFixed(1)
       });
 
       return {
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     formatter: function (num) {
-      return `${num.toFixed(2)}`
+      return `${num.toFixed(1)}`
     },
   },
   watch: {
