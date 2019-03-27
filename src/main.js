@@ -8,6 +8,8 @@ import VueAnimateNumber from 'vue-animate-number'
 import ToggleButton from 'vue-js-toggle-button'
 import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
 
+const DEFAULT_TITLE = "Graduate Outcomes"
+
 //Order of routes is used in prev/next navigation.
 //Routes with redirects are ignored.
 /*
@@ -24,12 +26,7 @@ export const routes = [
     component: Outcomes,
     meta: {
       title: 'Outcomes - Career',
-      metaTags: [
-        {
-          name: 'description',
-          content: 'Almost all of our students are employed right away!'
-        }
-      ]
+      description: 'Almost all of our students are employed right away!'
     }
   },
   {
@@ -37,12 +34,7 @@ export const routes = [
     component: Employment,
     meta: {
       title: 'Outcomes - Employment',
-      metaTags: [
-        {
-          name: 'description',
-          content: 'So many employers to choose from!'
-        }
-      ]
+      description: 'So many employers to choose from!'
     }
   },
   {
@@ -50,12 +42,7 @@ export const routes = [
     component: CoopParticipation,
     meta: {
       title: 'Outcomes - Coop Participation',
-      metaTags: [
-        {
-          name: 'description',
-          content: 'Our students take advantage of our programs!'
-        }
-      ]
+      description: 'Our students take advantage of our programs!'
     }
   },
   {
@@ -63,12 +50,7 @@ export const routes = [
     component: Industries,
     meta: {
       title: 'Outcomes - Industries',
-      metaTags: [
-        {
-          name: 'description',
-          content: 'Our students are employed only by top companies'
-        }
-      ]
+      description: 'Our students are employed only by top companies',
     }
   },
   {
@@ -76,12 +58,7 @@ export const routes = [
     component: Graduate,
     meta: {
       title: 'Home Page - Example App',
-      metaTags: [
-        {
-          name: 'description',
-          content: 'The home page of our example app.'
-        }
-      ]
+      description: 'The home page of our example app.'
     }
   },
   {
@@ -89,19 +66,19 @@ export const routes = [
     component: Salaries,
     meta: {
       title: 'Outcomes - Salaries',
-      metaTags: [
-        {
-          name: 'description',
-          content: 'Our students make so much money!'
-        }
-      ]
+      description:'Our students make so much money!'
     }
   },
 ];
 
 const router = new VueRouter({
   routes
-})
+});
+
+router.afterEach((to, from) => {
+  document.title = to.meta.title || DEFAULT_TITLE;
+  document.querySelector('meta[name="description"]').setAttribute("content", to.meta.description);
+});
 
 import $ from 'jquery'
 import 'formstone/src/js/navigation'
