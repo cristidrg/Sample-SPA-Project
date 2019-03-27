@@ -39,7 +39,7 @@ export default {
         strings: stringData.employment,
         employmentStyle: {
           height: '60vh',
-          width: '90%',
+          width: '97%',
           position: 'relative',
           margin: '0 auto'
         },
@@ -95,16 +95,24 @@ export default {
           tooltips: {
             enabled: true
           },
+          layout: {
+            padding: {
+              top: 5,
+              right: 35,
+              bottom: 5,
+              left: 35
+            }
+          },
           plugins: {
             labels: {
               render: this.renderLabels,
               fontColor: '#000',
               position: 'outside',
-              outsidePadding: 10,
               arc: false,
-              fontSize: 14,
-              textMargin: 10,
-              precision: 2
+              outsidePadding: 2,
+              fontSize: 12,
+              textMargin: 4,
+              precision: 2
             }
           },
           maintainAspectRatio: false,
