@@ -66,7 +66,10 @@ const strings = {
         "major": "Academic Disciplines",
         "text": "Filter by:",
         "apply": "Apply filters",
-        "reset": "Clear all filters"
+        "reset": "Clear all filters",
+        "contrast": "Increase Contrast",
+        "contrastOn": "Contrast on",
+        "contrastOff": "Contrast off",
     },
     'navigation': {
         'forward': 'Next',
