@@ -82,10 +82,10 @@ export default {
         </li>
       </ul>
       <div class="industry-data__companies-nav">
-        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">
+        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn --sm tc--gray-700" href="javascript:void(0)">
           <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
         </a>
-        <a v-if="companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">
+        <a v-if="companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1"  href="javascript:void(0)" class="industry-data__companies-navbtn btn --sm tc--gray-700">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
         </a>
       </div>
