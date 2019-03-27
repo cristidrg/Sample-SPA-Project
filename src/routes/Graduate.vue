@@ -40,7 +40,7 @@ export default {
 </script>
 
 <template>
-  <section class="section">
+  <section class="section" v-if="schools.length > 2">
     <header class="__header">
       <h2 class="__title">{{ strings.title }}</h2>
       <div class="__subtitle">{{ strings.subtitle }}</div>
@@ -67,4 +67,5 @@ export default {
       </div>
     </div>
   </section>
+  <no-data v-else />
 </template>

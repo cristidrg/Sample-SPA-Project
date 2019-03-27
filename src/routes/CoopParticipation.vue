@@ -91,13 +91,12 @@ export default {
 </script>
 
 <template>
-    <section class="section coop-participation">
+    <section class="section coop-participation" v-if="getCoopParticipation.totalNumber != 0 && getCoopParticipation.overallParticipation != 0">
       <header class="__header mb--4">
         <h2 class="__title">{{ strings.title }}</h2>
         <div class="__subtitle">{{ strings.subtitle }}</div>
       </header>
-      <no-data v-if="getCoopParticipation.totalNumber == 0 || getCoopParticipation.overallParticipation == 0" />
-      <div v-else class="coop-participation-data">
+      <div class="coop-participation-data">
         <div class="row">
           <div class="col w--1/3@t ta--c">
             <p class="coop-participation__label mb--0h">{{ strings.label1 }}<span class="hidden--up@d">:</span></p>
@@ -193,4 +192,5 @@ export default {
         </div>
       </div>
     </section>
+    <no-data  v-else/>
 </template>

@@ -110,7 +110,7 @@ export default {
 </script>
 
 <template>
-  <section class="section career-outcomes">
+  <section class="section career-outcomes" v-if="outcomes.length > 4" >
     <header class="__header">
       <h2 class="__title">{{ strings.title }}</h2>
       <div class="__subtitle">{{ strings.subtitle }}</div>
@@ -118,10 +118,10 @@ export default {
 
     <div class="row">
       <div class="col w--70@t">
-        <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions" v-if="outcomes.length" />
+        <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions"/>
       </div>
-      <div class="col w--30@t d--flex justify--center" v-if="outcomes.length">
-        <div class="order--1 order--0@t ot--2@t ol--1 mb--2@t pa--2 bg--gray-100" v-html="strings.claim" />
+      <div class="col w--30@t d--flex justify--center">
+        <div class="order--1 order--0@t ot--2@t ol--1 mb--2@t pa--2 bg--gray-100" v-html="strings.claim"/>
         <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm">
           <li v-for="(outcome, idx) in Object.values(dataSetWithAttributes).sort((a,b) => a.order - b.order)" :key="idx">
             <span class="career-outcomes__legend-perc" :style="{color: outcome.color}"></span><b>{{ outcome.perc }}</b>% {{ outcome.key }}
@@ -129,7 +129,7 @@ export default {
         </ul>
       </div>
     </div>
-    <p class="career-outcomes__note fs--sm tc--gray-600 measure--wide" v-html="strings.note" v-if="outcomes.length" />
-    <no-data v-else />
+    <p class="career-outcomes__note fs--sm tc--gray-600 measure--wide" v-html="strings.note"/>
   </section>
+  <no-data v-else />
 </template>
