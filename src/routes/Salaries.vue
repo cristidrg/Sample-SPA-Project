@@ -34,13 +34,16 @@ export default {
       let map = {};
 
       Object.keys(salaries).forEach(key => {
-        map[key] = Object.assign({}, salariesToOrder[key]);
+        map[key] = {};
         map[key].value = salaries[key];
+        map[key].key = key;
+        map[key].order = salariesToOrder[key]
       });
 
+      let salaryData = Object.values(map).sort((a,b) => a.order - b.order);
 
       return ({
-        labels: Object.keys(map).map(entry => {
+        labels: salaryData.map(salary => salary.key).map(entry => {
           if (entry.split('-').length == 2) {
             return `$${entry.split('-')[0]}k - ${entry.split('-')[1]}k`
           } else {
@@ -49,7 +52,7 @@ export default {
         }),
         datasets: [{
             backgroundColor: '#d41b2c',
-            data: Object.values(map).map(entry => entry.value),
+            data: salaryData.map(entry => entry.value),
         }]
       })
     },
