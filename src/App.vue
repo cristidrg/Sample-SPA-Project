@@ -6,9 +6,15 @@ import { getAllData } from "./queries.js"
 import stringData from "./strings.js"
 import API from "./configs.js"
 import feather from "feather-icons"
-import Multiselect from "vue-multiselect"
 import { all } from 'q'
 import SegmentNav from './components/SegmentNav.vue'
+import Filters from './components/Filters.vue'
+
+const DEFAULT_FILTERS = {
+  activeYear: ALL_YEARS,
+  activeCollege: ALL_COLLEGES,
+  activeMajors: []
+};
 
 export default {
   name: "app",
@@ -16,11 +22,7 @@ export default {
   data() {
     return {
       isDataLoading: false,
-      filters: {
-        activeYear: ALL_YEARS,
-        activeCollege: ALL_COLLEGES,
-        activeMajors: []
-      },
+      filters: Object.assign({}, DEFAULT_FILTERS),
       data: {
         dump: [],
         years: [],
@@ -30,7 +32,8 @@ export default {
       strings: stringData,
       contrast: false,
       ALL_COLLEGES,
-      ALL_YEARS
+      ALL_YEARS,
+      DEFAULT_FILTERS
     }
   },
 
@@ -194,7 +197,7 @@ export default {
             }
         }, function(err) {
             console.log(err);
-        });
+        }).catch(err => console.error(err));
 
         const graduateDestinations = results;
 
@@ -227,17 +230,7 @@ export default {
           (majorFilter.length == 0 || majorFilter.includes(element.majordesc))
       )
     },
-
-    resetFilters(e) {
-      e.preventDefault();
-
-      this.filters = {
-        activeYear: ALL_YEARS,
-        activeCollege: ALL_COLLEGES,
-        activeMajors: []
-      }
-    },
-
+    
     isFilterValid(filterValue, filterType) {
       let {
         activeYear,
@@ -275,7 +268,7 @@ export default {
 
   components: {
     Navigation,
-    Multiselect,
+    Filters,
     'segment-nav': SegmentNav
   }
 };
@@ -300,36 +293,17 @@ export default {
         </button>
       </div>
       <div class="row mx--2@w">
-        <div class="col w--1/4@d">
-          <nav
-            class="navigation px--1 pt--2h@d pt--3@w filter-menu ta--l@d"
-            id="filter_menu"
-            role="navigation"
-            data-navigation-handle="#filter_menu_handle"
-            data-navigation-content="#app_nav_buttons"
-          >
-            <div class="filter-menu__text mb--1">{{ strings.filters.text }}</div>
-            <div class="filter-menu__wrapper" tabIndex="0">
-              <label for="year-filter" class="filter-menu__label">{{ strings.filters.year }}</label>
-              <multiselect :class="filters.activeYear != ALL_YEARS ? 'multiselect--active' : '' " v-model="filters.activeYear" :options="getValidYears" :multiple="false" :allow-empty="true"></multiselect>
-            </div>
-            <div class="filter-menu__wrapper" tabIndex="0">
-              <label for="college-filter" class="filter-menu__label">{{ strings.filters.college }}</label>
-              <multiselect :class="filters.activeCollege != ALL_COLLEGES ? 'multiselect--active' : '' " v-model="filters.activeCollege" :options="getValidColleges" :multiple="false" :allow-empty="true"></multiselect>
-            </div>
-            <div class="filter-menu__wrapper mb--2" tabIndex="0">
-              <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
-              <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
-            </div>
-            <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
-            <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters">{{ strings.filters.reset }}</a>
-            <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1" >
-              <p class="ma--1 ml--0 fs--xs pt--0 fw--700">Increase Contrast</p>
-              <toggle-button v-model="contrast" :color="{checked: '#d41b2c', unchecked: '#5c5c5c'}" :width=95 :height=25 :sync="true" :labels="{checked: 'Contrast On', unchecked: 'Contrast Off'}"/>
-            </div>
-          </nav>
-        </div>
-
+        <filters 
+          :activeYear.sync="filters.activeYear"
+          :activeCollege.sync="filters.activeCollege"
+          :activeMajors.sync="filters.activeMajors"
+          :contrast.sync="contrast"
+          :validYears="getValidYears"
+          :validColleges="getValidColleges"
+          :validMajors="getValidMajors"
+          :areFiltersApplied="areFiltersApplied"
+          v-on:reset="filters = Object.assign({}, DEFAULT_FILTERS)"
+        />
         <div class="col w--3/4@d chart-content" id="app_data_views">
           <div class="row d--flex flex--middle vh--70" v-if="this.isDataLoading">
             <svg class="feather feather-loader spinner --thin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
