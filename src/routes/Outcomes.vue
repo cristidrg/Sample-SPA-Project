@@ -129,7 +129,7 @@ export default {
         </ul>
       </div>
     </div>
-    <p class="career-outcomes__note fs--sm tc--gray-600 measure--wide" v-html="strings.note"/>
+    <div class="career-outcomes__note fs--sm tc--gray-600 measure--wide" v-html="strings.note"/>
   </section>
   <no-data v-else />
 </template>
