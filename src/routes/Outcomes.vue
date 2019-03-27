@@ -42,9 +42,9 @@ export default {
         layout: {
           padding: {
             top: 5,
-            right: 25,
+            right: 50,
             bottom: 5,
-            left: 25
+            left: 50
           }
         },
         plugins: {
@@ -53,10 +53,10 @@ export default {
             fontColor: '#000',
             position: 'outside',
             arc: false,
-            outsidePadding: 10,
+            outsidePadding: 2,
             fontSize: 13,
-            textMargin: 10,
-            precision: 2
+            textMargin: 3,
+            precision: 1
           }
         },
         maintainAspectRatio: false,
