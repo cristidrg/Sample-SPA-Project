@@ -61,8 +61,8 @@ export default {
         plugins: {
           labels: {
             render: function (args) {
-              return args.value
-            },
+              return `${parseFloat(args.value / this.salaries.length * 100).toFixed(1)}%`;
+            }.bind(this),
             fontColor: '#d41b2c',
             position: 'outside',
             fontSize: 18,
