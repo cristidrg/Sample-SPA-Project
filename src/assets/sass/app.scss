@@ -130,6 +130,7 @@
 
     &__companies {
         position: relative;
+        z-index: -1; // for keeping below no-data modal
 
         &-nav {
             position: absolute;
@@ -311,8 +312,12 @@
         flex-flow: column;
         margin-right: 2rem;
 
+        .fs--d5 { font-size: $fs-d4 !important; }
+
         @include mqbp-up(t) {
             align-items: center;
+
+            .fs--d5 { font-size: $fs-d5 !important; }
         }
     }
 
@@ -348,7 +353,7 @@
     justify-content: center;
     height: 92vh;
     background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1;
+    z-index: 0;
     color: $white;
     touch-action: none;
 }

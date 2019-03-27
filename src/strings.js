@@ -47,7 +47,7 @@ const strings = {
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
         'subtitle': 'The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions. The list here, sortable by year and college, comes from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
-        'top': `<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate schools`,
+        'top': `<span class="fs--d5 tc--red fw--700 mr--1">Top 5</span> attended graduate schools`,
         'list_header': 'Schools attended',
         'list_button': 'View more schools',
         'back_button': 'Back',
