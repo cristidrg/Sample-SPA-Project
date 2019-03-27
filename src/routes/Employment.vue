@@ -58,7 +58,7 @@ export default {
         map[key] = Object.assign({}, employmentToColors[key]);
         map[key].value = counts[key];
         map[key].key = key;
-        map[key].perc = parseFloat((counts[key] / this.employmentTypes.length) * 100).toFixed(2);
+        map[key].perc = parseFloat((counts[key] / this.employmentTypes.length) * 100).toFixed(1);
       });
 
       return map;
@@ -87,7 +87,7 @@ export default {
       if (!this.dataSetWithColors['Employed full-time']) {
         return 0;
       }
-      return parseFloat((this.dataSetWithColors['Employed full-time'].value / this.employmentTypes.length) * 100).toFixed(2);
+      return parseFloat((this.dataSetWithColors['Employed full-time'].value / this.employmentTypes.length) * 100).toFixed(1);
     },
     chartOptions() {
       const options = Object.assign({}, {
@@ -116,7 +116,7 @@ export default {
               outsidePadding: 2,
               fontSize: 12,
               textMargin: 4,
-              precision: 2
+              precision: 1
             }
           },
           maintainAspectRatio: false,
