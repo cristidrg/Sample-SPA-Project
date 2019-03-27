@@ -6,29 +6,33 @@ import pattern from 'patternomaly';
 import NoData from '../components/NoData.vue'
 
 const employmentToColors = {
-  'Employed by an organization': {
+  'Employed full-time': {
     color: '#385775', // dark blue
     order: 1,
   },
-  'Employed in a postgraduate internship or fellowship': {
+  'Pursuing additional education': {
     color: '#52cfe5', // light blue
     order: 2,
   },
-  'Employed in a temporary/contract work assignment': {
+  'Employed part-time': {
     color: '#006eb5', // med blue
     order: 3,
   },
-  'Employed freelance': {
+  'Participating in a volunteer or service program': {
     color: '#00cfb5', // teal
     order: 4,
   },
-  'Employed in all other work categories': {
+  'Currently not employed but seeking employment': {
     color: '#ffbf3d', // yellow
     order: 5
   },
-  'Self-employed/ Entrepreneur': {
+  'Currently not employed and not seeking employment': {
     color: '#ff854f', // orange
     order: 6,
+  },
+  'Serving in the U.S. military': {
+    color: '#824091', // purple
+    order: 7,
   }
 };
 
@@ -80,10 +84,10 @@ export default {
       })
     },
     centerPerc() {
-      if (!this.dataSetWithColors['Employed by an organization']) {
+      if (!this.dataSetWithColors['Employed full-time']) {
         return 0;
       }
-      return parseFloat((this.dataSetWithColors['Employed by an organization'].value / this.employmentTypes.length) * 100).toFixed(2);
+      return parseFloat((this.dataSetWithColors['Employed full-time'].value / this.employmentTypes.length) * 100).toFixed(2);
     },
     chartOptions() {
       const options = Object.assign({}, {
