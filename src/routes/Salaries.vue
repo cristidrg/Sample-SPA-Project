@@ -2,6 +2,7 @@
 import { BarChart } from '../charts/';
 import stringData from '../strings.js';
 import { countBy } from 'lodash';
+import NoData from '../components/NoData.vue';
 
 export default {
   name: 'salaries',
@@ -22,9 +23,9 @@ export default {
         .map(element => Math.floor((element % 100000) / 10000))
         .filter(element => !isNaN(element))
         .reduce((acc, curr) => {
-          if (curr < 3) {
+          if (curr < 3 && curr > 0) {
             acc[0] ? acc[0] += 1 : acc[0] = 1;
-          } else if (curr > 7){
+          } else if (curr > 7 || curr == 0){
             acc[8] ? acc[8] += 1 : acc[8] = 1;
           } else {
             acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
@@ -102,13 +103,14 @@ export default {
       salaries: Array,
   },
   components: {
-    BarChart
+    BarChart,
+    NoData
   }
 };
 </script>
 
 <template>
-  <section class="section career-outcomes">
+  <section class="section career-outcomes" v-if="salaries.length > 4">
     <header class="__header">
       <h2 class="__title">{{ strings.title }}</h2>
       <div class="__subtitle">{{ strings.subtitle }}</div>
@@ -120,4 +122,5 @@ export default {
     </div>
     <div class="ta--c tc--gray-800 fw--700 tt--caps fs--xs pt--0h">{{strings.labelX}}</div>
   </section>
+  <no-data v-else/>
 </template>

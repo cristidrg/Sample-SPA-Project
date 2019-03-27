@@ -61,19 +61,18 @@ export default {
 </script>
 
 <template>
-  <section class="section industry-data">
+  <section class="section industry-data" v-if="industriesSortedByPopularity.length > 4">
     <header class="__header">
       <h2 class="__title">{{ strings.title }}</h2>
       <div class="__subtitle">{{ strings.subtitle }}</div>
     </header>
 
     <h3 class="industry-data__header">{{ strings.list1_header }}</h3>
-    <ul class="industry-data__list --b-first" v-if="industriesSortedByPopularity.length">
+    <ul class="industry-data__list --b-first">
       <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
         <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
       </li>
     </ul>
-    <no-data v-else />
 
     <div class="industry-data__companies">
       <h3 class="industry-data__header"><span class="d--block w--2/3 w--100@d">{{ strings.list2_header }}</span></h3>
@@ -92,4 +91,5 @@ export default {
       </div>
     </div>
   </section>
+  <no-data v-else />
 </template>

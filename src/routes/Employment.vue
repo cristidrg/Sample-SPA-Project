@@ -145,24 +145,24 @@ export default {
 </script>
 
 <template>
-  <section class="section employment-status">
+  <section class="section employment-status" v-if="employmentTypes.length > 4">
     <header class="__header">
       <h2 class="__title">{{ strings.title }}</h2>
       <div class="__subtitle">{{ strings.subtitle }}</div>
     </header>
     <div class="row">
       <div class="col w--70@t pos--relative d--table">
-        <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions" v-if="employmentTypes.length" />
+        <doughnut-chart :key="employmentTypes.length + employmentTypes[0]" :chartData="employmentStatusChartData" :style="employmentStyle" :options="chartOptions"/>
         <p class="employment-status__chart-support tc--blue-dark">{{centerPerc}}%<span class="tc--black">{{strings.centerText}}</span></p>
       </div>
-      <div class="col w--30@t d--flex justify--center" v-if="employmentTypes.length">
+      <div class="col w--30@t d--flex justify--center">
         <ul class="employment-status__legend fs--sm">
           <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry">
             <span class="employment-status__legend-perc" :style="{color: data.color}"></span><b>{{ data.perc }}</b>% {{ data.key }}
           </li>
         </ul>
       </div>
-      <no-data v-else />
     </div>
   </section>
+  <no-data v-else />
 </template>
