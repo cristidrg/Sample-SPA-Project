@@ -8,6 +8,7 @@ export const getAllData = (offset, max) => `
             final_did_coop
             final_coop_numbers
             final_salary_recalculated
+            salary_categories
             employment_type
             employment_status
             job_year

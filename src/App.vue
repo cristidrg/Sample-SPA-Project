@@ -111,9 +111,8 @@ export default {
     },
 
     getSalaries() {
-      return this.filteredData
-        .map(element => element.final_salary_recalculated)
-        .filter(element => element != "NA" && element != "")
+      return this.filteredData.map(element => element.salary_categories)
+        .filter(element => element != " " && element != "")
     },
 
     areFiltersApplied() {

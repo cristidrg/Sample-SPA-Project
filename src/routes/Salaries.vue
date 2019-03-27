@@ -4,6 +4,16 @@ import stringData from '../strings.js';
 import { countBy } from 'lodash';
 import NoData from '../components/NoData.vue';
 
+const salariesToOrder = {
+  "less than 30": 0,
+  "30-39": 1,
+  "40-49": 2,
+  "50-59": 3,
+  "60-69": 4,
+  "more than 70": 5
+};
+
+
 export default {
   name: 'salaries',
   data() {
@@ -15,33 +25,31 @@ export default {
         position: "relative",
         fontFamily: "'Lato', sans-serif"
       },
+      salariesToOrder
     }
   },
   computed: {
     startingSalariesData() {
-      const salaries = this.salaries
-        .map(element => Math.floor((element % 100000) / 10000))
-        .filter(element => !isNaN(element))
-        .reduce((acc, curr) => {
-          if (curr < 3 && curr > 0) {
-            acc[0] ? acc[0] += 1 : acc[0] = 1;
-          } else if (curr > 7 || curr == 0){
-            acc[8] ? acc[8] += 1 : acc[8] = 1;
-          } else {
-            acc[curr] ? acc[curr] += 1 : acc[curr] = 1;
-          }
-          return acc;
-        }, {});
+      const salaries = countBy(this.salaries);
+      let map = {};
 
-      const labels = Object.keys(salaries).map(digit => `\$${digit}0K - \$${digit}9K`);
-      labels[0] = '< $30K';
-      labels[labels.length - 1] = '> $80K';
+      Object.keys(salaries).forEach(key => {
+        map[key] = Object.assign({}, salariesToOrder[key]);
+        map[key].value = salaries[key];
+      });
+
 
       return ({
-        labels: labels,
+        labels: Object.keys(map).map(entry => {
+          if (entry.split('-').length == 2) {
+            return `$${entry.split('-')[0]}k - ${entry.split('-')[1]}k`
+          } else {
+            return `${entry.split(' ')[0]} ${entry.split(' ')[1]} $${entry.split(' ')[2]}k`
+          }
+        }),
         datasets: [{
             backgroundColor: '#d41b2c',
-            data: Object.values(salaries),
+            data: Object.values(map).map(entry => entry.value),
         }]
       })
     },
