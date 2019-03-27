@@ -1,7 +1,7 @@
 <script>
 import { countBy } from "lodash"
 import { ALL_COLLEGES, ALL_YEARS, createArrayOfUniqueValues } from "./utils.js"
-import { Navigation } from "./routes/"
+import Navigation from "./components/Navigation"
 import { getAllData } from "./queries.js"
 import stringData from "./strings.js"
 import API from "./configs.js"

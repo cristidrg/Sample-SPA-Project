@@ -9,7 +9,7 @@ export const getAllData = (offset, max) => `
             final_coop_numbers
             final_salary_recalculated
             employment_type
-            employmemt_status
+            employment_status
             job_year
             student_level
             collegedesc
