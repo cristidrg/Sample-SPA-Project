@@ -37,7 +37,7 @@ export default {
             .reduce((acc, curr) => acc + curr, 0);
 
         const result = Object.entries(listOfIndustries)
-            .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(1)}))
+            .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(2)}))
             .sort((a, b) => b.percentage - a.percentage)
 
         return result;
@@ -68,11 +68,12 @@ export default {
     </header>
 
     <h3 class="industry-data__header">{{ strings.list1_header }}</h3>
-    <ul class="industry-data__list --b-first">
+    <ul class="industry-data__list --b-first" v-if="industriesSortedByPopularity.length">
       <li v-for="(industry, idx) in industriesSortedByPopularity" :key="idx">
         <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
       </li>
     </ul>
+    <no-data v-else />
 
     <div class="industry-data__companies">
       <h3 class="industry-data__header"><span class="d--block w--2/3 w--100@d">{{ strings.list2_header }}</span></h3>
@@ -82,14 +83,13 @@ export default {
         </li>
       </ul>
       <div class="industry-data__companies-nav">
-        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn --sm tc--gray-700" href="javascript:void(0)">
+        <a v-if="companyIdx != 0" v-on:click="companyIdx -= 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">
           <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
         </a>
-        <a v-if="companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1"  href="javascript:void(0)" class="industry-data__companies-navbtn btn --sm tc--gray-700">
+        <a v-if="companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length" v-on:click="companyIdx += 1" class="industry-data__companies-navbtn btn --sm tc--gray-700">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
         </a>
       </div>
     </div>
   </section>
-  <no-data v-else />
 </template>
