@@ -8,7 +8,7 @@ import VueAnimateNumber from 'vue-animate-number'
 import ToggleButton from 'vue-js-toggle-button'
 import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
 
-const DEFAULT_TITLE = "Graduate Outcomes"
+const DEFAULT_TITLE = "Craduate Outcomes at Northeastern University"
 
 //Order of routes is used in prev/next navigation.
 //Routes with redirects are ignored.
