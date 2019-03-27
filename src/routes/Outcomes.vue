@@ -56,7 +56,7 @@ export default {
             outsidePadding: 2,
             fontSize: 12,
             textMargin: 4,
-            precision: 2
+            precision: 1
           }
         },
         maintainAspectRatio: false,
@@ -72,7 +72,7 @@ export default {
         map[key] = Object.assign({}, outcomesToColors[key]);
         map[key].value = counts[key];
         map[key].key = key;
-        map[key].perc = parseFloat((counts[key] / this.outcomes.length) * 100).toFixed(2);
+        map[key].perc = parseFloat((counts[key] / this.outcomes.length) * 100).toFixed(1);
       });
 
       return map;
