@@ -230,7 +230,7 @@ export default {
           (majorFilter.length == 0 || majorFilter.includes(element.majordesc))
       )
     },
-    
+
     isFilterValid(filterValue, filterType) {
       let {
         activeYear,
@@ -285,10 +285,10 @@ export default {
         class="bg--black hidden--up@d ta--c d--flex justify--between pos--absolute pin--t w--100"
         id="app_nav_buttons"
       >
-        <button class="btn --sm __toggler mb--0 pa--1h" id="filter_menu_handle">
+        <button class="btn __toggler mb--0 pa--1h" id="filter_menu_handle">
           Filter
         </button>
-        <button class="btn --sm __toggler mb--0 pa--1h" id="chart_menu_handle">
+        <button class="btn __toggler mb--0 pa--1h" id="chart_menu_handle">
           Segments
         </button>
       </div>
