@@ -76,7 +76,7 @@ export default {
 
     getEmploymentTypes() {
       return this.filteredData
-        .map(element => element.employment_type)
+        .map(element => element.employment_status)
         .filter(element => element != " " && element != "");
     },
 
