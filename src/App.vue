@@ -292,10 +292,10 @@ export default {
         class="bg--black hidden--up@d ta--c d--flex justify--between pos--absolute pin--t w--100"
         id="app_nav_buttons"
       >
-        <button class="btn --sm __toggler mb--0 pa--1h" id="filter_menu_handle">
+        <button class="btn __toggler mb--0 pa--1h" id="filter_menu_handle">
           Filter
         </button>
-        <button class="btn --sm __toggler mb--0 pa--1h" id="chart_menu_handle">
+        <button class="btn __toggler mb--0 pa--1h" id="chart_menu_handle">
           Segments
         </button>
       </div>
@@ -321,8 +321,8 @@ export default {
               <label for="major-filter" class="filter-menu__label">{{ strings.filters.major }}</label>
               <multiselect v-model="filters.activeMajors" :options="getValidMajors" :multiple="true" placeholder="All majors"></multiselect>
             </div>
-            <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#">{{ strings.filters.apply }}</a>
-            <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters">{{ strings.filters.reset }}</a>
+            <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#" v-scroll-to="'#app_content'">{{ strings.filters.apply }}</a>
+            <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters" v-scroll-to="'#app_content'">{{ strings.filters.reset }}</a>
             <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1" >
               <p class="ma--1 ml--0 fs--xs pt--0 fw--700">Increase Contrast</p>
               <toggle-button v-model="contrast" :color="{checked: '#d41b2c', unchecked: '#5c5c5c'}" :width=95 :height=25 :sync="true" :labels="{checked: 'Contrast On', unchecked: 'Contrast Off'}"/>

@@ -2,7 +2,7 @@ const strings = {
     'career': {
         'title': 'Northeastern graduates are in high demand',
         'subtitle': 'The chart below shows what Northeastern graduates are doing within nine months of graduation. Data is based on the annual Destinations survey of our graduating students’ employment and graduate school plans.',
-        'claim': `<div class="fs--d5 tc--red mr--1 d--block">97%</div> of our graduates are employed full-time or in graduate school within nine months of graduation`,
+        'claim': `<div class="fs--d6 tc--red d--block mb--0h">97%</div> of our graduates are employed full-time or in graduate school within nine months of graduation`,
         'note': `NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.
         The percentages are different from those below because graduates who were not seeking employment or were in the military or
         volunteer services are excluded from COR calculation. <br><br>
@@ -39,7 +39,7 @@ const strings = {
         'title': 'Our graduates excel across industries and in top graduate programs',
         'subtitle': 'Our students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits. Data is collected from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
         'list1_header': 'Top Industries',
-        'list2_header': 'Top Hiring Companies',
+        'list2_header': 'Hiring Companies',
         'list2_button': 'View more companies',
         'back_button': 'Back',
         'next_button': 'Next'
@@ -48,7 +48,7 @@ const strings = {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
         'subtitle': 'The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions. The list here, sortable by year and college, comes from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
         'top': `<span class="fs--d5 tc--red mr--1">Top 5</span> attended graduate schools`,
-        'list_header': 'Schools attended by popularity',
+        'list_header': 'Schools attended',
         'list_button': 'View more schools',
         'back_button': 'Back',
         'next_button': 'Next'

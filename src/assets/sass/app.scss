@@ -350,6 +350,7 @@
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 1;
     color: $white;
+    touch-action: none;
 }
 
 .__logo__image {
@@ -364,7 +365,13 @@
     }
 }
 
+.__toggler {
+    font-size: $fs-sm !important;
+    display: inline-flex !important;
+}
+
 .filter-menu {
+    padding-top: 1rem;
     text-align: center;
 
     &__text {
@@ -493,7 +500,12 @@
         }
 
         &__content-wrapper {
+            position: static;
             overflow-x: visible;
+
+            @include mqbp-up(d) {
+                position: absolute;
+            }
         }
 
         &__content {
@@ -521,7 +533,13 @@
 
         &__placeholder {
             color: $gray-800;
-            margin-left: 0.5rem;
+            margin-left: 0.75rem;
+            font-size: 16px;
+
+            @include mqbp-up(d) {
+                margin-left: 0.5rem;
+                font-size: $fs-xs;
+            }
         }
 
         &__option {
@@ -608,8 +626,11 @@
     padding-right: 0;
     color: white;
     padding: 0 1rem;
-    display: flex;
     justify-content: center;
+
+    @include mqbp-up(d) {
+        display: flex;
+    }
 
     &__text {
         @extend .ls--loose;
