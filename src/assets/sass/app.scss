@@ -130,6 +130,7 @@
 
     &__companies {
         position: relative;
+        z-index: -1; // for keeping below no-data modal
 
         &-nav {
             position: absolute;
