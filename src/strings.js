@@ -39,7 +39,7 @@ const strings = {
         'title': 'Our graduates excel across industries and in top graduate programs',
         'subtitle': 'Our students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits. Data is collected from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
         'list1_header': 'Top Industries',
-        'list2_header': 'Top Hiring Companies',
+        'list2_header': 'Hiring Companies',
         'list2_button': 'View more companies',
         'back_button': 'Back',
         'next_button': 'Next'

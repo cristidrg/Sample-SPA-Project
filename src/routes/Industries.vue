@@ -78,8 +78,8 @@ export default {
     <div class="industry-data__companies">
       <h3 class="industry-data__header"><span class="d--block w--2/3 w--100@d">{{ strings.list2_header }}</span></h3>
       <ul class="industry-data__list">
-        <li v-for="(company, idx) in companiesSortedByPopularity.slice(companyIdx * companyPageSize, (companyIdx + 1) * companyPageSize)" :key="idx">
-          {{ company.name }}
+        <li v-for="(company, idx) in companiesSortedByName.slice(companyIdx * companyPageSize, (companyIdx + 1) * companyPageSize)" :key="idx">
+          {{ company }}
         </li>
       </ul>
       <div class="industry-data__companies-nav">
