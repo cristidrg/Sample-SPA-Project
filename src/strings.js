@@ -53,7 +53,7 @@ const strings = {
         'title': 'Our graduates command competitive starting salaries',
         'subtitle': 'The annual Destinations survey asks our graduating students to tell us their starting salary. Below is a breakdown of the percentage of students that fall into a particular salary range.',
         'labelX': 'Salary range',
-        'labelY': 'Student percentage'
+        'labelY': 'Students'
     },
     'filters': {
         "year": "Class Year",
