@@ -58,7 +58,7 @@ export default {
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters" v-scroll-to="'#app_content'">{{ strings.reset }}</a>
             <div class="d--flex flex--middle bc--gray bwa--0 bwt--1 pt--1 mt--1" >
                 <p class="ma--1 ml--0 fs--xs pt--0 fw--700">{{ strings.contrast }}</p>
-                <toggle-button :value="contrast" @change="$emit('update:contrast', $event.value)" :color="{checked: '#d41b2c', unchecked: '#5c5c5c'}" :width=95 :height=25 :sync="true" :labels="{checked: strings.contrastOn, unchecked: strings.contrastOff}"/>
+                <toggle-button :value="contrast" @change="$emit('update:contrast', $event.value)" :color="{checked: '#d41b2c', unchecked: '#aaaaaa'}" :width=95 :height=25 :sync="true" :labels="{checked: strings.contrastOn, unchecked: strings.contrastOff}"/>
             </div>
         </nav>
     </div>
