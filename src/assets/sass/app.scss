@@ -537,7 +537,7 @@
         &__input {
             font-size: 17px;
             border: 0 none;
-            padding: 5px 7px 10px;
+            padding: 3px 7px;
 
             @include mqbp-up(d) {
                 font-size: $fs-xs;
@@ -610,8 +610,8 @@
         }
 
         &__tags {
-            height: 41px;
-            min-height: 41px;
+            height: auto;
+            min-height: auto;
             border-radius: 0;
             border: 1px solid $gray;
             background: #fff;
@@ -621,9 +621,11 @@
             }
         }
 
-        &\--active {
+        &--active {
             border-left: 3px solid $gray-800;
             background-color: $gray-100 !important;
+            min-height: 41px;
+            z-index: auto;
         }
     }
 }
