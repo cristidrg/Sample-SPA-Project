@@ -69,7 +69,7 @@ export default {
 
     <h3 class="industry-data__header">{{ strings.list1_header }}</h3>
     <ul class="industry-data__list --b-first">
-      <li v-for="(industry, idx) in industriesSortedByPopularity.slice(0, 16)" :key="idx">
+      <li v-for="(industry, idx) in industriesSortedByPopularity.slice(0, 12)" :key="idx">
         <span class="industry-data__perc">{{ industry.percentage }}%</span> {{ industry.name }}
       </li>
     </ul>
