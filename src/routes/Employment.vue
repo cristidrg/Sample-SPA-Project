@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     renderLabels: function (args) {
-      if (args.percentage < 1) {
+      if (args.percentage < 3) {
         return '';
       } else {
         return args.percentage + '%';

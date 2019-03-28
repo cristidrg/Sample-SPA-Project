@@ -64,7 +64,7 @@ export default {
     }
   },
   computed: {
-    dataSetWithAttributes() {
+    sortedDataSet() {
       const counts = countBy(this.outcomes);
       let map = {}
 
@@ -72,13 +72,27 @@ export default {
         map[key] = Object.assign({}, outcomesToColors[key]);
         map[key].value = counts[key];
         map[key].key = key;
-        map[key].perc = parseFloat((counts[key] / this.outcomes.length) * 100).toFixed(1);
+        map[key].perc = Number(parseFloat((counts[key] / this.outcomes.length) * 100).toFixed(1));
       });
 
-      return map;
+      return Object.values(map).sort((a,b) => a.order - b.order);
+    },
+    claimStatistic() {
+      let data = this.sortedDataSet;
+
+      if (!data[0]) {
+        data[0] = {perc: 0}
+      }
+      console.log(data);
+
+      if (!data[1]) {
+       data[1] = {perc: 0}
+      }
+
+      return parseFloat(data[0].perc + data[1].perc).toFixed(1);
     },
     careerOutcomesChartData() {
-      const data = Object.values(this.dataSetWithAttributes).sort((a,b) => a.order - b.order);
+      const data = this.sortedDataSet;
 
       return ({
         labels: data.map(entry => entry.key),
@@ -121,9 +135,12 @@ export default {
         <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions"/>
       </div>
       <div class="col w--30@t d--flex justify--center">
-        <div class="order--1 order--0@t ot--2@t ol--1@t mb--2@t pa--2 bg--gray-100" v-html="strings.claim"/>
+        <div class="order--1 order--0@t ot--2@t ol--1@t mb--2@t pa--2 bg--gray-100">
+          <div class="fs--d6 tc--red d--block mb--0h">{{ claimStatistic }}%</div> 
+          {{ strings.claim }}
+        </div>
         <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm">
-          <li v-for="(outcome, idx) in Object.values(dataSetWithAttributes).sort((a,b) => a.order - b.order)" :key="idx">
+          <li v-for="(outcome, idx) in sortedDataSet" :key="idx">
             <span class="career-outcomes__legend-perc" :style="{color: outcome.color}"></span><b>{{ outcome.perc }}</b>% {{ outcome.key }}
           </li>
         </ul>
