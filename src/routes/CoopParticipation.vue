@@ -85,7 +85,12 @@ export default {
     NoData
   },
   mounted() {
-    $(this.$refs.check).carousel()
+    $(this.$refs.check).carousel({
+      theme: '',
+      controls: false,
+      autoHeight: true,
+      infinite: true
+    });
   }
 };
 </script>
@@ -171,23 +176,23 @@ export default {
       </div>
 
 
-      <div class="carousel ta--c mt--3 mb--0" ref="check" data-carousel-options='{"infinite":"true"}'>
+      <div class="carousel ta--c mt--3 mb--0" ref="check">
         <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
             <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_1_Text }}&rdquo;</p>
-            <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_1_Name }}, {{ strings.carousel.testimonial_1_Company }}</i></p>
+            <div class="measure mx--auto fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_1_Name }}, {{ strings.carousel.testimonial_1_Company }}</i></div>
           </div>
         </div>
         <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
             <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_2_Text }}&rdquo;</p>
-            <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_2_Name }}, {{ strings.carousel.testimonial_2_Company }}</i></p>
+            <div class="measure mx--auto fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_2_Name }}, {{ strings.carousel.testimonial_2_Company }}</i></div>
           </div>
         </div>
         <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
             <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_3_Text }}&rdquo;</p>
-            <p class="fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_3_Name }}, {{ strings.carousel.testimonial_3_Company }}</i></p>
+            <div class="measure mx--auto fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_3_Name }}, {{ strings.carousel.testimonial_3_Company }}</i></div>
           </div>
         </div>
       </div>
