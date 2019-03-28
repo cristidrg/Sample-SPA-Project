@@ -12,7 +12,7 @@ import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries
 
 Es6Promise.polyfill();
 
-const DEFAULT_TITLE = "Craduate Outcomes at Northeastern University"
+const DEFAULT_TITLE = "Career Outcomes Powered by Experience - Northeastern University"
 
 //Order of routes is used in prev/next navigation.
 //Routes with redirects are ignored.
@@ -22,55 +22,55 @@ const DEFAULT_TITLE = "Craduate Outcomes at Northeastern University"
 export const routes = [
   {
     path: '/',
-    redirect: 'outcomes',
+    redirect: 'careers',
   },
   {
-    path: '/outcomes',
-    name: 'outcomes',
+    path: '/careers',
+    name: 'careers',
     component: Outcomes,
     meta: {
-      title: 'Outcomes - Career',
-      description: 'Almost all of our students are employed right away!'
+      title: 'Career Outcomes Powered by Experience - Northeastern University',
+      description: 'Northeastern students graduate with full resumés of real-world experience closely tied to their career paths. They’ve learned how to solve problems as part of a team of professionals and navigate the unexpected challengs of today’s fast-paced workplace.'
     }
   },
   {
     path: '/employment-status',
     component: Employment,
     meta: {
-      title: 'Outcomes - Employment',
-      description: 'So many employers to choose from!'
+      title: 'Employment Status - Career Outcomes at Northeastern University',
+      description: 'This data shows the percentages of graduates reporting their employment status, including whether they’re employed full- or part-time, in graduate school, volunteering or in the military, or still seeking employment.'
     }
   },
   {
     path: '/coop-participation',
     component: CoopParticipation,
     meta: {
-      title: 'Outcomes - Coop Participation',
-      description: 'Our students take advantage of our programs!'
+      title: 'Co-op Participation - Career Outcomes at Northeastern University',
+      description: 'Co-op (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest.'
     }
   },
   {
     path: '/industries',
     component: Industries,
     meta: {
-      title: 'Outcomes - Industries',
-      description: 'Our students are employed only by top companies',
+      title: 'Industries - Career Outcomes at Northeastern University',
+      description: 'Our students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits.',
     }
   },
   {
-    path: '/graduate-outcomes',
+    path: '/graduate-school',
     component: Graduate,
     meta: {
-      title: 'Home Page - Example App',
-      description: 'The home page of our example app.'
+      title: 'Graduate School - Career Outcomes at Northeastern University',
+      description: 'The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions.'
     }
   },
   {
     path: '/salaries',
     component: Salaries,
     meta: {
-      title: 'Outcomes - Salaries',
-      description:'Our students make so much money!'
+      title: 'Starting Salaries - Career Outcomes at Northeastern University',
+      description: 'The annual Destinations survey asks our graduating students to tell us their starting salary. View a breakdown of the percentage of students that fall into a particular salary range.'
     }
   },
 ];
