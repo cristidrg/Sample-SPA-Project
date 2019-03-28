@@ -83,7 +83,6 @@ export default {
       if (!data[0]) {
         data[0] = {perc: 0}
       }
-      console.log(data);
 
       if (!data[1]) {
        data[1] = {perc: 0}
