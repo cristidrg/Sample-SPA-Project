@@ -89,7 +89,8 @@ export default {
        data[1] = {perc: 0}
       }
 
-      return parseFloat(data[0].perc + data[1].perc).toFixed(1);
+      const result = parseFloat(data[0].perc + data[1].perc).toFixed(1);
+      return result == 100 ? 100 : result;
     },
     careerOutcomesChartData() {
       const data = this.sortedDataSet;
