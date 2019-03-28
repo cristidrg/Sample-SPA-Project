@@ -37,7 +37,7 @@ export default {
             .reduce((acc, curr) => acc + curr, 0);
 
         const result = Object.entries(listOfIndustries)
-            .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(2)}))
+            .map(entry => ({name: entry[0], percentage: new Number((100 * entry[1]) / total).toFixed(1)}))
             .sort((a, b) => b.percentage - a.percentage)
 
         return result;
