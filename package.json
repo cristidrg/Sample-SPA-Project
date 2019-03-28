@@ -19,8 +19,10 @@
   },
   "dependencies": {
     "axios": "^0.18",
+    "babel-polyfill": "^6.26.0",
     "chart.js": "^2.7.3",
     "chartjs-plugin-labels": "^1.1.0",
+    "es6-promise": "^4.2.6",
     "feather-icons": "^4.7.3",
     "formstone": "^1.4.8",
     "jquery": "^3.2.0",
