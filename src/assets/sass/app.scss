@@ -10,6 +10,10 @@
     margin-left: 0;
 }
 
+.masthead .__logo__image {
+    max-height: 4rem;
+}
+
 .section {
     &:not(.\--hero) > .__header {
         .__title {
