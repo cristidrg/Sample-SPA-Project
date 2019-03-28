@@ -11,7 +11,9 @@
 }
 
 .masthead .__logo__image {
-    max-height: 4rem;
+    @include mqbp-up(d) {
+        max-height: 4rem;
+    }
 }
 
 .section {
@@ -89,6 +91,7 @@
         align-self: center;
         margin: 0;
         width: 5%;
+        white-space: nowrap;
     }
 }
 
@@ -828,3 +831,7 @@
     .tc--gray-500 { color: $gray-700; }
 }
 
+.vue-js-switch .v-switch-label {
+    &.v-right { color: $black !important; }
+    &.v-left { color: $white !important; }
+}
