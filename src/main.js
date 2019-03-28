@@ -1,12 +1,16 @@
 import 'jquery'
 import 'kernl-ui'
 
+import Es6Promise from 'es6-promise'
+import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import VueAnimateNumber from 'vue-animate-number'
 import ToggleButton from 'vue-js-toggle-button'
 import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
+
+Es6Promise.polyfill();
 
 const DEFAULT_TITLE = "Craduate Outcomes at Northeastern University"
 
