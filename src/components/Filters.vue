@@ -52,7 +52,7 @@ export default {
             </div>
             <div class="filter-menu__wrapper mb--2" tabIndex="0">
                 <label for="major-filter" class="filter-menu__label">{{ strings.major }}</label>
-                <multiselect @select="$emit('update:activeMajors', [...activeMajors, $event])" @remove="$emit('update:activeMajors', activeMajors.filter(el => el != $event))" :value="activeMajors" :options="validMajors" :multiple="true" placeholder="All majors"></multiselect>
+                <multiselect @select="$emit('update:activeMajors', [...activeMajors, $event])" @remove="$emit('update:activeMajors', activeMajors.filter(el => el != $event))" :class="activeMajors.length > 0 ? 'multiselect--active' : ''" :value="activeMajors" :options="validMajors" :multiple="true" placeholder="All majors"></multiselect>
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#" v-scroll-to="'#app_content'">{{ strings.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters" v-scroll-to="'#app_content'">{{ strings.reset }}</a>
