@@ -514,6 +514,7 @@
 
     .multiselect {
         color: $gray-800;
+        box-sizing: border-box;
 
         &__element {
             padding: 0;
