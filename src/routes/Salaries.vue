@@ -10,7 +10,7 @@ const salariesToOrder = {
   "40-49": 2,
   "50-59": 3,
   "60-69": 4,
-  "$70K and more": 5
+  "more than 70": 5
 };
 
 
