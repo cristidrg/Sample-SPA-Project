@@ -70,6 +70,19 @@
         margin-bottom: 3.5rem;
     }
 
+    &__y-information {
+        display: flex;
+        width: 4%;
+    }
+
+    &__y-tick {
+        align-items: end;
+        justify-self: flex-end;
+        display: block;
+        position: relative;
+        left: 1rem;
+    }
+
     &__y-label {
         display: block;
         transform: rotate(-90deg);
