@@ -19,19 +19,19 @@ const employmentToColors = {
     order: 3,
   },
   'Participating in a volunteer or service program': {
-    color: '#00cfb5', // teal
+    color: '#ffbf3d', // yellow
     order: 4,
   },
   'Currently not employed but seeking employment': {
-    color: '#ffbf3d', // yellow
+    color: '#ff854f', // orange
     order: 5
   },
   'Currently not employed and not seeking employment': {
-    color: '#ff854f', // orange
+    color: '#824091', // purple
     order: 6,
   },
   'Serving in the U.S. military': {
-    color: '#824091', // purple
+    color: '#00cfb5', // teal
     order: 7,
   }
 };
