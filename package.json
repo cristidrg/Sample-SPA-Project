@@ -18,8 +18,8 @@
     "sass-loader": "^7.1.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.0",
     "axios": "^0.18",
-    "babel-polyfill": "^6.26.0",
     "chart.js": "^2.7.3",
     "chartjs-plugin-labels": "^1.1.0",
     "es6-promise": "^4.2.6",
