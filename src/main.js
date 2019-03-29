@@ -1,8 +1,8 @@
 import 'jquery'
 import 'kernl-ui'
 
-import Es6Promise from 'es6-promise'
 import 'babel-polyfill'
+import Es6Promise from 'es6-promise'
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
