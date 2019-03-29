@@ -1,5 +1,4 @@
 import 'jquery'
-import 'kernl-ui'
 
 import "@babel/polyfill";
 import Es6Promise from 'es6-promise'
