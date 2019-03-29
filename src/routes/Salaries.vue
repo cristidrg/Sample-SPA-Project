@@ -5,12 +5,12 @@ import { countBy } from 'lodash';
 import NoData from '../components/NoData.vue';
 
 const salariesToOrder = {
-  "less than 30": 0,
-  "30-39": 1,
-  "40-49": 2,
-  "50-59": 3,
-  "60-69": 4,
-  "more than 70": 5
+  "Less than $30K": 0,
+  "$30K-$39K": 1,
+  "$40K-$49K": 2,
+  "$50K-$59K": 3,
+  "$60K-$69K": 4,
+  "$70K and more": 5
 };
 
 
@@ -43,13 +43,7 @@ export default {
       let salaryData = Object.values(map).sort((a,b) => a.order - b.order);
 
       return ({
-        labels: salaryData.map(salary => salary.key).map(entry => {
-          if (entry.split('-').length == 2) {
-            return `$${entry.split('-')[0]}k - ${entry.split('-')[1]}k`
-          } else {
-            return `${entry.split(' ')[0]} ${entry.split(' ')[1]} $${entry.split(' ')[2]}k`
-          }
-        }),
+        labels: salaryData.map(salary => salary.key),
         datasets: [{
             backgroundColor: '#d41b2c',
             data: salaryData.map(entry => entry.value),
