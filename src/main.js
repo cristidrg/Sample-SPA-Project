@@ -113,11 +113,6 @@ new Vue({ el: '#hero_btn' })
 let $filter = $('#filter_menu')
 let $browse = $('#chart_menu')
 
-$('#no_data_filter_menu').on('click', '.no-data', function() {
-  alert('alert')
-  // $filter.navigation('open')
-})
-
 $filter.navigation({
   type: 'overlay',
   gravity: 'left',
