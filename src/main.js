@@ -1,4 +1,4 @@
-import 'jquery'
+import 'kernl-ui/dist/scripts/main.js'
 
 import "@babel/polyfill";
 import Es6Promise from 'es6-promise'
