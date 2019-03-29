@@ -65,10 +65,13 @@ export default {
         </li>
       </ul>
       <div class="graduate-data__schools-nav">
-        <a v-if="schoolIdx != 0" v-on:click="schoolIdx -= 1" class="graduate-data__schools-navbtn btn --sm tc--gray-700">
+        <a v-on:click="schoolIdx != 0 ? schoolIdx -= 1 : null" :class="`graduate-data__schools-navbtn btn --sm tc--gray-700 ${schoolIdx != 0 ? '' : 'bg--gray-500'}`">
           <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
         </a>
-        <a v-if="schoolPageSize < schoolsSortedByName.length && (schoolIdx + 1) * schoolPageSize < schoolsSortedByName.length" v-on:click="schoolIdx += 1" class="graduate-data__schools btn --sm tc--gray-700">
+        <a v-on:click="schoolPageSize < schoolsSortedByName.length && (schoolIdx + 1) * schoolPageSize < schoolsSortedByName.length ? schoolIdx += 1 : null" 
+          :class="`graduate-data__schools btn --sm tc--gray-700
+          ${schoolPageSize < schoolsSortedByName.length && (schoolIdx + 1) * schoolPageSize < schoolsSortedByName.length ? '' : 'bg--gray-500'}
+          `">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
         </a>
       </div>
