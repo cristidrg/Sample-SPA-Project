@@ -12,6 +12,8 @@ import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries
 
 Es6Promise.polyfill();
 
+alert('new code');
+
 const DEFAULT_TITLE = "Career Outcomes Powered by Experience - Northeastern University"
 
 //Order of routes is used in prev/next navigation.
