@@ -2,7 +2,7 @@ const strings = {
     'career': {
         'title': 'Northeastern graduates are in high demand',
         'subtitle': 'The chart below shows what Northeastern graduates are doing within nine months of graduation. Data is based on the annual Destinations survey of our graduating students’ employment and graduate school plans.',
-        'claim': `of our graduates are employed full-time or in graduate school within nine months of graduation`,
+        'claim': `of our graduates are employed or in graduate school within nine months of graduation.`,
         'note': `<p>NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.</p><p>COR numerator: Employed (full-time or part-time) and in graduate school.</p><p>COR denominator: Employed (full-time or part-time), in graduate school, and not employed but seeking job.</p>`,
     },
     'employment': {
