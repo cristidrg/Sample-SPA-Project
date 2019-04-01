@@ -1,9 +1,10 @@
 <script>
-import stringData from '../strings.js';
-import { countBy } from 'lodash';
-import Person from '../assets/person-svg';
-import NoData from '../components/NoData.vue';
+import stringData from '../strings.js'
+import { countBy } from 'lodash'
+import Person from '../assets/person-svg'
+import NoData from '../components/NoData.vue'
 import $ from 'jquery'
+import 'formstone/src/js/carousel'
 
 export default {
   name: 'coopParticipation',
@@ -197,5 +198,5 @@ export default {
         </div>
       </div>
     </section>
-    <no-data  v-else/>
+    <no-data v-else/>
 </template>
