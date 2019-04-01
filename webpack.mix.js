@@ -1,5 +1,4 @@
 let mix = require('laravel-mix');
-mix.copyDirectory('src/assets/fonts/*', 'public/fonts');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -13,5 +12,4 @@ mix.copyDirectory('src/assets/fonts/*', 'public/fonts');
 
 mix.js('src/main.js', 'public/js')
   .sass('src/assets/sass/app.scss', 'public/css')
-  .copy('src/assets/fonts/*', 'public/fonts')
   .copy('src/assets/images/*', 'public/images');
