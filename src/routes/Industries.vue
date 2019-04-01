@@ -83,13 +83,13 @@ export default {
       </ul>
       <div class="industry-data__companies-nav">
         <a v-on:click="companyIdx != 0 ? companyIdx -= 1 : null" href="javascript:void(0)" 
-          :class="`industry-data__companies-navbtn btn --sm tc--gray-700 ${companyIdx != 0 ? '' : 'bg--gray-500'}`" >
+          :class="`industry-data__companies-navbtn btn --sm tc--gray-700 ${companyIdx != 0 ? '' : '--disabled'}`" >
           <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
         </a>
         <a v-on:click="companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length ? companyIdx += 1 : null"  
           href="javascript:void(0)" 
           :class="`industry-data__companies-navbtn btn --sm tc--gray-700 
-            ${companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length ? '' : 'bg--gray-500'}`">
+            ${companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length ? '' : '--disabled'}`">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
         </a>
       </div>

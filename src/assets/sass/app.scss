@@ -790,6 +790,18 @@
     }
 }
 
+.\--disabled {
+    border-color: $gray-200;
+    color: $gray-300;
+
+    &:hover {
+        cursor: not-allowed;
+        border-color: $gray-200;
+        color: $gray-300;
+        background-color: transparent;
+    }
+}
+
 // override formstone styles (required)
 .fs-navigation-overlay-nav.fs-navigation-enabled {
     background-color: $gray-800;
@@ -803,6 +815,12 @@
     @extend .bg--black;
     @extend .bc--none;
     @extend .tt--caps;
+}
+
+.fs-navigation-enabled.fs-navigation-open {
+    @include mqbp-up(t) {
+        width: 24rem;
+    }
 }
 
 // Vue Transitions
