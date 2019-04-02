@@ -91,6 +91,8 @@
     }
 }
 
+.__filtered #filter_menu_handle .feather { color: $yellow; }
+
 .active-filters {
     &__list {
         list-style-type: none;

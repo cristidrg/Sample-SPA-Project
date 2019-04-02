@@ -148,7 +148,7 @@ export default {
       </div>
       <div class="col w--30@t d--flex justify--center">
         <div class="order--1 order--0@t ot--2@t ol--1@t mb--2@t pa--2 bg--gray-100 w--100">
-          <div class="fs--d6 fw--700 tc--red d--block mb--0h">{{ claimStatistic }}%</div>
+          <div class="fs--d6 fw--700 tc--red d--block mb--0h">{{ claimStatistic }}<span class="fw--400 tt--caps">%</span></div>
           {{ strings.claim }}
         </div>
         <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm w--100">
