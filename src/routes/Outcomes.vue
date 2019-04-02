@@ -37,7 +37,19 @@ export default {
           display: false
         },
         tooltips: {
-          enabled: true
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var dataset = data.datasets[tooltipItem.datasetIndex];
+              var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+              var total = meta.total;
+              var currentValue = dataset.data[tooltipItem.index];
+              var percentage = parseFloat((currentValue/total*100).toFixed(1));
+              return percentage + '%';
+            },
+            title: function(tooltipItem, data) {
+              return data.labels[tooltipItem[0].index];
+            }
+          }
         },
         layout: {
           padding: {
@@ -135,12 +147,12 @@ export default {
         <pie-chart :chartData="careerOutcomesChartData" :styles="outcomesStyle" :options="outcomesOptions"/>
       </div>
       <div class="col w--30@t d--flex justify--center">
-        <div class="order--1 order--0@t ot--2@t ol--1@t mb--2@t pa--2 bg--gray-100">
+        <div class="order--1 order--0@t ot--2@t ol--1@t mb--2@t pa--2 bg--gray-100 w--100">
           <div class="fs--d6 fw--700 tc--red d--block mb--0h">{{ claimStatistic }}%</div>
           {{ strings.claim }}
         </div>
-        <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm">
-          <li v-for="(outcome, idx) in sortedDataSet" :key="idx">
+        <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm w--100">
+          <li v-for="(outcome, idx) in sortedDataSet" :key="idx" v-if="outcome.perc > 0">
             <span class="career-outcomes__legend-perc" :style="{color: outcome.color}"></span><b>{{ outcome.perc }}</b>% {{ outcome.key }}
           </li>
         </ul>
