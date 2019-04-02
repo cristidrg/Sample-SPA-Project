@@ -21,10 +21,23 @@
             border-bottom: 1px solid $gray;
         }
 
-        .__subtitle { font-size: $fs-root; }
+        .__subtitle {
+            font-size: $fs-d1;
+            font-weight: 400;
+            line-height: 1.6;
+
+            @include mqbp-up(t) {
+                font-size: 1.1rem;
+                font-weight: 300;
+                line-height: 1.45;
+            }
+        }
     }
 
     &.\--hero {
+        padding-top: 4.4rem;
+        padding-bottom: 4.4rem;
+
         > .__header {
             flex: 0;
         }
@@ -33,10 +46,11 @@
         .__subtitle { animation: fadeDown 1.5s ease-in-out 0s 1; }
 
         .__subtitle {
-            font-size: $fs-root;
+            font-size: $fs-d1;
+            font-weight: 400;
 
-            @include mqbp-up(d) {
-                font-size: $fs-d1;
+            @include mqbp-up(t) {
+                font-weight: 300;
             }
         }
 
@@ -187,6 +201,11 @@
 .career-outcomes {
     &__legend {
         list-style-type: none;
+        font-size: $fs-root;
+
+        @include mqbp-up(t) {
+            font-size: $fs-sm;
+        }
 
         @include mqbp-up(d) {
             padding-left: 0.5rem;

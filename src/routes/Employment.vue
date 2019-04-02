@@ -172,7 +172,7 @@ export default {
         <p class="employment-status__chart-support tc--blue-dark">{{centerPerc}}%<span class="tc--black">{{strings.centerText}}</span></p>
       </div>
       <div class="col w--30@t d--flex justify--center">
-        <ul class="employment-status__legend fs--sm w--100">
+        <ul class="employment-status__legend w--100">
           <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry" v-if="data.perc > 0">
             <span class="employment-status__legend-perc" :style="{color: data.color}"></span><b>{{ data.perc }}</b>% {{ data.key }}
           </li>

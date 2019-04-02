@@ -10,7 +10,7 @@ const outcomesToColors = {
     color: '#385775',
     order: 1
   },
-  'In graduate school': {
+  'Graduate school': {
     color: '#006eb5',
     order: 2
   },
@@ -151,8 +151,8 @@ export default {
           <div class="fs--d6 fw--700 tc--red d--block mb--0h">{{ claimStatistic }}<span class="fw--400 tt--caps">%</span></div>
           {{ strings.claim }}
         </div>
-        <ul class="career-outcomes__legend d--flex order--0 order--1@t fs--sm w--100">
-          <li v-for="(outcome, idx) in sortedDataSet" :key="idx" v-if="outcome.perc > 0">
+        <ul class="career-outcomes__legend d--flex order--0 order--1@t w--100">
+          <li v-for="(outcome, idx) in sortedDataSet" :key="idx" v-show="outcome.perc > 0">
             <span class="career-outcomes__legend-perc" :style="{color: outcome.color}"></span><b>{{ outcome.perc }}</b>% {{ outcome.key }}
           </li>
         </ul>
