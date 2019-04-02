@@ -43,7 +43,7 @@ export default {
         return result;
     },
   },
-  watch: { 
+  watch: {
     companies: function(newVal, oldVal) {
       this.companyIdx = 0;
     }
@@ -82,16 +82,16 @@ export default {
         </li>
       </ul>
       <div class="industry-data__companies-nav">
-        <a v-on:click="companyIdx != 0 ? companyIdx -= 1 : null" href="javascript:void(0)" 
-          :class="`industry-data__companies-navbtn btn --sm tc--gray-700 ${companyIdx != 0 ? '' : '--disabled'}`" >
+        <button v-on:click="companyIdx != 0 ? companyIdx -= 1 : null" href="javascript:void(0)"
+          class="`industry-data__companies-navbtn btn --sm" :disabled="companyIdx == 0" >
           <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
-        </a>
-        <a v-on:click="companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length ? companyIdx += 1 : null"  
-          href="javascript:void(0)" 
-          :class="`industry-data__companies-navbtn btn --sm tc--gray-700 
-            ${companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length ? '' : '--disabled'}`">
+        </button>
+        <button v-on:click="companyPageSize < companiesSortedByName.length && (companyIdx + 1) * companyPageSize < companies.length ? companyIdx += 1 : null"
+          href="javascript:void(0)"
+          class="industry-data__companies-navbtn btn --sm"
+          :disabled="(companyIdx+1)*companyPageSize > companiesSortedByName.length">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
-        </a>
+        </button>
       </div>
     </div>
   </section>
