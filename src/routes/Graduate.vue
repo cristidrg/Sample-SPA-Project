@@ -27,7 +27,7 @@ export default {
             .sort((a, b) => b.count - a.count);
     },
   },
-  watch: { 
+  watch: {
     schools: function(newVal, oldVal) {
       this.schoolIdx = 0;
     }
@@ -65,15 +65,13 @@ export default {
         </li>
       </ul>
       <div class="graduate-data__schools-nav">
-        <a v-on:click="schoolIdx != 0 ? schoolIdx -= 1 : null" :class="`graduate-data__schools-navbtn btn --sm tc--gray-700 ${schoolIdx != 0 ? '' : '--disabled'}`">
+        <button v-on:click="schoolIdx != 0 ? schoolIdx -= 1 : null" class="graduate-data__schools-navbtn btn --sm tc--gray-700" :disabled="schoolIdx == 0">
           <chevron-left /><span class="sr--only">{{strings.back_button}}</span>
-        </a>
-        <a v-on:click="schoolPageSize < schoolsSortedByName.length && (schoolIdx + 1) * schoolPageSize < schoolsSortedByName.length ? schoolIdx += 1 : null" 
-          :class="`graduate-data__schools btn --sm tc--gray-700
-          ${schoolPageSize < schoolsSortedByName.length && (schoolIdx + 1) * schoolPageSize < schoolsSortedByName.length ? '' : '--disabled'}
-          `">
+        </button>
+        <button v-on:click="schoolPageSize < schoolsSortedByName.length && (schoolIdx + 1) * schoolPageSize < schoolsSortedByName.length ? schoolIdx += 1 : null"
+          class="graduate-data__schools btn --sm tc--gray-700" :disabled="(schoolIdx+1)*schoolPageSize > schoolsSortedByName.length">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
-        </a>
+        </button>
       </div>
     </div>
     <no-data v-else />
