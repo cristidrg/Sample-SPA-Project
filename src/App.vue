@@ -275,7 +275,7 @@ export default {
 
 <template>
   <main id="app" :class="{ contrast: contrast }">
-    <section class="section --flush py--0 vh--100" id="app_content">
+    <section class="section --flush py--0 vh--100" id="app_content" :class="{ __filtered: areFiltersApplied }">
       <section id="app_nav_menus">
         <segment-nav />
       </section>
