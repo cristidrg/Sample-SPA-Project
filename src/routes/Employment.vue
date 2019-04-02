@@ -97,7 +97,19 @@ export default {
             display: false,
           },
           tooltips: {
-            enabled: true
+            callbacks: {
+              label: function(tooltipItem, data) {
+                var dataset = data.datasets[tooltipItem.datasetIndex];
+                var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+                var total = meta.total;
+                var currentValue = dataset.data[tooltipItem.index];
+                var percentage = parseFloat((currentValue/total*100).toFixed(1));
+                return percentage + '%';
+              },
+              title: function(tooltipItem, data) {
+                return data.labels[tooltipItem[0].index];
+              }
+            }
           },
           layout: {
             padding: {
@@ -160,8 +172,8 @@ export default {
         <p class="employment-status__chart-support tc--blue-dark">{{centerPerc}}%<span class="tc--black">{{strings.centerText}}</span></p>
       </div>
       <div class="col w--30@t d--flex justify--center">
-        <ul class="employment-status__legend fs--sm">
-          <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry">
+        <ul class="employment-status__legend fs--sm w--100">
+          <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry" v-if="data.perc > 0">
             <span class="employment-status__legend-perc" :style="{color: data.color}"></span><b>{{ data.perc }}</b>% {{ data.key }}
           </li>
         </ul>

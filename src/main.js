@@ -104,6 +104,9 @@ Vue.component('hero-button', {
   data: function () {
     return {}
   },
+  mounted() {
+    Es6Promise.polyfill();
+  },
   template: '<a class="btn bg--red" v-scroll-to="`#app_content`" href="#/outcomes">See the numbers</a>'
 })
 new Vue({ el: '#hero_btn' })
