@@ -10,7 +10,7 @@ const strings = {
         'subtitle': 'This data shows the percentages of graduates reporting their employment status, including whether they’re employed full- or part-time, in graduate school, volunteering or in the military, or still seeking employment. Data is collected from the annual Destinations survey of our graduating students’ employment and graduate school plans.',
         'claim': `<div class="fs--d5 tc--red mr--1 d--block">100%</div> of Sit Elit Fringilla Magna Tellus.
         nine months of graduation`,
-        'centerText': 'Full time'
+        'centerText': 'Full-time'
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
