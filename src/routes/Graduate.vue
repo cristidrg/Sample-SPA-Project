@@ -47,7 +47,7 @@ export default {
   <section class="section" v-if="schools.length > 2">
     <header class="__header">
       <h2 class="__title">{{ strings.title }}</h2>
-      <div class="__subtitle">{{ strings.subtitle }}</div>
+      <div class="__subtitle" v-html="strings.subtitle"></div>
     </header>
     <div class="graduate-data__banner" v-if="getSchoolsByPopularity.length > 4">
         <p class="graduate-data__top mb--0@t fs--sm w--40@d" v-html="strings.top"></p>
