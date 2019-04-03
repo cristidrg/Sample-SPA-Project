@@ -100,7 +100,7 @@ export default {
     <section class="section coop-participation" v-if="getCoopParticipation.totalNumber != 0 && getCoopParticipation.overallParticipation != 0">
       <header class="__header mb--4">
         <h2 class="__title">{{ strings.title }}</h2>
-        <div class="__subtitle">{{ strings.subtitle }}</div>
+        <div class="__subtitle" v-html="strings.subtitle"></div>
       </header>
       <div class="coop-participation-data">
         <div class="row">
