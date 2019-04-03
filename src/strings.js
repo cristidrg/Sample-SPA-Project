@@ -1,20 +1,20 @@
 const strings = {
     'career': {
         'title': 'Northeastern graduates are in high demand',
-        'subtitle': `The chart below shows what Northeastern graduates are doing within nine months of graduation. Data is based on the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.`,
+        'subtitle': `See what Northeastern graduates are doing within nine months of graduation.`,
         'claim': `of our graduates are employed or in graduate school within nine months of graduation.`,
         'note': `<p>NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.</p><p>COR numerator: Employed (full-time or part-time) and in graduate school.</p><p>COR denominator: Employed (full-time or part-time), in graduate school, and not employed but seeking a job.</p>`,
     },
     'employment': {
         'title': 'Here’s a snapshot of what our graduates are doing post-graduation',
-        'subtitle': `This data shows the employment status of Northeastern graduates, including whether they’re employed full- or part-time, in graduate school, volunteering, in the military, or still seeking employment. Data is collected from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.`,
+        'subtitle': `See the employment status of Northeastern graduates, including whether they’re employed full- or part-time, in graduate school, volunteering, in the military, or still seeking employment.`,
         'claim': `<div class="fs--d5 tc--red mr--1 d--block">100%</div> of Sit Elit Fringilla Magna Tellus.
         nine months of graduation`,
         'centerText': 'Full-time'
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
-        'subtitle': 'Co-op (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete six-month co-op experiences throughout the U.S. and in more than 100 countries. This chart shows how many co-ops our students finished before graduating.',
+        'subtitle': 'Co-op (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete six-month co-op experiences throughout the U.S. and in more than 100 countries. See how many co-ops our students finished before graduating.',
         'label1': 'Overall Co-op Participation',
         'label2': '3+ Co-ops',
         'label3': '2 Co-ops',
@@ -33,7 +33,7 @@ const strings = {
     },
     'industry': {
         'title': 'Our graduates excel across industries and in top graduate programs',
-        'subtitle': `Our students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits. Data is collected from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.`,
+        'subtitle': `Our students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits.`,
         'list1_header': 'Industries',
         'list2_header': 'Hiring Companies',
         'list2_button': 'View more companies',
@@ -42,7 +42,7 @@ const strings = {
     },
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
-        'subtitle': `The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions. The list here, sortable by year and college, comes from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.`,
+        'subtitle': `The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions.`,
         'top': `<span class="fs--d5 tc--red fw--700 mr--1 pb--0h">Top 5</span> graduate schools attended`,
         'list_header': 'Schools attended',
         'list_button': 'View more schools',
@@ -51,7 +51,7 @@ const strings = {
     },
     'salaries': {
         'title': 'Our graduates command competitive starting salaries',
-        'subtitle': `The annual <i>Destinations Survey</i> asks our graduating students to tell us their starting salary. Below is a breakdown of the percentage of students that fall into a particular salary range.`,
+        'subtitle': `See a breakdown of the percentage of students that fall into a particular salary range.`,
         'labelX': 'Salary range',
         'labelY': 'Student %'
     },
@@ -71,6 +71,9 @@ const strings = {
         'forward': 'Next',
         'backward': 'Back'
     },
+    'citation': {
+        'source': `Source: The data in this presentation is collected from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.`
+    }
 }
 
 export default strings;
