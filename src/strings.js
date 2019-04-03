@@ -1,13 +1,13 @@
 const strings = {
     'career': {
         'title': 'Northeastern graduates are in high demand',
-        'subtitle': `See what Northeastern graduates are doing within nine months of graduation.`,
+        'subtitle': 'See what Northeastern graduates are doing within nine months of graduation.',
         'claim': `of our graduates are employed or in graduate school within nine months of graduation.`,
         'note': `<p>NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.</p><p>COR numerator: Employed (full-time or part-time) and in graduate school.</p><p>COR denominator: Employed (full-time or part-time), in graduate school, and not employed but seeking a job.</p>`,
     },
     'employment': {
         'title': 'Here’s a snapshot of what our graduates are doing post-graduation',
-        'subtitle': `See the employment status of Northeastern graduates, including whether they’re employed full- or part-time, in graduate school, volunteering, in the military, or still seeking employment.`,
+        'subtitle': 'View the percentage of graduates reporting their employment status as employed full- or part-time, in graduate school, volunteering or in the military, or still seeking employment.',
         'claim': `<div class="fs--d5 tc--red mr--1 d--block">100%</div> of Sit Elit Fringilla Magna Tellus.
         nine months of graduation`,
         'centerText': 'Full-time'
@@ -33,7 +33,7 @@ const strings = {
     },
     'industry': {
         'title': 'Our graduates excel across industries and in top graduate programs',
-        'subtitle': `Our students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits.`,
+        'subtitle': 'Northeastern students are hired by a range of industries and companies, from small startups to large organizations, to government and non-profits.',
         'list1_header': 'Industries',
         'list2_header': 'Hiring Companies',
         'list2_button': 'View more companies',
@@ -42,7 +42,7 @@ const strings = {
     },
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
-        'subtitle': `The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions.`,
+        'subtitle': 'The undergraduate research opportunities students have at Northeastern set our graduate school applicants apart from those at other institutions.',
         'top': `<span class="fs--d5 tc--red fw--700 mr--1 pb--0h">Top 5</span> graduate schools attended`,
         'list_header': 'Schools attended',
         'list_button': 'View more schools',
@@ -51,7 +51,7 @@ const strings = {
     },
     'salaries': {
         'title': 'Our graduates command competitive starting salaries',
-        'subtitle': `See a breakdown of the percentage of students that fall into a particular salary range.`,
+        'subtitle': 'View the salary range breakdown for students after graduating from Northeastern.',
         'labelX': 'Salary range',
         'labelY': 'Student %'
     },
@@ -72,7 +72,7 @@ const strings = {
         'backward': 'Back'
     },
     'citation': {
-        'source': `Source: The data in this presentation is collected from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.`
+        'source': 'Source: The data in this presentation is collected from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.'
     }
 }
 
