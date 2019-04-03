@@ -8,6 +8,7 @@ import VueRouter from 'vue-router'
 import VueAnimateNumber from 'vue-animate-number'
 import ToggleButton from 'vue-js-toggle-button'
 import { Graduate, Employment, CoopParticipation, Industries, Outcomes, Salaries } from './routes/'
+import SeeTheNumbers from './components/SeeTheNumbers';
 
 Es6Promise.polyfill();
 
@@ -100,16 +101,9 @@ new Vue({
   router
 }).$mount('#app')
 
-Vue.component('hero-button', {
-  data: function () {
-    return {}
-  },
-  mounted() {
-    Es6Promise.polyfill();
-  },
-  template: '<a class="btn bg--red" v-scroll-to="`#app_content`" href="#/outcomes">See the numbers</a>'
-})
-new Vue({ el: '#hero_btn' })
+new Vue({
+  render: h => h(SeeTheNumbers)
+}).$mount('#hero_btn')
 
 let $filter = $('#filter_menu')
 let $browse = $('#chart_menu')
