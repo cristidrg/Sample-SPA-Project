@@ -64,7 +64,7 @@ export default {
   <section class="section industry-data" v-if="industriesSortedByPopularity.length > 4">
     <header class="__header">
       <h2 class="__title">{{ strings.title }}</h2>
-      <div class="__subtitle">{{ strings.subtitle }}</div>
+      <div class="__subtitle" v-html="strings.subtitle"></div>
     </header>
 
     <h3 class="industry-data__header">{{ strings.list1_header }}</h3>
