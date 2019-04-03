@@ -1,6 +1,6 @@
 const ALL = 'All';
-const ALL_COLLEGES = 'All colleges';
-const ALL_YEARS = 'All years';
+const ALL_COLLEGES = 'All Colleges';
+const ALL_YEARS = 'All Years';
 
 const createArrayOfUniqueValues = (field, data) => [
     ...new Set(data.map(entry => entry[field]))
@@ -15,5 +15,3 @@ export {
     createArrayOfUniqueValues,
     percentageOf
 };
-
-

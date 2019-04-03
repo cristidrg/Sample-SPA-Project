@@ -105,6 +105,17 @@
     }
 }
 
+@include mqbp-up(t) {
+    #filter_menu_handle {
+        padding-left: 2.5rem !important;
+    }
+
+    #chart_menu_handle {
+        padding-right: 2.5rem !important;
+    }
+}
+
+
 .__filtered #filter_menu_handle .feather { color: $yellow; }
 
 .active-filters {
@@ -763,11 +774,11 @@
     }
 
     @include mqbp-up(d) {
-        padding: 1.5rem 2rem 2rem 3rem;
+        padding: 2.125rem 2rem 2rem 3rem;
     }
 
     @include mqbp-up(w) {
-        padding: 2.5rem 1rem 2rem 3rem;
+        padding: 2.125rem 1rem 2rem 3rem;
     }
 }
 
@@ -803,7 +814,13 @@
 
     .filter-menu {
         position: sticky !important;
-        top: 2rem;
+        top: 2.75rem;
+    }
+}
+
+@include mqbp-up(w) {
+    .filter-menu {
+        top: 3rem;
     }
 }
 

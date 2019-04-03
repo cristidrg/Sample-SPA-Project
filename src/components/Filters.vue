@@ -78,7 +78,7 @@ export default {
 </script>
 <template>
     <div class="col w--1/4@d">
-        <nav class="navigation px--1 pt--2h@d pt--3@w filter-menu ta--l@d"
+        <nav class="navigation px--1 px--0h@d pt--2h@d filter-menu ta--l@d"
             id="filter_menu"
             role="navigation"
             data-navigation-handle="#filter_menu_handle"
@@ -118,7 +118,7 @@ export default {
                     :value="activeMajors"
                     :options="validMajors"
                     :multiple="true"
-                    placeholder="All majors" />
+                    placeholder="All Disciplines" />
             </div>
             <a class="btn my--1 tt--caps filter-menu__apply bg--red br--pill hidden--up@d" href="#" v-scroll-to="'#app_content'">{{ strings.apply }}</a>
             <a v-if="areFiltersApplied" class="btn my--1 filter-menu__reset" tabIndex="0" v-on:keyup.enter="resetFilters" v-on:keyup.space="resetFilters" v-on:click="resetFilters" v-scroll-to="'#app_content'">{{ strings.reset }}</a>

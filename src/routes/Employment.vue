@@ -125,9 +125,9 @@ export default {
               fontColor: '#000',
               position: 'outside',
               arc: false,
-              outsidePadding: 2,
-              fontSize: 12,
-              textMargin: 4,
+              outsidePadding: 3,
+              fontSize: 14,
+              textMargin: 5,
               precision: 1
             }
           },
