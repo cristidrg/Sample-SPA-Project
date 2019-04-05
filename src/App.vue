@@ -52,6 +52,11 @@ export default {
       )
     },
 
+    /**
+     * The following functions extract the filters which produce more than 1 result.
+     * This allows the dropdowns to not have options which produce nothing, resulting 
+     * in the no data screen.
+     */
     getValidMajors() {
       return this.data.majors
         .filter(major => this.isFilterValid(major, 'major'))
@@ -68,6 +73,10 @@ export default {
       return this.data.years.filter(year => this.isFilterValid(year, 'year'))
     },
 
+     /**
+     * The following functions get rid of the null values present in the back end
+     * data response.
+     */
     getOutcomes() {
       return this.filteredData
         .map(element => element.career_outcomes)
@@ -115,6 +124,9 @@ export default {
         .filter(element => element != " " && element != "")
     },
 
+    /**
+     * Helper function used in the reset filters button
+     */
     areFiltersApplied() {
       const {
         activeYear,
@@ -125,6 +137,9 @@ export default {
       return activeMajors.length > 0 || activeYear != ALL_YEARS || activeCollege != ALL_COLLEGES;
     },
 
+    /**
+     * This displays active filters on mobile views
+     */
     getActiveFilters() {
       const {
         activeYear,
@@ -168,12 +183,15 @@ export default {
   },
 
   methods: {
+    /**
+     * #Maintenance: If more students are being added, increment the 'i' variable limit from
+     * the for loop.
+     */
     async fetchData() {
       this.isDataLoading = true
       try {
         let promises = [], results = [];
 
-        //TODO: Make this nicer ^_^
         const call = (offset, max) => {
           return new Promise(async function(resolve, reject) {
             try {
@@ -189,7 +207,7 @@ export default {
             promises.push(call(i * 1000, (i+1) * 1000));
         }
 
-        //Fires all the requests at the same time :)
+        //Fires all the requests at the same time
         await Promise.all(promises).then(function() {
             for (let i = 0; i < 8; i++) {
               results = [...results, ...arguments[0][i].data.data.getGraduateDestinationPage];
@@ -221,6 +239,10 @@ export default {
       this.isDataLoading = false
     },
 
+    /**
+     * Filters data by going through each entry in our dataset and eliminating
+     * students which don't match the given parameters
+     */
     filterData(yearFilter, collegeFilter, majorFilter) {
       return this.data.dump.filter(
         element =>
@@ -230,6 +252,10 @@ export default {
       )
     },
 
+    /**
+     * This method is used to hide unvalid options which produce 0 students from dropdown.
+     * Example: If Computer Science College is selected, English major won't appear.
+     */
     isFilterValid(filterValue, filterType) {
       let {
         activeYear,

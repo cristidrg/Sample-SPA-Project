@@ -1,7 +1,7 @@
 <script>
 import stringData from '../strings.js'
 import { countBy } from 'lodash'
-import { routes } from '../main'
+import { routes } from '../routing'
 import { nextTick } from 'q'
 import feather from 'feather-icons'
 

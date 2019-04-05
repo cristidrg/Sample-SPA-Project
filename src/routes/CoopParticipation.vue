@@ -16,6 +16,10 @@ export default {
   },
   computed: {
     getCoopParticipation() {
+
+      /**
+       * Calculate student numbers per coops
+       */
       const coopParticipation = Object.assign({},
         {"1": 0, "2":0, "3":0},
         countBy(this.coopNumbers),
@@ -27,6 +31,10 @@ export default {
       },
       countBy(this.coopTotal));
 
+
+      /**
+       * Check if we pass the minimum requirements, totalNumber > 0 and overallParticipation > 0
+       */
       const totalNumber = Object.values(coopParticipation).reduce((a,b) => a + b, 0);
       if (totalNumber == 0) {
         return {
@@ -42,6 +50,9 @@ export default {
         }
       }
 
+      /**
+       * Compute percentanges
+       */
       const overallParticipation = parseFloat((overallParticipationTotal - coopTotalCount.No) * 100 / overallParticipationTotal).toFixed(1);
 
       Object.keys(coopParticipation).map(key => {
@@ -66,6 +77,9 @@ export default {
         return;
       }
 
+      /**
+       * These functions retrigger the animations on the number spins.
+       */
       this.$refs.totalParticipationAnimator.reset(oldVal.overallParticipation, newVal.overallParticipation);
       this.$refs.threeCoops.reset(oldVal['3'], newVal['3']);
       this.$refs.twoCoops.reset(oldVal['2'], newVal['2']);

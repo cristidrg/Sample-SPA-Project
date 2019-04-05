@@ -5,6 +5,14 @@ import { countBy } from 'lodash';
 import pattern from 'patternomaly';
 import NoData from '../components/NoData.vue'
 
+/**
+ * In order to have consistent coloring on categories
+ * we have to map the back end data to colors as we do not
+ * have the guarantee that the chart.js library will preserve
+ * the order of the array we put in.
+ * 
+ * #Maintenance: Add new categories here with their order and colors
+ */
 const employmentToColors = {
   'Employed full-time': {
     color: '#385775', // dark blue

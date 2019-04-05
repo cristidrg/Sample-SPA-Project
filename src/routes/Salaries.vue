@@ -13,7 +13,6 @@ const salariesToOrder = {
   "$70K and more": 5
 };
 
-
 export default {
   name: 'salaries',
   data() {

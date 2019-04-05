@@ -31,6 +31,29 @@ export default {
             this.batchUpdate[name] = value;
         }
     },
+    /**
+     * The purpose of this function is to trigger a rerender on filter click.
+     * Because we want to show a loader in the filter box after a filter was selected
+     * we need to fire a has been clicked event which shows the loading bar and hide it
+     * when the javascript computation finished and the new filters have been shown.
+     * 
+     * 
+     * The flow goes like following:
+     *  
+     *  Initial Render #0:
+     *  Click on year filter -> this.batchUpdate.year = newValue
+     * 
+     *  Render #1 - triggered by this.batchUpdate update:
+     *  Render loading spinner, after render is done, updated() function runs.
+     *  The component emits a change on the active filter data, held by the parent App.vue.
+     *  App.vue changes its filter data and rerenders with a new computed field of filtered data.
+     * 
+     *  Render #2
+     *  When App.vue updates the new filtered data, this component receives new props.
+     *  The watch functions listens for changes in props and removes the bachUpdates when the new
+     *  props come, resulting in the final rerender removing the loading spinner and showing the new data
+     * 
+     */
     async updated() {
         if (this.batchUpdate.year) {
             // Add timeout to event loop stack to be sure vue has rendered the component
