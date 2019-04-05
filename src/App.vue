@@ -2,6 +2,7 @@
 import { countBy } from "lodash"
 import { ALL_COLLEGES, ALL_YEARS, createArrayOfUniqueValues } from "./utils.js"
 import Navigation from "./components/Navigation"
+import Citation from "./components/Citation"
 import { getAllData } from "./queries.js"
 import stringData from "./strings.js"
 import API from "./configs.js"
@@ -293,6 +294,7 @@ export default {
 
   components: {
     Navigation,
+    'citation': Citation,
     Filters,
     'segment-nav': SegmentNav
   }
@@ -360,6 +362,7 @@ export default {
               />
             </transition>
             <navigation/>
+            <citation/>
           </div>
         </div>
       </div>
