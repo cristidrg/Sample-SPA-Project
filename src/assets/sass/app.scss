@@ -1,6 +1,13 @@
 @import "~kernl-ui/src/styles/main";
 @import "~formstone/dist/css/navigation";
 
+abbr {
+    border-bottom: 0 none !important;
+    font-size: 1em !important;
+    letter-spacing: normal !important;
+    padding: 0 !important;
+}
+
 .\--flush > .row {
     margin-right: 0;
     margin-left: 0;

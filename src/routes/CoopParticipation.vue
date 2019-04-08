@@ -119,7 +119,7 @@ export default {
       <div class="coop-participation-data">
         <div class="row">
           <div class="col w--1/3@t ta--c">
-            <p class="coop-participation__label mb--0h">{{ strings.label1 }}<span class="hidden--up@d">:</span></p>
+            <p class="coop-participation__label mb--0h" v-html="strings.label1"></p>
             <p class="coop-participation__overall tc--red fs--smooth">
               <animate-number
                 :from="0"
@@ -145,7 +145,7 @@ export default {
 
         <div class="row mt--2h ta--c">
           <div class="col w--1/3@t">
-            <p class="coop-participation__label mb--0h">{{ strings.label2 }}<span class="hidden--up@d">:</span></p>
+            <p class="coop-participation__label mb--0h" v-html="strings.label2"><span class="hidden--up@d">:</span></p>
             <p class="coop-participation__overall fs--d5 tc--red fs--smooth mb--2 mb--0@d">
               <animate-number
                 ref="threeCoops"
@@ -160,7 +160,7 @@ export default {
             </p>
           </div>
           <div class="col w--1/3@t">
-            <p class="coop-participation__label mb--0h">{{ strings.label3 }}<span class="hidden--up@d">:</span></p>
+            <p class="coop-participation__label mb--0h" v-html="strings.label3"></p>
             <p class="coop-participation__overall fs--d5 tc--red fs--smooth mb--2 mb--0@d">
               <animate-number
                 ref="twoCoops"
@@ -174,7 +174,7 @@ export default {
             </p>
           </div>
           <div class="col w--1/3@t">
-            <p class="coop-participation__label mb--0h">{{ strings.label4 }}<span class="hidden--up@d">:</span></p>
+            <p class="coop-participation__label mb--0h" v-html="strings.label4"></p>
             <p class="coop-participation__overall fs--d5 tc--red fs--smooth mb--2 mb--0@d">
               <animate-number
                 ref="oneCoop"
@@ -194,20 +194,20 @@ export default {
       <div class="carousel ta--c mt--3 mb--0" ref="check">
         <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_1_Text }}&rdquo;</p>
-            <div class="measure mx--auto fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_1_Name }}, {{ strings.carousel.testimonial_1_Company }}</i></div>
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;<span v-html="strings.carousel.testimonial_1_Text"></span>&rdquo;</p>
+            <div class="measure mx--auto fs--sm tc--gray-500"><i><span v-html="strings.carousel.testimonial_1_Name"></span>, <span v-html="strings.carousel.testimonial_1_Company"></span></i></div>
           </div>
         </div>
         <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_2_Text }}&rdquo;</p>
-            <div class="measure mx--auto fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_2_Name }}, {{ strings.carousel.testimonial_2_Company }}</i></div>
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;<span v-html="strings.carousel.testimonial_2_Text"></span>&rdquo;</p>
+            <div class="measure mx--auto fs--sm tc--gray-500"><i><span v-html="strings.carousel.testimonial_2_Name"></span>, <span v-html="strings.carousel.testimonial_2_Company"></span></i></div>
           </div>
         </div>
         <div class="card mb--0 bg--gray-100 bs--none">
           <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;{{ strings.carousel.testimonial_3_Text }}&rdquo;</p>
-            <div class="measure mx--auto fs--sm tc--gray-500"><i>{{ strings.carousel.testimonial_3_Name }}, {{ strings.carousel.testimonial_3_Company }}</i></div>
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;<span v-html="strings.carousel.testimonial_3_Text"></span>&rdquo;</p>
+            <div class="measure mx--auto fs--sm tc--gray-500"><i><span v-html="strings.carousel.testimonial_3_Name"></span>, <span v-html="strings.carousel.testimonial_3_Company"></span></i></div>
           </div>
         </div>
       </div>
