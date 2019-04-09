@@ -304,10 +304,6 @@ export default {
 <template>
   <main id="app" :class="{ contrast: contrast }">
     <section class="section --flush py--0 vh--100" id="app_content" :class="{ __filtered: areFiltersApplied }">
-      <section id="app_nav_menus">
-        <segment-nav />
-      </section>
-
       <div
         class="bg--black hidden--up@d ta--c d--flex justify--between pos--absolute pin--t w--100"
         id="app_nav_buttons"
@@ -319,6 +315,10 @@ export default {
           Segments
         </button>
       </div>
+      <section id="app_nav_menus">
+        <segment-nav />
+      </section>
+
       <div class="row mx--2@w">
         <filters 
           :activeYear.sync="filters.activeYear"
@@ -362,7 +362,6 @@ export default {
               />
             </transition>
             <navigation/>
-            <citation/>
           </div>
         </div>
       </div>
