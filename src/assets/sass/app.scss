@@ -36,7 +36,11 @@ abbr {
     }
 }
 
+.bg--img .modal {
+    text-shadow: none;
 
+    a { color: $red; }
+}
 
 .section {
     &:not(.\--hero) > .__header {
