@@ -108,7 +108,7 @@ export default {
             data-navigation-content="#app_nav_buttons"
         >
             <div class="filter-menu__text mb--1">{{ strings.text }}</div>
-            <div class="filter-menu__wrapper" tabIndex="0">
+            <div class="filter-menu__wrapper" tabindex="0">
                 <label for="year-filter" class="filter-menu__label">{{ strings.year }}</label>
                 <multiselect @select="e => updateFilter('year', e)" 
                     :disabled="loading.year" 
@@ -120,7 +120,7 @@ export default {
                     :allow-empty="true" 
                 />
             </div>
-            <div class="filter-menu__wrapper" tabIndex="0">
+            <div class="filter-menu__wrapper" tabindex="0">
                 <label for="college-filter" class="filter-menu__label">{{ strings.college }}</label>
                 <multiselect @select="e => updateFilter('college', e)" 
                     :disabled="loading.college" 
@@ -131,7 +131,7 @@ export default {
                     :multiple="false" 
                     :allow-empty="true" />
             </div>
-            <div class="filter-menu__wrapper mb--2" tabIndex="0">
+            <div class="filter-menu__wrapper mb--2" tabindex="0">
                 <label for="major-filter" class="filter-menu__label">{{ strings.major }}</label>
                 <multiselect @select="e => updateFilter('majors', [...activeMajors, e])"
                     @remove="e => updateFilter('majors', activeMajors.filter(major => major != e))"

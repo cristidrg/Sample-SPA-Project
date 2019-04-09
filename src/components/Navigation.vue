@@ -80,10 +80,10 @@ export default {
 
 <template>
     <div class="route-navigator mt--4 pt--1h bw--0 bwt--1 bc--gray hidden--up@d">
-        <a class="fs--xs tt--caps tc--gray" v-on:click="backward()" v-scroll-to="'#app_content'">
+        <a class="fs--xs tt--caps tc--gray-600" v-on:click="backward()" v-scroll-to="'#app_content'">
             <i class="--thin" data-feather="chevron-left"></i> {{ backText }}
         </a>
-        <a class="fs--xs tt--caps tc--gray" v-on:click="forward()" v-scroll-to="'#app_content'">
+        <a class="fs--xs tt--caps tc--gray-600" v-on:click="forward()" v-scroll-to="'#app_content'">
             {{ nextText }} <i class="--thin" data-feather="chevron-right"></i>
         </a>
     </div>
