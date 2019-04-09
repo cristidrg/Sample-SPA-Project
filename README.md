@@ -1,75 +1,82 @@
-# Career outcomes
-## Tasks 11/87
-### Curently worked on: Career UI 5 points
-Tasks are completed once PR is merged
+# Outcomes Readme
+## API Interaction
+GraphQL Endpoint: https://7i6ffm3gkrhxnpbd5olq53nkwm.appsync-api.us-east-1.amazonaws.com/graphql
 
-### Build Header  - 3 points DONE
-PR: https://bitbucket.org/nupods/outcomes/pull-requests/1/header-component/
+Api key: da2-5edjqbmorveqnlg7mou7bv65fq
 
-### Build Navigation & Filtering UI - 3 Points
+GraphQL Query:
 
-### Build Career Outcomes UI - 5 points
-
-### Build Employment Status UI - 3 points
-Dependencies: **Mobile UI** **Lacks Appeal**
-
-### Build Co-op Participation UI - 5 points
-
-### Build Industry UI - 5 points DONE
-PR: https://bitbucket.org/nupods/outcomes/pull-requests/2/industry-data
-
-Dependencies:
-
-- *View More Button Behavior*: There are a lot of companies, I assume a modal or some other mechanism would take effect rather than just appending a list of over 500 items to the displayed one  
-- *Mobile UI*: not here yet
-
-### Build Grad School UI - 3 points DONE
-PR: https://bitbucket.org/nupods/outcomes/pull-requests/3
-
-### Build Starting Salaries Screen - 2 points
-
-### Build Map Screen - 8 points
-
-### Implement Routing in Navigation - 13 points
-- [ ] Learn Routing in Vue - 5 points
-- [ ] Code split the current screens by route - 3 points
-- [ ] Implement it ! - 5 points
-Notes: SEO updates will come based on each route
+```
+query getData {
+        getGraduateDestinationPage(offset: ${offset}, max: ${max}) {
+            id
+            final_companyname
+            final_university
+            final_industry
+            final_did_coop
+            final_coop_numbers
+            final_salary_recalculated
+            salary_categories
+            employment_type
+            employment_status
+            job_year
+            student_level
+            collegedesc
+            majordesc
+            career_outcomes
+        }
+    }
+```
 
 
-### Integrating GraphQL Endpoint in our flow DevWork - 8 points
+The back end can send up to 1000 responses for a query, providing offset parameters  to handle this. To work with this efficiently, the front end needs to fire async requests and wait for all of them to finish.
 
-## TOTAL DEFINED: 53 POINTS 
-## Points left for buffer: 34 POINTS
+## Implementation
+When the app is served, the client will fire requests to fetch all of the student data and storing it. We decided to go with this approach as we’ve seen that it does not produce significant waiting times on filtering on modern browsers (not ie11). This means that after the initial loading screen, all the data is available to interact with for the user. 
 
 
-## Missing Requirements & Open Questions - ordered by importance 
-- Figure out how to handle the selection of filters which produce 0 results.
-One ideea is:
-    You have two filters selected already which show some results.
-    You click on the third filter and the dropdown shows with values
-    Values are enabled only if they produce more than 0 results, otherwise they 
-    are disabled/not clickable/grayed out
-Proposed Solution: https://bitbucket.org/nupods/outcomes/pull-requests/5/filter-validation
+## Back-end data format
+All of the back end data is being served as strings. While some fields have different null/empty values than others we are implementing the following filtering for the fields upon receiving the data:
 
-- Consistency check for null value in database, different values are currently used
-across fields to indicate nothingness
+```
+career_outcomes.filter(element => element != "")
 
-- Field used to query information about graduate school has values like: 
-  'Harvard University - continuing university', the latter part is irelevant.
-Other examples would be 'xxx university - master's programme'
+employment_status.filter(element => element != “ “ && element != “”);
 
-- Mobile UI is not ready and it's not accounted towards total
+final_university.filter(element => element != “NA" && element != "" & element != "#N/A");
 
-- In two screens, there are View More Buttons. The content they expand to
-has over 500 items, what would their behavior be?
+final_coop_numbers.filter(element => element != “ “ && element != “”);
+ 
+final_did_coop.filter(element => element != “ “ && element != “”);
 
-- Listing Hiring Companies alphabetically in the Industry screen is not that useful
+element.final_industry.filter(element => element != “" && element != "#N/A" && element != " ");
 
-- Getting the sketch file or the exact typography, colors, padding for the design
-would be nice
+final_companyname.filter(element => element != “NA” && element != “”)
 
-Cristi's Notes:
+salary_categories.filter(element => element != “ “ && element != “”)
+```
 
-- Ask about padding/container for outcome layout
+## Maintenance
+Doing a project wide search for `#Maintenance` inside the project will show you parts of the code you are likely to update in the following cases: 
 
+### Adding more students:
+When more students are added to the database the front end needs to add additional queries to fetch them if their number surpasses the current maximum (working in increments of 1000).    Check the *fetchData* method of *App.vue*.
+
+It is important that the new students do not have different null values  that are not present in the filtering set in the previous section.
+
+### Adding more categories
+If more categories are added, there are some specific color to value mappings in the application for the *employment_status* and *career_outcomes* fields.  The application itself won’t break but they will receive the default color of gray if not specified. The code for this is inside the *routes/* folder in their specific pages.
+
+## Useful links:
+[Getting Started | 📈 vue-chartjs](https://vue-chartjs.org/guide/)
+[Chart.js · Chart.js documentation](https://www.chartjs.org/docs/latest/)
+[Vue.js Toggle Button](http://vue-js-toggle-button.yev.io/)
+[Vue-Multiselect | Vue Select Library](https://vue-multiselect.js.org/)
+[Introduction | Vue Router](https://router.vuejs.org/)
+[chartjs-plugin-labels](https://emn178.github.io/chartjs-plugin-labels/samples/demo/)
+[vue-scrollto  -  npm](https://www.npmjs.com/package/vue-scrollto)
+
+## Potential Upgrades.
+If in the future, filtering might seem slow, using memoization via [GitHub - reduxjs/reselect: Selector library for Redux](https://github.com/reduxjs/reselect) will reduce filtering time.
+
+If we notice that the production server might be failing to respond,  introducing a please try again in a few minutes screen will be useful. 

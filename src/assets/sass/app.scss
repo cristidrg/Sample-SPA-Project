@@ -1,15 +1,45 @@
 @import "~kernl-ui/src/styles/main";
 @import "~formstone/dist/css/navigation";
 
+abbr {
+    border-bottom: 0 none !important;
+    font-size: 1em !important;
+    letter-spacing: normal !important;
+    padding: 0 !important;
+}
+
 .\--flush > .row {
     margin-right: 0;
     margin-left: 0;
 }
 
-.masthead .__logo__image {
-    @include mqbp-up(d) {
-        max-height: 4rem;
+.masthead {
+    z-index: 1;
+
+    .__logo__image {
+        @include mqbp-up(d) {
+            max-height: 3.25rem;
+        }
     }
+
+    .__link,
+    .__item a {
+        position: relative;
+        display: block;
+        padding: 0;
+        font-size: $fs-sm;
+        border-bottom: 0 none;
+
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.bg--img .modal {
+    text-shadow: none;
+
+    a { color: $red; }
 }
 
 .section {
@@ -406,12 +436,6 @@
 }
 
 .__logo__image {
-    margin-left: -0.5rem;
-
-    @include mqbp-up(t) {
-        margin-left: -0.75rem;
-    }
-
     @include mqbp-up(d) {
         margin-left: -1rem;
     }

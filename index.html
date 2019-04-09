@@ -2,13 +2,13 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Career Outcomes Powered by Experience - Northeastern University</title>
     <link href='//fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//www.northeastern.edu/nuglobalutils/common/css/headerfooter.css">
     <link rel="stylesheet" href="/public/css/app.css" type="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+    <!-- #include:gtm-script -->
     <link rel="apple-touch-icon" sizes="57x57" href="//brand.northeastern.edu/global/assets/favicon/apple-touch-57x57.png?v=2" />
     <link rel="apple-touch-icon" sizes="60x60" href="//brand.northeastern.edu/global/assets/favicon/apple-touch-60x60.png?v=2" />
     <link rel="apple-touch-icon" sizes="72x72" href="//brand.northeastern.edu/global/assets/favicon/apple-touch-72x72.png?v=2" />
@@ -26,36 +26,43 @@
     <meta name="author" content="Northeastern University, https://www.northeastern.edu" />
     <meta name="description" content="Graduate outcomes" />
   </head>
-
   <body>
-    <!-- #include:tag-manager -->
+    <!-- #include:gtm-noscript -->
     <!-- #include:header -->
-
     <header class="masthead pos--absolute bg--black">
       <a class="__logo" href="./">
         <img class="__logo__image" src="/public/images/logo-white.png" alt="Northeastern University">
       </a>
+      <ul class="__list">
+        <li class="__item">
+          <a class="__link tt--caps" href="#about" data-toggle="modal" data-target="#about">About<span class="hidden--down@t"> This Project</span></a>
+        </li>
+      </ul>
     </header>
     <section
       class="section --hero vh--100 bg--img bgo--70 flex--middle"
-      style="background-image: url(/public/images/16x9-student-working.jpg);"
-      role="banner">
+      style="background-image: url(/public/images/16x9-student-working.jpg);">
       <div class="__header">
         <h1 class="__title fs--d3 mb--1">Career Outcomes Powered by Experience</h1>
-        <p class="__subtitle mb--2">Our students graduate with full resumés of real-world experience
-         closely tied to their career paths. They’ve learned how to solve problems as part of
-         a team of professionals and navigate the unexpected challengs of today’s fast-paced workplace.
-         And they’ve gained unique insights into their classroom learning — a deeper focus and understanding
-         that better prepares them for master’s and doctoral work in top graduate programs.</p>
-        <div id="hero_btn"></div>
+        <p class="__subtitle mb--2">Our students graduate with full <abbr title=”rezoomayz”>resumés</abbr> of real-world experience closely tied to their career paths. They’ve learned how to solve problems as part of a team of professionals and navigate the unexpected challenges of today’s fast-paced workplace. And they’ve gained unique insights into their classroom learning — a deeper focus and understanding that better prepares them for master’s and doctoral work in top graduate programs.</p>
+        <div id="hero_btn"></div><br>
+        <div class="modal" id="about" tabindex="-1" role="dialog">
+          <div class="__screen" data-dismiss="modal"></div>
+          <div class="__content bg--white ta--l">
+            <h2>About this project</h2>
+            <p>The data in this presentation, provided by Northeastern's <a href="https://provost.northeastern.edu/uds/">University Decision Support</a>, is collected from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.</p>
+            <p class="fs--sm d--flex items--center"><i class="--sm mr--0h" data-feather="map-pin"></i> 177 Huntington Avenue</p>
+            <p class="fs--sm d--flex items--center"><i class="--sm mr--0h" data-feather="mail"></i> InstitutionalResearch@northeastern.edu</p>
+          </div>
+          <button type="button" class="__close" data-dismiss="modal" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
       </div>
     </section>
-
     <div id="app">
     </div>
-
     <!-- #include:footer -->
-
     <script src="/public/js/main.js"></script>
     <script src="https://www.northeastern.edu/nuglobalutils/common/js/navigation-min.js"></script>
   </body>

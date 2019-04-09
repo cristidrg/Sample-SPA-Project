@@ -21,7 +21,7 @@
             <router-link class="__link" to="/employment-status" v-scroll-to="'#app_content'">Employment Status</router-link>
           </li>
           <li class="__item">
-            <router-link class="__link" to="/coop-participation" v-scroll-to="'#app_content'">Co-op Participation</router-link>
+            <router-link class="__link" to="/coop-participation" v-scroll-to="'#app_content'"><abbr title="Co op">Co-op</abbr> Participation</router-link>
           </li>
           <li class="__item">
             <router-link class="__link" to="/industries" v-scroll-to="'#app_content'">Industry/Company</router-link>

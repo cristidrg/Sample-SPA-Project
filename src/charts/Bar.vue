@@ -16,6 +16,9 @@ export default {
     }
   },
   watch: {
+    /**
+     * This makes the bar chart retrigger its initial animation on new values.
+     */
     options () {
       this.renderChart(this.chartData, this.options);
     }

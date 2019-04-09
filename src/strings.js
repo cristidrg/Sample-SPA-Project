@@ -3,7 +3,7 @@ const strings = {
         'title': 'Northeastern graduates are in high demand',
         'subtitle': 'See what Northeastern graduates are doing within nine months of graduation.',
         'claim': `of our graduates are employed or in graduate school within nine months of graduation.`,
-        'note': `<p>NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.<br>COR numerator: Employed (full-time or part-time) and in graduate school.<br>COR denominator: Employed (full-time or part-time), in graduate school, and not employed but seeking a job.</p>`,
+        'note': `<p>NOTE: Career Outcomes Rate (<abbr title="C O R">COR</abbr>) is calculated from the percentage of students seeking employment or education.<br><abbr title="C O R">COR</abbr> numerator: Employed (full-time or part-time) and in graduate school.<br><abbr title="C O R">COR</abbr> denominator: Employed (full-time or part-time), in graduate school, and not employed but seeking a job.</p>`,
     },
     'employment': {
         'title': 'Here’s a snapshot of what our graduates are doing post-graduation',
@@ -14,21 +14,21 @@ const strings = {
     },
     'coopParticipation': {
         'title': 'Our students know the power of experience',
-        'subtitle': 'Co-op (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete six-month co-op experiences throughout the U.S. and in more than 100 countries. See how many co-ops our students finished before graduating.',
-        'label1': 'Overall Co-op Participation',
-        'label2': '3+ Co-ops',
-        'label3': '2 Co-ops',
-        'label4': '1 Co-op',
+        'subtitle': `<abbr title="Co op">Co‐op</abbr> (or cooperative education) is our flagship experiential program. It integrates classroom study with professional work experience, usually related to a student’s major or field of interest. Northeastern undergraduates complete six-month <abbr title="co op">co‐op</abbr> experiences throughout the U.S. and in more than 100 countries. See how many <abbr title="co ops">co‐ops</abbr> our students finished before graduating.`,
+        'label1': `Overall <abbr title="Co op">Co‐op</abbr> Participation`,
+        'label2': `3+ <abbr title="Co ops">Co‐ops</abbr>`,
+        'label3': `2 <abbr title="Co ops">Co‐ops</abbr>`,
+        'label4': `1 <abbr title="Co op">Co‐op</abbr>`,
         'carousel': {
             'testimonial_1_Text': 'I could see direct change as a result of my ideas come to fruition.',
             'testimonial_1_Name': 'Jessica Uhlig, ’18',
-            'testimonial_1_Company': 'received her bachelor of science in business administration and did a co-op at EFK Group Ltd. She works at Bose Corporation.',
+            'testimonial_1_Company': 'received her bachelor of science in business administration and did a <abbr title="co op">co‐op</abbr> at EFK Group Ltd. She works at Bose Corporation.',
             'testimonial_2_Text': 'I feel like I was just given a whole ton of tools and knowledge and now I get to use them.',
             'testimonial_2_Name': 'Carly Parlato, ’18',
-            'testimonial_2_Company': 'received her bachelor of science in mechanical engineering and did co-ops at NASA, and Google. She works at SpaceX.',
+            'testimonial_2_Company': 'received her bachelor of science in mechanical engineering and did <abbr title="co ops">co‐ops</abbr> at NASA, and Google. She works at SpaceX.',
             'testimonial_3_Text': 'I’m using my undergrad experience and my graduate experience that I built upon for my professional experience.',
             'testimonial_3_Name': 'Vineel Kondiboyina, ’18',
-            'testimonial_3_Company': 'received his master of science in bioengineering and did a co-op at Third Pole Therapeutics. He works at Third Pole Therapeutics.',
+            'testimonial_3_Company': 'received his master of science in bioengineering and did a <abbr title="co op">co‐op</abbr> at Third Pole Therapeutics. He works at Third Pole Therapeutics.',
         },
     },
     'industry': {
@@ -71,9 +71,6 @@ const strings = {
         'forward': 'Next',
         'backward': 'Back'
     },
-    'citation': {
-        'source': 'Source: The data in this presentation is collected from the annual <i>Destinations Survey</i> of our graduating students’ employment and graduate school plans.'
-    }
 }
 
 export default strings;
