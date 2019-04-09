@@ -56,3 +56,5 @@ $browse.navigation({
 $('.__link', $browse).on('click touch', () => {
   $browse.navigation('close')
 })
+
+document.querySelector('nav').setAttribute('tabindex', 0);
