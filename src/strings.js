@@ -3,7 +3,7 @@ const strings = {
         'title': 'Northeastern graduates are in high demand',
         'subtitle': 'See what Northeastern graduates are doing within nine months of graduation.',
         'claim': `of our graduates are employed or in graduate school within nine months of graduation.`,
-        'note': `<p>NOTE: Career Outcomes Rate (COR) is calculated from the percentage of students seeking employment or education.<br>COR numerator: Employed (full-time or part-time) and in graduate school.<br>COR denominator: Employed (full-time or part-time), in graduate school, and not employed but seeking a job.</p>`,
+        'note': `<p>NOTE: Career Outcomes Rate (<abbr title="C O R">COR</abbr>) is calculated from the percentage of students seeking employment or education.<br><abbr title="C O R">COR</abbr> numerator: Employed (full-time or part-time) and in graduate school.<br><abbr title="C O R">COR</abbr> denominator: Employed (full-time or part-time), in graduate school, and not employed but seeking a job.</p>`,
     },
     'employment': {
         'title': 'Here’s a snapshot of what our graduates are doing post-graduation',

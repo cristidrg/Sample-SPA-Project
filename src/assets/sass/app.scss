@@ -13,11 +13,30 @@ abbr {
     margin-left: 0;
 }
 
-.masthead .__logo__image {
-    @include mqbp-up(d) {
-        max-height: 4rem;
+.masthead {
+    z-index: 1;
+
+    .__logo__image {
+        @include mqbp-up(d) {
+            max-height: 3.25rem;
+        }
+    }
+
+    .__link,
+    .__item a {
+        position: relative;
+        display: block;
+        padding: 0;
+        font-size: $fs-sm;
+        border-bottom: 0 none;
+
+        &::after {
+            display: none;
+        }
     }
 }
+
+
 
 .section {
     &:not(.\--hero) > .__header {
@@ -413,12 +432,6 @@ abbr {
 }
 
 .__logo__image {
-    margin-left: -0.5rem;
-
-    @include mqbp-up(t) {
-        margin-left: -0.75rem;
-    }
-
     @include mqbp-up(d) {
         margin-left: -1rem;
     }
