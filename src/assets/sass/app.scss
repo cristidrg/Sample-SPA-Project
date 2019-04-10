@@ -1,6 +1,21 @@
 @import "~kernl-ui/src/styles/main";
 @import "~formstone/dist/css/navigation";
 
+#html {
+  background-color: $black;
+
+  body {
+    background-color: #fff;
+    position: relative; // to contain overlay masthead
+
+    @include mqbp_up(xx) {
+      margin-right: auto !important;
+      margin-left: auto !important;
+      max-width: 1700px;
+    }
+  }
+}
+
 abbr {
     border-bottom: 0 none !important;
     font-size: 1em !important;
