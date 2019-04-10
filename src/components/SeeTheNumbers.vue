@@ -1,7 +1,7 @@
 <template>
-   <a class="btn bg--red" 
+   <a class="btn bg--red"
     @click.prevent="scrollTo(`#app_content`)"
-    href="#/outcomes">See the numbers</a>
+    href="#/outcomes">See the results</a>
 </template>
 
 <script>
