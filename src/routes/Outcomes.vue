@@ -153,7 +153,7 @@ export default {
         </div>
         <ul class="career-outcomes__legend d--flex order--0 order--1@t w--100">
           <li v-for="(outcome, idx) in sortedDataSet" :key="idx" v-show="outcome.perc > 0">
-            <span class="career-outcomes__legend-perc" :style="{color: outcome.color}"></span><b>{{ outcome.perc }}</b>% {{ outcome.key }}
+            <span aria-hidden="true" class="career-outcomes__legend-perc" :style="{color: outcome.color}"></span><b>{{ outcome.perc }}</b>% {{ outcome.key }}
           </li>
         </ul>
       </div>
