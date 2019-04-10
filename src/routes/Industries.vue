@@ -92,7 +92,7 @@ export default {
           :disabled="(companyIdx+1)*companyPageSize > companiesSortedByName.length">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
         </button>
-        <div aria-live="polite" aria-atomic="true" class="visuallyhidden">Item {{companyIdx}} of {{Math.floor(companiesSortedByName.length / companyPageSize)}}</div>
+        <div aria-live="polite" aria-atomic="true" class="visuallyhidden">Page {{companyIdx + 1}} of {{Math.floor(companiesSortedByName.length / companyPageSize) + 1}}</div>
       </div>
     </div>
   </section>
