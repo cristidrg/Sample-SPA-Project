@@ -72,6 +72,7 @@ export default {
           class="graduate-data__schools btn --sm tc--gray-700" :disabled="(schoolIdx+1)*schoolPageSize > schoolsSortedByName.length">
           <chevron-right /><span class="sr--only">{{strings.next_button}}</span>
         </button>
+        <div aria-live="polite" aria-atomic="true" class="visuallyhidden">Item {{schoolIdx}} of {{Math.floor(schoolsSortedByName.length / schoolPageSize)}}</div>
       </div>
     </div>
     <no-data v-else />

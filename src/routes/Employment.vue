@@ -182,7 +182,7 @@ export default {
       <div class="col w--30@t d--flex justify--center">
         <ul class="employment-status__legend w--100">
           <li v-for="(data, index) in Object.values(dataSetWithColors).sort((a,b) => a.order - b.order)" :key="index" class="employment-status__legend-entry" v-if="data.perc > 0">
-            <span class="employment-status__legend-perc" :style="{color: data.color}"></span><b>{{ data.perc }}</b>% {{ data.key }}
+            <span aria-hidden="true" class="employment-status__legend-perc" :style="{color: data.color}"></span><b>{{ data.perc }}</b>% {{ data.key }}
           </li>
         </ul>
       </div>

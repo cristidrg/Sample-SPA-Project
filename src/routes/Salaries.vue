@@ -135,6 +135,13 @@ export default {
       <bar-chart :chartData="startingSalariesData" :styles="chartStyle" :options="chartOptions" />
     </div>
     <div class="ta--c tc--gray-800 fw--700 tt--caps fs--xs pt--0h">{{strings.labelX}}</div>
+    <div class="visuallyhidden">
+      <ul>
+        <li v-for="(label, index) in startingSalariesData.labels" :key="index">
+          {{parseFloat(startingSalariesData.datasets[0].data[index] / salaries.length * 100).toFixed(1)}} percent made {{startingSalariesData.labels[index]}} 
+        </li>
+      </ul>
+    </div>
   </section>
   <no-data v-else/>
 </template>
