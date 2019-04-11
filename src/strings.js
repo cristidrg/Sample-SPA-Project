@@ -37,8 +37,8 @@ const strings = {
         'list1_header': 'Industries',
         'list2_header': 'Hiring Companies',
         'list2_button': 'View more companies',
-        'back_button': 'Back',
-        'next_button': 'Next'
+        'back_button': 'Previous page of results',
+        'next_button': 'Next page of results'
     },
     'graduate': {
         'title': 'They bring a wealth of undergraduate research experience to top grad programs',
@@ -46,8 +46,8 @@ const strings = {
         'top': `<span class="fs--d5 tc--red fw--700 mr--1 pb--0h">Top 5</span> graduate schools attended`,
         'list_header': 'Schools attended',
         'list_button': 'View more schools',
-        'back_button': 'Back',
-        'next_button': 'Next'
+        'back_button': 'Previous page of results',
+        'next_button': 'Next page of results'
     },
     'salaries': {
         'title': 'Our graduates command competitive starting salaries',
