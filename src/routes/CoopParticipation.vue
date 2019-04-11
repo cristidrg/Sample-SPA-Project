@@ -104,7 +104,8 @@ export default {
       theme: '',
       controls: false,
       autoHeight: true,
-      infinite: true
+      infinite: true,
+      single: true
     });
   }
 };
