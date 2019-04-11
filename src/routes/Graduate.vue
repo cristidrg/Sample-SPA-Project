@@ -52,8 +52,8 @@ export default {
     <div class="graduate-data__banner" v-if="getSchoolsByPopularity.length > 4">
         <p class="graduate-data__top mb--0@t fs--sm w--40@d" v-html="strings.top"></p>
         <ul class="graduate-data__top-list">
-            <li class="fw--700 fs--sm" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5)" :key="idx">
-                {{ school.name }}
+            <li class="fw--700 fs--sm" v-for="(school, idx) in getSchoolsByPopularity.slice(0,5).map(school => school.name).sort()" :key="idx">
+                {{ school }}
             </li>
         </ul>
     </div>
