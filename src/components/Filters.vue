@@ -2,6 +2,7 @@
 import { ALL_COLLEGES, ALL_YEARS } from "../utils.js"
 import strings from "../strings.js"
 import Multiselect from "vue-multiselect"
+import SelectComponent from "vue-select"
 
 export default {
     name: 'filters',
@@ -27,6 +28,15 @@ export default {
             this.$emit('reset')
         },
         updateFilter(name, value) {
+            switch (name) {
+                case 'year': {
+                    if (this.activeYear == value) return;
+                }
+                case 'college': {
+                    if (this.activeCollege == value) return;
+                }
+            }
+
             this.loading[name] = true;
             this.batchUpdate[name] = value;
         }
@@ -60,11 +70,9 @@ export default {
             await (new Promise(resolve => setTimeout(resolve, 50)));
             this.$emit(`update:activeYear`, this.batchUpdate.year);
         } else if (this.batchUpdate.college) {
-
             await (new Promise(resolve => setTimeout(resolve, 50)));
             this.$emit(`update:activeCollege`, this.batchUpdate.college);
         } else if (this.batchUpdate.majors) {
-
             await (new Promise(resolve => setTimeout(resolve, 50)));
             this.$emit(`update:activeMajors`, this.batchUpdate.majors);
         }
@@ -95,6 +103,7 @@ export default {
     },
     components: {
         Multiselect,
+        SelectComponent
     }
 };
 
@@ -110,36 +119,33 @@ export default {
             <div class="filter-menu__text mb--1">{{ strings.text }}</div>
             <div class="filter-menu__wrapper" tabindex="0">
                 <label for="year-filter" class="filter-menu__label">{{ strings.year }}</label>
-                <multiselect @select="e => updateFilter('year', e)" 
-                    :disabled="loading.year" 
-                    :loading="loading.year" 
+                <select-component 
+                    @input="e => updateFilter('year', e)" 
                     id="year-filter"
-                    :class="activeYear != ALL_YEARS || loading.year ? 'multiselect--active' : '' " 
-                    :value="activeYear" 
-                    :options="validYears" 
-                    :multiple="false" 
-                    :allow-empty="true" 
+                    :class="`${activeYear != ALL_YEARS ? 'v-select--active' : ''}`"
+                    :value="activeYear"
+                    :clearable="false" 
+                    :options="validYears"
+                    :loading="loading.year"
                 />
             </div>
             <div class="filter-menu__wrapper" tabindex="0">
                 <label for="college-filter" class="filter-menu__label">{{ strings.college }}</label>
-                <multiselect @select="e => updateFilter('college', e)" 
-                    :disabled="loading.college" 
-                    :loading="loading.college"
+                <select-component
+                    @input="e => updateFilter('college', e)" 
                     id="college-filter" 
-                    :class="activeCollege != ALL_COLLEGES || loading.college ? 'multiselect--active' : '' " 
+                    :class="`${activeCollege != ALL_COLLEGES ? 'v-select--active' : ''}`"
                     :value="activeCollege" 
-                    :options="validColleges" 
-                    :multiple="false" 
-                    :allow-empty="true" />
+                    :options="validColleges"
+                    :clearable="false" 
+                    :loading="loading.college"
+                />
             </div>
             <div class="filter-menu__wrapper mb--2" tabindex="0">
                 <label for="major-filter" class="filter-menu__label">{{ strings.major }}</label>
-                <multiselect @select="e => updateFilter('majors', [...activeMajors, e])"
-                    @remove="e => updateFilter('majors', activeMajors.filter(major => major != e))"
-                    :disabled="loading.majors" 
+                <select-component @input="e => updateFilter('majors', e)"
                     :loading="loading.majors"
-                    :class="activeMajors.length > 0 || loading.majors ? 'multiselect--active' : ''"
+                    :class="activeMajors.length > 0 || loading.majors ? 'multiselect multiselect--active' : 'multiselect'"
                     id="major-filter"
                     :value="activeMajors"
                     :options="validMajors"
