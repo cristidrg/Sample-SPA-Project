@@ -193,22 +193,12 @@ export default {
 
 
       <div class="carousel ta--c mt--3 mb--0" ref="check">
-        <div class="card mb--0 bg--gray-100 bs--none">
-          <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;<span v-html="strings.carousel.testimonial_1_Text"></span>&rdquo;</p>
-            <div class="measure mx--auto fs--sm tc--gray-500"><i><span v-html="strings.carousel.testimonial_1_Name"></span>, <span v-html="strings.carousel.testimonial_1_Company"></span></i></div>
-          </div>
-        </div>
-        <div class="card mb--0 bg--gray-100 bs--none">
-          <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;<span v-html="strings.carousel.testimonial_2_Text"></span>&rdquo;</p>
-            <div class="measure mx--auto fs--sm tc--gray-500"><i><span v-html="strings.carousel.testimonial_2_Name"></span>, <span v-html="strings.carousel.testimonial_2_Company"></span></i></div>
-          </div>
-        </div>
-        <div class="card mb--0 bg--gray-100 bs--none">
-          <div class="__body">
-            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;<span v-html="strings.carousel.testimonial_3_Text"></span>&rdquo;</p>
-            <div class="measure mx--auto fs--sm tc--gray-500"><i><span v-html="strings.carousel.testimonial_3_Name"></span>, <span v-html="strings.carousel.testimonial_3_Company"></span></i></div>
+        <div v-for="item in strings.carousel" class="mb--0 bg--gray-100 pa--2">
+            <p class="fs--d1 fw--300 tc--gray-600">&ldquo;<span v-html="item.quote"></span>&rdquo;</p>
+            <div class="measure mx--auto fs--sm tc--gray-500">
+              <div class="fw--700" v-html="item.name"></div>
+              <i><span v-html="item.coop"></span></i>
+            </div>
           </div>
         </div>
       </div>

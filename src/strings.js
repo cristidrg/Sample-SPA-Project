@@ -19,17 +19,38 @@ const strings = {
         'label2': `3+ <abbr title="Co ops">Co‐ops</abbr>`,
         'label3': `2 <abbr title="Co ops">Co‐ops</abbr>`,
         'label4': `1 <abbr title="Co op">Co‐op</abbr>`,
-        'carousel': {
-            'testimonial_1_Text': 'I could see direct change come to fruition as a result of my ideas.',
-            'testimonial_1_Name': 'Jessica Uhlig, ’18',
-            'testimonial_1_Company': 'received her bachelor of science in business administration and did a <abbr title="co op">co‐op</abbr> at EFK Group Ltd. She works at Bose Corporation.',
-            'testimonial_2_Text': 'I feel like I was given a ton of tools and knowledge, and now I get to use that.',
-            'testimonial_2_Name': 'Carly Parlato, ’18',
-            'testimonial_2_Company': 'received her bachelor of science in mechanical engineering and did <abbr title="co ops">co‐ops</abbr> at NASA, and Google. She works at SpaceX.',
-            'testimonial_3_Text': 'The co-op program was really good for me as an international student because it helped me gain work experience in the U.S.',
-            'testimonial_3_Name': 'Vineel Kondiboyina, ’18',
-            'testimonial_3_Company': 'received his master of science in bioengineering and did a <abbr title="co op">co‐op</abbr> at Third Pole Therapeutics. He works at Third Pole Therapeutics.',
-        },
+        'carousel': [
+            {
+                'name':'Erika Nothnagel, Class of 2017',
+                'coop':'Senior Strategy Consultant, IBM',
+                'quote':'Co-op gave me the opportunity to challenge myself outside of the classroom and better understand what I want to do with my education. Co-op is vital to my educational experience and without it I would not be the successful person I am today.'
+            },
+            {
+                'name':'Abigail Pietrow, Class of 2018',
+                'coop':'Assistant Aquarist, Penguin Colony at the New England Aquarium',
+                'quote':'The alternation of co-op and classes kept me refreshed and prevented me from burning out academically.  The co-op has given me valuable experience to help me find a good position working in my field and has likewise given me valuable references and connections to help secure that position.  The support that Northeastern gives to students going abroad is remarkable and supremely helpful, especially those who do co-ops internationally.'
+            },
+            {
+                'name':'Abbey Dallas, Class of 2017',
+                'coop':'Medical Student at Feinberg School of Medicine, Northwestern University',
+                'quote':'Co-op rounded out my educational experience at Northeastern. It balanced the theoretical learning in classes with practical experience. My two co-ops furthered my professional development and helped to secure my post-graduate plans.'
+            },
+            {
+                'name':'Kyle Forgeron, Class of 2017',
+                'coop':'M.Ed. in Athletic Counseling at Springfield College',
+                'quote':'Co-op and dialogue were excellent opportunities for personal growth outside of the classroom. Every college can teach you to be book smart, but NU truly prepares you for the multifaceted life after college.'
+            },
+            {
+                'name':'Jessica Lewis, Class of 2018',
+                'coop':'Rotational Engineering Leadership Development Program at Raytheon',
+                'quote':'The wealth of experiential opportunities, particularly global and co-op opportunities, were the best parts of my learning experience at Northeastern. Co-op was so crucial for understanding my interests and building my skills, both technical and soft skills. Global experience is not only incredible because it is interesting and fun, but it allows students to widen the lens and understand different cultures, which makes the world a better place.'
+            },
+            {
+                'name':'Madison Youngblom, Class of 2018',
+                'coop':'Microbiology Doctoral Training Program at University of Wisconsin-Madison',
+                'quote':'The co-op program has really set me apart as a candidate for graduate school from other students who don\'t have the same level of experience. This was the best educational tool for me given my major, personality, and career path.'
+            },
+        ],
     },
     'industry': {
         'title': 'Our graduates excel across industries and in top graduate programs',
