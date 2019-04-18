@@ -91,12 +91,14 @@ abbr {
     }
 
     &.\--hero {
-        padding-top: 9rem;
+        padding-top: 6rem;
         padding-bottom: 4.4rem;
 
-        > .__header {
-            flex: 0;
+        @include mqbp-up(t) {
+            padding-top: 9rem;
         }
+
+        > .__header { flex: 0; }
 
         .__title,
         .__subtitle { animation: fadeDown 1.5s ease-in-out 0s 1; }
@@ -597,7 +599,7 @@ abbr {
                 .dropdown-toggle {
                     border-left: 3px solid $gray-800;
                 }
-                
+
                 .vs__selected-options .form-control {
                     position: absolute;
                 }
@@ -608,7 +610,7 @@ abbr {
                     }
                 }
             }
-            
+
 
             .selected-tag {
                 background-color: #efefef;
@@ -618,7 +620,7 @@ abbr {
                     font-size: $fs-xs;
                 }
             }
-            
+
             .vs__selected-options .form-control {
                 margin-left: 12px;
             }
@@ -628,7 +630,7 @@ abbr {
             .vs__selected-options {
                 flex-wrap: none;
             }
-            
+
             .vs__selected-options input {
                 position: absolute;
                 bottom: -2px;
@@ -643,7 +645,7 @@ abbr {
                 display: none;
             }
         }
-        
+
         .dropdown-toggle {
             border-radius: 0px;
             border: 1px solid #979797;
@@ -662,7 +664,7 @@ abbr {
 
                 @include mqbp-up(d) {
                     font-size: $fs-xs;
-                }    
+                }
             }
 
             .vs__selected-options ::placeholder {
@@ -689,7 +691,7 @@ abbr {
 
             li > a {
                 padding: 7px 8px;
-                
+
                 @include mqbp-up(d) {
                     font-size: $fs-xs;
                 }
@@ -714,10 +716,10 @@ abbr {
                 background-color: $gray-100 !important;
                 min-height: 41px;
                 z-index: auto;
-            } 
+            }
         }
-        
-        
+
+
         .selected-tag {
             color: $gray-800;
             margin-left: 0.75rem;
