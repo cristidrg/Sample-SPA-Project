@@ -464,12 +464,6 @@ abbr {
     touch-action: none;
 }
 
-.__logo__image {
-    @include mqbp-up(d) {
-        margin-left: -1rem;
-    }
-}
-
 .__toggler {
     font-size: $fs-sm !important;
     display: inline-flex !important;
