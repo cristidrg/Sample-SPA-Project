@@ -165,6 +165,10 @@ abbr {
 }
 
 @include mqbp-up(t) {
+    #filter_menu {
+        z-index: 1;
+    }
+
     #filter_menu_handle {
         padding-left: 2.5rem !important;
     }
