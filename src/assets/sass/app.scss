@@ -877,10 +877,6 @@ abbr {
 #app_nav_menus { z-index: 2; }
 
 @include mqbp-up(d) {
-    #app_nav_menus {
-        z-index: 1;
-    }
-
     .filter-menu {
         position: sticky !important;
         top: 2.75rem;
