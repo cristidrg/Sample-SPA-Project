@@ -83,11 +83,17 @@ If more categories are added, there are some specific color to value mappings in
 
 ## Useful links:
 [Getting Started | 📈 vue-chartjs](https://vue-chartjs.org/guide/)
+
 [Chart.js · Chart.js documentation](https://www.chartjs.org/docs/latest/)
+
 [Vue.js Toggle Button](http://vue-js-toggle-button.yev.io/)
+
 [Vue-Multiselect | Vue Select Library](https://vue-multiselect.js.org/)
+
 [Introduction | Vue Router](https://router.vuejs.org/)
+
 [chartjs-plugin-labels](https://emn178.github.io/chartjs-plugin-labels/samples/demo/)
+
 [vue-scrollto  -  npm](https://www.npmjs.com/package/vue-scrollto)
 
 ## Potential Upgrades.
