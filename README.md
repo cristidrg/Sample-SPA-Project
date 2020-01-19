@@ -1,8 +1,22 @@
-# Outcomes Readme
+# SPA Data Vizualization with SSR Project Sample
+Demo: https://dev-graduateoutcomes.northeastern.edu/ (Build might not match this version)
+If charts are not shown wait 2 minutes for the back end server to spin up.
+
+## Project Description
+This repository serves as a code sample from a project I created for Northeastern University.
+
+This project was brainstormed upon the ideea of letting prospective students explore various outcomes
+after graduating from Northeastern University such as: Salary, Employment Type, Internship Participation,
+Popular Grad Schools, and many more!
+
+Technologies used: Nuxt.js, Tailwind CSS, Chart.js, GraphQL
+
+
+Below are some notes left to the team which will maintain and launch this project after my departure.
+
 ## API Interaction
 GraphQL Endpoint: https://7i6ffm3gkrhxnpbd5olq53nkwm.appsync-api.us-east-1.amazonaws.com/graphql
 
-Api key: da2-5edjqbmorveqnlg7mou7bv65fq
 
 GraphQL Query:
 
