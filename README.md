@@ -1,5 +1,6 @@
 # SPA Data Vizualization with SSR Project Sample
 Demo: https://dev-graduateoutcomes.northeastern.edu/ (Build might not match this version)
+
 If charts are not shown wait 2 minutes for the back end server to spin up.
 
 ## Project Description
@@ -10,7 +11,6 @@ after graduating from Northeastern University such as: Salary, Employment Type, 
 Popular Grad Schools, and many more!
 
 Technologies used: Nuxt.js, Tailwind CSS, Chart.js, GraphQL
-
 
 Below are some notes left to the team which will maintain and launch this project after my departure.
 
@@ -94,3 +94,5 @@ If more categories are added, there are some specific color to value mappings in
 If in the future, filtering might seem slow, using memoization via [GitHub - reduxjs/reselect: Selector library for Redux](https://github.com/reduxjs/reselect) will reduce filtering time.
 
 If we notice that the production server might be failing to respond,  introducing a please try again in a few minutes screen will be useful. 
+
+Disclaimer: The data shown in the dev link is not real and it's mocked by the back-end API.
